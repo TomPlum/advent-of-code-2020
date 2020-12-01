@@ -18,7 +18,7 @@ plugins {
 }
 
 allprojects {
-    group = "com.advent-of-code"
+    group = "io.github.tomplum"
     version = "0.0.1-SNAPSHOT"
 
     apply(plugin = "kotlin")
