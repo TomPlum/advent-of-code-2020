@@ -7,16 +7,15 @@ import org.junit.jupiter.api.Test
 
 class ExpenseReportTest {
     @Test
-    fun example() {
+    fun validateContainsTwoEntriesExampleInput() {
         val input = TestInputReader().readInputAsInt("report/example.txt").value
         val report = ExpenseReport(input)
-        assertThat(report.repair()).isEqualTo(514579)
+        assertThat(report.validateContainsTwoEntries()).isEqualTo(514579)
     }
-
     @Test
-    fun inputContainsTwoValidNumbersShouldReturnTheirProduct() {
-        val input = listOf(523, 1000, 12, 1020, 5)
+    fun validateContainsThreeEntriesExampleInput() {
+        val input = TestInputReader().readInputAsInt("report/example.txt").value
         val report = ExpenseReport(input)
-        assertThat(report.repair()).isEqualTo(1020000)
+        assertThat(report.validateContainsThreeEntries()).isEqualTo(241861950)
     }
 }

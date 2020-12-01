@@ -3,6 +3,7 @@ package io.github.tomplum.aoc.extensions
 import assertk.assertThat
 import assertk.assertions.containsAll
 import assertk.assertions.isEmpty
+import assertk.assertions.isEqualTo
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 
@@ -31,6 +32,15 @@ class CollectionExtensionsTest {
         @Test
         fun emptySets() {
             assertThat(emptyList<Int>().cartesianProduct(emptyList<Int>())).isEmpty()
+        }
+    }
+
+    @Nested
+    inner class CartesianProductTripleSelf {
+        @Test
+        fun example() {
+            val cartesianProduct = listOf(-1, -2).cartesianProduct(listOf(1, 2), listOf(0))
+            assertThat(cartesianProduct).containsAll(Triple(-1,1,0), Triple(-1,2,0), Triple(-2,1,0), Triple(-2,2,0))
         }
     }
 }
