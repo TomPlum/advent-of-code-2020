@@ -21,7 +21,7 @@ enterprise-style test-driven approach in Kotlin as I really enjoyed it.
 
 | Day 	| Part 1 	| Part 2 	        | Name                                      | Documentation          |
 |-------|-----------|-------------------|-------------------------------------------|------------------------|
-| 01   	| -       	| -                 | Report Repair                             | [Link](docs/DAY1.MD)   |
+| 01   	| 802011  	| -                 | Report Repair                             | [Link](docs/DAY1.MD)   |
 | 02   	| -         | -                 |                                           |                        |
 | 03   	| -         | -                 |                                           |                        |
 | 04   	| -         | -                 |                                           |                        |
