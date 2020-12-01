@@ -1,11 +1,12 @@
 package io.tomplum.aoc
 
-import java.io.File
+import io.github.tomplum.aoc.Day
+import io.github.tomplum.aoc.input.InputReader
 
 class Day1 : Solution<Int> {
     override fun part1(): Int {
-        val lines = File(Day1::class.java.getResource("/day1/input.txt").path).readLines().map { it.toInt() }
-        val report = ExpenseReport(lines)
+        val input = InputReader.read<Int>(Day(1)).value
+        val report = ExpenseReport(input)
         return report.repair()
     }
 }
