@@ -1,4 +1,4 @@
-package io.tomplum.aoc
+package io.github.tomplum.aoc
 
 import assertk.assertThat
 import assertk.assertions.isEqualTo
