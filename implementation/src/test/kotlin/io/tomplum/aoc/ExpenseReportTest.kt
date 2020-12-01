@@ -12,6 +12,7 @@ class ExpenseReportTest {
         val report = ExpenseReport(input)
         assertThat(report.validateContainsTwoEntries()).isEqualTo(514579)
     }
+
     @Test
     fun validateContainsThreeEntriesExampleInput() {
         val input = TestInputReader().readInputAsInt("report/example.txt").value
