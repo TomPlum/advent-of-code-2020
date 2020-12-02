@@ -4,31 +4,39 @@ import kotlin.system.measureTimeMillis
 
 class SolutionRunner {
     companion object {
-        fun run(solution: Solution<*>) {
-            //TODO: Replace println w/Logger once imported
-            //TODO: Output the runtime of each solution? Change this to varargs
-            println("${solution.javaClass.simpleName} Solutions:\n")
-            val firstTime = measureTimeMillis {
-                val first = solution.part1()
-                println("Part 1: $first")
-            }
-            println(formatExecutionTime(firstTime))
+        //TODO: Replace println w/Logger once imported
+        fun run(vararg solutions: Solution<*>) {
+            println("- Advent of Code 2020 Solution Report -\n")
 
-            println("")
+            val runtime = solutions.map { solution ->
+                println("[${solution.javaClass.simpleName}]")
+                val firstTime = measureTimeMillis {
+                    val first = solution.part1()
+                    println("Part 1: $first")
+                }
+                println(formatExecutionTime(firstTime))
 
-            val secondTime = measureTimeMillis {
-                val second = solution.part2()
-                println("Part 2: $second")
-            }
-            println(formatExecutionTime(secondTime))
+                val secondTime = measureTimeMillis {
+                    val second = try {
+                        "Part 2: ${solution.part2()}"
+                    } catch (e: UnsupportedOperationException) {
+                        e.message
+                    }
+                    println(second)
+                }
+                println(formatExecutionTime(secondTime))
 
-            println("\nTotal ${formatExecutionTime(firstTime + secondTime)}")
+                firstTime + secondTime
+            }.sum()
+
+
+            println("Total ${formatExecutionTime(runtime)}")
         }
 
         private fun formatExecutionTime(milliseconds: Long): String {
             val s = milliseconds / 1000
             val ms = milliseconds % 1000
-            return "Execution Time: ${s}s ${ms}ms"
+            return "Execution Time: ${s}s ${ms}ms\n"
         }
 
     }
