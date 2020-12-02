@@ -1,5 +1,7 @@
-package io.github.tomplum.aoc
+package io.github.tomplum.aoc.solutions
 
+import io.github.tomplum.aoc.Day
+import io.github.tomplum.aoc.Solution
 import io.github.tomplum.aoc.input.InputReader
 import io.github.tomplum.aoc.password.PasswordDatabase
 import io.github.tomplum.aoc.password.strategy.SledRentalPolicy
