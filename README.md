@@ -22,7 +22,7 @@ enterprise-style test-driven approach in Kotlin as I really enjoyed it.
 | Day 	| Part 1 	| Part 2 	        | Name                                      | Documentation          |
 |-------|-----------|-------------------|-------------------------------------------|------------------------|
 | 01   	| 802011  	| 248607374         | Report Repair                             | [Link](docs/DAY1.MD)   |
-| 02   	| 660       | -                 | Password Philosophy                       |                        |
+| 02   	| 660       | 530               | Password Philosophy                       |                        |
 | 03   	| -         | -                 |                                           |                        |
 | 04   	| -         | -                 |                                           |                        |
 | 05   	| -         | -                 |                                           |                        |
