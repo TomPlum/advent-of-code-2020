@@ -18,9 +18,9 @@ class PasswordDatabaseTest {
         fun exampleData() {
             database.import(exampleData.value)
             assertThat(database.passwords).isEqualTo(listOf(
-                Pair("abcde", CorporatePolicy("1-3 a")),
-                Pair("cdefg", CorporatePolicy("1-3 b")),
-                Pair("ccccccccc", CorporatePolicy("2-9 c"))
+                Pair("abcde", SledRentalPolicy("1-3 a")),
+                Pair("cdefg", SledRentalPolicy("1-3 b")),
+                Pair("ccccccccc", SledRentalPolicy("2-9 c"))
             ))
         }
 
