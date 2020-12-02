@@ -1,13 +1,29 @@
 package io.github.tomplum.aoc.password
 
-class PasswordDatabase {
+/**
+ * The shopkeeper at the North Pole Toboggan Rental Shop is having a bad day.
+ * - "Something's wrong with our computers; we can't log in!".
+ * You ask if you can take a look.
+ *
+ * Maintains a list of passwords and can [validate] them against a given [policyType].
+ */
+class PasswordDatabase<T : CorporatePolicy>(private val policyType: Class<T>) {
     val passwords = mutableListOf<Pair<String, CorporatePolicy>>()
 
+    /**
+     * Validates all the [passwords] against the given [policyType].
+     * @return The number of passwords that are valid.
+     */
     fun validate(): Int = passwords.filter { (password, policy) ->
         policy.apply(password)
     }.count()
 
-    fun <T : CorporatePolicy> import(rawData: List<String>, policyType: Class<T>) = rawData.map {
+    /**
+     * Imports a list of [rawData] exported from another [PasswordDatabase].
+     * @throws IllegalArgumentException if the [policyType] is unknown.
+     * @see CorporatePolicy
+     */
+    fun import(rawData: List<String>) = rawData.map {
         it.split(":")
     }.map { pair ->
         val policy = when(policyType) {

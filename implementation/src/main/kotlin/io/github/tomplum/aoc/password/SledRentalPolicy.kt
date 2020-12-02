@@ -1,5 +1,15 @@
 package io.github.tomplum.aoc.password
 
+/**
+ * When the shopkeeper originally explained the details of the password policy, he
+ * accidentally spoke of the one used at his old job at the sled rental place.
+ *
+ * The policy [data] describes both the minimum and maximum occurrences of the [mandatoryCharacter].
+ * These are both inclusive meaning the password must contain 'at-least' and 'at-most' respectively.
+ *
+ * @param data a string representation of the policy parameters. e.g "1-3 a".
+ * @see CorporatePolicy
+ */
 data class SledRentalPolicy(private val data: String) : CorporatePolicy {
     private val mandatoryCharacter: Char
     private val minimumOccurrences: Int

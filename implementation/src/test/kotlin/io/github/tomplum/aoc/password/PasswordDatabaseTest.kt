@@ -12,11 +12,11 @@ class PasswordDatabaseTest {
 
     @Nested
     inner class Import {
-        private val database = PasswordDatabase()
 
         @Test
         fun exampleDataSledPolicy() {
-            database.import(exampleData.value, SledRentalPolicy::class.java)
+            val database = PasswordDatabase(SledRentalPolicy::class.java)
+            database.import(exampleData.value)
             assertThat(database.passwords).isEqualTo(listOf(
                 Pair("abcde", SledRentalPolicy("1-3 a")),
                 Pair("cdefg", SledRentalPolicy("1-3 b")),
@@ -26,13 +26,15 @@ class PasswordDatabaseTest {
 
         @Test
         fun emptyDataSledPolicy() {
-            database.import(emptyList(), SledRentalPolicy::class.java)
+            val database = PasswordDatabase(SledRentalPolicy::class.java)
+            database.import(emptyList())
             assertThat(database.passwords).isEmpty()
         }
 
         @Test
         fun exampleDataTobogganPolicy() {
-            database.import(exampleData.value, TobogganPolicy::class.java)
+            val database = PasswordDatabase(TobogganPolicy::class.java)
+            database.import(exampleData.value)
             assertThat(database.passwords).isEqualTo(listOf(
                 Pair("abcde", TobogganPolicy("1-3 a")),
                 Pair("cdefg", TobogganPolicy("1-3 b")),
@@ -42,7 +44,8 @@ class PasswordDatabaseTest {
 
         @Test
         fun emptyDataTobogganPolicy() {
-            database.import(emptyList(), TobogganPolicy::class.java)
+            val database = PasswordDatabase(TobogganPolicy::class.java)
+            database.import(emptyList())
             assertThat(database.passwords).isEmpty()
         }
     }
@@ -51,15 +54,15 @@ class PasswordDatabaseTest {
     inner class Validate {
         @Test
         fun exampleDataSledPolicy() {
-            val database = PasswordDatabase()
-            database.import(exampleData.value, SledRentalPolicy::class.java)
+            val database = PasswordDatabase(SledRentalPolicy::class.java)
+            database.import(exampleData.value)
             assertThat(database.validate()).isEqualTo(2)
         }
 
         @Test
         fun exampleDataTobogganPolicy() {
-            val database = PasswordDatabase()
-            database.import(exampleData.value, TobogganPolicy::class.java)
+            val database = PasswordDatabase(TobogganPolicy::class.java)
+            database.import(exampleData.value)
             assertThat(database.validate()).isEqualTo(1)
         }
     }
