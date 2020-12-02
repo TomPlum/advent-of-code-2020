@@ -1,4 +1,4 @@
-package io.github.tomplum.aoc.password
+package io.github.tomplum.aoc.password.strategy
 
 /**
  * When the shopkeeper originally explained the details of the password policy, he

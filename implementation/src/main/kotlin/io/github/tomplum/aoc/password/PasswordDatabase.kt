@@ -1,5 +1,9 @@
 package io.github.tomplum.aoc.password
 
+import io.github.tomplum.aoc.password.strategy.CorporatePolicy
+import io.github.tomplum.aoc.password.strategy.SledRentalPolicy
+import io.github.tomplum.aoc.password.strategy.TobogganPolicy
+
 /**
  * The shopkeeper at the North Pole Toboggan Rental Shop is having a bad day.
  * - "Something's wrong with our computers; we can't log in!".

@@ -1,4 +1,4 @@
-package io.github.tomplum.aoc
+package io.github.tomplum.aoc.password.report
 
 import io.github.tomplum.aoc.extensions.cartesianProductCubic
 import io.github.tomplum.aoc.extensions.cartesianProductQuadratic

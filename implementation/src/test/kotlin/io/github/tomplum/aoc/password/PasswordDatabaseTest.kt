@@ -4,6 +4,8 @@ import assertk.assertThat
 import assertk.assertions.isEmpty
 import assertk.assertions.isEqualTo
 import io.github.tomplum.aoc.input.TestInputReader
+import io.github.tomplum.aoc.password.strategy.SledRentalPolicy
+import io.github.tomplum.aoc.password.strategy.TobogganPolicy
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 
