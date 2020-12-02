@@ -15,14 +15,38 @@ After much deliberation I (anti-climatically) decided to take the same approach 
 enterprise-style test-driven approach in Kotlin as I really enjoyed it.
     
 ## Contents
+* [Getting Started](#getting-started)
+* [The Codebase](#the-codebase)
+  * [Package Structure](#package-structure)
 * [Answer Table](#answer-table)
-    
+
+## Getting Started
+Simply clone or download the repository into your local environment and import it as a Gradle project in your IDE.
+Running [Solutions.kt](https://git.io/JII6v) will run the parts from all the completed days, reporting all the
+answers and runtimes in the console.
+
+## The Codebase
+### Package Structure
+The package structure was something that changed almost every day. My goal was "package-by-feature". For the first few 
+days it seemed like I'd just end up having 25 different packages whose names were relevant keywords from that day. 
+However, towards the latter half of the days, there were consistencies in the naming that started to make the language 
+a little more ubiquitous. This allowed me to start grouping packages together and start abstracting out common code.
+
+I created two Gradle root projects, `implementation` and `solutions`. With the former having sub-projects, `common`, for
+behaviour that is commonly used across multiple days and `test-support` for unit test utility classes.
+
+    -implementation
+        -src
+        -common
+        -test-support
+    -solutions
+
 ## Answer Table
 
 | Day 	| Part 1 	| Part 2 	        | Name                                      | Documentation          |
 |-------|-----------|-------------------|-------------------------------------------|------------------------|
 | 01   	| 802011  	| 248607374         | Report Repair                             | [Link](docs/DAY1.MD)   |
-| 02   	| 660       | 530               | Password Philosophy                       |                        |
+| 02   	| 660       | 530               | Password Philosophy                       | [Link](docs/DAY2.MD)   |
 | 03   	| -         | -                 |                                           |                        |
 | 04   	| -         | -                 |                                           |                        |
 | 05   	| -         | -                 |                                           |                        |
