@@ -15,8 +15,8 @@ class PasswordDatabaseTest {
         private val database = PasswordDatabase()
 
         @Test
-        fun exampleData() {
-            database.import(exampleData.value)
+        fun exampleDataSledPolicy() {
+            database.import(exampleData.value, SledRentalPolicy::class.java)
             assertThat(database.passwords).isEqualTo(listOf(
                 Pair("abcde", SledRentalPolicy("1-3 a")),
                 Pair("cdefg", SledRentalPolicy("1-3 b")),
@@ -25,8 +25,24 @@ class PasswordDatabaseTest {
         }
 
         @Test
-        fun emptyData() {
-            database.import(emptyList())
+        fun emptyDataSledPolicy() {
+            database.import(emptyList(), SledRentalPolicy::class.java)
+            assertThat(database.passwords).isEmpty()
+        }
+
+        @Test
+        fun exampleDataTobogganPolicy() {
+            database.import(exampleData.value, TobogganPolicy::class.java)
+            assertThat(database.passwords).isEqualTo(listOf(
+                Pair("abcde", TobogganPolicy("1-3 a")),
+                Pair("cdefg", TobogganPolicy("1-3 b")),
+                Pair("ccccccccc", TobogganPolicy("2-9 c"))
+            ))
+        }
+
+        @Test
+        fun emptyDataTobogganPolicy() {
+            database.import(emptyList(), TobogganPolicy::class.java)
             assertThat(database.passwords).isEmpty()
         }
     }
@@ -34,10 +50,17 @@ class PasswordDatabaseTest {
     @Nested
     inner class Validate {
         @Test
-        fun exampleData() {
+        fun exampleDataSledPolicy() {
             val database = PasswordDatabase()
-            database.import(exampleData.value)
+            database.import(exampleData.value, SledRentalPolicy::class.java)
             assertThat(database.validate()).isEqualTo(2)
+        }
+
+        @Test
+        fun exampleDataTobogganPolicy() {
+            val database = PasswordDatabase()
+            database.import(exampleData.value, TobogganPolicy::class.java)
+            assertThat(database.validate()).isEqualTo(1)
         }
     }
 }
