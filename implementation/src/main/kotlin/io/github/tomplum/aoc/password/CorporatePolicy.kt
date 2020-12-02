@@ -1,6 +1,6 @@
 package io.github.tomplum.aoc.password
 
-class CorporatePolicy(data: String) {
+data class CorporatePolicy(private val data: String) {
 
     val mandatoryCharacter: Char
     val minimumOccurrences: Int
