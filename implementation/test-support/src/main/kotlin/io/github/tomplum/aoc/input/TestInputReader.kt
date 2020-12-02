@@ -1,7 +1,7 @@
 package io.github.tomplum.aoc.input
 
-import com.aoc.input.types.IntegerInput
-import com.aoc.input.types.StringInput
+import io.github.tomplum.aoc.input.types.IntegerInput
+import io.github.tomplum.aoc.input.types.StringInput
 import io.github.tomplum.aoc.input.types.Input
 import java.io.File
 
