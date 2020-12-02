@@ -3,7 +3,7 @@ package io.github.tomplum.aoc.solutions
 import io.github.tomplum.aoc.Day
 import io.github.tomplum.aoc.Solution
 import io.github.tomplum.aoc.input.InputReader
-import io.github.tomplum.aoc.password.report.ExpenseReport
+import io.github.tomplum.aoc.report.ExpenseReport
 
 class Day1 : Solution<Int> {
     private val input = InputReader.read<Int>(Day(1)).value
