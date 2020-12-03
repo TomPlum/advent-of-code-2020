@@ -3,6 +3,7 @@ package io.github.tomplum.aoc.extensions
 import assertk.assertThat
 import assertk.assertions.containsAll
 import assertk.assertions.isEmpty
+import assertk.assertions.isEqualTo
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 
@@ -45,6 +46,24 @@ class CollectionExtensionsTest {
         @Test
         fun emptySets() {
             assertThat(emptyList<Int>().cartesianProductCubic(emptyList(), emptyList())).isEmpty()
+        }
+    }
+
+    @Nested
+    inner class ListProduct {
+        @Test
+        fun empty() {
+            assertThat(emptyList<Int>().product()).isEqualTo(0)
+        }
+
+        @Test
+        fun severalElements() {
+            assertThat(listOf(2, 5, 10).product()).isEqualTo(100)
+        }
+
+        @Test
+        fun negativeIntegers() {
+            assertThat(listOf(3, 10, 2, -1).product()).isEqualTo(-60)
         }
     }
 }

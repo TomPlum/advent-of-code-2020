@@ -1,10 +1,10 @@
 package io.github.tomplum.aoc.map
 
+import io.github.tomplum.aoc.extensions.product
 import io.github.tomplum.libs.logging.AdventLogger
 import io.github.tomplum.libs.map.AdventMap2D
 import io.github.tomplum.libs.math.Direction
 import io.github.tomplum.libs.math.Point2D
-import java.lang.IllegalArgumentException
 
 class ForestMap(data: List<String>) : AdventMap2D<ForestTile>() {
     init {
@@ -19,14 +19,12 @@ class ForestMap(data: List<String>) : AdventMap2D<ForestTile>() {
             y++
         }
         AdventLogger.info(this)
-        AdventLogger.info("X Range: ${xMin()} - ${xMax()}")
-        AdventLogger.info("Y Range: ${yMin()} - ${yMax()}")
     }
 
     fun trackTobogganTrajectory(): Int {
         var currentPosition = Point2D(0, 0)
         var treesEncountered = 0
-        while(currentPosition.y <= yMax()) {
+        while (currentPosition.y <= yMax()) {
             AdventLogger.debug("Toboggan Position: $currentPosition")
             val tile = getForestTile(currentPosition)
             if (tile.isTree()) treesEncountered++
@@ -35,7 +33,19 @@ class ForestMap(data: List<String>) : AdventMap2D<ForestTile>() {
         return treesEncountered
     }
 
-    fun getForestTile(pos: Point2D): ForestTile {
+    fun trackTobogganTrajectory(slopes: List<SlopeTrajectory>): Int = slopes.map { slopeTrajectory ->
+        var currentPosition = Point2D(0, 0)
+        var treesEncountered = 0
+        while (currentPosition.y <= yMax()) {
+            AdventLogger.debug("Toboggan Position: $currentPosition")
+            val tile = getForestTile(currentPosition)
+            if (tile.isTree()) treesEncountered++
+            currentPosition = slopeTrajectory.apply(currentPosition)
+        }
+        treesEncountered
+    }.product()
+
+    private fun getForestTile(pos: Point2D): ForestTile {
         return if (hasRecorded(pos)) {
             getTile(pos)
         } else {
@@ -46,5 +56,6 @@ class ForestMap(data: List<String>) : AdventMap2D<ForestTile>() {
     }
 
     //TODO: Change shift() in libs so it takes an integer but default its value to 1 to save needing to overload
-    private fun Point2D.nextTobogganPosition(): Point2D = this.shift(Direction.RIGHT).shift(Direction.RIGHT).shift(Direction.RIGHT).shift(Direction.UP)
+    private fun Point2D.nextTobogganPosition(): Point2D =
+        this.shift(Direction.RIGHT).shift(Direction.RIGHT).shift(Direction.RIGHT).shift(Direction.UP)
 }
