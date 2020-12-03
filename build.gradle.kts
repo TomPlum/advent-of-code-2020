@@ -24,13 +24,18 @@ allprojects {
 
     repositories {
         mavenCentral()
-        maven("https://maven.pkg.github.com/tomplum/advent-of-code-libs")
+        maven("https://maven.pkg.github.com/tomplum/advent-of-code-libs") {
+            credentials {
+                username = "TomPlum"
+                password = System.getenv("GITHUB_PACKAGE_REGISTRY_KEY")
+            }
+        }
     }
 
     dependencies {
         implementation(kotlin("stdlib-jdk8"))
         implementation(kotlin("reflect"))
-        implementation("io.github.tomplum:advent-of-code-libs:1.0.2")
+        implementation("io.github.tomplum:advent-of-code-libs:1.1.0")
     }
 
     tasks.withType<KotlinCompile> {
