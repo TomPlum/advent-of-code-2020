@@ -21,9 +21,9 @@ class ForestMap(data: List<String>) : AdventMap2D<ForestTile>() {
         AdventLogger.info(this)
     }
 
-    fun trackTobogganTrajectory(): Int {
+    fun trackTobogganTrajectory(): Long {
         var currentPosition = Point2D(0, 0)
-        var treesEncountered = 0
+        var treesEncountered = 0L
         while (currentPosition.y <= yMax()) {
             AdventLogger.debug("Toboggan Position: $currentPosition")
             val tile = getForestTile(currentPosition)
@@ -33,9 +33,9 @@ class ForestMap(data: List<String>) : AdventMap2D<ForestTile>() {
         return treesEncountered
     }
 
-    fun trackTobogganTrajectory(slopes: List<SlopeTrajectory>): Int = slopes.map { slopeTrajectory ->
+    fun trackTobogganTrajectory(slopes: List<SlopeTrajectory>): Long = slopes.map { slopeTrajectory ->
         var currentPosition = Point2D(0, 0)
-        var treesEncountered = 0
+        var treesEncountered = 0L
         while (currentPosition.y <= yMax()) {
             AdventLogger.debug("Toboggan Position: $currentPosition")
             val tile = getForestTile(currentPosition)

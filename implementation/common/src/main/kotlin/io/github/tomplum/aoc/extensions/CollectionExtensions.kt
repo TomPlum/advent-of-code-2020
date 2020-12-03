@@ -4,6 +4,7 @@ package io.github.tomplum.aoc.extensions
  * Returns the product of all of the integers in the given list.
  */
 fun List<Int>.product(): Int = if (isNotEmpty()) reduce { product, next -> product * next } else 0
+fun List<Long>.product(): Long = if (isNotEmpty()) reduce { product, next -> product * next } else 0
 
 /**
  * For two sets A and B, the Cartesian product of A and B is denoted by A×B and defined as:
