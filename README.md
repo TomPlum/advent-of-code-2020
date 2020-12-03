@@ -47,7 +47,7 @@ behaviour that is commonly used across multiple days and `test-support` for unit
 |-------|-----------|-------------------|-------------------------------------------|------------------------|
 | 01   	| 802011  	| 248607374         | Report Repair                             | [Link](docs/DAY1.MD)   |
 | 02   	| 660       | 530               | Password Philosophy                       | [Link](docs/DAY2.MD)   |
-| 03   	| -         | -                 |                                           |                        |
+| 03   	| 169       | -                 | Toboggan Trajectory                       |                        |
 | 04   	| -         | -                 |                                           |                        |
 | 05   	| -         | -                 |                                           |                        |
 | 06   	| -         | -                 |                                           |                        |
