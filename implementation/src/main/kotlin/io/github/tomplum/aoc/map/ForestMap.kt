@@ -3,7 +3,6 @@ package io.github.tomplum.aoc.map
 import io.github.tomplum.aoc.extensions.product
 import io.github.tomplum.libs.logging.AdventLogger
 import io.github.tomplum.libs.map.AdventMap2D
-import io.github.tomplum.libs.math.Direction
 import io.github.tomplum.libs.math.Point2D
 
 class ForestMap(data: List<String>) : AdventMap2D<ForestTile>() {
@@ -19,18 +18,6 @@ class ForestMap(data: List<String>) : AdventMap2D<ForestTile>() {
             y++
         }
         AdventLogger.info(this)
-    }
-
-    fun trackTobogganTrajectory(): Long {
-        var currentPosition = Point2D(0, 0)
-        var treesEncountered = 0L
-        while (currentPosition.y <= yMax()) {
-            AdventLogger.debug("Toboggan Position: $currentPosition")
-            val tile = getForestTile(currentPosition)
-            if (tile.isTree()) treesEncountered++
-            currentPosition = currentPosition.nextTobogganPosition()
-        }
-        return treesEncountered
     }
 
     fun trackTobogganTrajectory(slopes: List<SlopeTrajectory>): Long = slopes.map { slopeTrajectory ->
@@ -54,8 +41,4 @@ class ForestMap(data: List<String>) : AdventMap2D<ForestTile>() {
             getTile(Point2D(pos.x % width, pos.y))
         }
     }
-
-    //TODO: Change shift() in libs so it takes an integer but default its value to 1 to save needing to overload
-    private fun Point2D.nextTobogganPosition(): Point2D =
-        this.shift(Direction.RIGHT).shift(Direction.RIGHT).shift(Direction.RIGHT).shift(Direction.UP)
 }

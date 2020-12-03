@@ -10,7 +10,7 @@ class Day3 : Solution<Long> {
     private val data = InputReader.read<String>(Day(3))
 
     override fun part1(): Long {
-        return ForestMap(data.value).trackTobogganTrajectory()
+        return ForestMap(data.value).trackTobogganTrajectory(listOf(SlopeTrajectory(3,1)))
     }
 
     override fun part2(): Long {

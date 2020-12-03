@@ -10,7 +10,7 @@ class ForestMapTest {
     fun example() {
         val data = TestInputReader().readInputAsString("map/forest/forest-map.txt")
         val map = ForestMap(data.value)
-        assertThat(map.trackTobogganTrajectory()).isEqualTo(7)
+        assertThat(map.trackTobogganTrajectory(listOf(SlopeTrajectory(3,1)))).isEqualTo(7)
     }
 
     @Test
