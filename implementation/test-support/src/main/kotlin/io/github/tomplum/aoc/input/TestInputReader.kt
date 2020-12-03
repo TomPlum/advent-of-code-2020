@@ -1,8 +1,9 @@
 package io.github.tomplum.aoc.input
 
-import io.github.tomplum.aoc.input.types.IntegerInput
-import io.github.tomplum.aoc.input.types.StringInput
-import io.github.tomplum.aoc.input.types.Input
+import io.github.tomplum.libs.input.InputReader
+import io.github.tomplum.libs.input.types.Input
+import io.github.tomplum.libs.input.types.IntegerInput
+import io.github.tomplum.libs.input.types.StringInput
 import java.io.File
 
 class TestInputReader : InputReader() {

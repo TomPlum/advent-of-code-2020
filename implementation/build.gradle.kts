@@ -5,7 +5,4 @@ dependencies {
     //Gradle Sub-Project Dependencies
     implementation(project(":implementation:common"))
     testImplementation(project(":implementation:test-support"))
-
-    //Advent of Code Libs
-    implementation("io.github.tomplum:advent-of-code-libs:1.0.2")
 }

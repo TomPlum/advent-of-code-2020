@@ -1,21 +1,21 @@
 package io.github.tomplum.aoc
 
+import io.github.tomplum.libs.logging.AdventLogger
 import kotlin.system.measureTimeMillis
 
 class SolutionRunner {
     companion object {
-        //TODO: Replace println w/Logger once imported
         //TODO: Serialise runtimes and then read to report deltas
         fun run(vararg solutions: Solution<*>) {
-            println("- Advent of Code 2020 Solution Report -\n")
+            AdventLogger.info("- Advent of Code 2020 Solution Report -\n")
 
             val runtime = solutions.map { solution ->
-                println("[${solution.javaClass.simpleName}]")
+                AdventLogger.info("[${solution.javaClass.simpleName}]")
                 runPart(solution, Part.ONE) + runPart(solution, Part.TWO)
             }.sum()
 
 
-            println("Total ${formatExecutionTime(runtime)}")
+            AdventLogger.info("Total ${formatExecutionTime(runtime)}")
         }
 
         private fun runPart(solution: Solution<*>, part: Part): Long {
@@ -24,9 +24,9 @@ class SolutionRunner {
                     Part.ONE -> solution.part1()
                     Part.TWO -> solution.part2()
                 }
-                println("Part ${part.value}: $answer")
+                AdventLogger.info("Part ${part.value}: $answer")
             }
-            println(formatExecutionTime(runtime))
+            AdventLogger.info(formatExecutionTime(runtime))
             return runtime
         }
 
