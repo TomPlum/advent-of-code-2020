@@ -7,15 +7,15 @@ class SolutionRunner {
     companion object {
         //TODO: Serialise runtimes and then read to report deltas
         fun run(vararg solutions: Solution<*>) {
-            AdventLogger.info("- Advent of Code 2020 Solution Report -\n")
+            AdventLogger.error("- Advent of Code 2020 Solution Report -\n")
 
             val runtime = solutions.map { solution ->
-                AdventLogger.info("[${solution.javaClass.simpleName}]")
+                AdventLogger.error("[${solution.javaClass.simpleName}]")
                 runPart(solution, Part.ONE) + runPart(solution, Part.TWO)
             }.sum()
 
 
-            AdventLogger.info("Total ${formatExecutionTime(runtime)}")
+            AdventLogger.error("Total ${formatExecutionTime(runtime)}")
         }
 
         private fun runPart(solution: Solution<*>, part: Part): Long {
@@ -24,9 +24,9 @@ class SolutionRunner {
                     Part.ONE -> solution.part1()
                     Part.TWO -> solution.part2()
                 }
-                AdventLogger.info("Part ${part.value}: $answer")
+                AdventLogger.error("Part ${part.value}: $answer")
             }
-            AdventLogger.info(formatExecutionTime(runtime))
+            AdventLogger.error(formatExecutionTime(runtime))
             return runtime
         }
 
