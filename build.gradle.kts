@@ -3,8 +3,6 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 buildscript {
     repositories {
         mavenCentral()
-        jcenter()
-        google()
     }
 
     dependencies {
@@ -14,6 +12,7 @@ buildscript {
 
 plugins {
     idea
+    maven
     kotlin("jvm") version "1.4.0"
 }
 
@@ -25,8 +24,7 @@ allprojects {
 
     repositories {
         mavenCentral()
-        jcenter()
-        google()
+        maven("https://maven.pkg.github.com/tomplum/advent-of-code-libs")
     }
 
     dependencies {
