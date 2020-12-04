@@ -8,7 +8,7 @@ import io.github.tomplum.libs.math.Point2D
  * @param right The number of tiles moved to the right each movement.
  * @param down The number of tiles moved down each movement.
  */
-data class SlopeTrajectory(val right: Int, val down: Int) {
+data class SlopeTrajectory(private val right: Int, private val down: Int) {
     fun apply(position: Point2D): Point2D {
         var translated = position
         repeat(right) { translated = translated.shift(Direction.RIGHT) }

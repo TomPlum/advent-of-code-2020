@@ -4,17 +4,18 @@ import assertk.assertThat
 import assertk.assertions.isEmpty
 import assertk.assertions.isEqualTo
 import io.github.tomplum.aoc.input.TestInputReader
+import io.github.tomplum.aoc.password.strategy.CorporatePolicy
 import io.github.tomplum.aoc.password.strategy.SledRentalPolicy
 import io.github.tomplum.aoc.password.strategy.TobogganPolicy
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 
 class PasswordDatabaseTest {
     private val exampleData = TestInputReader().readInputAsString("password/example-database-list.txt")
 
     @Nested
     inner class Import {
-
         @Test
         fun exampleDataSledPolicy() {
             val database = PasswordDatabase(SledRentalPolicy::class.java)
@@ -50,6 +51,14 @@ class PasswordDatabaseTest {
             database.import(emptyList())
             assertThat(database.passwords).isEmpty()
         }
+
+        @Test
+        fun unknownPolicyType() {
+            val e = assertThrows<IllegalArgumentException> { PasswordDatabase(FakePolicy::class.java).import(exampleData.value) }
+            assertThat(e.message).isEqualTo("Unknown Policy Type: FakePolicy")
+        }
+
+        private abstract inner class FakePolicy : CorporatePolicy
     }
 
     @Nested

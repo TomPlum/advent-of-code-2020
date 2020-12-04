@@ -27,13 +27,11 @@ class PasswordDatabase<T : CorporatePolicy>(private val policyType: Class<T>) {
      * @throws IllegalArgumentException if the [policyType] is unknown.
      * @see CorporatePolicy
      */
-    fun import(rawData: List<String>) = rawData.map {
-        it.split(":")
-    }.map { pair ->
+    fun import(rawData: List<String>) = rawData.map { it.split(":") }.map { pair ->
         val policy = when(policyType) {
             SledRentalPolicy::class.java -> SledRentalPolicy(pair[0])
             TobogganPolicy::class.java -> TobogganPolicy(pair[0])
-            else -> throw IllegalArgumentException("Unknown Policy Type: ${policyType.javaClass.simpleName}")
+            else -> throw IllegalArgumentException("Unknown Policy Type: ${policyType.simpleName}")
         }
         Pair(pair[1].trim(), policy)
     }.also { passwords.addAll(it) }
