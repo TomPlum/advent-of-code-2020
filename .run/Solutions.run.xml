@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Run Solutions" type="JetRunConfigurationType">
+  <configuration default="false" name="Solutions" type="JetRunConfigurationType">
     <module name="advent-of-code-2020.solutions.main" />
     <option name="VM_PARAMETERS" value="" />
     <option name="PROGRAM_PARAMETERS" value="" />

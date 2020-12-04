@@ -12,10 +12,10 @@ class SolutionRunner {
             val runtime = solutions.map { solution ->
                 AdventLogger.error("[${solution.javaClass.simpleName}]")
                 runPart(solution, Part.ONE) + runPart(solution, Part.TWO)
-            }.sum()
+            }
 
-
-            AdventLogger.error("Total ${formatExecutionTime(runtime)}")
+            AdventLogger.error("Average ${formatExecutionTime(runtime.average().toLong())}")
+            AdventLogger.error("Total ${formatExecutionTime(runtime.sum())}")
         }
 
         private fun runPart(solution: Solution<*>, part: Part): Long {
@@ -33,11 +33,8 @@ class SolutionRunner {
         private fun formatExecutionTime(milliseconds: Long): String {
             val s = milliseconds / 1000
             val ms = milliseconds % 1000
-            if (s > 0) {
-                return "Execution Time: ${s}s ${ms}ms\n"
-            }
+            if (s > 0) return "Execution Time: ${s}s ${ms}ms\n"
             return "Execution Time: ${ms}ms\n"
-
         }
 
         private enum class Part(val value: String) { ONE("1"), TWO("2") }
