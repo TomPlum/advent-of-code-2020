@@ -11,6 +11,9 @@ import io.github.tomplum.libs.math.Point2D
  * stability, the same pattern repeats to the right many times.
  */
 class ForestMap(data: List<String>) : AdventMap2D<ForestTile>() {
+    private val xMax: Int
+    private val yMax: Int
+
     init {
         var x = 0
         var y = 0
@@ -22,6 +25,8 @@ class ForestMap(data: List<String>) : AdventMap2D<ForestTile>() {
             x = 0
             y++
         }
+        xMax = xMax()
+        yMax = yMax()
         AdventLogger.info(this)
     }
 
@@ -29,10 +34,10 @@ class ForestMap(data: List<String>) : AdventMap2D<ForestTile>() {
      * Tracks the number of trees encountered during the toboggans descent for each of the given [slopes].
      * @return The cumulative product of all of the trees encountered.
      */
-    fun trackTobogganTrajectory(slopes: List<SlopeTrajectory>): Long = slopes.map { slopeTrajectory ->
+    fun trackTobogganTrajectory(vararg slopes: SlopeTrajectory): Long = slopes.map { slopeTrajectory ->
         var currentPosition = Point2D(0, 0)
         var treesEncountered = 0L
-        while (currentPosition.y <= yMax()) {
+        while (currentPosition.y <= yMax) {
             AdventLogger.debug("Toboggan Position: $currentPosition")
             val tile = getForestTile(currentPosition)
             if (tile.isTree()) treesEncountered++
@@ -42,17 +47,10 @@ class ForestMap(data: List<String>) : AdventMap2D<ForestTile>() {
     }.product()
 
     /**
-     * Gets the tile from the map at the given [position].
+     * Gets the tile from the map at the given [pos].
      * Should the x-ordinate lie outside the mapped tiles, it is translated as if the map repeated to the right.
-     * @throws IllegalArgumentException if the y-ordinate of the given [position] is off the map.
+     * @throws IllegalArgumentException if the y-ordinate of the given [pos] is off the map.
      */
-    private fun getForestTile(position: Point2D): ForestTile {
-        return if (hasRecorded(position)) {
-            getTile(position)
-        } else {
-            if (position.y > yMax()) throw IllegalArgumentException("$position is off the map!")
-            val width = xMax() + 1
-            getTile(Point2D(position.x % width, position.y))
-        }
-    }
+    private fun getForestTile(pos: Point2D) = getTile(pos, getTile(Point2D(pos.x % (xMax + 1), pos.y)))
+
 }
