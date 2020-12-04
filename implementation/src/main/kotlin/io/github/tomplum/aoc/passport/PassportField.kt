@@ -24,7 +24,7 @@ enum class PassportField(val code: String) {
         }
     },
     EYE_COLOUR("ecl") {
-        override fun isValid(value: String) = listOf("amb", "blu", "brn,", "gry", "grn", "hzl", "oth").contains(value)
+        override fun isValid(value: String) = listOf("amb", "blu", "brn", "gry", "grn", "hzl", "oth").contains(value)
     },
     PASSPORT_ID("pid") {
         override fun isValid(value: String) = value.length == 9 && value.all { it.isDigit() }

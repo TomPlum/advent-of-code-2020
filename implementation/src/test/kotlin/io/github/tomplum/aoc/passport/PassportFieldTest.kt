@@ -96,7 +96,7 @@ class PassportFieldTest {
         @Nested
         inner class EyeColour {
             @ParameterizedTest
-            @ValueSource(strings = ["amb", "blu", "brn,", "gry", "grn", "hzl", "oth"])
+            @ValueSource(strings = ["amb", "blu", "brn", "gry", "grn", "hzl", "oth"])
             fun valid(value: String) {
                 assertThat(PassportField.EYE_COLOUR.isValid(value)).isTrue()
             }
