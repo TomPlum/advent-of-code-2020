@@ -33,7 +33,11 @@ class SolutionRunner {
         private fun formatExecutionTime(milliseconds: Long): String {
             val s = milliseconds / 1000
             val ms = milliseconds % 1000
-            return "Execution Time: ${s}s ${ms}ms\n"
+            if (s > 0) {
+                return "Execution Time: ${s}s ${ms}ms\n"
+            }
+            return "Execution Time: ${ms}ms\n"
+
         }
 
         private enum class Part(val value: String) { ONE("1"), TWO("2") }

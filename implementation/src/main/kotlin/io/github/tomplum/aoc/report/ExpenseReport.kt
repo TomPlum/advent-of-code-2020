@@ -23,5 +23,5 @@ class ExpenseReport(private val data: List<Int>) {
         data.map { k -> if ((i + j + k).isTargetSum()) i * j * k else null
     }}}.filterNotNull().first()
 
-    private fun Int.isTargetSum(): Boolean = this == 2020
+    private fun Int.isTargetSum(): Boolean = equals(2020)
 }
