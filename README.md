@@ -1,5 +1,11 @@
 # :christmas_tree: Advent of Code (2020)
 
+[![GitHub Issues](https://img.shields.io/github/issues/TomPlum/advent-of-code-2020.svg)](https://github.com/TomPlum/advent-of-code-2020/issues)
+![GitHub closed issues](https://img.shields.io/github/issues-closed/TomPlum/advent-of-code-2020?color=brightgreen)
+![GitHub](https://img.shields.io/github/license/TomPlum/advent-of-code-2020?color=informational)
+![GitHub](https://img.shields.io/badge/instructions-99%25-success)
+![GitHub](https://img.shields.io/badge/branches-93%25-orange)
+
 ## What is Advent of Code?
 
 _Excerpt from the Advent of Code [website](https://adventofcode.com/2020/about);_
