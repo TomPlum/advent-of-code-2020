@@ -1,10 +1,12 @@
 package io.github.tomplum.aoc.passport
 
 import assertk.assertThat
+import assertk.assertions.isEqualTo
 import assertk.assertions.isFalse
 import assertk.assertions.isTrue
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.EmptySource
 import org.junit.jupiter.params.provider.NullAndEmptySource
@@ -87,7 +89,7 @@ class PassportFieldTest {
 
             @ParameterizedTest
             @EmptySource
-            @ValueSource(strings = ["#", "ffffff", "#1f1f1", "#12345g"])
+            @ValueSource(strings = ["#", "ffffff", "#1f1f1", "#12345g", "#1-3a5b"])
             fun invalid(value: String) {
                 assertThat(PassportField.HAIR_COLOUR.isValid(value)).isFalse()
             }
@@ -133,6 +135,57 @@ class PassportFieldTest {
             fun valid(value: String) {
                 assertThat(PassportField.COUNTRY_ID.isValid(value)).isTrue()
             }
+        }
+    }
+
+    @Nested
+    inner class FromString {
+        @Test
+        fun birthYear() {
+            assertThat(PassportField.fromString("byr")).isEqualTo(PassportField.BIRTH_YEAR)
+        }
+
+        @Test
+        fun issueYear() {
+            assertThat(PassportField.fromString("iyr")).isEqualTo(PassportField.ISSUE_YEAR)
+        }
+
+        @Test
+        fun expirationYear() {
+            assertThat(PassportField.fromString("eyr")).isEqualTo(PassportField.EXPIRATION_YEAR)
+        }
+
+        @Test
+        fun height() {
+            assertThat(PassportField.fromString("hgt")).isEqualTo(PassportField.HEIGHT)
+        }
+
+        @Test
+        fun hairColour() {
+            assertThat(PassportField.fromString("hcl")).isEqualTo(PassportField.HAIR_COLOUR)
+        }
+
+        @Test
+        fun eyeColour() {
+            assertThat(PassportField.fromString("ecl")).isEqualTo(PassportField.EYE_COLOUR)
+        }
+
+        @Test
+        fun passportId() {
+            assertThat(PassportField.fromString("pid")).isEqualTo(PassportField.PASSPORT_ID)
+        }
+
+        @Test
+        fun countryId() {
+            assertThat(PassportField.fromString("cid")).isEqualTo(PassportField.COUNTRY_ID)
+        }
+
+        @ParameterizedTest
+        @EmptySource
+        @ValueSource(strings = ["isd", "dfg", "p1d"])
+        fun invalidString(value: String) {
+            val e = assertThrows<IllegalArgumentException> { PassportField.fromString(value) }
+            assertThat(e.message).isEqualTo("Invalid Field Code: $value")
         }
     }
 }

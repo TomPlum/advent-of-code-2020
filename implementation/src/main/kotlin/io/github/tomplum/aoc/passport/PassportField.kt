@@ -1,35 +1,47 @@
 package io.github.tomplum.aoc.passport
 
-enum class PassportField(val code: String) {
-    BIRTH_YEAR("byr") {
-        override fun isValid(value: String) = value.length == 4 && value.toInt() in IntRange(1920, 2002)
+enum class PassportField {
+    BIRTH_YEAR {
+        override fun isValid(value: String): Boolean {
+            return value.length == 4 && value.toInt() in IntRange(1920, 2002)
+        }
     },
-    ISSUE_YEAR("iyr") {
-        override fun isValid(value: String) = value.length == 4 && value.toInt() in IntRange(2010, 2020)
+    ISSUE_YEAR {
+        override fun isValid(value: String): Boolean {
+            return value.length == 4 && value.toInt() in IntRange(2010, 2020)
+        }
     },
-    EXPIRATION_YEAR("eyr") {
-        override fun isValid(value: String) = value.length == 4 && value.toInt() in IntRange(2020, 2030)
+    EXPIRATION_YEAR {
+        override fun isValid(value: String): Boolean {
+            return value.length == 4 && value.toInt() in IntRange(2020, 2030)
+        }
     },
-    HEIGHT("hgt") {
+    HEIGHT {
         override fun isValid(value: String) = when(value.takeLast(2)) {
             "cm" -> value.dropLast(2).toInt() in IntRange(150, 193)
             "in" -> value.dropLast(2).toInt() in IntRange(59, 76)
             else -> false
         }
     },
-    HAIR_COLOUR("hcl") {
+    HAIR_COLOUR {
         override fun isValid(value: String): Boolean {
-            val isHex = value.filter { it.isLetter() }.all { it.toInt() in IntRange(97, 102) }
+            val letters = value.filter { it.isLetter() }
+            val other = value.drop(1).filterNot { it.isLetter() }
+            val isHex = letters.all { it.toInt() in IntRange(97, 102) } && other.all { it.isDigit() }
             return value.length == 7 && value.first() == '#' && isHex
         }
     },
-    EYE_COLOUR("ecl") {
-        override fun isValid(value: String) = listOf("amb", "blu", "brn", "gry", "grn", "hzl", "oth").contains(value)
+    EYE_COLOUR {
+        override fun isValid(value: String): Boolean {
+            return listOf("amb", "blu", "brn", "gry", "grn", "hzl", "oth").contains(value)
+        }
     },
-    PASSPORT_ID("pid") {
-        override fun isValid(value: String) = value.length == 9 && value.all { it.isDigit() }
+    PASSPORT_ID {
+        override fun isValid(value: String): Boolean {
+            return value.length == 9 && value.all { it.isDigit() }
+        }
     },
-    COUNTRY_ID("cid") {
+    COUNTRY_ID {
         override fun isValid(value: String) = true
     };
 
@@ -45,7 +57,7 @@ enum class PassportField(val code: String) {
             "ecl" -> EYE_COLOUR
             "pid" -> PASSPORT_ID
             "cid" -> COUNTRY_ID
-            else -> throw IllegalArgumentException("Invalid Code: $code")
+            else -> throw IllegalArgumentException("Invalid Field Code: $code")
         }
     }
 }
