@@ -1,10 +1,10 @@
 package io.github.tomplum.aoc.solutions
 
 import io.github.tomplum.aoc.Solution
-import io.github.tomplum.aoc.passport.PassportReader
-import io.github.tomplum.aoc.passport.PassportScanner
-import io.github.tomplum.aoc.passport.strategy.RelaxedValidation
-import io.github.tomplum.aoc.passport.strategy.StrictValidation
+import io.github.tomplum.aoc.airport.passport.PassportReader
+import io.github.tomplum.aoc.airport.passport.PassportScanner
+import io.github.tomplum.aoc.airport.passport.strategy.RelaxedValidation
+import io.github.tomplum.aoc.airport.passport.strategy.StrictValidation
 import io.github.tomplum.libs.input.Day
 import io.github.tomplum.libs.input.InputReader
 

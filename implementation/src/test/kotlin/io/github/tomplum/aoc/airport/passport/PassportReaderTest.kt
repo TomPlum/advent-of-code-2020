@@ -1,9 +1,9 @@
-package io.github.tomplum.aoc.passport
+package io.github.tomplum.aoc.airport.passport
 
 import assertk.assertThat
 import assertk.assertions.isEqualTo
 import io.github.tomplum.aoc.input.TestInputReader
-import io.github.tomplum.aoc.passport.PassportField.*
+import io.github.tomplum.aoc.airport.passport.PassportField.*
 import org.junit.jupiter.api.Test
 
 class PassportReaderTest {

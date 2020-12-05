@@ -1,6 +1,6 @@
-package io.github.tomplum.aoc.passport.strategy
+package io.github.tomplum.aoc.airport.passport.strategy
 
-import io.github.tomplum.aoc.passport.PassportField
+import io.github.tomplum.aoc.airport.passport.PassportField
 
 class RelaxedValidation : PassportValidationStrategy {
     override fun isValid(info: Map<PassportField, String>): Boolean {

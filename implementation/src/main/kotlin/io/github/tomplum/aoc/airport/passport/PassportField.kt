@@ -1,4 +1,4 @@
-package io.github.tomplum.aoc.passport
+package io.github.tomplum.aoc.airport.passport
 
 enum class PassportField {
     BIRTH_YEAR {

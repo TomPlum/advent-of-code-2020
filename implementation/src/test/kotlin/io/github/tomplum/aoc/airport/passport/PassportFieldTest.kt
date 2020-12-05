@@ -1,4 +1,4 @@
-package io.github.tomplum.aoc.passport
+package io.github.tomplum.aoc.airport.passport
 
 import assertk.assertThat
 import assertk.assertions.isEqualTo
@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.EmptySource
-import org.junit.jupiter.params.provider.NullAndEmptySource
 import org.junit.jupiter.params.provider.ValueSource
 
 class PassportFieldTest {
