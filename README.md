@@ -36,6 +36,9 @@ answers and runtimes in the console.
 |--------------------|---------------------------------------------------------------------------------------------------|
 | `test`             | Runs the unit tests with coverage for the `implementation`, `solutions` and `common` sub-projects.|
 
+### IntelliJ Run Configurations
+The `.run` directory contains XML configuration files from IntelliJ.
+
 ## The Codebase
 ### Package Structure
 The package structure was something that changed almost every day. My goal was "package-by-feature". For the first few 

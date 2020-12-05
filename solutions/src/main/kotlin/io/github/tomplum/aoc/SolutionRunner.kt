@@ -1,45 +1,43 @@
 package io.github.tomplum.aoc
 
+import io.github.tomplum.aoc.benchmark.*
 import io.github.tomplum.libs.logging.AdventLogger
 import kotlin.system.measureTimeMillis
 
 /**
  * A companion utility class designs to run multiple [Solution] implementations.
+ * [AdventLogger.error] is used for logging to prevent lower level logs from disrupting the report.
  */
 class SolutionRunner private constructor() {
     companion object {
-        //TODO: Serialise runtimes and then read to report deltas
         fun run(vararg solutions: Solution<*>) {
-            AdventLogger.error("- Advent of Code 2020 Solution Report -\n")
+            val result = BenchmarkResult()
 
-            val runtime = solutions.map { solution ->
-                AdventLogger.error("[${solution.javaClass.simpleName}]")
-                runPart(solution, Part.ONE) + runPart(solution, Part.TWO)
+            solutions.map { solution ->
+                val p1 = runPart(solution, Part.ONE)
+                val p2 = runPart(solution, Part.TWO)
+                val benchmark = Benchmark(solution.javaClass.dayNumber(), p1.answer, p2.answer, p1.runtime, p2.runtime)
+                result.add(benchmark)
             }
 
-            AdventLogger.error("Average ${formatExecutionTime(runtime.average().toLong())}")
-            AdventLogger.error("Total ${formatExecutionTime(runtime.sum())}")
+            BenchmarkUtility().log(result)
         }
 
-        private fun runPart(solution: Solution<*>, part: Part): Long {
+        private fun runPart(solution: Solution<*>, part: Part): Answer {
+            var answer: Any?
             val runtime = measureTimeMillis {
-                val answer = when(part) {
+                answer = when(part) {
                     Part.ONE -> solution.part1()
                     Part.TWO -> solution.part2()
                 }
-                AdventLogger.error("Part ${part.value}: $answer")
             }
-            AdventLogger.error(formatExecutionTime(runtime))
-            return runtime
+            return Answer(answer, runtime)
         }
 
-        private fun formatExecutionTime(milliseconds: Long): String {
-            val s = milliseconds / 1000
-            val ms = milliseconds % 1000
-            if (s > 0) return "Execution Time: ${s}s ${ms}ms\n"
-            return "Execution Time: ${ms}ms\n"
-        }
+        private fun Class<*>.dayNumber() = simpleName.last().toString().toInt()
 
-        private enum class Part(val value: String) { ONE("1"), TWO("2") }
+        private class Answer(val answer: Any?, val runtime: Long)
+
+        private enum class Part { ONE, TWO }
     }
 }
