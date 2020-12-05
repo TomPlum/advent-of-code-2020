@@ -60,7 +60,7 @@ behaviour that is commonly used across multiple days and `test-support` for unit
 | 02   	| 660       | 530               | Password Philosophy                       | [Link](docs/DAY2.MD)   |
 | 03   	| 169       | 7560370818        | Toboggan Trajectory                       |                        |
 | 04   	| 192       | 101               | Passport Processing                       |                        |
-| 05   	| -         | -                 |                                           |                        |
+| 05   	| 904       | -                 | Binary Boarding                           |                        |
 | 06   	| -         | -                 |                                           |                        |
 | 07   	| -         | -                 |                                           |                        |
 | 08   	| -         | -                 |                                           |                        |
