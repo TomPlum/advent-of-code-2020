@@ -1,6 +1,8 @@
 package io.github.tomplum.aoc
 
-import io.github.tomplum.aoc.benchmark.*
+import io.github.tomplum.aoc.benchmark.data.Benchmark
+import io.github.tomplum.aoc.benchmark.data.BenchmarkResult
+import io.github.tomplum.aoc.benchmark.utility.BenchmarkUtility
 import io.github.tomplum.libs.logging.AdventLogger
 import kotlin.system.measureTimeMillis
 

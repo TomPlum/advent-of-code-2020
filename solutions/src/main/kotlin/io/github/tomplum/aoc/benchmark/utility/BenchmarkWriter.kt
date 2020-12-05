@@ -1,7 +1,8 @@
-package io.github.tomplum.aoc.benchmark
+package io.github.tomplum.aoc.benchmark.utility
 
 import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.dataformat.xml.XmlMapper
+import io.github.tomplum.aoc.benchmark.data.BenchmarkResult
 import java.io.File
 
 

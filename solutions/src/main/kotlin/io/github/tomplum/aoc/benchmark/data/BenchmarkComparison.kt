@@ -1,4 +1,4 @@
-package io.github.tomplum.aoc.benchmark
+package io.github.tomplum.aoc.benchmark.data
 
 class BenchmarkComparison(private val previousRun: BenchmarkResult, val lastRun: BenchmarkResult) {
     fun getDeltas(): List<BenchmarkDelta> = previousRun.results.zip(lastRun.results).map { (previous, last) ->

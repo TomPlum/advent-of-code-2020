@@ -1,6 +1,7 @@
-package io.github.tomplum.aoc.benchmark
+package io.github.tomplum.aoc.benchmark.utility
 
 import com.fasterxml.jackson.dataformat.xml.XmlMapper
+import io.github.tomplum.aoc.benchmark.data.BenchmarkResult
 import io.github.tomplum.libs.logging.AdventLogger
 import java.io.FileNotFoundException
 import java.io.FileReader

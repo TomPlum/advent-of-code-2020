@@ -1,6 +1,8 @@
-package io.github.tomplum.aoc.benchmark
+package io.github.tomplum.aoc.benchmark.report
 
-class DefaultBenchmarkReport(private val result: BenchmarkResult) : BenchmarkReport() {
+import io.github.tomplum.aoc.benchmark.data.BenchmarkResult
+
+class BenchmarkDefaultReport(private val result: BenchmarkResult) : BenchmarkReport() {
     override fun toString(): String {
         val s = StringBuilder("- Advent of Code 2020 Solution Report -\n\n")
         val solutions =  result.results.joinToString("\n") { result ->

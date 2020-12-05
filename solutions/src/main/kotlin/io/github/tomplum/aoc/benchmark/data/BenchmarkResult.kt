@@ -1,4 +1,4 @@
-package io.github.tomplum.aoc.benchmark
+package io.github.tomplum.aoc.benchmark.data
 
 import com.fasterxml.jackson.annotation.JsonIgnore
 

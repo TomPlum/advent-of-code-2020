@@ -1,5 +1,9 @@
-package io.github.tomplum.aoc.benchmark
+package io.github.tomplum.aoc.benchmark.utility
 
+import io.github.tomplum.aoc.benchmark.data.BenchmarkComparison
+import io.github.tomplum.aoc.benchmark.data.BenchmarkResult
+import io.github.tomplum.aoc.benchmark.report.BenchmarkComparisonReport
+import io.github.tomplum.aoc.benchmark.report.BenchmarkDefaultReport
 import io.github.tomplum.libs.logging.AdventLogger
 
 class BenchmarkUtility {
@@ -12,7 +16,7 @@ class BenchmarkUtility {
             val comparison = BenchmarkComparison(previousRun, lastRun)
             AdventLogger.error(BenchmarkComparisonReport(comparison))
         } else {
-            AdventLogger.error(DefaultBenchmarkReport(lastRun))
+            AdventLogger.error(BenchmarkDefaultReport(lastRun))
         }
         writer.write(lastRun)
     }

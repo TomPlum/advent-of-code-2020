@@ -1,4 +1,4 @@
-package io.github.tomplum.aoc.benchmark
+package io.github.tomplum.aoc.benchmark.report
 
 abstract class BenchmarkReport {
     protected fun formatTime(time: Long): String {

@@ -1,4 +1,6 @@
-package io.github.tomplum.aoc.benchmark
+package io.github.tomplum.aoc.benchmark.report
+
+import io.github.tomplum.aoc.benchmark.data.BenchmarkComparison
 
 class BenchmarkComparisonReport(private val comparison: BenchmarkComparison) : BenchmarkReport() {
     override fun toString(): String {
