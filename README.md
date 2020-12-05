@@ -31,6 +31,11 @@ Simply clone or download the repository into your local environment and import i
 Running [Solutions.kt](https://git.io/JII6v) will run the parts from all the completed days, reporting all the
 answers and runtimes in the console.
 
+### Gradle Tasks
+| Task               | Description                                                                                       |
+|--------------------|---------------------------------------------------------------------------------------------------|
+| `test`             | Runs the unit tests with coverage for the `implementation`, `solutions` and `common` sub-projects.|
+
 ## The Codebase
 ### Package Structure
 The package structure was something that changed almost every day. My goal was "package-by-feature". For the first few 

@@ -3,7 +3,10 @@ package io.github.tomplum.aoc
 import io.github.tomplum.libs.logging.AdventLogger
 import kotlin.system.measureTimeMillis
 
-class SolutionRunner {
+/**
+ * A companion utility class designs to run multiple [Solution] implementations.
+ */
+class SolutionRunner private constructor() {
     companion object {
         //TODO: Serialise runtimes and then read to report deltas
         fun run(vararg solutions: Solution<*>) {
