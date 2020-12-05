@@ -19,7 +19,7 @@ class ExpenseReport(private val data: List<Int>) {
      * Finds the product of the three [data] values whose sum is equal to the target value.
      * @see isTargetSum
      */
-    fun validateContainsThreeEntries(): Int = data.flatMap { i -> data.flatMap { j ->
+    fun validateContainsThreeEntries(): Int = data.sorted().asSequence().flatMap { i -> data.flatMap { j ->
         data.map { k -> if ((i + j + k).isTargetSum()) i * j * k else null
     }}}.filterNotNull().first()
 
