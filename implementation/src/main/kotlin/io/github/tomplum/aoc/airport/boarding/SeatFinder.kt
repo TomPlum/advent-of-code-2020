@@ -1,9 +1,13 @@
 package io.github.tomplum.aoc.airport.boarding
 
-class SeatFinder {
-    fun getMissingSeats(passes: List<BoardingPass>): Int {
-        val missing = mutableListOf<Int>()
-        passes.map { it.getSeatID() }.sorted().zipWithNext { a, b -> if (b - a != 1) missing.add(b-1) }
-        return missing.first()
-    }
+class SeatFinder(private val passes: List<BoardingPass>) {
+    fun sanityCheck(): Int = passes.maxOf { it.getSeatID() }
+
+    fun getMissingSeat(): Int = passes
+        .map { it.getSeatID() }.sorted()
+        .drop(1).dropLast(1)
+        .zipWithNext { a, b -> if (b - a != 1) return b - 1 else -1 }
+        .filterNot { it == -1 }
+        .firstOrNull() ?: throw IllegalStateException("There are no missing seats!")
+
 }

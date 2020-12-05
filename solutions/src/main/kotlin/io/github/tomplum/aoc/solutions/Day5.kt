@@ -9,10 +9,13 @@ import io.github.tomplum.libs.input.InputReader
 class Day5 : Solution<Int> {
     private val input = InputReader.read<String>(Day(5))
 
-    override fun part1(): Int = input.value.map { EncodedBoardingPass(it).decode() }.map { it.getSeatID() }.maxOrNull()!!
+    override fun part1(): Int {
+        val passes = input.value.map { EncodedBoardingPass(it).decode() }
+        return SeatFinder(passes).sanityCheck()
+    }
 
     override fun part2(): Int {
         val passes = input.value.map { EncodedBoardingPass(it).decode() }
-        return SeatFinder().getMissingSeats(passes)
+        return SeatFinder(passes).getMissingSeat()
     }
 }
