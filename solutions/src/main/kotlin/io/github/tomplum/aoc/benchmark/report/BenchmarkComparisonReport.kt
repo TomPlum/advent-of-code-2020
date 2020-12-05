@@ -3,6 +3,10 @@ package io.github.tomplum.aoc.benchmark.report
 import io.github.tomplum.aoc.benchmark.data.BenchmarkComparison
 
 class BenchmarkComparisonReport(private val comparison: BenchmarkComparison) : BenchmarkReport() {
+    private val red = "\u001B[31m"
+    private val green = "\u001B[32m"
+    private val reset = "\u001B[0m"
+
     override fun toString(): String {
         val s = StringBuilder("- Advent of Code 2020 Solution Report -\n\n")
         val solutions =  comparison.getDeltas().joinToString("\n") { delta ->
@@ -31,8 +35,9 @@ class BenchmarkComparisonReport(private val comparison: BenchmarkComparison) : B
     }
 
     private fun formatDelta(time: Long): String = when {
-        time > 0 -> "+${formatTime(time)}"
-        time < 0 -> formatTime(time)
+        time > 0 -> "$red+${formatTime(time)}$reset"
+        time < 0 -> "${green}${formatTime(time)}$reset"
         else -> "No Change"
     }
+
 }

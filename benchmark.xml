@@ -4,36 +4,36 @@
       <day>1</day>
       <answer1>802011</answer1>
       <answer2>248607374</answer2>
-      <runtime1>18</runtime1>
-      <runtime2>71</runtime2>
+      <runtime1>14</runtime1>
+      <runtime2>56</runtime2>
     </results>
     <results>
       <day>2</day>
       <answer1>660</answer1>
       <answer2>530</answer2>
-      <runtime1>19</runtime1>
-      <runtime2>11</runtime2>
+      <runtime1>17</runtime1>
+      <runtime2>7</runtime2>
     </results>
     <results>
       <day>3</day>
       <answer1>169</answer1>
       <answer2>7560370818</answer2>
-      <runtime1>1175</runtime1>
-      <runtime2>92</runtime2>
+      <runtime1>958</runtime1>
+      <runtime2>70</runtime2>
     </results>
     <results>
       <day>4</day>
       <answer1>192</answer1>
       <answer2>101</answer2>
-      <runtime1>24</runtime1>
-      <runtime2>14</runtime2>
+      <runtime1>23</runtime1>
+      <runtime2>11</runtime2>
     </results>
     <results>
       <day>5</day>
       <answer1>904</answer1>
       <answer2>669</answer2>
       <runtime1>9</runtime1>
-      <runtime2>5</runtime2>
+      <runtime2>2</runtime2>
     </results>
   </results>
 </BenchmarkResult>
