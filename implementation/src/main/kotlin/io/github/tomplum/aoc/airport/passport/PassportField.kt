@@ -1,5 +1,9 @@
 package io.github.tomplum.aoc.airport.passport
 
+/**
+ * Data fields belonging to a [Passport].
+ * Each fields encapsulates the conditions of its validity and exposes [isValid] to check against a value.
+ */
 enum class PassportField {
     BIRTH_YEAR {
         override fun isValid(value: String): Boolean {

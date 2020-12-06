@@ -9,8 +9,8 @@ import org.junit.jupiter.api.Test
 class PassportReaderTest {
     @Test
     fun readExample() {
-        val data = TestInputReader().readInputAsString("passport/example-batch.txt")
-        val passports = PassportReader.read(data.value)
+        val input = TestInputReader().readInputAsString("passport/example-batch.txt").asSingleString()
+        val passports = PassportReader.read(input)
         assertThat(passports).isEqualTo(getExpectedPassports())
     }
 

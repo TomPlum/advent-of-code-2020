@@ -9,16 +9,16 @@ import io.github.tomplum.libs.input.Day
 import io.github.tomplum.libs.input.InputReader
 
 class Day4 : Solution<Int> {
-    private val data = InputReader.read<String>(Day(4))
+    private val input = InputReader.read<String>(Day(4)).asSingleString()
 
     override fun part1(): Int {
-        val passports = PassportReader.read(data.value)
+        val passports = PassportReader.read(input)
         val scanner = PassportScanner(RelaxedValidation())
         return scanner.scan(passports)
     }
 
     override fun part2(): Int {
-        val passports = PassportReader.read(data.value)
+        val passports = PassportReader.read(input)
         val scanner = PassportScanner(StrictValidation())
         return scanner.scan(passports)
     }
