@@ -64,7 +64,7 @@ behaviour that is commonly used across multiple days and `test-support` for unit
 | 03   	| 169       | 7560370818        | Toboggan Trajectory                       | [Link](docs/DAY3.MD)   |
 | 04   	| 192       | 101               | Passport Processing                       | [Link](docs/DAY4.MD)   |
 | 05   	| 904       | 669               | Binary Boarding                           | [Link](docs/DAY5.MD)   |
-| 06   	| 6911      | 3473              | Custom Customs                            |                        |
+| 06   	| 6911      | 3473              | Custom Customs                            | [Link](docs/DAY6.MD)   |
 | 07   	| -         | -                 |                                           |                        |
 | 08   	| -         | -                 |                                           |                        |
 | 09   	| -         | -                 |                                           |                        |
