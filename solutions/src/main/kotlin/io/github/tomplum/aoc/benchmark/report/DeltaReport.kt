@@ -8,6 +8,6 @@ abstract class DeltaReport : BenchmarkReport() {
     private fun formatDelta(time: Long): String = when {
         time > 0 -> "+${formatTime(time).coloured(Colour.RED)}"
         time < 0 -> formatTime(time).coloured(Colour.GREEN)
-        else -> "No Change"
+        else -> "±0ms"
     }
 }
