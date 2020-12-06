@@ -61,7 +61,7 @@ behaviour that is commonly used across multiple days and `test-support` for unit
 |-------|-----------|-------------------|-------------------------------------------|------------------------|
 | 01   	| 802011  	| 248607374         | Report Repair                             | [Link](docs/DAY1.MD)   |
 | 02   	| 660       | 530               | Password Philosophy                       | [Link](docs/DAY2.MD)   |
-| 03   	| 169       | 7560370818        | Toboggan Trajectory                       |                        |
+| 03   	| 169       | 7560370818        | Toboggan Trajectory                       | [Link](docs/DAY3.MD)   |
 | 04   	| 192       | 101               | Passport Processing                       |                        |
 | 05   	| 904       | 669               | Binary Boarding                           |                        |
 | 06   	| 6911      | 3473              | Custom Customs                            |                        |
