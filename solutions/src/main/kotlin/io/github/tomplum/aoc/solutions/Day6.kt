@@ -6,9 +6,13 @@ import io.github.tomplum.libs.input.Day
 import io.github.tomplum.libs.input.InputReader
 
 class Day6 : Solution<Int> {
+    private val input = InputReader.read<String>(Day(6)).asSingleString()
+
     override fun part1(): Int {
-        val input = InputReader.read<String>(Day(6)).asSingleString()
-        val questionnaire = Questionnaire(input)
-        return questionnaire.getCorrectQuestionCount()
+        return Questionnaire(input).getCorrectQuestionCount()
+    }
+
+    override fun part2(): Int? {
+        return Questionnaire(input).getCommonCorrectQuestionCount()
     }
 }
