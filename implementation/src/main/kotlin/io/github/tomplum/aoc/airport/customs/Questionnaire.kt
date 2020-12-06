@@ -5,4 +5,11 @@ class Questionnaire(private val data: String) {
         .map { it.replace("\n", "") }
         .map { it.toList().distinct() }
         .sumBy { it.size }
+
+    fun getCommonCorrectQuestionCount(): Int = data
+        .split("\n\n")
+        .map { it.split("\n") }
+        .map { group -> group.map { line -> line.toCharArray().toList() } }
+        .map { group -> group.reduce { acc, set -> acc.intersect(set).toList() } }
+        .sumBy { it.size }
 }
