@@ -5,7 +5,7 @@ class BenchmarkComparison(private val previousRun: BenchmarkResult, val lastRun:
         BenchmarkDelta(previous.day, last.runtime1 - previous.runtime1, last.runtime2 - previous.runtime2)
     }
 
-    fun getAverageRuntimeDelta(): Long = lastRun.getAverageExecutionTime() - previousRun.getAverageExecutionTime()
+    fun getAvgDelta(): Long = lastRun.getAvgTime() - previousRun.getAvgTime()
 
-    fun getTotalExecutionTimeDelta(): Long = lastRun.getTotalExecutionTime() - previousRun.getTotalExecutionTime()
+    fun getTotalDelta(): Long = lastRun.getTotalTime() - previousRun.getTotalTime()
 }

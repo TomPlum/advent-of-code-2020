@@ -18,8 +18,8 @@ class BenchmarkDefaultReport(private val result: BenchmarkResult) : BenchmarkRep
         }
         s.append(solutions).append("\n")
 
-        s.append("Average ${formatExecutionTime(result.getAverageExecutionTime())}")
-        s.append("Total ${formatExecutionTime(result.getTotalExecutionTime())}")
+        s.append("Average ${formatExecutionTime(result.getAvgTime())}")
+        s.append("Total ${formatExecutionTime(result.getTotalTime())}")
         return s.toString()
     }
 
