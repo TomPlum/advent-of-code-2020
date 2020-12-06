@@ -9,10 +9,10 @@ class Day6 : Solution<Int> {
     private val input = InputReader.read<String>(Day(6)).asSingleString()
 
     override fun part1(): Int {
-        return Questionnaire(input).getCorrectQuestionCount()
+        return Questionnaire(input).getYesQuestionCount()
     }
 
     override fun part2(): Int? {
-        return Questionnaire(input).getCommonCorrectQuestionCount()
+        return Questionnaire(input).getCommonYesQuestionCount()
     }
 }

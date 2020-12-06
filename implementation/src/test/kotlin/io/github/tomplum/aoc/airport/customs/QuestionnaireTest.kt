@@ -9,14 +9,14 @@ class QuestionnaireTest {
     @Test
     fun getCorrectQuestionCountExample() {
         val input = TestInputReader().readInputAsString("customs/example-answers.txt").asSingleString()
-        val count = Questionnaire(input).getCorrectQuestionCount()
+        val count = Questionnaire(input).getYesQuestionCount()
         assertThat(count).isEqualTo(11)
     }
 
     @Test
     fun getCommonCorrectQuestionCountExample() {
         val input = TestInputReader().readInputAsString("customs/example-answers.txt").asSingleString()
-        val count = Questionnaire(input).getCommonCorrectQuestionCount()
+        val count = Questionnaire(input).getCommonYesQuestionCount()
         assertThat(count).isEqualTo(6)
     }
 }
