@@ -3,31 +3,34 @@ package io.github.tomplum.aoc.airport.luggage
 class LuggageRuleParser private constructor() {
     companion object {
         fun parse(rules: List<String>): Set<LuggageNode> {
-            val existing = mutableListOf<LuggageNode>()
-
-            return rules.map { it.replace(" bags", "").replace(" bag", "") }.map { rule ->
+            val uniqueNodes = rules.map { it.replace(" bags", "").replace(" bag", "") }.flatMap { rule ->
                 val info = rule.split(" contain ")
                 val parentColour = info[0]
                 val data = info[1].dropLast(1).split(", ").filter { it != "no other" }
-                val existingChildren = existing.flatMap { it.allChildren() }.map { it as LuggageNode }.distinct()
-                val potentialNode = LuggageNode(LuggageData(parentColour))
-                val parentNode = existingChildren.find { it == potentialNode } ?: potentialNode
+                val parent = LuggageNode(LuggageData(parentColour))
+                val children = data.map { datum ->
+                    LuggageNode(LuggageData(datum.substring(2), datum.take(1).toInt()))
+                }
+                children + parent
+            }.distinctBy { it.value.colour }
 
-                val node = data.fold(parentNode) { parent, datum ->
+            rules.map { it.replace(" bags", "").replace(" bag", "") }.forEach { rule ->
+                val info = rule.split(" contain ")
+                val parentColour = info[0]
+                val data = info[1].dropLast(1).split(", ").filter { it != "no other" }
+                val parentNode = uniqueNodes.find { it == LuggageNode(LuggageData(parentColour)) }!!
+
+                data.fold(parentNode) { parent, datum ->
                     parent.apply {
                         val childColour = datum.substring(2)
                         val childQuantity = datum.take(1).toInt()
-                        val child = LuggageNode(LuggageData(childColour, childQuantity))
-                        if (existingChildren.contains(child)) {
-                            addChild(existingChildren.find { it == child }!!)
-                        } else {
-                            addChild(child)
-                        }
+                        val child = uniqueNodes.find { it == LuggageNode(LuggageData(childColour, childQuantity)) }!!
+                        addChild(child)
                     }
                 }
-                if (node.parents.size == 0) existing.add(node)
-                node
-            }.filter { it.isRoot() }.toSet()
+            }
+
+            return uniqueNodes.filter { it.isRoot() }.toSet()
         }
     }
 }

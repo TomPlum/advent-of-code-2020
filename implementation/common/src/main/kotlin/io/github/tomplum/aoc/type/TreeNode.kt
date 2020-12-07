@@ -21,8 +21,6 @@ open class TreeNode<T>(val value: T) {
 
     open fun isLeaf(): Boolean = children.isEmpty()
 
-    //fun getNode(value: T): TreeNode<T>? = children.find { it.getNode(value) }
-
     override fun toString(): String {
         var s = "$value"
         if (children.isNotEmpty()) {
