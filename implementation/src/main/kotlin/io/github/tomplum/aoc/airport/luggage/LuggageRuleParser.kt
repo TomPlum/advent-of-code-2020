@@ -25,7 +25,7 @@ class LuggageRuleParser private constructor() {
                         val childColour = datum.substring(2)
                         val childQuantity = datum.take(1).toInt()
                         val child = uniqueNodes.find { it == LuggageNode(LuggageData(childColour, childQuantity)) }!!
-                        addChild(child)
+                        addChild(child, childQuantity)
                     }
                 }
             }
