@@ -1,16 +1,18 @@
 package io.github.tomplum.aoc.airport.luggage
 
 data class LuggageNode(val colour: String) {
-    var parents: MutableList<LuggageNode> = mutableListOf()
-
-    var children: MutableMap<LuggageNode, Int> = mutableMapOf()
+    private val parents: MutableList<LuggageNode> = mutableListOf()
+    private val children: MutableMap<LuggageNode, Int> = mutableMapOf()
 
     fun addChild(node: LuggageNode, quantity: Int) {
         children[node] = quantity
         node.parents.add(this)
     }
 
-    fun allChildren(): Set<LuggageNode> = children.keys.toSet() + children.keys.flatMap { it.allChildren() } + this
+    fun getNode(colour: String): LuggageNode? {
+        if (this.colour == colour) return this
+        return children.keys.map { it.getNode(colour) }.firstOrNull()
+    }
 
     fun allParents(): Set<LuggageNode> = parents.toSet() + parents.flatMap { it.allParents() }
 

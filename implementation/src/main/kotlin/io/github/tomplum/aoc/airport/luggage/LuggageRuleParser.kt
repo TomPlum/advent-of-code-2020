@@ -3,7 +3,9 @@ package io.github.tomplum.aoc.airport.luggage
 class LuggageRuleParser private constructor() {
     companion object {
         fun parse(rules: List<String>): Set<LuggageNode> {
-            val uniqueNodes = rules.map { it.replace(" bags", "").replace(" bag", "") }.flatMap { rule ->
+            val parsedRules = rules.map { it.replace(" bags", "").replace(" bag", "") }
+
+            val uniqueNodes = parsedRules.flatMap { rule ->
                 val info = rule.split(" contain ")
                 val parentColour = info[0]
                 val data = info[1].dropLast(1).split(", ").filter { it != "no other" }
@@ -12,9 +14,9 @@ class LuggageRuleParser private constructor() {
                     LuggageNode(datum.substring(2))
                 }
                 children + parent
-            }.distinctBy { it.colour }
+            }.distinct()
 
-            rules.map { it.replace(" bags", "").replace(" bag", "") }.forEach { rule ->
+            parsedRules.forEach { rule ->
                 val info = rule.split(" contain ")
                 val parentColour = info[0]
                 val data = info[1].dropLast(1).split(", ").filter { it != "no other" }

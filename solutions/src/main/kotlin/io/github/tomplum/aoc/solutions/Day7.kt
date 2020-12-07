@@ -11,10 +11,10 @@ class Day7 : Solution<Int> {
     private val luggage = LuggageRuleParser.parse(input.value)
 
     override fun part1(): Int {
-        return LuggageProcessor(luggage).processBagColoursContaining("shiny gold")
+        return LuggageProcessor(luggage).getBagColoursContaining("shiny gold")
     }
 
     override fun part2(): Int {
-        return LuggageProcessor(luggage).processBagsContainedIn("shiny gold")
+        return LuggageProcessor(luggage).getBagRequirement("shiny gold")
     }
 }
