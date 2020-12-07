@@ -9,7 +9,7 @@ package io.github.tomplum.aoc.airport.luggage
  * @property parents The bags in which this bag can be contained in.
  * @property children The bags which can be contained in this bag and their respective quantity requirements.
  */
-data class LuggageNode(val colour: String) {
+data class LuggageNode(private val colour: String) {
     private val parents: MutableList<LuggageNode> = mutableListOf()
     private val children: MutableMap<LuggageNode, Int> = mutableMapOf()
 
