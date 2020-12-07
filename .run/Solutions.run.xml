@@ -1,7 +1,7 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Solutions" type="JetRunConfigurationType">
     <module name="advent-of-code-2020.solutions.main" />
-    <option name="VM_PARAMETERS" value="-Dreport=compact" />
+    <option name="VM_PARAMETERS" value="-Dreport=verbose" />
     <option name="PROGRAM_PARAMETERS" value="" />
     <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
     <option name="ALTERNATIVE_JRE_PATH" />

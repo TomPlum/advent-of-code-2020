@@ -37,7 +37,8 @@ answers and runtimes in the console.
 | `test`             | Runs the unit tests with coverage for the `implementation`, `solutions` and `common` sub-projects.|
 
 ### IntelliJ Run Configurations
-The `.run` directory contains XML configuration files from IntelliJ.
+The `.run` directory contains XML configuration files from IntelliJ. Included are configurations for running the unit
+tests in the `common`, `implementation` and `solutions` Gradle sub-projects as well as for each specific day.
 
 ## The Codebase
 ### Package Structure
