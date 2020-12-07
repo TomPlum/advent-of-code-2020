@@ -1,5 +1,9 @@
 package io.github.tomplum.aoc.airport.luggage
 
+/**
+ * Parses the aviation regulations rules and produces a tree of [LuggageNode]s.
+ * @see LuggageProcessor
+ */
 class LuggageRuleParser private constructor() {
     companion object {
         fun parse(rules: List<String>): Set<LuggageNode> {
