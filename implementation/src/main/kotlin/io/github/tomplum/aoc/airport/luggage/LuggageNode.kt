@@ -1,10 +1,28 @@
 package io.github.tomplum.aoc.airport.luggage
 
-import io.github.tomplum.aoc.type.TreeNode
+data class LuggageNode(val colour: String) {
+    var parents: MutableList<LuggageNode> = mutableListOf()
 
-class LuggageNode(val data: LuggageData) : TreeNode<LuggageData>(data) {
-    override fun equals(other: Any?): Boolean {
-        if (other !is LuggageNode) return false
-        return data.colour == other.data.colour
+    var children: MutableMap<LuggageNode, Int> = mutableMapOf()
+
+    fun addChild(node: LuggageNode, quantity: Int) {
+        children[node] = quantity
+        node.parents.add(this)
+    }
+
+    fun allChildren(): Set<LuggageNode> = children.keys.toSet() + children.keys.flatMap { it.allChildren() } + this
+
+    fun allParents(): Set<LuggageNode> = parents.toSet() + parents.flatMap { it.allParents() }
+
+    fun getBagRequirement(): Int = children.map { (bag, quantity) -> bag.getBagRequirement() * quantity }.sum() + 1
+
+    fun isRoot(): Boolean = parents.size == 0
+
+    override fun toString(): String {
+        var s = colour
+        if (children.isNotEmpty()) {
+            s += " {" + children.map { it.toString() } + " }"
+        }
+        return s
     }
 }

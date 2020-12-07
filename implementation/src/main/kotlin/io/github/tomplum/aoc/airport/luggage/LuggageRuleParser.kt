@@ -7,24 +7,24 @@ class LuggageRuleParser private constructor() {
                 val info = rule.split(" contain ")
                 val parentColour = info[0]
                 val data = info[1].dropLast(1).split(", ").filter { it != "no other" }
-                val parent = LuggageNode(LuggageData(parentColour))
+                val parent = LuggageNode(parentColour)
                 val children = data.map { datum ->
-                    LuggageNode(LuggageData(datum.substring(2), datum.take(1).toInt()))
+                    LuggageNode(datum.substring(2))
                 }
                 children + parent
-            }.distinctBy { it.value.colour }
+            }.distinctBy { it.colour }
 
             rules.map { it.replace(" bags", "").replace(" bag", "") }.forEach { rule ->
                 val info = rule.split(" contain ")
                 val parentColour = info[0]
                 val data = info[1].dropLast(1).split(", ").filter { it != "no other" }
-                val parentNode = uniqueNodes.find { it == LuggageNode(LuggageData(parentColour)) }!!
+                val parentNode = uniqueNodes.find { it == LuggageNode(parentColour) }!!
 
                 data.fold(parentNode) { parent, datum ->
                     parent.apply {
                         val childColour = datum.substring(2)
                         val childQuantity = datum.take(1).toInt()
-                        val child = uniqueNodes.find { it == LuggageNode(LuggageData(childColour, childQuantity)) }!!
+                        val child = uniqueNodes.find { it == LuggageNode(childColour) }!!
                         addChild(child, childQuantity)
                     }
                 }
