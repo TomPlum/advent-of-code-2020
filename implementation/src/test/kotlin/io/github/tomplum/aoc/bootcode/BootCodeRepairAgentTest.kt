@@ -16,15 +16,15 @@ class BootCodeRepairAgentTest {
 
     private fun getExpectedRepairedProgram(): BootCodeProgram = BootCodeProgram(
         listOf(
-            BootCodeInstruction(BootCode.NO_OPERATION, 0),
-            BootCodeInstruction(BootCode.ACCUMULATE, 1),
-            BootCodeInstruction(BootCode.JUMP, 4),
-            BootCodeInstruction(BootCode.ACCUMULATE, 3),
-            BootCodeInstruction(BootCode.JUMP, -3),
-            BootCodeInstruction(BootCode.ACCUMULATE, -99),
-            BootCodeInstruction(BootCode.ACCUMULATE, 1),
-            BootCodeInstruction(BootCode.NO_OPERATION, -4),
-            BootCodeInstruction(BootCode.ACCUMULATE, 6),
+            Instruction(Operation.NO_OPERATION, 0),
+            Instruction(Operation.ACCUMULATE, 1),
+            Instruction(Operation.JUMP, 4),
+            Instruction(Operation.ACCUMULATE, 3),
+            Instruction(Operation.JUMP, -3),
+            Instruction(Operation.ACCUMULATE, -99),
+            Instruction(Operation.ACCUMULATE, 1),
+            Instruction(Operation.NO_OPERATION, -4),
+            Instruction(Operation.ACCUMULATE, 6),
         )
     )
 }

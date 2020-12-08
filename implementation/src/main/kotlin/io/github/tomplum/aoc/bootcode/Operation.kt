@@ -1,12 +1,15 @@
 package io.github.tomplum.aoc.bootcode
 
-enum class BootCode {
+/**
+ * A single operation dictating how an [Instruction] behaves.
+ */
+enum class Operation {
     NO_OPERATION,
     ACCUMULATE,
     JUMP;
 
     companion object {
-        fun fromString(value: String): BootCode = when(value) {
+        fun fromString(value: String): Operation = when(value) {
             "nop" -> NO_OPERATION
             "acc" -> ACCUMULATE
             "jmp" -> JUMP

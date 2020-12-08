@@ -1,12 +1,17 @@
 package io.github.tomplum.aoc.bootcode
 
+/**
+ * Boot Code is represented as a text file with one instruction per line of text.
+ * This class parses the input and produces a runnable [BootCodeProgram].
+ * @see BootCodeRuntime
+ */
 class BootCodeParser {
     companion object {
         fun parse(data: List<String>): BootCodeProgram = data.map {
             val info = it.split(" ")
-            val code = BootCode.fromString(info[0])
+            val code = Operation.fromString(info[0])
             val argument = info[1].toInt()
-            BootCodeInstruction(code, argument)
+            Instruction(code, argument)
         }.let { instructions -> BootCodeProgram(instructions) }
     }
 }

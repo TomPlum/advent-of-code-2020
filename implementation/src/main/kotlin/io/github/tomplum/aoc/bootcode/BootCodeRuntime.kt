@@ -1,13 +1,21 @@
 package io.github.tomplum.aoc.bootcode
 
+/**
+ * Executes the given [program]
+ */
 class BootCodeRuntime(private val program: BootCodeProgram) {
-    private var acc = 0
-    private var programIndex = 0
-    private val executed = mutableSetOf<Int>()
 
-    fun runOnce(): Int = try { run() } catch (e: CorruptBootCodeProgram) { acc }
+    private var accumulator = 0
 
+    /**
+     * Runs the [program] and returns the value in the [accumulator] when it terminates.
+     * @throws CorruptBootCodeProgram if the program begins to execute the same [Instruction] for a second time.
+     * @return The value in the [accumulator] after the [program] finishes executing successfully.
+     */
     fun run(): Int {
+        val executed = mutableSetOf<Int>()
+        var programIndex = 0
+
         while (programIndex <= program.instructions.indices.last) {
             if (executed.contains(programIndex)) {
                 throw CorruptBootCodeProgram()
@@ -15,14 +23,28 @@ class BootCodeRuntime(private val program: BootCodeProgram) {
             val instruction = program.instructions[programIndex]
             executed.add(programIndex)
             when (instruction.code) {
-                BootCode.ACCUMULATE -> {
-                    acc += instruction.argument
+                Operation.ACCUMULATE -> {
+                    accumulator += instruction.argument
                     programIndex++
                 }
-                BootCode.JUMP -> programIndex += instruction.argument
-                BootCode.NO_OPERATION -> programIndex++
+                Operation.JUMP -> programIndex += instruction.argument
+                Operation.NO_OPERATION -> programIndex++
             }
         }
-        return acc
+        return accumulator
     }
+
+    /**
+     * Runs the [program] and returns the value in the [accumulator] when it terminates.
+     *
+     * If the program is corrupt, then the value returned will be the state of the [accumulator] before the program
+     * begins the second iteration of its infinite loop. Hence it runs once.
+     * @see BootCodeRepairAgent
+     *
+     * If the program is valid, then it will simply run to completion and return the [accumulator] value once finished.
+     * @see run
+     *
+     * @return The value in the [accumulator] when the [program] finishes executing or throws [CorruptBootCodeProgram].
+     */
+    fun runOnce(): Int = try { run() } catch (e: CorruptBootCodeProgram) { accumulator }
 }
