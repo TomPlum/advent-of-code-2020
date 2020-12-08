@@ -9,5 +9,4 @@ class SeatFinder(private val passes: List<BoardingPass>) {
         .zipWithNext { a, b -> if (b - a != 1) return b - 1 else -1 }
         .filterNot { it == -1 }
         .firstOrNull() ?: throw IllegalStateException("There are no missing seats!")
-
 }

@@ -2,7 +2,7 @@ package io.github.tomplum.aoc.airport.boarding
 
 import io.github.tomplum.aoc.extensions.midpoint
 
-data class EncodedBoardingPass(val value: String) {
+data class EncodedBoardingPass(private val value: String) {
 
     fun decode(): BoardingPass {
         val row = getValue(value.take(7), 0..127)
