@@ -21,4 +21,23 @@ class BootCodeRuntime(private val program: BootCodeProgram) {
         }
         return acc
     }
+
+    fun run(): Int {
+        while (programIndex <= program.instructions.indices.last) {
+            if (executed.contains(programIndex)) {
+                throw InfiniteLoopFound()
+            }
+            val instruction = program.instructions[programIndex]
+            executed.add(programIndex)
+            when (instruction.code) {
+                BootCode.ACCUMULATE -> {
+                    acc += instruction.argument
+                    programIndex++
+                }
+                BootCode.JUMP -> programIndex += instruction.argument
+                BootCode.NO_OPERATION -> programIndex++
+            }
+        }
+        return acc
+    }
 }

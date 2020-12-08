@@ -16,4 +16,14 @@ class BootCodeRuntimeTest {
             assertThat(BootCodeRuntime(program).runOnce()).isEqualTo(5)
         }
     }
+
+    @Nested
+    inner class Run {
+        @Test
+        fun example() {
+            val input = TestInputReader().readInputAsString("bootcode/example-repaired.txt")
+            val program = BootCodeParser.parse(input.value)
+            assertThat(BootCodeRuntime(program).run()).isEqualTo(8)
+        }
+    }
 }
