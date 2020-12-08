@@ -23,6 +23,7 @@ allprojects {
 
     repositories {
         mavenCentral()
+        jcenter()
         maven("https://maven.pkg.github.com/tomplum/advent-of-code-libs") {
             credentials {
                 username = "TomPlum"

@@ -3,13 +3,13 @@ package io.github.tomplum.aoc.bootcode
 /**
  * Executes the given [program]
  */
-class BootCodeRuntime(private val program: BootCodeProgram) {
+class Runtime(private val program: Program) {
 
     private var accumulator = 0
 
     /**
      * Runs the [program] and returns the value in the [accumulator] when it terminates.
-     * @throws CorruptBootCodeProgram if the program begins to execute the same [Instruction] for a second time.
+     * @throws CorruptProgram if the program begins to execute the same [Instruction] for a second time.
      * @return The value in the [accumulator] after the [program] finishes executing successfully.
      */
     fun run(): Int {
@@ -18,7 +18,7 @@ class BootCodeRuntime(private val program: BootCodeProgram) {
 
         while (programIndex <= program.instructions.indices.last) {
             if (executed.contains(programIndex)) {
-                throw CorruptBootCodeProgram()
+                throw CorruptProgram()
             }
             val instruction = program.instructions[programIndex]
             executed.add(programIndex)
@@ -39,12 +39,12 @@ class BootCodeRuntime(private val program: BootCodeProgram) {
      *
      * If the program is corrupt, then the value returned will be the state of the [accumulator] before the program
      * begins the second iteration of its infinite loop. Hence it runs once.
-     * @see BootCodeRepairAgent
+     * @see ProgramRepairAgent
      *
      * If the program is valid, then it will simply run to completion and return the [accumulator] value once finished.
      * @see run
      *
-     * @return The value in the [accumulator] when the [program] finishes executing or throws [CorruptBootCodeProgram].
+     * @return The value in the [accumulator] when the [program] finishes executing or throws [CorruptProgram].
      */
-    fun runOnce(): Int = try { run() } catch (e: CorruptBootCodeProgram) { accumulator }
+    fun runOnce(): Int = try { run() } catch (e: CorruptProgram) { accumulator }
 }

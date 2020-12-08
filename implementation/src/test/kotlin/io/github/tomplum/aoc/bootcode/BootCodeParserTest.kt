@@ -13,7 +13,7 @@ class BootCodeParserTest {
         assertThat(program).isEqualTo(getExpectedProgram())
     }
 
-    private fun getExpectedProgram(): BootCodeProgram = BootCodeProgram(
+    private fun getExpectedProgram(): Program = Program(
         listOf(
             Instruction(Operation.NO_OPERATION, 0),
             Instruction(Operation.ACCUMULATE, 1),

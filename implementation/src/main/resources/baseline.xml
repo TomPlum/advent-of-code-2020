@@ -1,0 +1,9 @@
+<SmellBaseline>
+    <ManuallySuppressedIssues>
+        <ID>MagicNumber:BoardingPass.kt$BoardingPass$8</ID>
+        <ID>MagicNumber:EncodedBoardingPass.kt$EncodedBoardingPass$7</ID>
+        <ID>MagicNumber:EncodedBoardingPass.kt$EncodedBoardingPass$127</ID>
+        <ID>MagicNumber:EncodedBoardingPass.kt$EncodedBoardingPass$3</ID>
+        <ID>MagicNumber:ExpenseReport.kt$ExpenseReport$2020</ID>
+    </ManuallySuppressedIssues>
+</SmellBaseline>

@@ -3,6 +3,7 @@ apply(from = "$rootDir/gradle/logging-dependencies.gradle.kts")
 
 plugins {
     jacoco
+    id("io.gitlab.arturbosch.detekt").version("1.14.2")
 }
 
 dependencies {
@@ -13,6 +14,7 @@ dependencies {
 
 subprojects {
     apply(plugin = "jacoco")
+    apply(plugin = "io.gitlab.arturbosch.detekt")
 
     tasks.test {
         finalizedBy(tasks.jacocoTestReport)
@@ -42,9 +44,29 @@ subprojects {
         violationRules {
             rule {
                 limit {
-                    minimum = "0.6".toBigDecimal()
+                    minimum = "0.9".toBigDecimal()
                 }
             }
+        }
+    }
+}
+
+detekt {
+    reports {
+        html {
+            enabled = true
+            config = files("$projectDir/src/main/resources/detekt-config.yml")
+            destination = file("$buildDir/reports/detekt/report.html")
+            baseline = file("$projectDir/src/main/resources/baseline.xml")
+            buildUponDefaultConfig = false
+            debug = false
+            ignoreFailures = false
+        }
+        xml {
+            enabled = false
+        }
+        txt {
+            enabled = false
         }
     }
 }
