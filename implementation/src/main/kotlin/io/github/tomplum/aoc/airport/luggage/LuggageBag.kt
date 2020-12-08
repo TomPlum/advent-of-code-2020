@@ -9,30 +9,30 @@ package io.github.tomplum.aoc.airport.luggage
  * @property parents The bags in which this bag can be contained in.
  * @property children The bags which can be contained in this bag and their respective quantity requirements.
  */
-data class LuggageNode(private val colour: String) {
-    private val parents: MutableList<LuggageNode> = mutableListOf()
-    private val children: MutableMap<LuggageNode, Int> = mutableMapOf()
+data class LuggageBag(private val colour: String) {
+    private val parents: MutableList<LuggageBag> = mutableListOf()
+    private val children: MutableMap<LuggageBag, Int> = mutableMapOf()
 
     /**
-     * Adds a single child [node] with the given [quantity] requirement.
+     * Adds a single child [bag] with the given [quantity] requirement.
      */
-    fun addChild(node: LuggageNode, quantity: Int) {
-        children[node] = quantity
-        node.parents.add(this)
+    fun addChild(bag: LuggageBag, quantity: Int) {
+        children[bag] = quantity
+        bag.parents.add(this)
     }
 
     /**
      * Gets a single node from the tree with the given [colour].
      * @return The found node or null if no such node exists.
      */
-    fun getNode(colour: String): LuggageNode? {
+    fun getNode(colour: String): LuggageBag? {
         if (this.colour == colour) return this
         return children.keys.map { it.getNode(colour) }.firstOrNull()
     }
 
     //fun getAncestorCount(): Int = parents.size + parents.sumBy { it.getAncestorCount() }
 
-    fun getAncestors(): Set<LuggageNode> = parents.toSet() + parents.flatMap { it.getAncestors() }
+    fun getAncestors(): Set<LuggageBag> = parents.toSet() + parents.flatMap { it.getAncestors() }
 
     /**
      * Calculates the total number of bags required for one of this bag.

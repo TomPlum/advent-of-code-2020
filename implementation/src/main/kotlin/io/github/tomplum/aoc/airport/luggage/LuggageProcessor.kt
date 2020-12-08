@@ -6,11 +6,11 @@ package io.github.tomplum.aoc.airport.luggage
  * Apparently, nobody responsible for these regulations considered how long they would take to enforce!
  *
  * Each of the luggage bags that are processed can contain other bags (and so-on in a recursive nature).
- * @see LuggageNode
+ * @see LuggageBag
  *
  * @param luggage A set of root nodes containing sub-trees of all the luggage to be processed
  */
-class LuggageProcessor(private val luggage: Set<LuggageNode>) {
+class LuggageProcessor(private val luggage: Set<LuggageBag>) {
 
     /**
      * Finds the luggage bag colours that can eventually contains at least one bag of the given [colour].
@@ -28,5 +28,5 @@ class LuggageProcessor(private val luggage: Set<LuggageNode>) {
      * Finds the node in the sub-trees of the given [luggage] root nodes that matches the given [colour].
      * @throws NoSuchElementException if a luggage bag with the given [colour] cannot be found.
      */
-    private fun findNode(colour: String): LuggageNode = luggage.mapNotNull { it.getNode(colour) }.first()
+    private fun findNode(colour: String): LuggageBag = luggage.mapNotNull { it.getNode(colour) }.first()
 }

@@ -5,7 +5,7 @@ import assertk.assertions.*
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 
-class LuggageNodeTest {
+class LuggageBagTest {
     @Nested
     inner class AddChild {
 
@@ -20,23 +20,23 @@ class LuggageNodeTest {
     inner class GetAncestors {
         @Test
         fun root() {
-            assertThat(LuggageNode("shiny gold").getAncestors()).isEmpty()
+            assertThat(LuggageBag("shiny gold").getAncestors()).isEmpty()
         }
 
         @Test
         fun singleChild() {
-            val root = LuggageNode("shiny gold")
-            val child = LuggageNode("dull yellow")
+            val root = LuggageBag("shiny gold")
+            val child = LuggageBag("dull yellow")
             root.addChild(child, 3)
             assertThat(child.getAncestors()).containsOnly(root)
         }
 
         @Test
         fun multipleChildrenWithDepth() {
-            val root = LuggageNode("shiny gold")
-            val child = LuggageNode("dull yellow")
-            val secondChild = LuggageNode("pale red")
-            val thirdDeeperChild = LuggageNode("bright white")
+            val root = LuggageBag("shiny gold")
+            val child = LuggageBag("dull yellow")
+            val secondChild = LuggageBag("pale red")
+            val thirdDeeperChild = LuggageBag("bright white")
             root.addChild(child, 3)
             root.addChild(secondChild, 5)
             secondChild.addChild(thirdDeeperChild, 3)
@@ -48,25 +48,25 @@ class LuggageNodeTest {
     inner class GetBagRequirement {
         @Test
         fun leaf() {
-            val root = LuggageNode("shiny gold")
-            val child = LuggageNode("dull yellow")
+            val root = LuggageBag("shiny gold")
+            val child = LuggageBag("dull yellow")
             root.addChild(child, 3)
             assertThat(child.getBagRequirement()).isEqualTo(1)
         }
 
         @Test
         fun singleChild() {
-            val root = LuggageNode("shiny gold")
-            val child = LuggageNode("dull yellow")
+            val root = LuggageBag("shiny gold")
+            val child = LuggageBag("dull yellow")
             root.addChild(child, 3)
             assertThat(root.getBagRequirement()).isEqualTo(4)
         }
 
         @Test
         fun multipleChildren() {
-            val root = LuggageNode("shiny gold")
-            val child = LuggageNode("dull yellow")
-            val secondChild = LuggageNode("pale red")
+            val root = LuggageBag("shiny gold")
+            val child = LuggageBag("dull yellow")
+            val secondChild = LuggageBag("pale red")
             root.addChild(child, 3)
             root.addChild(secondChild, 5)
             assertThat(root.getBagRequirement()).isEqualTo(9)
@@ -74,10 +74,10 @@ class LuggageNodeTest {
 
         @Test
         fun multipleChildrenWithDepth() {
-            val root = LuggageNode("shiny gold")
-            val child = LuggageNode("dull yellow")
-            val secondChild = LuggageNode("pale red")
-            val thirdDeeperChild = LuggageNode("bright white")
+            val root = LuggageBag("shiny gold")
+            val child = LuggageBag("dull yellow")
+            val secondChild = LuggageBag("pale red")
+            val thirdDeeperChild = LuggageBag("bright white")
             root.addChild(child, 3)
             root.addChild(secondChild, 5)
             secondChild.addChild(thirdDeeperChild, 3)
@@ -89,13 +89,13 @@ class LuggageNodeTest {
     inner class IsRoot {
         @Test
         fun isRoot() {
-            assertThat(LuggageNode("shiny gold").isRoot()).isTrue()
+            assertThat(LuggageBag("shiny gold").isRoot()).isTrue()
         }
 
         @Test
         fun isNotRoot() {
-            val root = LuggageNode("shiny gold")
-            val child = LuggageNode("dull yellow")
+            val root = LuggageBag("shiny gold")
+            val child = LuggageBag("dull yellow")
             root.addChild(child, 3)
             assertThat(child.isRoot()).isFalse()
         }
@@ -105,12 +105,12 @@ class LuggageNodeTest {
     inner class Equality {
         @Test
         fun sameColour() {
-            assertThat(LuggageNode("shiny gold")).isEqualTo(LuggageNode("shiny gold"))
+            assertThat(LuggageBag("shiny gold")).isEqualTo(LuggageBag("shiny gold"))
         }
 
         @Test
         fun differentColour() {
-            assertThat(LuggageNode("shiny gold")).isNotEqualTo(LuggageNode("pale yellow"))
+            assertThat(LuggageBag("shiny gold")).isNotEqualTo(LuggageBag("pale yellow"))
         }
     }
 
