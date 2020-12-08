@@ -19,7 +19,7 @@ class BootCodeRepairAgent {
             try {
                 runtime.run()
                 true
-            } catch (e: InfiniteLoopFound) {
+            } catch (e: CorruptBootCodeProgram) {
                 false
             }
         }

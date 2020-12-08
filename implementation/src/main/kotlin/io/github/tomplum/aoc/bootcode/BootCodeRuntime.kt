@@ -5,27 +5,12 @@ class BootCodeRuntime(private val program: BootCodeProgram) {
     private var programIndex = 0
     private val executed = mutableSetOf<Int>()
 
-    fun runOnce(): Int {
-        while (true) {
-            if (executed.contains(programIndex)) break
-            val instruction = program.instructions[programIndex]
-            executed.add(programIndex)
-            when (instruction.code) {
-                BootCode.ACCUMULATE -> {
-                    acc += instruction.argument
-                    programIndex++
-                }
-                BootCode.JUMP -> programIndex += instruction.argument
-                BootCode.NO_OPERATION -> programIndex++
-            }
-        }
-        return acc
-    }
+    fun runOnce(): Int = try { run() } catch (e: CorruptBootCodeProgram) { acc }
 
     fun run(): Int {
         while (programIndex <= program.instructions.indices.last) {
             if (executed.contains(programIndex)) {
-                throw InfiniteLoopFound()
+                throw CorruptBootCodeProgram()
             }
             val instruction = program.instructions[programIndex]
             executed.add(programIndex)

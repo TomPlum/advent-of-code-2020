@@ -2,11 +2,11 @@ package io.github.tomplum.aoc.bootcode
 
 class BootCodeParser {
     companion object {
-        fun parse(instructions: List<String>): BootCodeProgram = instructions.map {
-            val data = it.split(" ")
-            val code = BootCode.fromString(data[0])
-            val argument = data[1].toInt()
+        fun parse(data: List<String>): BootCodeProgram = data.map {
+            val info = it.split(" ")
+            val code = BootCode.fromString(info[0])
+            val argument = info[1].toInt()
             BootCodeInstruction(code, argument)
-        }.let { BootCodeProgram(it) }
+        }.let { instructions -> BootCodeProgram(instructions) }
     }
 }
