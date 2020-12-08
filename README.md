@@ -67,7 +67,7 @@ behaviour that is commonly used across multiple days and `test-support` for unit
 | 05   	| 904       | 669               | Binary Boarding                           | [Link](docs/DAY5.MD)   |
 | 06   	| 6911      | 3473              | Custom Customs                            | [Link](docs/DAY6.MD)   |
 | 07   	| 300       | 8030              | Handy Haversacks                          | [Link](docs/DAY7.MD)   |
-| 08   	| -         | -                 |                                           |                        |
+| 08   	| 1832      | 662               | Handheld Halting                          |                        |
 | 09   	| -         | -                 |                                           |                        |
 | 10   	| -         | -                 |                                           |                        |
 | 11   	| -         | -                 |                                           |                        |
