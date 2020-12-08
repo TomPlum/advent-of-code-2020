@@ -13,7 +13,7 @@ enum class Operation {
             "nop" -> NO_OPERATION
             "acc" -> ACCUMULATE
             "jmp" -> JUMP
-            else -> throw IllegalArgumentException("Invalid BootCode $value")
+            else -> throw IllegalArgumentException("Invalid Operation $value")
         }
     }
 }

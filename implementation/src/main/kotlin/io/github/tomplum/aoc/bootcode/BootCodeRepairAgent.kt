@@ -16,6 +16,7 @@ class BootCodeRepairAgent {
      * @return The repaired program. It will have one [JUMP] or [NO_OPERATION] replaced.
      */
     fun fix(corruptedProgram: BootCodeProgram): BootCodeProgram {
+        if (corruptedProgram.isValid()) throw IllegalArgumentException("Program is already valid and cannot be repaired.")
         val instructions = corruptedProgram.instructions
         val programCandidates = instructions.mapIndexedNotNull { i, inst ->
             when(inst.code) {
@@ -25,15 +26,8 @@ class BootCodeRepairAgent {
             }
         }.map { BootCodeProgram(it) }
 
-        val outputs = programCandidates.filter { program ->
-            val runtime = BootCodeRuntime(program)
-            try {
-                runtime.run()
-                true
-            } catch (e: CorruptBootCodeProgram) {
-                false
-            }
-        }
-        return outputs.firstOrNull() ?: throw IllegalArgumentException("Program cannot be repaired.")
+        return programCandidates.first { program -> program.isValid() }
     }
+
+    private fun BootCodeProgram.isValid(): Boolean = try { BootCodeRuntime(this).run(); true } catch (e: CorruptBootCodeProgram) { false }
 }

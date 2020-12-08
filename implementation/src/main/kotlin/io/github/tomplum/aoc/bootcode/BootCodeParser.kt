@@ -5,7 +5,7 @@ package io.github.tomplum.aoc.bootcode
  * This class parses the input and produces a runnable [BootCodeProgram].
  * @see BootCodeRuntime
  */
-class BootCodeParser {
+class BootCodeParser private constructor() {
     companion object {
         fun parse(data: List<String>): BootCodeProgram = data.map {
             val info = it.split(" ")
