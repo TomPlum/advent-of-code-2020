@@ -13,6 +13,12 @@ fun Pair<Int, Int>.product() = this.first * this.second
 fun Pair<Int, Int>.sum() = this.first + this.second
 
 /**
+ * Calculates the sum of the values of a given [Pair].
+ * @return The sum of [Pair.first] and [Pair.second].
+ */
+fun Pair<Long, Long>.sum() = this.first + this.second
+
+/**
  * Calculates the sum of the values of a given [Triple].
  * @return The sum of the [Triple.first], [Triple.second] and [Triple.third] values.
  */
