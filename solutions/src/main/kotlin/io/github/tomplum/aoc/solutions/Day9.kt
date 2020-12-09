@@ -6,7 +6,7 @@ import io.github.tomplum.libs.input.Day
 import io.github.tomplum.libs.input.InputReader
 
 class Day9 : Solution<Long> {
-    private val input = InputReader.read<String>(Day(9)).value.map { it.toLong() }
+    private val input = InputReader.read<Long>(Day(9)).value
 
     override fun part1(): Long {
         return XMASDecrypter(input).decrypt(25)

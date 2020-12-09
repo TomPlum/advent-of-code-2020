@@ -1,6 +1,6 @@
 package io.github.tomplum.aoc.map
 
-import io.github.tomplum.libs.map.MapTile
+import io.github.tomplum.libs.math.map.MapTile
 
 /**
  * A single tile in a [ForestMap].

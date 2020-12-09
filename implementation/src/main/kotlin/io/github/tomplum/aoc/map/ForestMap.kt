@@ -2,8 +2,8 @@ package io.github.tomplum.aoc.map
 
 import io.github.tomplum.aoc.extensions.product
 import io.github.tomplum.libs.logging.AdventLogger
-import io.github.tomplum.libs.map.AdventMap2D
 import io.github.tomplum.libs.math.Point2D
+import io.github.tomplum.libs.math.map.AdventMap2D
 
 /**
  * Due to the local geology, trees in this area only grow on exact integer coordinates in a grid.
@@ -11,8 +11,8 @@ import io.github.tomplum.libs.math.Point2D
  * stability, the same pattern repeats to the right many times.
  */
 class ForestMap(data: List<String>) : AdventMap2D<ForestTile>() {
-    private val xMax: Int
-    private val yMax: Int
+    private val xMax: Int?
+    private val yMax: Int?
 
     init {
         var x = 0
@@ -37,7 +37,7 @@ class ForestMap(data: List<String>) : AdventMap2D<ForestTile>() {
     fun trackTobogganTrajectory(vararg slopes: SlopeTrajectory): Long = slopes.map { slopeTrajectory ->
         var currentPosition = Point2D(0, 0)
         var treesEncountered = 0L
-        while (currentPosition.y <= yMax) {
+        while (currentPosition.y <= yMax!!) {
             AdventLogger.debug("Toboggan Position: $currentPosition")
             val tile = getForestTile(currentPosition)
             if (tile.isTree()) treesEncountered++
@@ -51,6 +51,6 @@ class ForestMap(data: List<String>) : AdventMap2D<ForestTile>() {
      * Should the x-ordinate lie outside the mapped tiles, it is translated as if the map repeated to the right.
      * @throws IllegalArgumentException if the y-ordinate of the given [pos] is off the map.
      */
-    private fun getForestTile(pos: Point2D) = getTile(pos, getTile(Point2D(pos.x % (xMax + 1), pos.y)))
+    private fun getForestTile(pos: Point2D) = getTile(pos, getTile(Point2D(pos.x % (xMax!! + 1), pos.y)))
 
 }
