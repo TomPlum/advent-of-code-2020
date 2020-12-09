@@ -68,7 +68,7 @@ behaviour that is commonly used across multiple days and `test-support` for unit
 | 06   	| 6911      | 3473              | Custom Customs                            | [Link](docs/DAY6.MD)   |
 | 07   	| 300       | 8030              | Handy Haversacks                          | [Link](docs/DAY7.MD)   |
 | 08   	| 1832      | 662               | Handheld Halting                          | [Link](docs/DAY8.MD)   |
-| 09   	| -         | -                 |                                           |                        |
+| 09   	| 20874512  | 3012420           | Encoding Error                            | [Link](docs/DAY9.MD)   |
 | 10   	| -         | -                 |                                           |                        |
 | 11   	| -         | -                 |                                           |                        |
 | 12   	| -         | -                 |                                           |                        |
