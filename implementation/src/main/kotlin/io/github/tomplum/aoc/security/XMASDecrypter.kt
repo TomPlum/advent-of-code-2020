@@ -4,30 +4,30 @@ import io.github.tomplum.aoc.extensions.cartesianProductQuadratic
 import io.github.tomplum.aoc.extensions.sum
 
 class XMASDecrypter(private val data: List<Long>) {
-    fun decrypt(preambleSize: Int): Long = data.windowed(preambleSize + 1) {
-        val preamble = it.take(preambleSize)
-        val candidate = it.last()
-        val sums = preamble.newCartesianProduct().filter { pair -> pair.sum() == candidate }
-        if (sums.isEmpty()) candidate else null
-    }.filterNotNull().first()
+    fun decrypt(preambleSize: Int): Long = data.asSequence()
+        .windowed(preambleSize + 1).map { Pair(it.take(preambleSize), it.last()) }
+        .mapNotNull { (preamble, candidate) ->
+            val sums = preamble.pairCombinations().filter { pair -> pair.sum() == candidate }
+            if (sums.isEmpty()) candidate else null
+        }.first()
 
     fun discoverWeakness(firstWeakness: Long): Long {
-        var i = 0
-        var j = 0
+        var windowFloor = 0
+        var windowCeiling = 0
         var sum = 0L
         while (sum != firstWeakness) {
             if (sum > firstWeakness) {
                 sum = 0
-                i++
-                j = i
+                windowFloor++
+                windowCeiling = windowFloor
             } else {
-                sum += data[j]
-                j++
+                sum += data[windowCeiling]
+                windowCeiling++
             }
         }
-        val range = data.subList(i, j)
+        val range = data.subList(windowFloor, windowCeiling)
         return range.minOrNull()!! + range.maxOrNull()!!
     }
 
-    private fun List<Long>.newCartesianProduct() = cartesianProductQuadratic().filter { it.first != it.second }
+    private fun List<Long>.pairCombinations() = cartesianProductQuadratic().filter { it.first != it.second }
 }
