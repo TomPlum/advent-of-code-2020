@@ -11,5 +11,23 @@ class XMASDecrypter(private val data: List<Long>) {
         if (sums.isEmpty()) candidate else null
     }.filterNotNull().first()
 
+    fun discoverWeakness(firstWeakness: Long): Long {
+        var i = 0
+        var j = 0
+        var sum = 0L
+        while (sum != firstWeakness) {
+            if (sum > firstWeakness) {
+                sum = 0
+                i++
+                j = i
+            } else {
+                sum += data[j]
+                j++
+            }
+        }
+        val range = data.subList(i, j)
+        return range.minOrNull()!! + range.maxOrNull()!!
+    }
+
     private fun List<Long>.newCartesianProduct() = cartesianProductQuadratic().filter { it.first != it.second }
 }
