@@ -29,7 +29,7 @@ fun <S, T> List<S>.cartesianProduct(other: List<T>): List<Pair<S, T>> = this.fla
  * @see cartesianProductCubic for a variant that accepts another set.
  */
 fun <T> List<T>.cartesianProductQuadratic(): List<Pair<T, T>> = this.flatMap {
-    List(this.size){ i -> Pair(it, this[i]) }
+    List(this.size){ i -> Pair(it, this[i]) }.drop(1)
 }
 
 /**
