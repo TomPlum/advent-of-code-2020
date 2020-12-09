@@ -12,14 +12,14 @@ class RuntimeTest {
     inner class RunOnce {
         @Test
         fun exampleCorruptProgram() {
-            val input = TestInputReader().readInputAsString("bootcode/example-instructions.txt")
+            val input = TestInputReader.read<String>("bootcode/example-instructions.txt")
             val program = BootCodeParser.parse(input.value)
             assertThat(Runtime(program).runOnce()).isEqualTo(5)
         }
 
         @Test
         fun exampleValidProgram() {
-            val input = TestInputReader().readInputAsString("bootcode/example-repaired.txt")
+            val input = TestInputReader.read<String>("bootcode/example-repaired.txt")
             val program = BootCodeParser.parse(input.value)
             assertThat(Runtime(program).runOnce()).isEqualTo(8)
         }
@@ -29,14 +29,14 @@ class RuntimeTest {
     inner class Run {
         @Test
         fun exampleCorruptProgram() {
-            val input = TestInputReader().readInputAsString("bootcode/example-instructions.txt")
+            val input = TestInputReader.read<String>("bootcode/example-instructions.txt")
             val program = BootCodeParser.parse(input.value)
             assertThrows<CorruptProgram> { Runtime(program).run() }
         }
 
         @Test
         fun exampleValidProgram() {
-            val input = TestInputReader().readInputAsString("bootcode/example-repaired.txt")
+            val input = TestInputReader.read<String>("bootcode/example-repaired.txt")
             val program = BootCodeParser.parse(input.value)
             assertThat(Runtime(program).run()).isEqualTo(8)
         }

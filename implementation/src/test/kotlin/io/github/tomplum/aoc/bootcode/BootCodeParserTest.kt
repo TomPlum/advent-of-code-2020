@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test
 class BootCodeParserTest {
     @Test
     fun example() {
-        val input = TestInputReader().readInputAsString("bootcode/example-instructions.txt")
+        val input = TestInputReader.read<String>("bootcode/example-instructions.txt")
         val program = BootCodeParser.parse(input.value)
         assertThat(program).isEqualTo(getExpectedProgram())
     }

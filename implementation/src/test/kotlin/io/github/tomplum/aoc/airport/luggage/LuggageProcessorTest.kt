@@ -11,7 +11,7 @@ class LuggageProcessorTest {
     inner class BagColoursContaining {
         @Test
         fun example() {
-            val data = TestInputReader().readInputAsString("luggage/example-rules.txt")
+            val data = TestInputReader.read<String>("luggage/example-rules.txt")
             val luggage = LuggageRuleParser.parse(data.value)
             val processor = LuggageProcessor(luggage)
             assertThat(processor.getBagColoursContaining("shiny gold")).isEqualTo(4)
@@ -22,7 +22,7 @@ class LuggageProcessorTest {
     inner class BagsContainedIn {
         @Test
         fun exampleOne() {
-            val data = TestInputReader().readInputAsString("luggage/example-rules.txt")
+            val data = TestInputReader.read<String>("luggage/example-rules.txt")
             val luggage = LuggageRuleParser.parse(data.value)
             val processor = LuggageProcessor(luggage)
             assertThat(processor.getBagRequirement("shiny gold")).isEqualTo(32)
@@ -30,7 +30,7 @@ class LuggageProcessorTest {
 
         @Test
         fun exampleTwo() {
-            val data = TestInputReader().readInputAsString("luggage/example-rules-2.txt")
+            val data = TestInputReader.read<String>("luggage/example-rules-2.txt")
             val luggage = LuggageRuleParser.parse(data.value)
             val processor = LuggageProcessor(luggage)
             assertThat(processor.getBagRequirement("shiny gold")).isEqualTo(126)

@@ -11,7 +11,7 @@ class XMASDecrypterTest {
      inner class Decrypt {
          @Test
          fun example() {
-             val data = TestInputReader().read<Long>("security/example.txt").value
+             val data = TestInputReader.read<Long>("security/example.txt").value
              val decrypter = XMASDecrypter(data)
              assertThat(decrypter.decrypt(5)).isEqualTo(127)
          }
@@ -21,7 +21,7 @@ class XMASDecrypterTest {
     inner class FindWeakness {
         @Test
         fun example() {
-            val data = TestInputReader().read<Long>("security/example.txt").value
+            val data = TestInputReader.read<Long>("security/example.txt").value
             val decrypter = XMASDecrypter(data)
             assertThat(decrypter.discoverWeakness(127)).isEqualTo(62)
         }

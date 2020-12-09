@@ -9,7 +9,7 @@ import org.junit.jupiter.api.assertThrows
 class ProgramRepairAgentTest {
     @Test
     fun example() {
-        val input = TestInputReader().readInputAsString("bootcode/example-instructions.txt")
+        val input = TestInputReader.read<String>("bootcode/example-instructions.txt")
         val corruptedProgram = BootCodeParser.parse(input.value)
         val repairedProgram = ProgramRepairAgent().fix(corruptedProgram)
         assertThat(repairedProgram).isEqualTo(getExpectedRepairedProgram())
@@ -17,7 +17,7 @@ class ProgramRepairAgentTest {
 
     @Test
     fun validProgram() {
-        val input = TestInputReader().readInputAsString("bootcode/example-repaired.txt")
+        val input = TestInputReader.read<String>("bootcode/example-repaired.txt")
         val program = BootCodeParser.parse(input.value)
         val e = assertThrows<IllegalArgumentException> { ProgramRepairAgent().fix(program) }
         assertThat(e.message).isEqualTo("Program is valid and cannot be repaired.")

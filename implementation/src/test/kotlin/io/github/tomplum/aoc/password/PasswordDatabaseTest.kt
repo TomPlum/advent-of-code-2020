@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
 class PasswordDatabaseTest {
-    private val exampleData = TestInputReader().readInputAsString("password/example-database-list.txt")
+    private val exampleData = TestInputReader.read<String>("password/example-database-list.txt")
 
     @Nested
     inner class Import {

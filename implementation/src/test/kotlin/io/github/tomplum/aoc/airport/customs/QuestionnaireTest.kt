@@ -11,7 +11,7 @@ class QuestionnaireTest {
     inner class YesQuestionCount {
         @Test
         fun example() {
-            val input = TestInputReader().readInputAsString("customs/example-answers.txt").asSingleString()
+            val input = TestInputReader.read<String>("customs/example-answers.txt").asSingleString()
             val count = Questionnaire(input).getYesQuestionCount()
             assertThat(count).isEqualTo(11)
         }
@@ -26,7 +26,7 @@ class QuestionnaireTest {
     inner class CommonYesQuestionCount {
         @Test
         fun example() {
-            val input = TestInputReader().readInputAsString("customs/example-answers.txt").asSingleString()
+            val input = TestInputReader.read<String>("customs/example-answers.txt").asSingleString()
             val count = Questionnaire(input).getCommonYesQuestionCount()
             assertThat(count).isEqualTo(6)
         }
