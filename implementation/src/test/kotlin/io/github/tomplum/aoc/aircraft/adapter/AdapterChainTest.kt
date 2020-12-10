@@ -12,4 +12,11 @@ class AdapterChainTest {
         val chain = AdapterChain(data)
         assertThat(chain.getJoltageDelta()).isEqualTo(35)
     }
+
+    @Test
+    fun largerExample() {
+        val data = TestInputReader.read<Int>("adapter/larger-example.txt").value
+        val chain = AdapterChain(data)
+        assertThat(chain.getJoltageDelta()).isEqualTo(220)
+    }
 }
