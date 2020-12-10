@@ -8,7 +8,7 @@ import io.github.tomplum.aoc.airport.passport.strategy.StrictValidation
 import io.github.tomplum.libs.input.Day
 import io.github.tomplum.libs.input.InputReader
 
-class Day4 : Solution<Int> {
+class Day4 : Solution<Int, Int> {
     private val input = InputReader.read<String>(Day(4)).asSingleString()
 
     override fun part1(): Int {

@@ -35,7 +35,7 @@ class XMASDecrypter(private val data: List<Long>) {
      * @param firstWeakness The invalid value found by invoking [decrypt].
      * @return The sum of the first and last values in the contiguous array.
      */
-    fun discoverWeakness(firstWeakness: Long): Long {
+    fun discoverWeakness(firstWeakness: Long): Int {
         var windowFloor = 0
         var windowCeiling = 0
         var sum = 0L
@@ -50,7 +50,7 @@ class XMASDecrypter(private val data: List<Long>) {
             }
         }
         val range = data.subList(windowFloor, windowCeiling)
-        return range.minOrNull()!! + range.maxOrNull()!!
+        return (range.minOrNull()!! + range.maxOrNull()!!).toInt()
     }
 
     private fun List<Long>.pairCombinations() = cartesianProductQuadratic().filter { it.first != it.second }

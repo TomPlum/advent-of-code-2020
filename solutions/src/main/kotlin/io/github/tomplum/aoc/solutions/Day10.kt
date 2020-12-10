@@ -5,10 +5,10 @@ import io.github.tomplum.aoc.aircraft.adapter.AdapterArray
 import io.github.tomplum.libs.input.Day
 import io.github.tomplum.libs.input.InputReader
 
-class Day10 : Solution<Long> {
-    private val input = InputReader.read<Long>(Day(10))
+class Day10 : Solution<Int, Long> {
+    private val input = InputReader.read<Int>(Day(10))
 
-    override fun part1(): Long {
+    override fun part1(): Int {
         return AdapterArray(input.value).getJoltageDelta()
     }
 

@@ -12,7 +12,7 @@ import kotlin.system.measureTimeMillis
  */
 class SolutionRunner private constructor() {
     companion object {
-        fun run(vararg solutions: Solution<*>) {
+        fun run(vararg solutions: Solution<*, *>) {
             val result = BenchmarkResult()
 
             solutions.map { solution ->
@@ -25,7 +25,7 @@ class SolutionRunner private constructor() {
             BenchmarkUtility().log(result)
         }
 
-        private fun runPart(solution: Solution<*>, part: Part): Answer {
+        private fun runPart(solution: Solution<*, *>, part: Part): Answer {
             var answer: Any?
             val runtime = measureTimeMillis {
                 answer = when(part) {

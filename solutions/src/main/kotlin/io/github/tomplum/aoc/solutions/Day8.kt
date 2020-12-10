@@ -7,7 +7,7 @@ import io.github.tomplum.aoc.bootcode.Runtime
 import io.github.tomplum.libs.input.Day
 import io.github.tomplum.libs.input.InputReader
 
-class Day8 : Solution<Int> {
+class Day8 : Solution<Int, Int> {
     private val input = InputReader.read<String>(Day(8))
 
     override fun part1(): Int {

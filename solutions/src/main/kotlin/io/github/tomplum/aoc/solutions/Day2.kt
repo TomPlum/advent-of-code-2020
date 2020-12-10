@@ -7,7 +7,7 @@ import io.github.tomplum.aoc.password.strategy.TobogganPolicy
 import io.github.tomplum.libs.input.Day
 import io.github.tomplum.libs.input.InputReader
 
-class Day2 : Solution<Int> {
+class Day2 : Solution<Int, Int> {
     private val data = InputReader.read<String>(Day(2)).value
 
     override fun part1(): Int {

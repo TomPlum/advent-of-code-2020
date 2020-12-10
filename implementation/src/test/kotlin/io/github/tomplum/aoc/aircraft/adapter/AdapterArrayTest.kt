@@ -11,14 +11,14 @@ class AdapterArrayTest {
     inner class JoltageDelta {
         @Test
         fun example() {
-            val data = TestInputReader.read<Long>("adapter/example.txt").value
+            val data = TestInputReader.read<Int>("adapter/example.txt").value
             val chain = AdapterArray(data)
             assertThat(chain.getJoltageDelta()).isEqualTo(35)
         }
 
         @Test
         fun largerExample() {
-            val data = TestInputReader.read<Long>("adapter/larger-example.txt").value
+            val data = TestInputReader.read<Int>("adapter/larger-example.txt").value
             val chain = AdapterArray(data)
             assertThat(chain.getJoltageDelta()).isEqualTo(220)
         }
@@ -28,14 +28,14 @@ class AdapterArrayTest {
     inner class AdapterArrayCombinations {
         @Test
         fun example() {
-            val data = TestInputReader.read<Long>("adapter/example.txt").value
+            val data = TestInputReader.read<Int>("adapter/example.txt").value
             val chain = AdapterArray(data)
             assertThat(chain.getCombinations()).isEqualTo(8)
         }
 
         @Test
         fun largerExample() {
-            val data = TestInputReader.read<Long>("adapter/larger-example.txt").value
+            val data = TestInputReader.read<Int>("adapter/larger-example.txt").value
             val chain = AdapterArray(data)
             assertThat(chain.getCombinations()).isEqualTo(19208)
         }

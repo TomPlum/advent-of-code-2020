@@ -6,7 +6,7 @@ import io.github.tomplum.aoc.airport.luggage.LuggageRuleParser
 import io.github.tomplum.libs.input.Day
 import io.github.tomplum.libs.input.InputReader
 
-class Day7 : Solution<Int> {
+class Day7 : Solution<Int, Int> {
     private val input = InputReader.read<String>(Day(7))
     private val luggage = LuggageRuleParser.parse(input.value)
 

@@ -6,7 +6,7 @@ import io.github.tomplum.aoc.airport.boarding.SeatFinder
 import io.github.tomplum.libs.input.Day
 import io.github.tomplum.libs.input.InputReader
 
-class Day5 : Solution<Int> {
+class Day5 : Solution<Int, Int> {
     private val input = InputReader.read<String>(Day(5))
 
     override fun part1(): Int {

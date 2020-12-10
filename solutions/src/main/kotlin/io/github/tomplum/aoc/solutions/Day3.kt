@@ -6,7 +6,7 @@ import io.github.tomplum.aoc.map.SlopeTrajectory
 import io.github.tomplum.libs.input.Day
 import io.github.tomplum.libs.input.InputReader
 
-class Day3 : Solution<Long> {
+class Day3 : Solution<Long, Long> {
     private val data = InputReader.read<String>(Day(3))
 
     override fun part1(): Long {
