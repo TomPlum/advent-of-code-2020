@@ -69,7 +69,7 @@ behaviour that is commonly used across multiple days and `test-support` for unit
 | 07   	| 300       | 8030              | Handy Haversacks                          | [Link](docs/DAY7.MD)   |
 | 08   	| 1832      | 662               | Handheld Halting                          | [Link](docs/DAY8.MD)   |
 | 09   	| 20874512  | 3012420           | Encoding Error                            | [Link](docs/DAY9.MD)   |
-| 10   	| -         | -                 |                                           |                        |
+| 10   	| 2176      | 18512297918464    | Adapter Array                             | [Link](docs/DAY10.MD)  |
 | 11   	| -         | -                 |                                           |                        |
 | 12   	| -         | -                 |                                           |                        |
 | 13   	| -         | -                 |                                           |                        |
