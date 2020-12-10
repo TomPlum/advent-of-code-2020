@@ -4,6 +4,7 @@ import io.github.tomplum.aoc.benchmark.data.Benchmark
 import io.github.tomplum.aoc.benchmark.data.BenchmarkResult
 import io.github.tomplum.aoc.benchmark.utility.BenchmarkUtility
 import io.github.tomplum.libs.logging.AdventLogger
+import kotlin.reflect.KClass
 import kotlin.system.measureTimeMillis
 
 /**
@@ -18,7 +19,7 @@ class SolutionRunner private constructor() {
             solutions.map { solution ->
                 val p1 = runPart(solution, Part.ONE)
                 val p2 = runPart(solution, Part.TWO)
-                val benchmark = Benchmark(solution.javaClass.dayNumber(), p1.answer, p2.answer, p1.runtime, p2.runtime)
+                val benchmark = Benchmark(solution.dayNumber(), p1.answer, p2.answer, p1.runtime, p2.runtime)
                 result.add(benchmark)
             }
 
@@ -36,7 +37,10 @@ class SolutionRunner private constructor() {
             return Answer(answer, runtime)
         }
 
-        private fun Class<*>.dayNumber() = simpleName.last().toString().toInt()
+        private fun Solution<*, *>.dayNumber(): Int {
+            val lastTwo = this.javaClass.simpleName.takeLast(2)
+            return if (lastTwo.all { it.isDigit() }) lastTwo.toInt() else lastTwo.takeLast(1).toInt()
+        }
 
         private class Answer(val answer: Any?, val runtime: Long)
 
