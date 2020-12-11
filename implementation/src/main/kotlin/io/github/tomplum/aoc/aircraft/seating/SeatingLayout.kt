@@ -1,7 +1,5 @@
 package io.github.tomplum.aoc.aircraft.seating
 
-import io.github.tomplum.aoc.map.ForestTile
-import io.github.tomplum.libs.logging.AdventLogger
 import io.github.tomplum.libs.math.Point2D
 import io.github.tomplum.libs.math.map.AdventMap2D
 
@@ -42,7 +40,6 @@ class SeatingLayout(data: List<String>): AdventMap2D<SeatingPosition>() {
     }
 
     fun getOccupiedSeatCount(): Int = filterTiles { it.isOccupied() }.count()
-
 
     //TODO: Move to Point2D in libs
     fun Point2D.diagonalAdjacent() = setOf(

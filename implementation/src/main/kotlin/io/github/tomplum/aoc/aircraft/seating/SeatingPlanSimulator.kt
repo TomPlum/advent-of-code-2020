@@ -12,7 +12,7 @@ class SeatingPlanSimulator(layout: SeatingLayout) {
 
     fun simulateUntilConsolidated(): Int {
         var next = simulate()
-        while (!history.contains(next)) {
+        while (history.last() != next) {
             AdventLogger.info(next)
             history.add(next)
             next = simulate()
