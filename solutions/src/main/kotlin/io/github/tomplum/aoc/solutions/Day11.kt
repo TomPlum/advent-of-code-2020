@@ -14,4 +14,10 @@ class Day11 : Solution<Int, Int> {
         val simulator = SeatingPlanSimulator(initialLayout)
         return simulator.simulateUntilConsolidated()
     }
+
+    override fun part2(): Int? {
+        val initialLayout = SeatingLayout(input.value)
+        val simulator = SeatingPlanSimulator(initialLayout)
+        return simulator.simulateUntilConsolidated()
+    }
 }

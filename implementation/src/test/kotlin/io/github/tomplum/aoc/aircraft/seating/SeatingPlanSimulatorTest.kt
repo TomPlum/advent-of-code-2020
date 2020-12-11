@@ -12,4 +12,11 @@ class SeatingPlanSimulatorTest {
         val simulator = SeatingPlanSimulator(SeatingLayout(input.value))
         assertThat(simulator.simulateUntilConsolidated()).isEqualTo(37)
     }
+
+    @Test
+    fun exampleAfterMistakeCorrection() {
+        val input = TestInputReader.read<String>("seating/example-layout.txt")
+        val simulator = SeatingPlanSimulator(SeatingLayout(input.value))
+        assertThat(simulator.simulateUntilConsolidated()).isEqualTo(26)
+    }
 }
