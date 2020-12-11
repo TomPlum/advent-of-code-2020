@@ -1,5 +1,6 @@
 package io.github.tomplum.aoc.aircraft.seating
 
+import io.github.tomplum.aoc.aircraft.seating.strategy.SeatingStrategy
 import io.github.tomplum.libs.logging.AdventLogger
 
 class SeatingPlanSimulator(layout: SeatingLayout) {
@@ -10,21 +11,21 @@ class SeatingPlanSimulator(layout: SeatingLayout) {
         AdventLogger.info(layout)
     }
 
-    fun simulateUntilConsolidated(): Int {
-        var next = simulate()
+    fun simulateUntilConsolidated(strategy: SeatingStrategy): Int {
+        var next = simulate(strategy)
         while (history.last() != next) {
             AdventLogger.info(next)
             history.add(next)
-            next = simulate()
+            next = simulate(strategy)
         }
         return next.getOccupiedSeatCount()
     }
 
 
-    private fun simulate(): SeatingLayout {
+    private fun simulate(strategy: SeatingStrategy): SeatingLayout {
         val layout = history.last().snapshot()
-        val toOccupy = layout.getOccupiedSeatPositions()
-        val toEvict = layout.getEmptySeatPositions()
+        val toOccupy = strategy.getOccupiedSeatPositions(layout)
+        val toEvict = strategy.getEmptySeatPositions(layout)
         layout.occupy(toOccupy)
         layout.evict(toEvict)
         return layout

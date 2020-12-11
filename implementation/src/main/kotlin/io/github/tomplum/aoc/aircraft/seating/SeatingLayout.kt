@@ -18,17 +18,13 @@ class SeatingLayout(data: List<String>): AdventMap2D<SeatingPosition>() {
         }
     }
 
+    fun getSeats(isType: (SeatingPosition) -> Boolean): Map<Point2D, SeatingPosition> = filterTiles { isType(it) }
+
+    fun getSeats(positions: Set<Point2D>): Map<Point2D, SeatingPosition> = filterPoints(positions)
+
     fun occupy(positions: Set<Point2D>) = positions.forEach { addTile(it, SeatingPosition('#')) }
 
     fun evict(positions: Set<Point2D>) = positions.forEach { addTile(it, SeatingPosition('L')) }
-
-    fun getOccupiedSeatPositions(): Set<Point2D> = filterTiles { it.isEmpty() }.filterKeys { pos ->
-        pos.getFirstAdjacent().values.none { it.isOccupied() }
-    }.keys
-
-    fun getEmptySeatPositions(): Set<Point2D> = filterTiles { it.isOccupied() }.filterKeys { pos ->
-        pos.getFirstAdjacent().values.count { it.isOccupied() } >= 5
-    }.keys
 
     fun snapshot(): SeatingLayout {
         val snapshot = SeatingLayout(emptyList())
@@ -38,8 +34,8 @@ class SeatingLayout(data: List<String>): AdventMap2D<SeatingPosition>() {
 
     fun getOccupiedSeatCount(): Int = filterTiles { it.isOccupied() }.count()
 
-    private fun Point2D.getFirstAdjacent(): Map<Point2D, SeatingPosition> {
-        return Direction.values().mapNotNull { direction -> getFirst(direction) }.toMap()
+    fun getFirstAdjacent(pos: Point2D): Map<Point2D, SeatingPosition> {
+        return Direction.values().mapNotNull { direction -> pos.getFirst(direction) }.toMap()
     }
 
     private fun Point2D.getFirst(direction: Direction): Pair<Point2D, SeatingPosition>? {
