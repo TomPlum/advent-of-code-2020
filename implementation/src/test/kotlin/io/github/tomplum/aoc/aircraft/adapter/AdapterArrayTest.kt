@@ -5,6 +5,8 @@ import assertk.assertions.isEqualTo
 import io.github.tomplum.aoc.input.TestInputReader
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
+import java.lang.NullPointerException
 
 class AdapterArrayTest {
     @Nested
@@ -21,6 +23,11 @@ class AdapterArrayTest {
             val data = TestInputReader.read<Int>("adapter/larger-example.txt").value
             val chain = AdapterArray(data)
             assertThat(chain.getJoltageDelta()).isEqualTo(220)
+        }
+
+        @Test
+        fun emptyRatingList() {
+            assertThrows<NullPointerException> { AdapterArray(emptyList()).getJoltageDelta() }
         }
     }
 
