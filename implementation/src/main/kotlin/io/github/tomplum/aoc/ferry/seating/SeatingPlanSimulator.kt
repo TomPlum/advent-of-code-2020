@@ -1,6 +1,6 @@
-package io.github.tomplum.aoc.aircraft.seating
+package io.github.tomplum.aoc.ferry.seating
 
-import io.github.tomplum.aoc.aircraft.seating.strategy.SeatingStrategy
+import io.github.tomplum.aoc.ferry.seating.strategy.SeatingStrategy
 import io.github.tomplum.libs.logging.AdventLogger
 
 class SeatingPlanSimulator(layout: SeatingLayout) {
@@ -20,7 +20,6 @@ class SeatingPlanSimulator(layout: SeatingLayout) {
         }
         return next.getOccupiedSeatCount()
     }
-
 
     private fun simulate(strategy: SeatingStrategy): SeatingLayout {
         val layout = history.last().snapshot()

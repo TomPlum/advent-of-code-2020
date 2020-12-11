@@ -1,6 +1,6 @@
-package io.github.tomplum.aoc.aircraft.seating.strategy
+package io.github.tomplum.aoc.ferry.seating.strategy
 
-import io.github.tomplum.aoc.aircraft.seating.SeatingLayout
+import io.github.tomplum.aoc.ferry.seating.SeatingLayout
 import io.github.tomplum.libs.math.Point2D
 
 class InitialSeatingStrategy : SeatingStrategy {
@@ -8,7 +8,7 @@ class InitialSeatingStrategy : SeatingStrategy {
         return layout.getSeats { it.isEmpty() }.filterKeys { pos ->
             val adjacentPositions = pos.adjacent().toSet()
             val adjacentSeating = layout.getSeats(adjacentPositions)
-            return@filterKeys adjacentSeating.values.none { it.isOccupied() }
+            adjacentSeating.values.none { it.isOccupied() }
         }.keys
     }
 
@@ -16,7 +16,7 @@ class InitialSeatingStrategy : SeatingStrategy {
         return layout.getSeats { it.isOccupied() }.filterKeys { pos ->
             val adjacentPositions = pos.adjacent().toSet()
             val adjacentSeating = layout.getSeats(adjacentPositions)
-            return@filterKeys adjacentSeating.values.count { it.isOccupied() } >= 4
+            adjacentSeating.values.count { it.isOccupied() } >= 4
         }.keys
     }
 }

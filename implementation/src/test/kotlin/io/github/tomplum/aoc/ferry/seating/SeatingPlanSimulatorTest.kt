@@ -1,9 +1,9 @@
-package io.github.tomplum.aoc.aircraft.seating
+package io.github.tomplum.aoc.ferry.seating
 
 import assertk.assertThat
 import assertk.assertions.isEqualTo
-import io.github.tomplum.aoc.aircraft.seating.strategy.InitialSeatingStrategy
-import io.github.tomplum.aoc.aircraft.seating.strategy.RevisedSeatingStrategy
+import io.github.tomplum.aoc.ferry.seating.strategy.InitialSeatingStrategy
+import io.github.tomplum.aoc.ferry.seating.strategy.RevisedSeatingStrategy
 import io.github.tomplum.aoc.input.TestInputReader
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test

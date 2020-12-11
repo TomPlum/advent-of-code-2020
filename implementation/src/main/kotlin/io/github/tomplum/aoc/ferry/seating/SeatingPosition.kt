@@ -1,4 +1,4 @@
-package io.github.tomplum.aoc.aircraft.seating
+package io.github.tomplum.aoc.ferry.seating
 
 import io.github.tomplum.libs.math.map.MapTile
 

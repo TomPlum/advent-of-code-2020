@@ -1,4 +1,4 @@
-package io.github.tomplum.aoc.aircraft.seating
+package io.github.tomplum.aoc.ferry.seating
 
 import io.github.tomplum.libs.math.Direction
 import io.github.tomplum.libs.math.Point2D
