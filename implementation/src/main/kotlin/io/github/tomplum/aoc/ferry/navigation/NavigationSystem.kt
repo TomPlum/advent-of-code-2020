@@ -2,10 +2,6 @@ package io.github.tomplum.aoc.ferry.navigation
 
 import io.github.tomplum.libs.math.Direction
 import io.github.tomplum.libs.math.Point2D
-import kotlin.math.abs
-import kotlin.math.cos
-import kotlin.math.roundToInt
-import kotlin.math.sin
 
 class NavigationSystem(data: List<String>) {
     private val instructions: List<Instruction<*>>
@@ -29,27 +25,16 @@ class NavigationSystem(data: List<String>) {
         }
     }
 
-    fun navigate(): Int {
-        instructions.forEach { (action, value) ->
-            when (action) {
-                is Direction -> ship = ship.shift(action, value)
-                is Directive -> when (action) {
-                    Directive.LEFT -> when (value) {
-                        90 -> shipsDirection = shipsDirection.rotateAntiClockwise()
-                        180 -> repeat(2) { shipsDirection = shipsDirection.rotateAntiClockwise() } //TODO: Update Point2D to rotate 90,180,270
-                        270 -> repeat(3) { shipsDirection = shipsDirection.rotateAntiClockwise() }
-                    }
-                    Directive.RIGHT -> when (value) {
-                        90 -> shipsDirection = shipsDirection.rotateClockwise90()
-                        180 -> repeat(2) { shipsDirection = shipsDirection.rotateClockwise90() }
-                        270 -> repeat(3) { shipsDirection = shipsDirection.rotateClockwise90() }
-                    }
-                    Directive.FORWARD -> ship = ship.shift(shipsDirection, value)
-                }
+    fun navigate(): Int = instructions.forEach { (action, value) ->
+        when (action) {
+            is Direction -> ship = ship.shift(action, value)
+            is Directive -> when (action) {
+                Directive.LEFT -> rotateShip(-value)
+                Directive.RIGHT -> rotateShip(value)
+                Directive.FORWARD -> ship = ship.shift(shipsDirection, value)
             }
         }
-        return Point2D(0, 0).distanceBetween(ship)
-    }
+    }.let { distanceTravelled() }
 
     fun navigateViaWaypoint(): Int = instructions.forEach { (action, value) ->
         when (action) {
@@ -65,10 +50,16 @@ class NavigationSystem(data: List<String>) {
                 }
             }
         }
-    }.let { Point2D(0, 0).distanceBetween(ship) }
+    }.let { distanceTravelled() }
+
+    private fun distanceTravelled(): Int = Point2D.origin().distanceBetween(ship)
 
     private fun rotateWaypoint(angle: Int) {
         waypoint = waypoint.rotateAbout(ship, angle)
+    }
+
+    private fun rotateShip(angle: Int) {
+        shipsDirection = shipsDirection.rotate(angle)
     }
 
     private fun moveShip(direction: Direction?, units: Int) {
@@ -81,43 +72,4 @@ class NavigationSystem(data: List<String>) {
     private fun moveWaypoint(direction: Direction, units: Int) {
         waypoint = waypoint.shift(direction, units)
     }
-
-    private fun Point2D.xRelativeDirection(other: Point2D): Pair<Direction, Int>? {
-        val xDelta = x - other.x
-        return when {
-            xDelta > 0 -> Pair(Direction.RIGHT, xDelta)
-            xDelta < 0 -> Pair(Direction.LEFT, abs(xDelta))
-            else -> null
-        }
-    }
-
-    private fun Point2D.yRelativeDirection(other: Point2D): Pair<Direction, Int>? {
-        val yDelta = y - other.y
-        return when {
-            yDelta > 0 -> Pair(Direction.UP, yDelta)
-            yDelta < 0 -> Pair(Direction.DOWN, abs(yDelta))
-            else -> null
-        }
-    }
-
-    private fun Point2D.rotateAbout(pivot: Point2D, angle: Int = 90): Point2D {
-        val normalisedAngle = if (angle < 0) angle + 360 else angle
-
-        val sin = sin(normalisedAngle.toDouble().toRadians())
-        val cos = cos(normalisedAngle.toDouble().toRadians())
-
-        val x1 = x - pivot.x
-        val y1 = y - pivot.y
-
-        val x2 = x1 * cos + y1 * sin
-        val y2 = -x1 * sin + y1 * cos
-
-        val xNew = x2 + pivot.x
-        val yNew = y2 + pivot.y
-
-        return Point2D(xNew.roundToInt(), yNew.roundToInt())
-    }
-
-    private fun Double.toRadians() = this / 180 * Math.PI
-
 }
