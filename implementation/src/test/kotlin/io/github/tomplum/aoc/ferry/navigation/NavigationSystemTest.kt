@@ -11,8 +11,9 @@ class NavigationSystemTest {
     inner class Navigate {
         @Test
         fun example() {
-            val instructions = TestInputReader.read<String>("ferry/navigation/instructions.txt")
-            val navigationSystem = NavigationSystem(instructions.value)
+            val data = TestInputReader.read<String>("ferry/navigation/instructions.txt").value
+            val instructions = InstructionParser.parse(data)
+            val navigationSystem = NavigationSystem(instructions)
             assertThat(navigationSystem.navigate()).isEqualTo(25)
         }
     }
@@ -21,8 +22,9 @@ class NavigationSystemTest {
     inner class NavigateViaWaypoint {
         @Test
         fun example() {
-            val instructions = TestInputReader.read<String>("ferry/navigation/instructions.txt")
-            val navigationSystem = NavigationSystem(instructions.value)
+            val data = TestInputReader.read<String>("ferry/navigation/instructions.txt").value
+            val instructions = InstructionParser.parse(data)
+            val navigationSystem = NavigationSystem(instructions)
             assertThat(navigationSystem.navigateViaWaypoint()).isEqualTo(286)
         }
     }
