@@ -16,6 +16,14 @@ class NavigationSystemTest {
             val navigationSystem = NavigationSystem(instructions)
             assertThat(navigationSystem.navigate()).isEqualTo(25)
         }
+
+        @Test
+        fun exampleTwo() {
+            val data = TestInputReader.read<String>("ferry/navigation/instructions-2.txt").value
+            val instructions = InstructionParser.parse(data)
+            val navigationSystem = NavigationSystem(instructions)
+            assertThat(navigationSystem.navigate()).isEqualTo(18)
+        }
     }
 
     @Nested
@@ -26,6 +34,14 @@ class NavigationSystemTest {
             val instructions = InstructionParser.parse(data)
             val navigationSystem = NavigationSystem(instructions)
             assertThat(navigationSystem.navigateViaWaypoint()).isEqualTo(286)
+        }
+
+        @Test
+        fun exampleTwo() {
+            val data = TestInputReader.read<String>("ferry/navigation/instructions-2.txt").value
+            val instructions = InstructionParser.parse(data)
+            val navigationSystem = NavigationSystem(instructions)
+            assertThat(navigationSystem.navigateViaWaypoint()).isEqualTo(204)
         }
     }
 }
