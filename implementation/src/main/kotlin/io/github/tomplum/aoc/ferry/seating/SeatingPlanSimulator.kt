@@ -22,7 +22,7 @@ class SeatingPlanSimulator(layout: SeatingLayout) {
     }
 
     private fun simulate(strategy: SeatingStrategy): SeatingLayout {
-        val layout = history.last().snapshot()
+        val layout = history.last().snapshotCurrentState()
         val toOccupy = strategy.getOccupiedSeatPositions(layout)
         val toEvict = strategy.getEmptySeatPositions(layout)
         layout.occupy(toOccupy)

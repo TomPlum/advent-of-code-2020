@@ -20,15 +20,15 @@ class SeatingLayout(data: List<String>): AdventMap2D<SeatingPosition>() {
 
     fun getSeats(isType: (SeatingPosition) -> Boolean): Map<Point2D, SeatingPosition> = filterTiles { isType(it) }
 
-    fun getSeats(positions: Set<Point2D>): Map<Point2D, SeatingPosition> = filterPoints(positions)
+    fun getAdjacentSeating(position: Point2D) = adjacentTiles(setOf(position), null).filterValues { it != null }
 
     fun occupy(positions: Set<Point2D>) = positions.forEach { addTile(it, SeatingPosition('#')) }
 
     fun evict(positions: Set<Point2D>) = positions.forEach { addTile(it, SeatingPosition('L')) }
 
-    fun snapshot(): SeatingLayout {
+    fun snapshotCurrentState(): SeatingLayout {
         val snapshot = SeatingLayout(emptyList())
-        filterTiles { true }.forEach { (pos, tile) -> snapshot.addTile(pos, tile) }
+        snapshot().forEach { (pos, tile) -> snapshot.addTile(pos, tile) }
         return snapshot
     }
 
