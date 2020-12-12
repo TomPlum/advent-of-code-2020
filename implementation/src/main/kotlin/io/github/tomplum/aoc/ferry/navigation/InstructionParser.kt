@@ -2,6 +2,9 @@ package io.github.tomplum.aoc.ferry.navigation
 
 import io.github.tomplum.libs.math.Direction
 
+/**
+ * Parses instructional data and produces a list of [Instruction].
+ */
 class InstructionParser private constructor() {
     companion object {
         fun parse(data: List<String>) = data.map { instruction ->
