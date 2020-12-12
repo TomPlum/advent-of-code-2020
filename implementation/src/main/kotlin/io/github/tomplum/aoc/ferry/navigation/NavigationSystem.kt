@@ -4,6 +4,7 @@ import io.github.tomplum.libs.math.Direction
 import io.github.tomplum.libs.math.Point2D
 import kotlin.math.abs
 import kotlin.math.cos
+import kotlin.math.roundToInt
 import kotlin.math.sin
 
 class NavigationSystem(data: List<String>) {
@@ -65,7 +66,7 @@ class NavigationSystem(data: List<String>) {
                         val yDelta = waypointPosition.y - shipsPosition.y
                         repeat(instruction.value) {
                             when {
-                                xDelta > 0 ->  {
+                                xDelta > 0 -> {
                                     shipsPosition = shipsPosition.shift(Direction.RIGHT, xDelta)
                                     waypointPosition = waypointPosition.shift(Direction.RIGHT, xDelta)
                                 }
@@ -75,13 +76,13 @@ class NavigationSystem(data: List<String>) {
                                 }
                             }
                             when {
-                                yDelta > 0 ->  {
+                                yDelta > 0 -> {
                                     shipsPosition = shipsPosition.shift(Direction.UP, yDelta)
                                     waypointPosition = waypointPosition.shift(Direction.UP, yDelta)
                                 }
                                 yDelta < 0 -> {
                                     shipsPosition = shipsPosition.shift(Direction.DOWN, abs(yDelta))
-                                    waypointPosition = waypointPosition.shift(Direction.DOWN,  abs(yDelta))
+                                    waypointPosition = waypointPosition.shift(Direction.DOWN, abs(yDelta))
                                 }
                             }
                         }
@@ -107,7 +108,7 @@ class NavigationSystem(data: List<String>) {
         val xNew = x2 + pivot.x
         val yNew = y2 + pivot.y
 
-        return Point2D(xNew.toInt(), yNew.toInt())
+        return Point2D(xNew.roundToInt(), yNew.roundToInt())
     }
 
     private fun Double.toRadians() = this / 180 * Math.PI

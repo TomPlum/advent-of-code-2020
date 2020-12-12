@@ -11,4 +11,8 @@ class Day12 : Solution<Int, Int> {
     override fun part1(): Int {
         return NavigationSystem(input.value).navigate()
     }
+
+    override fun part2(): Int {
+        return NavigationSystem(input.value).navigateViaWaypoint()
+    }
 }
