@@ -6,11 +6,15 @@ import io.github.tomplum.aoc.bus.BusTimetable
 import io.github.tomplum.libs.input.Day
 import io.github.tomplum.libs.input.InputReader
 
-class Day13 : Solution<Int, Int> {
+class Day13 : Solution<Int, Long> {
     private val input = InputReader.read<String>(Day(13))
+    private val timetable = BusTimetable.fromNotes(input.value)
 
     override fun part1(): Int {
-        val timetable = BusTimetable.fromNotes(input.value)
         return BusScheduler(timetable).getEarliestBus()
+    }
+
+    override fun part2(): Long {
+        return BusScheduler(timetable).getOffsetDepartureTime()
     }
 }

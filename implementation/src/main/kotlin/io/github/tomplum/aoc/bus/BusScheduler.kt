@@ -11,7 +11,7 @@ class BusScheduler(private val notes: BusTimetable) {
 
     fun getOffsetDepartureTime(): Long {
         val buses = notes.buses.mapIndexedNotNull { i, id -> if (id.isOutOfService()) null else i to id.getValue() }
-        var step = buses.first().second
+        var step = buses.first().second.toLong()
         var t = 0L
         buses.drop(1).forEach { (i, bus) ->
             while ((t + i) % bus != 0L) {
