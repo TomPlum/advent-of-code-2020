@@ -71,8 +71,8 @@ behaviour that is commonly used across multiple days and `test-support` for unit
 | 09   	| 20874512  | 3012420           | Encoding Error                            | [Link](docs/DAY9.MD)   |
 | 10   	| 2176      | 18512297918464    | Adapter Array                             | [Link](docs/DAY10.MD)  |
 | 11   	| 2427      | 2199              | Seating System                            | [Link](docs/DAY11.MD)  |
-| 12   	| -         | -                 |                                           |                        |
-| 13   	| -         | -                 |                                           |                        |
+| 12   	| 319       | 50157             | Rain Risk                                 | [Link](docs/DAY12.MD)  |
+| 13   	| 102       | 327300950120029   | Shuttle Search                            | [Link](docs/DAY13.MD)  |
 | 14   	| -         | -                 |                                           |                        |
 | 15   	| -         | -                 |                                           |                        |
 | 16   	| -         | -                 |                                           |                        |
