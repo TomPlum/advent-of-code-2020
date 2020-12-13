@@ -72,7 +72,7 @@ behaviour that is commonly used across multiple days and `test-support` for unit
 | 10   	| 2176      | 18512297918464    | Adapter Array                             | [Link](docs/DAY10.MD)  |
 | 11   	| -         | -                 |                                           |                        |
 | 12   	| 319       | 50157             | Rain Risk                                 | [Link](docs/DAY12.MD)  |
-| 13   	| -         | -                 |                                           |                        |
+| 13   	| 102       | 327300950120029   | Shuttle Search                            | [Link](docs/DAY13.MD)  |
 | 14   	| -         | -                 |                                           |                        |
 | 15   	| -         | -                 |                                           |                        |
 | 16   	| -         | -                 |                                           |                        |
