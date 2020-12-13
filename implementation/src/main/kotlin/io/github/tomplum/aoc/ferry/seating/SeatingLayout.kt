@@ -3,7 +3,12 @@ package io.github.tomplum.aoc.ferry.seating
 import io.github.tomplum.libs.math.Direction
 import io.github.tomplum.libs.math.Point2D
 import io.github.tomplum.libs.math.map.AdventMap2D
+import io.github.tomplum.aoc.ferry.navigation.Ferry
 
+/**
+ * A map of the seating layout in the waiting area of the [Ferry].
+ * @param data A list of rows of seating data.
+ */
 class SeatingLayout(data: List<String>): AdventMap2D<SeatingPosition>() {
     init {
         var x = 0
