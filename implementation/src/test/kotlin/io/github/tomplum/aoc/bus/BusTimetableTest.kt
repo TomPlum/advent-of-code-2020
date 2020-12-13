@@ -20,7 +20,7 @@ class BusTimetableTest {
 
         private fun getExpectedTimetable() = BusTimetable(
             939,
-            listOf(BusID("7"), BusID("13"), BusID("x"), BusID("x"), BusID("59"), BusID("x"), BusID("31"), BusID("19"))
+            listOf(Bus("7"), Bus("13"), Bus("x"), Bus("x"), Bus("59"), Bus("x"), Bus("31"), Bus("19"))
         )
     }
 
@@ -28,14 +28,14 @@ class BusTimetableTest {
     inner class GetWorkingBuses {
         @Test
         fun onlyWorkingBuses() {
-            val timetable = BusTimetable(940, listOf(BusID("45"), BusID("12"), BusID("4")))
+            val timetable = BusTimetable(940, listOf(Bus("45"), Bus("12"), Bus("4")))
             val working = timetable.getWorkingBuses()
-            assertThat(working).containsOnly(BusID("45"), BusID("12"), BusID("4"))
+            assertThat(working).containsOnly(Bus("45"), Bus("12"), Bus("4"))
         }
 
         @Test
         fun onlyOutOfServiceBuses() {
-            val timetable = BusTimetable(940, listOf(BusID("x"), BusID("x"), BusID("x")))
+            val timetable = BusTimetable(940, listOf(Bus("x"), Bus("x"), Bus("x")))
             val working = timetable.getWorkingBuses()
             assertThat(working).isEmpty()
         }

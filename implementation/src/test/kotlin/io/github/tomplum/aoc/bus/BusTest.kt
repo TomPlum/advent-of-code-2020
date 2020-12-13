@@ -10,18 +10,18 @@ import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
-class BusIDTest {
+class BusTest {
     @Nested
     inner class IsOutOfService {
         @ParameterizedTest
         @ValueSource(strings = ["1", "0", "45", "23"])
         fun inService(id: String) {
-            assertThat(BusID(id).isOutOfService()).isFalse()
+            assertThat(Bus(id).isOutOfService()).isFalse()
         }
 
         @Test
         fun outOfService() {
-            assertThat(BusID("x").isOutOfService()).isTrue()
+            assertThat(Bus("x").isOutOfService()).isTrue()
         }
     }
 
@@ -29,12 +29,12 @@ class BusIDTest {
     inner class GetValue {
         @Test
         fun inService() {
-            assertThat(BusID("14").getValue()).isEqualTo(14)
+            assertThat(Bus("14").getID()).isEqualTo(14)
         }
 
         @Test
         fun outOfService() {
-            val e = assertThrows<IllegalStateException> { BusID("x").getValue() }
+            val e = assertThrows<IllegalStateException> { Bus("x").getID() }
             assertThat(e.message).isEqualTo("This bus is out of service!")
         }
     }
