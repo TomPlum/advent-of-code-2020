@@ -9,7 +9,7 @@ class BusSchedulerTest {
     @Test
     fun example() {
         val input = TestInputReader.read<String>("bus/example-notes.txt")
-        val scheduler = BusScheduler(ScheduleNotes.fromString(input.value))
+        val scheduler = BusScheduler(BusTimetable.fromNotes(input.value))
         assertThat(scheduler.getEarliestBus()).isEqualTo(295)
     }
 }
