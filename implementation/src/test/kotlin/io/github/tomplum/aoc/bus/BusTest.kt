@@ -26,7 +26,7 @@ class BusTest {
     }
 
     @Nested
-    inner class GetValue {
+    inner class GetID {
         @Test
         fun inService() {
             assertThat(Bus("14").getID()).isEqualTo(14)

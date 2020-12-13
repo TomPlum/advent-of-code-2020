@@ -47,4 +47,49 @@ class BusTimetableTest {
             assertThat(working).isEmpty()
         }
     }
+
+    @Nested
+    inner class GetBusesWithOffsets {
+        @Test
+        fun exampleOne() {
+            val notes = TestInputReader.read<String>("bus/example-notes.txt")
+            val offsets = BusTimetable.fromNotes(notes.value).getBusesWithOffsets()
+            assertThat(offsets).containsOnly(Pair(0,7), Pair(1,13), Pair(4,59), Pair(6,31), Pair(7,19))
+        }
+
+        @Test
+        fun exampleTwo() {
+            val notes = TestInputReader.read<String>("bus/example-notes-2.txt")
+            val offsets = BusTimetable.fromNotes(notes.value).getBusesWithOffsets()
+            assertThat(offsets).containsOnly(Pair(0,17), Pair(2,13), Pair(3,19))
+        }
+
+        @Test
+        fun exampleThree() {
+            val notes = TestInputReader.read<String>("bus/example-notes-3.txt")
+            val offsets = BusTimetable.fromNotes(notes.value).getBusesWithOffsets()
+            assertThat(offsets).containsOnly(Pair(0,67), Pair(1,7), Pair(2,59), Pair(3,61))
+        }
+
+        @Test
+        fun exampleFour() {
+            val notes = TestInputReader.read<String>("bus/example-notes-4.txt")
+            val offsets = BusTimetable.fromNotes(notes.value).getBusesWithOffsets()
+            assertThat(offsets).containsOnly(Pair(0,67), Pair(2,7), Pair(3,59), Pair(4,61))
+        }
+
+        @Test
+        fun exampleFive() {
+            val notes = TestInputReader.read<String>("bus/example-notes-5.txt")
+            val offsets = BusTimetable.fromNotes(notes.value).getBusesWithOffsets()
+            assertThat(offsets).containsOnly(Pair(0,67), Pair(1,7), Pair(3,59), Pair(4,61))
+        }
+
+        @Test
+        fun exampleSix() {
+            val notes = TestInputReader.read<String>("bus/example-notes-6.txt")
+            val offsets = BusTimetable.fromNotes(notes.value).getBusesWithOffsets()
+            assertThat(offsets).containsOnly(Pair(0,1789), Pair(1,37), Pair(2,47), Pair(3,1889))
+        }
+    }
 }
