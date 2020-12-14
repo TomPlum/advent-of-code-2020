@@ -7,16 +7,44 @@ import org.junit.jupiter.api.Test
 
 class ProgramParserTest {
     @Test
-    fun example() {
+    fun exampleSingleProgram() {
         val input = TestInputReader.read<String>("mask/example-program.txt")
-        val programs = ProgramParser.parse(input.value)
-        assertThat(programs.first()).isEqualTo(getExpectedProgram())
+        val program = ProgramParser.parse(input.value)
+        assertThat(program).isEqualTo(getExpectedSingleMask())
     }
 
-    private fun getExpectedProgram(): InitialisationProgram {
+    @Test
+    fun exampleMultiplePrograms() {
+        val input = TestInputReader.read<String>("mask/example-multiple-programs.txt")
+        val program = ProgramParser.parse(input.value)
+        assertThat(program).isEqualTo(getExpectedMultipleMasks())
+    }
+
+    private fun getExpectedSingleMask(): InitialisationProgram {
         val mask = Mask()
         mask.put(34, 0)
         mask.put(29, 1)
-        return InitialisationProgram(mask, listOf(Instruction(8, 11), Instruction(7, 101), Instruction(8, 0)))
+        val instructions = listOf(Instruction(8, 11), Instruction(7, 101), Instruction(8, 0))
+        return InitialisationProgram(mapOf(mask to instructions))
+    }
+
+    private fun getExpectedMultipleMasks(): InitialisationProgram {
+        val programData = mutableMapOf<Mask, List<Instruction>>()
+
+        val firstMask = Mask()
+        firstMask.put(34, 0)
+        firstMask.put(29, 1)
+
+        val firstInstructions = listOf(Instruction(8,11), Instruction(6,0))
+        programData[firstMask] = firstInstructions
+
+        val secondMask = Mask()
+        secondMask.put(29, 0)
+        secondMask.put(35, 1)
+
+        val secondInstructions = listOf(Instruction(1,5), Instruction(23,56), Instruction(4,1))
+        programData[secondMask] = secondInstructions
+
+        return InitialisationProgram(programData)
     }
 }
