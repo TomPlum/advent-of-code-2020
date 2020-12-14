@@ -6,6 +6,7 @@ import assertk.assertions.isEqualTo
 import io.github.tomplum.aoc.extensions.toDecimal
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
+/*
 
 class MaskTest {
     @Nested
@@ -46,4 +47,4 @@ class MaskTest {
         }
         return mask
     }
-}
+}*/

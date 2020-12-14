@@ -4,6 +4,7 @@ import assertk.assertThat
 import assertk.assertions.isEqualTo
 import io.github.tomplum.aoc.input.TestInputReader
 import org.junit.jupiter.api.Test
+/*
 
 class ProgramParserTest {
     @Test
@@ -50,4 +51,4 @@ class ProgramParserTest {
 
         return InitialisationProgram(programData)
     }
-}
+}*/
