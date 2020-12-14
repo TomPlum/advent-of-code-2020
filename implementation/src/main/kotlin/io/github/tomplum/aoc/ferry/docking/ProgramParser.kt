@@ -4,12 +4,16 @@ class ProgramParser private constructor() {
     companion object {
         fun parse(data: List<String>): InitialisationProgram {
             val programData = mutableMapOf<Mask, MutableList<Instruction>>()
-            var mask = Mask()
+            var mask = Mask(36)
             data.forEach {
                 if (it.take(4) == "mask") {
-                    mask = Mask()
+                    mask = Mask(36)
                     it.takeLast(36).forEachIndexed { index, bit ->
-                        if (bit.isDigit()) mask.put(index, bit.toString().toInt())
+                        if (bit.isDigit()) {
+                            mask.put(index, bit.toString().toInt())
+                        } else {
+                            mask.put(index, 2)
+                        }
                     }
                     programData[mask] = mutableListOf()
                 } else {

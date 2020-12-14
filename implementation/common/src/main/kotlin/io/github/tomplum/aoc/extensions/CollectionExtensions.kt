@@ -8,17 +8,22 @@ import kotlin.math.pow
 fun List<Int>.product(): Int = if (isNotEmpty()) reduce { product, next -> product * next } else 0
 fun List<Long>.product(): Long = if (isNotEmpty()) reduce { product, next -> product * next } else 0
 
-fun IntArray.toDecimal(): Int = reversed().mapIndexed { i, value ->
+/**
+ * Converts the [IntArray] into its decimal equivalent.
+ * This assumes the array contains only 1s and 0s.
+ * @return The decimal representation.
+ */
+fun IntArray.toDecimal(): Long = reversed().mapIndexed { i, value ->
     if (i == 0 && value == 1) {
         1
     } else if (i == 1 && value == 1) {
         2
     } else if (value == 1){
-        2.toDouble().pow(i).toInt()
+        2.toDouble().pow(i)
     } else {
         0
     }
-}.sum()
+}.map { it.toLong() }.sum()
 
 /**
  * For two sets A and B, the Cartesian product of A and B is denoted by A×B and defined as:

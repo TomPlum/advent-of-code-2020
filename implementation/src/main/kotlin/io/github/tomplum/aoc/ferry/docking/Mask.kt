@@ -1,15 +1,20 @@
 package io.github.tomplum.aoc.ferry.docking
 
-data class Mask(private val bits: IntArray = IntArray(36)) {
+import io.github.tomplum.aoc.extensions.toBinary
+
+data class Mask(private val size: Int) {
+    private val bits: IntArray = IntArray(size)
+
     fun put(i: Int, bit: Int) {
         bits[i] = bit
     }
 
-    fun applyTo(value: IntArray): IntArray {
+    fun applyTo(value: Int): IntArray {
+        val binary = value.toBinary(size)
         bits.forEachIndexed { i, bit ->
-            if (value[i] != 1) value[i] = bit
+            if (bit != 2) binary[i] = bit
         }
-        return value
+        return binary
     }
 
     override fun equals(other: Any?): Boolean {
@@ -26,4 +31,7 @@ data class Mask(private val bits: IntArray = IntArray(36)) {
     override fun hashCode(): Int {
         return bits.contentHashCode()
     }
+
+    override fun toString(): String = bits.joinToString()
+
 }
