@@ -1,10 +1,24 @@
 package io.github.tomplum.aoc.extensions
 
+import kotlin.math.pow
+
 /**
  * Returns the product of all of the integers in the given list.
  */
 fun List<Int>.product(): Int = if (isNotEmpty()) reduce { product, next -> product * next } else 0
 fun List<Long>.product(): Long = if (isNotEmpty()) reduce { product, next -> product * next } else 0
+
+fun IntArray.toDecimal(): Int = reversed().mapIndexed { i, value ->
+    if (i == 0 && value == 1) {
+        1
+    } else if (i == 1 && value == 1) {
+        2
+    } else if (value == 1){
+        2.toDouble().pow(i).toInt()
+    } else {
+        0
+    }
+}.sum()
 
 /**
  * For two sets A and B, the Cartesian product of A and B is denoted by A×B and defined as:

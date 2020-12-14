@@ -66,4 +66,16 @@ class CollectionExtensionsTest {
             assertThat(listOf(3, 10, 2, -1).product()).isEqualTo(-60)
         }
     }
+
+    @Nested
+    inner class BinaryIntArrayToDecimal {
+        @Test
+        fun example() {
+            val binary = IntArray(36)
+            binary[35] = 1
+            binary[34] = 1
+            binary[32] = 1
+            assertThat(binary.toDecimal()).isEqualTo(11)
+        }
+    }
 }
