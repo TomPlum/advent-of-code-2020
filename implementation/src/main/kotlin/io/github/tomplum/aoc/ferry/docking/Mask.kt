@@ -5,6 +5,13 @@ data class Mask(private val bits: IntArray = IntArray(36)) {
         bits[i] = bit
     }
 
+    fun applyTo(value: IntArray): IntArray {
+        bits.forEachIndexed { i, bit ->
+            if (value[i] != 1) value[i] = bit
+        }
+        return value
+    }
+
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
