@@ -58,30 +58,30 @@ behaviour that is commonly used across multiple days and `test-support` for unit
 
 ## Answer Table
 
-| Day 	| Part 1 	| Part 2 	        | Name                                      | Documentation          |
-|-------|-----------|-------------------|-------------------------------------------|------------------------|
-| 01   	| 802011  	| 248607374         | Report Repair                             | [Link](docs/DAY1.MD)   |
-| 02   	| 660       | 530               | Password Philosophy                       | [Link](docs/DAY2.MD)   |
-| 03   	| 169       | 7560370818        | Toboggan Trajectory                       | [Link](docs/DAY3.MD)   |
-| 04   	| 192       | 101               | Passport Processing                       | [Link](docs/DAY4.MD)   |
-| 05   	| 904       | 669               | Binary Boarding                           | [Link](docs/DAY5.MD)   |
-| 06   	| 6911      | 3473              | Custom Customs                            | [Link](docs/DAY6.MD)   |
-| 07   	| 300       | 8030              | Handy Haversacks                          | [Link](docs/DAY7.MD)   |
-| 08   	| 1832      | 662               | Handheld Halting                          | [Link](docs/DAY8.MD)   |
-| 09   	| 20874512  | 3012420           | Encoding Error                            | [Link](docs/DAY9.MD)   |
-| 10   	| 2176      | 18512297918464    | Adapter Array                             | [Link](docs/DAY10.MD)  |
-| 11   	| -         | -                 |                                           |                        |
-| 12   	| 319       | 50157             | Rain Risk                                 | [Link](docs/DAY12.MD)  |
-| 13   	| 102       | 327300950120029   | Shuttle Search                            | [Link](docs/DAY13.MD)  |
-| 14   	| -         | -                 |                                           |                        |
-| 15   	| -         | -                 |                                           |                        |
-| 16   	| -         | -                 |                                           |                        |
-| 17   	| -         | -                 |                                           |                        |
-| 18   	| -         | -                 |                                           |                        |
-| 19   	| -         | -                 |                                           |                        |
-| 20   	| -         | -                 |                                           |                        |
-| 21   	| -         | -                 |                                           |                        |
-| 22   	| -         | -                 |                                           |                        |
-| 23   	| -         | -                 |                                           |                        |
-| 24   	| -         | -                 |                                           |                        |
-| 25   	| -         | -                 |                                           |                        |
+| Day 	| Part 1 	     | Part 2 	         | Name                                      | Documentation          |
+|-------|----------------|-------------------|-------------------------------------------|------------------------|
+| 01   	| 802011         | 248607374         | Report Repair                             | [Link](docs/DAY1.MD)   |
+| 02   	| 660            | 530               | Password Philosophy                       | [Link](docs/DAY2.MD)   |
+| 03   	| 169            | 7560370818        | Toboggan Trajectory                       | [Link](docs/DAY3.MD)   |
+| 04   	| 192            | 101               | Passport Processing                       | [Link](docs/DAY4.MD)   |
+| 05   	| 904            | 669               | Binary Boarding                           | [Link](docs/DAY5.MD)   |
+| 06   	| 6911           | 3473              | Custom Customs                            | [Link](docs/DAY6.MD)   |
+| 07   	| 300            | 8030              | Handy Haversacks                          | [Link](docs/DAY7.MD)   |
+| 08   	| 1832           | 662               | Handheld Halting                          | [Link](docs/DAY8.MD)   |
+| 09   	| 20874512       | 3012420           | Encoding Error                            | [Link](docs/DAY9.MD)   |
+| 10   	| 2176           | 18512297918464    | Adapter Array                             | [Link](docs/DAY10.MD)  |
+| 11   	| -              | -                 |                                           |                        |
+| 12   	| 319            | 50157             | Rain Risk                                 | [Link](docs/DAY12.MD)  |
+| 13   	| 102            | 327300950120029   | Shuttle Search                            | [Link](docs/DAY13.MD)  |
+| 14   	| 9967721333886  | 4355897790573     | Docking Data                              | [Link](docs/DAY14.MD)  |
+| 15   	| -              | -                 |                                           |                        |
+| 16   	| -              | -                 |                                           |                        |
+| 17   	| -              | -                 |                                           |                        |
+| 18   	| -              | -                 |                                           |                        |
+| 19   	| -              | -                 |                                           |                        |
+| 20   	| -              | -                 |                                           |                        |
+| 21   	| -              | -                 |                                           |                        |
+| 22   	| -              | -                 |                                           |                        |
+| 23   	| -              | -                 |                                           |                        |
+| 24   	| -              | -                 |                                           |                        |
+| 25   	| -              | -                 |                                           |                        |
