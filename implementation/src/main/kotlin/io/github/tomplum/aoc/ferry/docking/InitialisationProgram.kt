@@ -1,3 +1,3 @@
 package io.github.tomplum.aoc.ferry.docking
 
-data class InitialisationProgram(val instructions: Map<Mask, List<Instruction>>)
+data class InitialisationProgram(val routines: Map<Mask, List<Instruction>>)
