@@ -2,12 +2,12 @@ package io.github.tomplum.aoc.ferry.docking
 
 class ProgramParser private constructor() {
     companion object {
-        fun parse(data: List<String>): InitialisationProgram {
-            val programData = mutableMapOf<Mask, MutableList<Instruction>>()
-            var mask = Mask("")
+        fun parse(data: List<String>): InitProgram {
+            val programData = mutableMapOf<BitMask, MutableList<Instruction>>()
+            var mask = BitMask("")
             data.forEach {
                 if (it.take(4) == "mask") {
-                    mask = Mask(it.takeLast(36))
+                    mask = BitMask(it.takeLast(36))
                     programData[mask] = mutableListOf()
                 } else {
                     val info = it.split(" = ")
@@ -16,7 +16,7 @@ class ProgramParser private constructor() {
                     programData[mask]?.add(Instruction(address, value))
                 }
             }
-            return InitialisationProgram(programData)
+            return InitProgram(programData)
         }
     }
 }

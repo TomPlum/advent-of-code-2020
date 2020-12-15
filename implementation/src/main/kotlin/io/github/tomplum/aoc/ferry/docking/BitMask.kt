@@ -1,6 +1,6 @@
 package io.github.tomplum.aoc.ferry.docking
 
-data class Mask(private val mask: String) {
+data class BitMask(private val mask: String) {
 
     fun applyTo(value: Int): String {
         return mask.zip(value.to36bit()) { mask, bit ->
