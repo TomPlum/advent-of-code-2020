@@ -11,4 +11,8 @@ class Day15 : Solution<Int, Int> {
     override fun part1(): Int {
         return MemoryGame(input).simulate(2020)
     }
+
+    override fun part2(): Int {
+        return MemoryGame(input).simulate(30_000_000)
+    }
 }

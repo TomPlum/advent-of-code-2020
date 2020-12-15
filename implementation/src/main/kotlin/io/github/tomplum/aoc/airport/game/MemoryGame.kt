@@ -1,38 +1,40 @@
 package io.github.tomplum.aoc.airport.game
 
-import io.github.tomplum.libs.logging.AdventLogger
-import java.util.*
-import kotlin.math.abs
-
-class MemoryGame(data: String) {
-    private val numbers = LinkedList(data.split(",").map { it.toInt() })
-    private val turnAsked = mutableMapOf<Int, List<Int>>()
+class MemoryGame(numbers: String) {
+    private val turnAsked = mutableMapOf<Int, IntArray>()
     private val timesAsked = mutableMapOf<Int, Int>()
-    private var lastNumberAsked = 0
+    private var lastNumber = 0
     private var turn = 1
 
     init {
-        numbers.forEach { number -> speakNumber(number) }
+        numbers.split(",").map { it.toInt() }.forEach { number -> speakNumber(number) }
     }
 
     fun simulate(lastTurn: Int): Int {
         while (turn <= lastTurn) {
-            if (timesAsked[lastNumberAsked] == 1) {
+            if (timesAsked[lastNumber] == 1) {
                speakNumber(0)
             } else {
-                val turnsAsked = turnAsked[lastNumberAsked]
-                val diff = turnsAsked!!.takeLast(2).let { abs(it[0] - it[1]) }
+                val lastTwoTurns = turnAsked[lastNumber]!!.takeLast(2)
+                val diff = lastTwoTurns[1] - lastTwoTurns[0]
                 speakNumber(diff)
             }
         }
-        return lastNumberAsked
+        return lastNumber
     }
 
     private fun speakNumber(number: Int) {
-        AdventLogger.info(number)
-        timesAsked.merge(number, 1, Int::plus)
-        lastNumberAsked = number
-        turnAsked[number] = turnAsked.getOrDefault(number, mutableListOf()) + turn
+        //AdventLogger.info(number)
+        timesAsked[number] = timesAsked.getOrDefault(number, 0) + 1
+        lastNumber = number
+        setTurnAsked(number)
         turn++
+    }
+
+    private fun setTurnAsked(number: Int) {
+        val turns = turnAsked.getOrDefault(number, IntArray(2) { 0 })
+        turns[0] = turns[1]
+        turns[1] = turn
+        turnAsked[number] = turns
     }
 }
