@@ -1,5 +1,8 @@
 package io.github.tomplum.aoc.ferry.docking.program
 
+/**
+ * Parses a text representation of an [InitProgram].
+ */
 class ProgramParser private constructor() {
     companion object {
         fun parse(data: List<String>): InitProgram {
