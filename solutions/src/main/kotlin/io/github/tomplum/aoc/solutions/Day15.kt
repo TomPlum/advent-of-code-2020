@@ -9,6 +9,6 @@ class Day15 : Solution<Int, Int> {
     private val input = InputReader.read<String>(Day(15)).asSingleString()
 
     override fun part1(): Int {
-        return MemoryGame(input.split(",").map { it.toInt() }).simulate(2020)
+        return MemoryGame(input).simulate(2020)
     }
 }
