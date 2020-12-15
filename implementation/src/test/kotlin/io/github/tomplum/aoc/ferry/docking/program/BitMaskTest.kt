@@ -27,10 +27,17 @@ class BitMaskTest {
     @Nested
     inner class ApplyFloatingMask {
         @Test
-        fun example() {
+        fun twoFloatingBits() {
             val mask = BitMask("000000000000000000000000000000X1001X")
             val results = mask.applyFloatingTo(42).map { it.toLong(2) }
             assertThat(results).containsOnly(26L, 27L, 58L, 59L)
+        }
+
+        @Test
+        fun threeFloatingBits() {
+            val mask = BitMask("00000000000000000000000000000000X0XX")
+            val results = mask.applyFloatingTo(26).map { it.toLong(2) }
+            assertThat(results).containsOnly(16L,17L,18L,19L,24L,25L,26L,27L)
         }
     }
 }

@@ -5,7 +5,7 @@ package io.github.tomplum.aoc.ferry.docking.program
  *
  * An X indicates a 'Floating Bit' that is in a state of super-position and is therefore
  * simultaneously a 0 and a 1. This means that every [mask] with a floating-bit has
- * 2^X permutations wheres X is the number of floating-bits.
+ * 2^N permutations wheres N is the number of floating-bits.
  *
  * @param mask The string of bits.
  */
@@ -33,7 +33,7 @@ data class BitMask(private val mask: String) {
 
     /**
      * Masks the given [value] with the [mask] bits.
-     * Floating-bits are taken into account an so all mask permutations are applied.
+     * Floating-bits are taken into account and so all mask permutations are applied.
      *
      * E.g;
      *
