@@ -12,39 +12,34 @@ data class Mask(private val mask: String) {
     }
 
     fun applyFloatingTo(value: Int): List<String> {
-        val indexedBits = mask.mapIndexed { i, bit -> i to bit }
-        val regularBits = indexedBits.filter { (_, bit) -> bit == '1' }
-        val indexedFloating = mask.foldIndexed(mutableListOf<Pair<Int, Char>>()) { i, acc, bit ->
-            if (bit == 'X') {
-                acc.apply {
-                    add(Pair(i, '0'))
-                    add(Pair(i, '1'))
-                }
-            } else {
-                acc
-            }
-        }
-        val combinations = indexedFloating.powerSet()
-            .filter { it.size == mask.count { it == 'X' } }
-            .filter { it.first().first != it.last().first }
-
-        return combinations.map { floating ->
-            (floating + regularBits).maskBits(value.to36bit())
-        }
+        val floatingMask = applyIgnoreFloating(value)
+        return getFloatingPermutations(floatingMask, mutableListOf())
     }
 
-    fun <T> Collection<T>.powerSet(): Set<Set<T>> = when {
-        isEmpty() -> setOf(setOf())
-        else -> drop(1).powerSet().let { outer -> outer + outer.map { inner -> inner + first() } }
+    private fun applyIgnoreFloating(value: Int): String {
+        return mask.zip(value.to36bit()) { mask, bit ->
+            when (mask) {
+                'X', '1' -> mask
+                else -> bit
+            }
+        }.joinToString("")
+    }
+
+    private fun getFloatingPermutations(mask: String, masks: MutableList<String>): List<String> {
+        if (mask.contains('X')) {
+            val firstCandidate = mask.replaceFirst('X', '0')
+            if (!masks.contains(firstCandidate)) {
+                getFloatingPermutations(firstCandidate, masks)
+            }
+
+            val secondCandidate = mask.replaceFirst('X', '1')
+            if (!masks.contains(secondCandidate)) {
+                getFloatingPermutations(secondCandidate, masks)
+            }
+        }
+        if (!mask.contains('X')) masks.add(mask)
+        return masks
     }
 
     private fun Int.to36bit(): String = toString(2).padStart(36, '0')
-
-    private fun Collection<Pair<Int, Char>>.maskBits(binary: String): String {
-        val bits = binary.toCharArray()
-        this.forEach { (i, bit) ->
-            bits[i] = bit
-        }
-        return bits.joinToString("")
-    }
 }
