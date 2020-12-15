@@ -1,5 +1,18 @@
 package io.github.tomplum.aoc.airport.game
 
+/**
+ * While you wait for your flight, you decide to check in with the Elves back at the North Pole.
+ * They're playing a memory game and are ever so excited to explain the rules!
+ *
+ * In this game, the players take turns saying numbers.
+ * They begin by taking turns reading from a list of starting numbers.
+ * Then, each turn consists of considering the most recently spoken number:
+ * - If that was the first time the number has been spoken, the current player says 0.
+ * - Otherwise, the number had been spoken before; the current player announces how many turns apart the number is
+ *   from when it was previously spoken.
+ *
+ * @param numbers The starting numbers.
+ */
 class MemoryGame(numbers: String) {
     private val turnAsked = mutableMapOf<Int, IntArray>()
     private val timesAsked = mutableMapOf<Int, Int>()
@@ -7,24 +20,27 @@ class MemoryGame(numbers: String) {
     private var turn = 1
 
     init {
-        numbers.split(",").map { it.toInt() }.forEach { number -> speakNumber(number) }
+        numbers.split(",").map { it.toInt() }.forEach { number -> speak(number) }
     }
 
+    /**
+     * Simulates the memory game up until the given [lastTurn].
+     * @return The [lastNumber] spoken when the simulation ends.
+     */
     fun simulate(lastTurn: Int): Int {
         while (turn <= lastTurn) {
             if (timesAsked[lastNumber] == 1) {
-               speakNumber(0)
+               speak(0)
             } else {
                 val lastTwoTurns = turnAsked[lastNumber]!!.takeLast(2)
                 val diff = lastTwoTurns[1] - lastTwoTurns[0]
-                speakNumber(diff)
+                speak(diff)
             }
         }
         return lastNumber
     }
 
-    private fun speakNumber(number: Int) {
-        //AdventLogger.info(number)
+    private fun speak(number: Int) {
         timesAsked[number] = timesAsked.getOrDefault(number, 0) + 1
         lastNumber = number
         setTurnAsked(number)
