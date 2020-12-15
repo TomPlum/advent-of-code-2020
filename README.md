@@ -74,7 +74,7 @@ behaviour that is commonly used across multiple days and `test-support` for unit
 | 12   	| 319       | 50157             | Rain Risk                                 | [Link](docs/DAY12.MD)  |
 | 13   	| 102       | 327300950120029   | Shuttle Search                            | [Link](docs/DAY13.MD)  |
 | 14   	| -         | -                 |                                           |                        |
-| 15   	| -         | -                 |                                           |                        |
+| 15   	| 1259      | 689               | Rambunctious Recitation                   | [Link](docs/DAY15.MD)  |
 | 16   	| -         | -                 |                                           |                        |
 | 17   	| -         | -                 |                                           |                        |
 | 18   	| -         | -                 |                                           |                        |
