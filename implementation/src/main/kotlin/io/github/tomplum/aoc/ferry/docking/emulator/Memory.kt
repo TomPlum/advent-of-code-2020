@@ -1,4 +1,4 @@
-package io.github.tomplum.aoc.ferry.docking
+package io.github.tomplum.aoc.ferry.docking.emulator
 
 class Memory {
     private val addresses = mutableMapOf<Long, Long>()

@@ -1,9 +1,8 @@
-package io.github.tomplum.aoc.ferry.docking
+package io.github.tomplum.aoc.ferry.docking.program
 
 import assertk.assertThat
 import assertk.assertions.containsOnly
 import assertk.assertions.isEqualTo
-import io.github.tomplum.aoc.extensions.toDecimal
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 

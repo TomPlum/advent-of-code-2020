@@ -1,6 +1,6 @@
 package io.github.tomplum.aoc.ferry.docking.strategy
 
-import io.github.tomplum.aoc.ferry.docking.InitProgram
+import io.github.tomplum.aoc.ferry.docking.program.InitProgram
 
 class SeaPortDecoderV2: DecodingStrategy() {
     override fun decode(program: InitProgram): Long = program.routines.forEach { (mask, instructions) ->

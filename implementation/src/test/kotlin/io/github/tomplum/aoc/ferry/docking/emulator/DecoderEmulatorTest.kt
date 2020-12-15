@@ -1,7 +1,9 @@
-package io.github.tomplum.aoc.ferry.docking
+package io.github.tomplum.aoc.ferry.docking.emulator
 
 import assertk.assertThat
 import assertk.assertions.isEqualTo
+import io.github.tomplum.aoc.ferry.docking.emulator.DecoderEmulator
+import io.github.tomplum.aoc.ferry.docking.program.ProgramParser
 import io.github.tomplum.aoc.ferry.docking.strategy.SeaPortDecoderV1
 import io.github.tomplum.aoc.ferry.docking.strategy.SeaPortDecoderV2
 import io.github.tomplum.aoc.input.TestInputReader

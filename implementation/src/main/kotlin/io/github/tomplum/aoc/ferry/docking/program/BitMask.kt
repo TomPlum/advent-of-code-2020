@@ -1,4 +1,4 @@
-package io.github.tomplum.aoc.ferry.docking
+package io.github.tomplum.aoc.ferry.docking.program
 
 data class BitMask(private val mask: String) {
 
