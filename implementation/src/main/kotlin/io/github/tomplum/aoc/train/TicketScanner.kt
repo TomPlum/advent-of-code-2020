@@ -4,9 +4,7 @@ import io.github.tomplum.aoc.extensions.product
 import io.github.tomplum.aoc.train.ticket.meta.TicketMetaAnalyser
 
 class TicketScanner(private val document: TrainServiceDocument) {
-    fun getErrorRate(): Int = document
-        .getAllTicketValues()
-        .sumBy { value -> if (!document.satisfiesAllRules(value)) value else 0 }
+    fun getErrorRate(): Int = document.getInvalidTicketValues().sum()
 
     fun scan(field: String): Long {
         val validTickets = document.getValidTickets()
