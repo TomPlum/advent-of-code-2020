@@ -2,6 +2,9 @@ package io.github.tomplum.aoc.train.ticket
 
 import io.github.tomplum.aoc.train.TrainServiceDocument
 
+/**
+ * Reads the notes taken in the the airport via the security cameras and compiles a [TrainServiceDocument].
+ */
 class TicketReader private constructor() {
     companion object {
         fun read(notes: String): TrainServiceDocument {

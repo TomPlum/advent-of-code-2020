@@ -3,7 +3,17 @@ package io.github.tomplum.aoc.train.ticket.meta
 import io.github.tomplum.aoc.train.ticket.EncodedTicket
 import io.github.tomplum.aoc.train.ticket.TicketRule
 
+/**
+ * Analyses a collection of [EncodedTicket]s to discover the [TicketMeta] that correctly maps all columns
+ * to the respective field names.
+ * @param rules The ticket rules
+ */
 class TicketMetaAnalyser(private val rules: List<TicketRule>) {
+    /**
+     * Analyses the given [tickets] and finds the column -> field name relationships.
+     * @param tickets The tickets to be analysed.
+     * @return The encoded ticket meta-data.
+     */
     fun analyse(tickets: List<EncodedTicket>): TicketMeta {
         val ruleCandidates = rules.toMutableList()
 
