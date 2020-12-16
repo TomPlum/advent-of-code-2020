@@ -1,4 +1,7 @@
-package io.github.tomplum.aoc.train
+package io.github.tomplum.aoc.train.ticket.meta
+
+import io.github.tomplum.aoc.train.ticket.EncodedTicket
+import io.github.tomplum.aoc.train.ticket.TicketRule
 
 class TicketMetaAnalyser(private val rules: List<TicketRule>) {
     fun analyse(tickets: List<EncodedTicket>): TicketMeta {

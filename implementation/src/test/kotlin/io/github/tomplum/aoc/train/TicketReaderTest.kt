@@ -3,6 +3,9 @@ package io.github.tomplum.aoc.train
 import assertk.assertThat
 import assertk.assertions.isEqualTo
 import io.github.tomplum.aoc.input.TestInputReader
+import io.github.tomplum.aoc.train.ticket.EncodedTicket
+import io.github.tomplum.aoc.train.ticket.TicketReader
+import io.github.tomplum.aoc.train.ticket.TicketRule
 import org.junit.jupiter.api.Test
 
 class TicketReaderTest {

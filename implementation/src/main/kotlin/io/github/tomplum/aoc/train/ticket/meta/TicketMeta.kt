@@ -1,4 +1,6 @@
-package io.github.tomplum.aoc.train
+package io.github.tomplum.aoc.train.ticket.meta
+
+import io.github.tomplum.aoc.train.ticket.TicketRule
 
 class TicketMeta {
     private val values = mutableMapOf<Int, TicketRule>()

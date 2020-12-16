@@ -1,4 +1,6 @@
-package io.github.tomplum.aoc.train
+package io.github.tomplum.aoc.train.ticket
+
+import io.github.tomplum.aoc.train.TrainServiceDocument
 
 class TicketReader private constructor() {
     companion object {

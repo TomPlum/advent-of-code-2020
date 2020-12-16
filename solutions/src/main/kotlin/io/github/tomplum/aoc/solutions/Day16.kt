@@ -1,7 +1,7 @@
 package io.github.tomplum.aoc.solutions
 
 import io.github.tomplum.aoc.Solution
-import io.github.tomplum.aoc.train.TicketReader
+import io.github.tomplum.aoc.train.ticket.TicketReader
 import io.github.tomplum.aoc.train.TicketScanner
 import io.github.tomplum.libs.input.Day
 import io.github.tomplum.libs.input.InputReader
