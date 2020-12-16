@@ -15,12 +15,12 @@ class TicketReaderTest {
 
     private fun getExpectedDocument(): TrainServiceDocument {
         return TrainServiceDocument(
-            Ticket(listOf(7, 1, 14)),
+            EncodedTicket(listOf(7, 1, 14)),
             listOf(
-                Ticket(listOf(7, 3, 47)),
-                Ticket(listOf(40, 4, 50)),
-                Ticket(listOf(55, 2, 20)),
-                Ticket(listOf(38, 6, 12))
+                EncodedTicket(listOf(7, 3, 47)),
+                EncodedTicket(listOf(40, 4, 50)),
+                EncodedTicket(listOf(55, 2, 20)),
+                EncodedTicket(listOf(38, 6, 12))
             ),
             listOf(
                 TicketRule("class", 1..3, 5..7),
