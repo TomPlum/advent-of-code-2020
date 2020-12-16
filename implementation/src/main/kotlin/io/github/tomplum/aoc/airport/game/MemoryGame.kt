@@ -11,29 +11,28 @@ package io.github.tomplum.aoc.airport.game
  * - Otherwise, the number had been spoken before; the current player announces how many turns apart the number is
  *   from when it was previously spoken.
  *
+ * The sequence of spoken numbers is called the "Van Eck Sequence".
+ * @see <a>https://www.youtube.com/watch?v=etMJxB-igrc</a>
+ *
  * @param data The starting numbers.
  */
 class MemoryGame(data: String) {
-    private val spoken = HashMap<Int, Int>()
-    private var currentNumber: Int
-    private var turn: Int
-
-    init {
-        val numbers = data.split(",").map { it.toInt() }
-        numbers.forEachIndexed { i, number -> spoken[number] = i + 1 }
-        currentNumber = numbers.last()
-        turn = numbers.size
-    }
+    private val numbers = data.split(",").map { it.toInt() }
+    private lateinit var spoken: IntArray
+    private var currentNumber = numbers.last()
+    private var turn = numbers.size
 
     /**
      * Simulates the memory game up until the given [lastTurn].
      * @return The [currentNumber] spoken when the simulation ends.
      */
     fun simulate(lastTurn: Int): Int {
+        spoken = IntArray(lastTurn) { -1 }
+        numbers.forEachIndexed { i, number -> spoken[number] = i + 1 }
         while (turn < lastTurn) {
             when {
-                !spoken.containsKey(currentNumber) -> speak(0)
-                else -> speak(turn - spoken[currentNumber]!!)
+                spoken[currentNumber] == -1 -> speak(0)
+                else -> speak(turn - spoken[currentNumber])
             }
         }
         return currentNumber
