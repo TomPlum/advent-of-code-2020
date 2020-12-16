@@ -6,11 +6,15 @@ import io.github.tomplum.aoc.train.TicketScanner
 import io.github.tomplum.libs.input.Day
 import io.github.tomplum.libs.input.InputReader
 
-class Day16 : Solution<Int, Int> {
+class Day16 : Solution<Int, Long> {
     private val input = InputReader.read<String>(Day(16)).asSingleString()
     private val document = TicketReader.read(input)
 
     override fun part1(): Int {
-        return TicketScanner().scan(document)
+        return TicketScanner(document).getErrorRate()
+    }
+
+    override fun part2(): Long {
+        return TicketScanner(document).scan("departure")
     }
 }
