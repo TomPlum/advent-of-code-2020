@@ -24,7 +24,7 @@ class TicketMetaAnalyser(private val rules: List<TicketRule>) {
                 }
             }
             ruleCandidates.remove(matched)
-            meta.add(column, matched)
+            meta.addRule(column, matched)
         }
 
         return meta
