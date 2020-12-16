@@ -1,4 +1,4 @@
-package io.github.tomplum.aoc.train.ticket
+package io.github.tomplum.aoc.airport.train.ticket
 
 import assertk.assertThat
 import assertk.assertions.isFalse

@@ -1,8 +1,8 @@
-package io.github.tomplum.aoc.train.ticket.meta
+package io.github.tomplum.aoc.airport.train.ticket.meta
 
 import assertk.assertThat
 import assertk.assertions.isEqualTo
-import io.github.tomplum.aoc.train.ticket.TicketRule
+import io.github.tomplum.aoc.airport.train.ticket.TicketRule
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows

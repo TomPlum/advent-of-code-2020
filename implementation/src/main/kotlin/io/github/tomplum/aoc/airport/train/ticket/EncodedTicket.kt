@@ -1,6 +1,6 @@
-package io.github.tomplum.aoc.train.ticket
+package io.github.tomplum.aoc.airport.train.ticket
 
-import io.github.tomplum.aoc.train.ticket.meta.TicketMeta
+import io.github.tomplum.aoc.airport.train.ticket.meta.TicketMeta
 
 /**
  * A single ticket granting access to board the train.

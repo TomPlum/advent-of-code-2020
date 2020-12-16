@@ -1,11 +1,11 @@
-package io.github.tomplum.aoc.train
+package io.github.tomplum.aoc.airport.train
 
 import assertk.assertThat
 import assertk.assertions.containsOnly
 import assertk.assertions.isEmpty
 import io.github.tomplum.aoc.input.TestInputReader
-import io.github.tomplum.aoc.train.ticket.EncodedTicket
-import io.github.tomplum.aoc.train.ticket.TicketReader
+import io.github.tomplum.aoc.airport.train.ticket.EncodedTicket
+import io.github.tomplum.aoc.airport.train.ticket.TicketReader
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 

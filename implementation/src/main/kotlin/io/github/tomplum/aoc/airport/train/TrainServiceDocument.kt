@@ -1,7 +1,7 @@
-package io.github.tomplum.aoc.train
+package io.github.tomplum.aoc.airport.train
 
-import io.github.tomplum.aoc.train.ticket.EncodedTicket
-import io.github.tomplum.aoc.train.ticket.TicketRule
+import io.github.tomplum.aoc.airport.train.ticket.EncodedTicket
+import io.github.tomplum.aoc.airport.train.ticket.TicketRule
 
 /**
  * A document outlining information collected at the airport while waiting for the connecting flight. Including;

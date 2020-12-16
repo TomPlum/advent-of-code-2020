@@ -1,7 +1,7 @@
-package io.github.tomplum.aoc.train.ticket.meta
+package io.github.tomplum.aoc.airport.train.ticket.meta
 
-import io.github.tomplum.aoc.train.ticket.EncodedTicket
-import io.github.tomplum.aoc.train.ticket.TicketRule
+import io.github.tomplum.aoc.airport.train.ticket.EncodedTicket
+import io.github.tomplum.aoc.airport.train.ticket.TicketRule
 
 /**
  * Analyses a collection of [EncodedTicket]s to discover the [TicketMeta] that correctly maps all columns
