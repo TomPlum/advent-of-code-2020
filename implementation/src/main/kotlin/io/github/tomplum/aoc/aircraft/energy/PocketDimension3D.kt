@@ -4,7 +4,7 @@ import io.github.tomplum.libs.logging.AdventLogger
 import io.github.tomplum.libs.math.Point3D
 import io.github.tomplum.libs.math.map.AdventMap3D
 
-class PocketDimension(initialState: List<String>) : AdventMap3D<ConwayCube>() {
+class PocketDimension3D(initialState: List<String>) : AdventMap3D<ConwayCube>() {
     init {
         var x = 0
         var y = 0
@@ -79,8 +79,8 @@ class PocketDimension(initialState: List<String>) : AdventMap3D<ConwayCube>() {
         positions.forEach { addTile(it, ConwayCube('.')) }
     }
 
-    fun getSnapshot(): PocketDimension {
-        val snapshot = PocketDimension(emptyList())
+    fun getSnapshot(): PocketDimension3D {
+        val snapshot = PocketDimension3D(emptyList())
         filterTiles { true }.forEach { (pos, cube) -> snapshot.addTile(pos, cube) }
         snapshot.addNewSurroundingCells()
         return snapshot
