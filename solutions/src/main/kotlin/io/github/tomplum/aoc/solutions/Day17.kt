@@ -16,7 +16,7 @@ class Day17 : Solution<Int, Int> {
     }
 
     override fun part2(): Int {
-        val initialState = PocketDimension3D(input.value)
-        return DimensionalSimulator(initialState).simulate4d(6, PocketDimension4D(input.value))
+        val initialState = PocketDimension4D(input.value)
+        return DimensionalSimulator(initialState).simulate(6)
     }
 }

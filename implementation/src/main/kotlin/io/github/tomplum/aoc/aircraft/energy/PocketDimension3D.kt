@@ -1,10 +1,11 @@
 package io.github.tomplum.aoc.aircraft.energy
 
 import io.github.tomplum.libs.logging.AdventLogger
-import io.github.tomplum.libs.math.Point3D
 import io.github.tomplum.libs.math.map.AdventMap3D
+import io.github.tomplum.libs.math.point.Point
+import io.github.tomplum.libs.math.point.Point3D
 
-class PocketDimension3D(initialState: List<String>) : AdventMap3D<ConwayCube>() {
+class PocketDimension3D(initialState: List<String>) : AdventMap3D<ConwayCube>(), PocketDimension {
     init {
         var x = 0
         var y = 0
@@ -22,6 +23,40 @@ class PocketDimension3D(initialState: List<String>) : AdventMap3D<ConwayCube>() 
         }
 
     }
+
+    override fun getNextActiveCubes(): List<Point3D> {
+        val currentlyInactive = filterTiles { it.isInActive() }
+        return currentlyInactive.keys.filter { pos ->
+            val adjacent = filterPoints(pos.adjacent().toSet())
+            adjacent.count { (_, cube) -> cube.isActive() } == 3
+        }
+    }
+
+    override fun getNextInActiveCubes(): List<Point3D> {
+        val currentlyActive = filterTiles { it.isActive() }
+        return currentlyActive.keys.filter { pos ->
+            val adjacent = filterPoints(pos.adjacent().toSet())
+            val activeNeighbors = adjacent.count { (_, cube) -> cube.isActive() }
+            activeNeighbors != 2 && activeNeighbors != 3
+        }
+    }
+
+    override fun activate(positions: List<Point>) {
+        positions.forEach { addTile(it as Point3D, ConwayCube('#')) }
+    }
+
+    override fun deactivate(positions: List<Point>) {
+        positions.forEach { addTile(it as Point3D, ConwayCube('.')) }
+    }
+
+    override fun getSnapshot(): PocketDimension3D {
+        val snapshot = PocketDimension3D(emptyList())
+        filterTiles { true }.forEach { (pos, cube) -> snapshot.addTile(pos, cube) }
+        snapshot.addNewSurroundingCells()
+        return snapshot
+    }
+
+    override fun getActiveCubeQuantity(): Int = filterTiles { it.isActive() }.count()
 
     private fun addNewSurroundingCells() {
         val xMax = xMax()!!
@@ -53,39 +88,5 @@ class PocketDimension3D(initialState: List<String>) : AdventMap3D<ConwayCube>() 
             }
         }
     }
-
-    fun getNextActiveCubes(): List<Point3D> {
-        val currentlyInactive = filterTiles { it.isInActive() }
-        return currentlyInactive.keys.filter { pos ->
-            val adjacent = filterPoints(pos.adjacent().toSet())
-            adjacent.count { (_, cube) -> cube.isActive() } == 3
-        }
-    }
-
-    fun getNextInActiveCubes(): List<Point3D> {
-        val currentlyActive = filterTiles { it.isActive() }
-        return currentlyActive.keys.filter { pos ->
-            val adjacent = filterPoints(pos.adjacent().toSet())
-            val activeNeighbors = adjacent.count { (_, cube) -> cube.isActive() }
-            activeNeighbors != 2 && activeNeighbors != 3
-        }
-    }
-
-    fun activate(positions: List<Point3D>) {
-        positions.forEach { addTile(it, ConwayCube('#')) }
-    }
-
-    fun deactivate(positions: List<Point3D>) {
-        positions.forEach { addTile(it, ConwayCube('.')) }
-    }
-
-    fun getSnapshot(): PocketDimension3D {
-        val snapshot = PocketDimension3D(emptyList())
-        filterTiles { true }.forEach { (pos, cube) -> snapshot.addTile(pos, cube) }
-        snapshot.addNewSurroundingCells()
-        return snapshot
-    }
-
-    fun getActiveCubeQuantity(): Int = filterTiles { it.isActive() }.count()
 
 }

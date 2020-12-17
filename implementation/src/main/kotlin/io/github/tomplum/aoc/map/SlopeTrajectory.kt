@@ -1,7 +1,7 @@
 package io.github.tomplum.aoc.map
 
 import io.github.tomplum.libs.math.Direction
-import io.github.tomplum.libs.math.Point2D
+import io.github.tomplum.libs.math.point.Point2D
 
 /**
  * The trajectory of the toboggan when descending through the forest as outlined in the [ForestMap].
