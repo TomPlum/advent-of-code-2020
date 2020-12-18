@@ -1,9 +1,11 @@
 package io.github.tomplum.aoc.aircraft.homework
 
 class Lexer {
-    fun read(data: String): List<Expression> {
-        val prepared = data.replace(" ", "")
-        return findNestedExpressions(prepared, mutableListOf())
+    fun read(data: List<String>): List<Expression> {
+        return data.map { expression ->
+            val prepared = expression.replace(" ", "")
+            findNestedExpressions(prepared, mutableListOf()).first()
+        }
     }
 
     private fun findNestedExpressions(data: String, expressions: MutableList<Expression>): List<Expression> {
