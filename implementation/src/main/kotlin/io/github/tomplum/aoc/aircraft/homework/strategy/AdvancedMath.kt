@@ -1,9 +1,9 @@
 package io.github.tomplum.aoc.aircraft.homework.strategy
 
-import io.github.tomplum.aoc.aircraft.homework.Expression
-import io.github.tomplum.aoc.aircraft.homework.Number
-import io.github.tomplum.aoc.aircraft.homework.Operator
-import io.github.tomplum.aoc.aircraft.homework.Token
+import io.github.tomplum.aoc.aircraft.homework.types.Expression
+import io.github.tomplum.aoc.aircraft.homework.types.Number
+import io.github.tomplum.aoc.aircraft.homework.types.Operator
+import io.github.tomplum.aoc.aircraft.homework.types.Token
 
 class AdvancedMath: OperationOrderStrategy {
     override fun resolve(expressionTokens: List<Token>): Number {

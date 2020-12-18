@@ -1,4 +1,4 @@
-package io.github.tomplum.aoc.aircraft.homework
+package io.github.tomplum.aoc.aircraft.homework.types
 
 import io.github.tomplum.aoc.aircraft.homework.strategy.OperationOrderStrategy
 

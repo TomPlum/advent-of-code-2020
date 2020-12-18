@@ -1,5 +1,6 @@
 package io.github.tomplum.aoc.aircraft.homework
 
+import io.github.tomplum.aoc.aircraft.homework.types.Expression
 import io.github.tomplum.aoc.aircraft.homework.strategy.OperationOrderStrategy
 
 class ExpressionEngine(private val strategy: OperationOrderStrategy) {
