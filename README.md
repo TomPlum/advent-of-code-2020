@@ -77,7 +77,7 @@ behaviour that is commonly used across multiple days and `test-support` for unit
 | 15   	| 1259           | 689               | Rambunctious Recitation                   | [Link](docs/DAY15.MD)  |
 | 16   	| 28882          | 1429779530273     | Ticket Translation                        | [Link](docs/DAY16.MD)  |
 | 17   	| -              | -                 |                                           |                        |
-| 18   	| -              | -                 |                                           |                        |
+| 18   	| 11297104473091 | 185348874183674   | Operation Order                           | [Link](docs/DAY18.MD)  |
 | 19   	| -              | -                 |                                           |                        |
 | 20   	| -              | -                 |                                           |                        |
 | 21   	| -              | -                 |                                           |                        |
