@@ -5,6 +5,12 @@ import io.github.tomplum.aoc.aircraft.homework.types.Number
 import io.github.tomplum.aoc.aircraft.homework.types.Operator
 import io.github.tomplum.aoc.aircraft.homework.types.Token
 
+/**
+ * A variation on the standard order of operations.
+ *
+ * Rather than evaluating multiplication before addition, the operators have the same precedence, and are evaluated
+ * left-to-right regardless of the order in which they appear.
+ */
 class BasicMath : OperationOrderStrategy {
     override fun resolve(expressionTokens: List<Token>): Number {
         val flattened = expressionTokens.map { token ->

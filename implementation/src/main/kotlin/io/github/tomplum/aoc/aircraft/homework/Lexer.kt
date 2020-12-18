@@ -5,6 +5,9 @@ import io.github.tomplum.aoc.aircraft.homework.types.Number
 import io.github.tomplum.aoc.aircraft.homework.types.Operator
 import io.github.tomplum.aoc.aircraft.homework.types.Token
 
+/**
+ * Parses mathematical symbols and creates [Expression] objects.
+ */
 class Lexer {
     fun read(data: List<String>): List<Expression> {
         return data.map { expression ->

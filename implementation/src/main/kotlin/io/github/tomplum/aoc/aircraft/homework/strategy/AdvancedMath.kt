@@ -5,6 +5,11 @@ import io.github.tomplum.aoc.aircraft.homework.types.Number
 import io.github.tomplum.aoc.aircraft.homework.types.Operator
 import io.github.tomplum.aoc.aircraft.homework.types.Token
 
+/**
+ * A variation on the standard order of operations.
+ *
+ * Addition and multiplication have swapped their precedence. Now addition is evaluated before multiplication.
+ */
 class AdvancedMath: OperationOrderStrategy {
     override fun resolve(expressionTokens: List<Token>): Number {
         val simplified = expressionTokens.map { token ->
