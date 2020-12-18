@@ -7,28 +7,22 @@ import io.github.tomplum.aoc.aircraft.homework.Token
 
 class AdvancedMath: OperationOrderStrategy {
     override fun resolve(expressionTokens: List<Token>): Number {
-        val flattened = expressionTokens.map { token ->
+        val simplified = expressionTokens.map { token ->
             if (token is Expression) token.solve(this) else token
         }
 
-        val start = flattened.windowed(3, 2).find { (it[1] as Operator) == Operator.ADD }
-
-        val additions = flattened.windowed(3, 2).filter { (it[1] as Operator) == Operator.ADD }
-
-        if (flattened.contains(Operator.ADD)) {
-            if (!flattened.contains(Operator.MULTIPLY)) {
-                return flattened.filterIsInstance<Number>()
-                    .reduce { sum, number -> Operator.ADD.apply(sum, number) }
-            }
+        if (simplified.contains(Operator.ADD)) {
+            //Resolves the additions leaving only the sums and/or any remaining multiplications
             val resolvedAdditions = mutableListOf<Token>()
             var i = 0
-            while(i < flattened.size) {
-                val token = flattened[i]
+            while(i < simplified.size) {
+                val token = simplified[i]
                 if (token == Operator.MULTIPLY) {
                     resolvedAdditions.add(token)
                     i++
                 } else {
-                    val additionExpression = flattened.subList(i, flattened.size).takeWhile { it == Operator.ADD || it is Number }
+                    val additionExpression = simplified.subList(i, simplified.size)
+                        .takeWhile { it == Operator.ADD || it is Number }
                     if (additionExpression.size == 1) {
                         resolvedAdditions.add(additionExpression.first())
                         i++
@@ -49,6 +43,7 @@ class AdvancedMath: OperationOrderStrategy {
             return BasicMath().resolve(resolvedAdditions)
         }
 
-        return BasicMath().resolve(flattened)
+        //If there are no additions, just resolve with the basic strategy
+        return BasicMath().resolve(simplified)
     }
 }
