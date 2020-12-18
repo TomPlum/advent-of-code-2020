@@ -1,5 +1,7 @@
 package io.github.tomplum.aoc.aircraft.homework
 
-class ExpressionEngine(private val expressions: List<Expression>) {
-    fun solve(): Long = expressions.map { it.solve().value.toLong() }.sum()
+import io.github.tomplum.aoc.aircraft.homework.strategy.OperationOrderStrategy
+
+class ExpressionEngine(private val strategy: OperationOrderStrategy) {
+    fun sum(expressions: List<Expression>): Long = expressions.map { it.solve(strategy).value }.sum()
 }
