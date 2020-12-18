@@ -4,6 +4,7 @@ import assertk.assertThat
 import assertk.assertions.isEqualTo
 import io.github.tomplum.aoc.aircraft.homework.Lexer
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 
 class BasicMathTest {
     @Test
@@ -46,5 +47,17 @@ class BasicMathTest {
         val expression = Lexer().read(listOf("((2 + 4 * 9) * (6 + 9 * 8 + 6) + 6) + 2 + 4 * 2")).first()
         val result = BasicMath().resolve(expression.tokens)
         assertThat(result.value).isEqualTo(13632)
+    }
+
+    @Test
+    fun invalidTokenSequence() {
+        val expression = Lexer().read(listOf("2 * * 1 + 3")).first()
+        assertThrows<ClassCastException> { BasicMath().resolve(expression.tokens) }
+    }
+
+    @Test
+    fun invalidOperator() {
+        val expression = Lexer().read(listOf("2 * 4 9 1 + 3")).first()
+        assertThrows<ClassCastException> { BasicMath().resolve(expression.tokens) }
     }
 }

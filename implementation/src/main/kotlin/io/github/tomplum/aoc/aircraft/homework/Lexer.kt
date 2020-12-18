@@ -62,7 +62,7 @@ class Lexer {
                 }
             }
         }
-        throw IllegalArgumentException("Cannot find closing parenthesis for i=$i in ${substring(0)}")
+        throw IllegalArgumentException("Cannot find closing parenthesis for i=$i in ${substring(i)}")
     }
 
 }

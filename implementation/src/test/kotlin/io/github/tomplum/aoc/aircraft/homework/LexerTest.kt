@@ -2,10 +2,12 @@ package io.github.tomplum.aoc.aircraft.homework
 
 import assertk.assertThat
 import assertk.assertions.containsOnly
+import assertk.assertions.isEqualTo
 import io.github.tomplum.aoc.aircraft.homework.types.Operator.*
 import io.github.tomplum.aoc.aircraft.homework.types.Expression
 import io.github.tomplum.aoc.aircraft.homework.types.Number
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 
 class LexerTest {
     @Test
@@ -42,5 +44,17 @@ class LexerTest {
             ), ADD, Number(2)
         ))
         assertThat(expressions).containsOnly(expected)
+    }
+
+    @Test
+    fun exampleWithUnclosedParenthesesPair() {
+        val e = assertThrows<IllegalArgumentException> { Lexer().read(listOf("2 + (2 * 5 + ((2 + 3) + 4)")) }
+        assertThat(e.message).isEqualTo("Cannot find closing parenthesis for i=2 in (2*5+((2+3)+4)")
+    }
+
+    @Test
+    fun exampleWithUnknownOperator() {
+        val e = assertThrows<IllegalArgumentException> { Lexer().read(listOf("1 + (2 £ 3) + (4 * (5 + 6))")) }
+        assertThat(e.message).isEqualTo("Invalid Operator £")
     }
 }
