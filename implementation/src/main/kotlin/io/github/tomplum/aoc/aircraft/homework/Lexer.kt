@@ -14,7 +14,7 @@ class Lexer {
         while (i < data.length) {
             val token = data[i]
             when {
-                token.isDigit() -> tokens.add(Number(token.toString().toInt()))
+                token.isDigit() -> tokens.add(Number(token.toString().toLong()))
                 token == '(' -> {
                     val nested = findNestedExpressions(data.substring(i + 1), mutableListOf())
                     tokens.addAll(nested)
