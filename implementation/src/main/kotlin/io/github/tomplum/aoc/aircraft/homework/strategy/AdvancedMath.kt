@@ -11,12 +11,44 @@ class AdvancedMath: OperationOrderStrategy {
             if (token is Expression) token.solve(this) else token
         }
 
-        val start = flattened.take(3).let { (it[1] as Operator).apply(it[0] as Number, it[2] as Number) }
+        val start = flattened.windowed(3, 2).find { (it[1] as Operator) == Operator.ADD }
 
-        return flattened.drop(3).windowed(2, 2).fold(start) { sum, tokens ->
-            val operator = tokens[0] as Operator
-            val t2 = tokens[1] as Number
-            operator.apply(sum, t2)
+        val additions = flattened.windowed(3, 2).filter { (it[1] as Operator) == Operator.ADD }
+
+        if (flattened.contains(Operator.ADD)) {
+            if (!flattened.contains(Operator.MULTIPLY)) {
+                return flattened.filterIsInstance<Number>()
+                    .reduce { sum, number -> Operator.ADD.apply(sum, number) }
+            }
+            val resolvedAdditions = mutableListOf<Token>()
+            var i = 0
+            while(i < flattened.size) {
+                val token = flattened[i]
+                if (token == Operator.MULTIPLY) {
+                    resolvedAdditions.add(token)
+                    i++
+                } else {
+                    val additionExpression = flattened.subList(i, flattened.size).takeWhile { it == Operator.ADD || it is Number }
+                    if (additionExpression.size == 1) {
+                        resolvedAdditions.add(additionExpression.first())
+                        i++
+                    } else {
+                        resolvedAdditions.add(BasicMath().resolve(additionExpression))
+                        i += additionExpression.size
+                    }
+                }
+            }
+
+            //If there were no multiplications and all additions were resolved to numbers, then sum
+            if (resolvedAdditions.all { it is Number }) {
+                return resolvedAdditions.filterIsInstance<Number>()
+                    .reduce { sum, number -> Operator.ADD.apply(sum, number) }
+            }
+
+            //If there are still multiplication interspersed after resolving the additions
+            return BasicMath().resolve(resolvedAdditions)
         }
+
+        return BasicMath().resolve(flattened)
     }
 }
