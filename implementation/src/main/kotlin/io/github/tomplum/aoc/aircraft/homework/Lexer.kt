@@ -1,5 +1,7 @@
 package io.github.tomplum.aoc.aircraft.homework
 
+import kotlin.math.exp
+
 class Lexer {
     fun read(data: String): List<Expression> {
         val prepared = data.replace(" ", "")
@@ -36,6 +38,10 @@ class Lexer {
             i++
         }
 
+        if (i == data.length) {
+            expressions.add(Expression(tokens))
+            return expressions
+        }
         return expressions
     }
 
