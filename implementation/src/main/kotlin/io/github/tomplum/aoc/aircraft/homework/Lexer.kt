@@ -1,7 +1,5 @@
 package io.github.tomplum.aoc.aircraft.homework
 
-import kotlin.math.exp
-
 class Lexer {
     fun read(data: String): List<Expression> {
         val prepared = data.replace(" ", "")
@@ -18,7 +16,9 @@ class Lexer {
                 token == '(' -> {
                     val nested = findNestedExpressions(data.substring(i + 1), mutableListOf())
                     tokens.addAll(nested)
-                    i = data.indexOfFirst { it == ')' } + 1
+
+                    i = data.getClosingParenthesisIndex(i) + 1
+
                     if (tokens.sumBy { it.getLength() } == data.replace(")", "").replace("(", "").count()) {
                         expressions.add(Expression(tokens))
                         return expressions
@@ -43,6 +43,19 @@ class Lexer {
             return expressions
         }
         return expressions
+    }
+
+    private fun String.getClosingParenthesisIndex(i: Int): Int {
+        var open = 0
+        substring(i).forEachIndexed { j, token ->
+            when(token) {
+                '(' -> open++
+                ')' -> {
+                    if (open == 1) return j + i else open--
+                }
+            }
+        }
+        throw IllegalArgumentException("Cannot find closing parenthesis for i=$i in ${substring(0)}")
     }
 
 }

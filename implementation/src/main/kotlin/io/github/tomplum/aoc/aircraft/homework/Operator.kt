@@ -2,15 +2,15 @@ package io.github.tomplum.aoc.aircraft.homework
 
 enum class Operator: Token {
     ADD {
-        override fun apply(t1: Int, t2: Int): Int {
-            return t1 + t2
+        override fun apply(t1: Number, t2: Number): Number {
+            return Number(t1.value + t2.value)
         }
 
         override fun toString(): String = "+"
     },
     MULTIPLY {
-        override fun apply(t1: Int, t2: Int): Int {
-            return t1 * t2
+        override fun apply(t1: Number, t2: Number): Number {
+            return Number(t1.value * t2.value)
         }
 
         override fun toString(): String = "*"
@@ -18,5 +18,5 @@ enum class Operator: Token {
 
     override fun getLength(): Int = 1
 
-    abstract fun apply(t1: Int, t2: Int): Int
+    abstract fun apply(t1: Number, t2: Number): Number
 }

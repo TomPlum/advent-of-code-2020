@@ -24,4 +24,20 @@ class LexerTest {
         ))
         assertThat(expressions).containsOnly(expected)
     }
+
+    @Test
+    fun exampleWithStartingNestedExpressions() {
+        val expressions = Lexer().read("((2 + 4) * (6 + 9) + 6) + 2")
+        val expected = Expression(
+            listOf(Expression(
+                listOf(
+                    Expression(listOf(Number(2), ADD, Number(4))),
+                    MULTIPLY,
+                    Expression(listOf(Number(6), ADD, Number(9))),
+                    ADD, Number(6)
+                )
+            ), ADD, Number(2)
+        ))
+        assertThat(expressions).containsOnly(expected)
+    }
 }
