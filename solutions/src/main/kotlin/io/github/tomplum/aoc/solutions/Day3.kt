@@ -1,8 +1,8 @@
 package io.github.tomplum.aoc.solutions
 
 import io.github.tomplum.aoc.Solution
-import io.github.tomplum.aoc.map.ForestMap
-import io.github.tomplum.aoc.map.SlopeTrajectory
+import io.github.tomplum.aoc.forest.toboggan.ForestMap
+import io.github.tomplum.aoc.forest.toboggan.SlopeTrajectory
 import io.github.tomplum.libs.input.Day
 import io.github.tomplum.libs.input.InputReader
 

@@ -1,4 +1,4 @@
-package io.github.tomplum.aoc.map
+package io.github.tomplum.aoc.forest.toboggan
 
 import io.github.tomplum.aoc.extensions.product
 import io.github.tomplum.libs.logging.AdventLogger

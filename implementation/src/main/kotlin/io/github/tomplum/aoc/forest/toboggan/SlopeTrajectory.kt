@@ -1,4 +1,4 @@
-package io.github.tomplum.aoc.map
+package io.github.tomplum.aoc.forest.toboggan
 
 import io.github.tomplum.libs.math.Direction
 import io.github.tomplum.libs.math.Point2D
