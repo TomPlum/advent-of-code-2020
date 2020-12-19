@@ -8,7 +8,7 @@ import io.github.tomplum.aoc.forest.satellite.MessageReport
  * @see MessageReport
  * @param value The character which must match the messages first character.
  */
-data class MatchRule(val value: Char): MessageRule {
+data class MatchRule(private val value: Char): MessageRule {
     /**
      * Checks to see if the first character of the given [message] matches the rules [value].
      * @param message The message to validate.

@@ -4,7 +4,7 @@ package io.github.tomplum.aoc.forest.satellite
  * A single message returned by the Elves satellite.
  * @param value The contents of the message
  */
-data class Message(val value: String) {
+data class Message(private val value: String) {
     /**
      * Gets the first character of the message.
      * @return The first character.

@@ -16,7 +16,7 @@ import io.github.tomplum.aoc.forest.satellite.rule.OrRule
  * @param rules A map of message rules and their respective unique IDs.
  * @param messages A list of messages received from the satellite. Some are corrupt.
  */
-data class MessageReport(val rules: MutableMap<Int, MessageRule>, val messages: List<Message>) {
+data class MessageReport(private val rules: MutableMap<Int, MessageRule>, private val messages: List<Message>) {
     /**
      * Validates all the [messages] according to the rule with the given [id].
      * @param id The id of the [AndRule] of which to verify the [messages] by.
