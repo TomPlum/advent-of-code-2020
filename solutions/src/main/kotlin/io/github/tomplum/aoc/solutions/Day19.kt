@@ -2,7 +2,7 @@ package io.github.tomplum.aoc.solutions
 
 import io.github.tomplum.aoc.Solution
 import io.github.tomplum.aoc.forest.satellite.MessageReader
-import io.github.tomplum.aoc.forest.satellite.OrRule
+import io.github.tomplum.aoc.forest.satellite.rule.OrRule
 import io.github.tomplum.libs.input.Day
 import io.github.tomplum.libs.input.InputReader
 

@@ -2,6 +2,9 @@ package io.github.tomplum.aoc.forest.satellite
 
 import assertk.assertThat
 import assertk.assertions.isEqualTo
+import io.github.tomplum.aoc.forest.satellite.rule.AndRule
+import io.github.tomplum.aoc.forest.satellite.rule.MatchRule
+import io.github.tomplum.aoc.forest.satellite.rule.OrRule
 import io.github.tomplum.aoc.input.TestInputReader
 import org.junit.jupiter.api.Test
 
