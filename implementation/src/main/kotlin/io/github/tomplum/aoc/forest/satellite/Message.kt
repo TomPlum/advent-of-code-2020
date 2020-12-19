@@ -11,8 +11,10 @@ data class Message(val value: String) {
 
     fun dropFirst() = Message(value.drop(1))
 
+    fun dropFirstTwo() = Message(value.drop(2))
+
     fun takeFor(rule: MessageRule): Message = when(rule) {
-        is BaseRule -> takeFirst()
+        is MatchRule -> takeFirst()
         is OrRule -> takeFirstTwo()
         else -> throw IllegalArgumentException("Invalid Rule Type: ${rule.javaClass.simpleName}")
     }

@@ -7,30 +7,22 @@ class MessageReader private constructor() {
             val ruleInfo = info[0]
             val receivedMessageInfo = info[1]
 
-            val rules = mutableMapOf<Int, MessageRule>()
-
-            val ruleTree = ruleInfo.split("\n").reversed().map { line ->
-                val number = line.take(1).toInt()
-                val rule = line.drop(3)
-                val created = when {
+            val rules = ruleInfo.split("\n").map { line ->
+                val number = line.split(":")[0].toInt()
+                val rule = line.split(":")[1].trim()
+                when {
                     rule.contains("|") -> {
-                        val ids = rule.filter { it.isDigit() }.map { it.toString().toInt() }
-                        OrRule(number, AndRule(rules[ids[0]]!!, rules[ids[1]]!!), AndRule(rules[ids[2]]!!, rules[ids[3]]!!))
+                        val ids = rule.split("|").map { it.trim().split(" ").map { it.toInt() } }
+                        number to OrRule(ids)
                     }
-                    rule.contains("\"") -> {
-                        BaseRule(number, rule.removeSurrounding("\"").first())
-                    }
-                    else -> {
-                        LinearRule(number, rule.replace(" ", "").map { rules[it.toString().toInt()]!! })
-                    }
+                    rule.contains("\"") -> number to MatchRule(rule.removeSurrounding("\"").first())
+                    else -> number to LinearRule(rule.split(" ").map { it.toInt() })
                 }
-                rules[number] = created
-                created
-            }
+            }.toMap()
 
             val receivedMessages = receivedMessageInfo.split("\n").map { Message(it.trim()) }
 
-            return MessageReport(ruleTree, receivedMessages)
+            return MessageReport(rules, receivedMessages)
         }
     }
 }
