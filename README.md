@@ -78,7 +78,7 @@ behaviour that is commonly used across multiple days and `test-support` for unit
 | 16   	| 28882          | 1429779530273     | Ticket Translation                        | [Link](docs/DAY16.MD)  |
 | 17   	| -              | -                 |                                           |                        |
 | 18   	| 11297104473091 | 185348874183674   | Operation Order                           | [Link](docs/DAY18.MD)  |
-| 19   	| -              | -                 |                                           |                        |
+| 19   	| 171            | 369               | Monster Messages                          | [Link](docs/DAY19.MD)  |
 | 20   	| -              | -                 |                                           |                        |
 | 21   	| -              | -                 |                                           |                        |
 | 22   	| -              | -                 |                                           |                        |
