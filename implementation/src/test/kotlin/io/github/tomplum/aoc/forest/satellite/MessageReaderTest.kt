@@ -18,7 +18,7 @@ class MessageReaderTest {
         val rule3 = OrRule(listOf(listOf(4, 5), listOf(5, 4)))
         val rule2 = OrRule(listOf(listOf(4, 4), listOf(5, 5)))
         val rule1 = OrRule(listOf(listOf(2, 3), listOf(3, 2)))
-        val rule0 = LinearRule(listOf(4, 1, 5))
+        val rule0 = AndRule(listOf(4, 1, 5))
 
         val messages = listOf("ababbb", "bababa", "abbbab", "aaabbb", "aaaabbb").map { Message(it) }
 

@@ -1,5 +1,8 @@
 package io.github.tomplum.aoc.forest.satellite
 
+/**
+ * Reads the [MessageReport] sent by the Elves.
+ */
 class MessageReader private constructor() {
     companion object {
         fun parse(data: String): MessageReport {
@@ -16,7 +19,7 @@ class MessageReader private constructor() {
                         number to OrRule(ids)
                     }
                     rule.contains("\"") -> number to MatchRule(rule.removeSurrounding("\"").first())
-                    else -> number to LinearRule(rule.split(" ").map { it.toInt() })
+                    else -> number to AndRule(rule.split(" ").map { it.toInt() })
                 }
             }.toMap().toMutableMap()
 
