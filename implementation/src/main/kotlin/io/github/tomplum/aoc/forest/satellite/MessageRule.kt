@@ -1,3 +1,5 @@
 package io.github.tomplum.aoc.forest.satellite
 
-abstract class MessageRule(protected open val number: Int)
+abstract class MessageRule(open val number: Int) {
+    abstract fun matches(message: Message): Boolean
+}

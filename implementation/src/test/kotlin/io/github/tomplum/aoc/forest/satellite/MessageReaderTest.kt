@@ -14,12 +14,12 @@ class MessageReaderTest {
     }
 
     private fun getExpectedMessageReport(): MessageReport {
-        val rule0 = LinearRule(0, listOf(4, 1, 5))
-        val rule1 = OrRule(1, Pair(2, 3), Pair(3,2))
-        val rule2 = OrRule(2, Pair(4, 4), Pair(5, 5))
-        val rule3 = OrRule(3, Pair(4, 5), Pair(5, 4))
-        val rule4 = BaseRule(4, 'a')
         val rule5 = BaseRule(5, 'b')
+        val rule4 = BaseRule(4, 'a')
+        val rule3 = OrRule(3, AndRule(rule4, rule5), AndRule(rule5, rule4))
+        val rule2 = OrRule(2, AndRule(rule4, rule4), AndRule(rule5, rule5))
+        val rule1 = OrRule(1, AndRule(rule2, rule3), AndRule(rule3, rule2))
+        val rule0 = LinearRule(0, listOf(rule4, rule1, rule5))
 
         val messages = listOf("ababbb", "bababa", "abbbab", "aaabbb", "aaaabbb").map { Message(it) }
 
