@@ -1,9 +1,11 @@
 package io.github.tomplum.aoc.forest.satellite
 
-data class MessageReport(val rules: Map<Int, MessageRule>, val messages: List<Message>) {
+data class MessageReport(val rules: MutableMap<Int, MessageRule>, val messages: List<Message>) {
     fun getMessagesMatchingRule(id: Int): Int {
         return messages.count { message -> isMatch(rules, message, listOf(id)) }
     }
+
+    fun replaceRules(rules: Map<Int, MessageRule>) = rules.forEach { (id, rule) -> this.rules[id] = rule }
 
     private fun isMatch(rules: Map<Int, MessageRule>, message: Message, currentRules: List<Int>) : Boolean {
         if (message.isEmpty()) {

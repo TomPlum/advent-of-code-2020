@@ -18,7 +18,7 @@ class MessageReader private constructor() {
                     rule.contains("\"") -> number to MatchRule(rule.removeSurrounding("\"").first())
                     else -> number to LinearRule(rule.split(" ").map { it.toInt() })
                 }
-            }.toMap()
+            }.toMap().toMutableMap()
 
             val receivedMessages = receivedMessageInfo.split("\n").map { Message(it.trim()) }
 

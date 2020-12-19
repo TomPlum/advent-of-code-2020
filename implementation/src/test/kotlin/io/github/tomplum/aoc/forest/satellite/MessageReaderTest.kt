@@ -22,6 +22,6 @@ class MessageReaderTest {
 
         val messages = listOf("ababbb", "bababa", "abbbab", "aaabbb", "aaaabbb").map { Message(it) }
 
-        return MessageReport(listOf(0 to rule0, 1 to rule1, 2 to rule2, 3 to rule3, 4 to rule4, 5 to rule5).toMap(), messages)
+        return MessageReport(listOf(0 to rule0, 1 to rule1, 2 to rule2, 3 to rule3, 4 to rule4, 5 to rule5).toMap().toMutableMap(), messages)
     }
 }
