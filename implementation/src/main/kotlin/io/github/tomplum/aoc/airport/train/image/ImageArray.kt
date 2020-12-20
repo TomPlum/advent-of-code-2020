@@ -8,19 +8,38 @@ data class ImageArray(val tiles: List<ImageTile>) {
         val width = sqrt(tiles.size.toDouble()).toInt()
         val unusedTiles = tiles.map { it.id to it }.toMap().toMutableMap()
 
-        //1951 is top left. yFlip gets to correct orientation. Top edge is 564, Left 587
-       // val corner = tiles.find { it.id == 1951 }!!.getOrientations().map { it to it.getEdge(Edge.TOP) }
-
-
         val allTileOrientations = tiles.flatMap { it.getOrientations() }
-        val allTopEdgePermutations = allTileOrientations.map { it.getEdge(Edge.TOP) }
-        val allLeftEdgePermutations = allTileOrientations.map { it.getEdge(Edge.LEFT) }
-        val topLeftCorner = allTileOrientations.filter { tileState ->
+        val tops = allTileOrientations.map { it.getEdge(Edge.TOP) }
+        val lefts = allTileOrientations.map { it.getEdge(Edge.LEFT) }
+        val rights = allTileOrientations.map { it.getEdge(Edge.RIGHT) }
+        val bottoms = allTileOrientations.map { it.getEdge(Edge.BOTTOM) }
+
+        val corners = allTileOrientations.filter { tileState ->
             val top = tileState.getEdge(Edge.TOP)
             val left = tileState.getEdge(Edge.LEFT)
-            allTopEdgePermutations.count { it == top } == 1 && allLeftEdgePermutations.count { it == left } == 1
+            tops.count { it == top } == 1 && lefts.count { it == left } == 1
         }
-        return topLeftCorner.distinctBy { it.id }.map { it.id.toLong() }.product()
+
+        var topLeftCorner: ImageTile
+        var topRightCorner: ImageTile
+        var bottomLeftCorner: ImageTile
+        var bottomRightCorner: ImageTile
+
+        corners.distinctBy { it.id }.forEach { corner ->
+            val isTop = tops.count { it == corner.getEdge(Edge.TOP) } == 1
+            val isLeft = lefts.count { it == corner.getEdge(Edge.LEFT) } == 1
+            val isBottom = bottoms.count { it == corner.getEdge(Edge.BOTTOM) } == 1
+            val isRight = rights.count { it == corner.getEdge(Edge.RIGHT) } == 1
+
+            when {
+                isTop && isLeft -> topLeftCorner = corner
+                isTop && isRight -> topRightCorner = corner
+                isBottom && isLeft -> bottomLeftCorner = corner
+                isBottom && isRight -> bottomRightCorner = corner
+            }
+        }
+
+        return corners.distinctBy { it.id }.map { it.id.toLong() }.product()
     }
 
     private fun ImageTile.getOrientations(): List<ImageTile> {
