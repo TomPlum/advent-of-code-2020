@@ -1,4 +1,4 @@
-package io.github.tomplum.aoc.airport.train
+package io.github.tomplum.aoc.airport.train.ticket
 
 import io.github.tomplum.aoc.extensions.product
 import io.github.tomplum.aoc.airport.train.ticket.meta.TicketMetaAnalyser
