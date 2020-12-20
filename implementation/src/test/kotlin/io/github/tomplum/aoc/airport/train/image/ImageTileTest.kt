@@ -1,6 +1,7 @@
 package io.github.tomplum.aoc.airport.train.image
 
 import assertk.assertThat
+import assertk.assertions.containsOnly
 import assertk.assertions.isEqualTo
 import assertk.assertions.isNotEqualTo
 import org.junit.jupiter.api.Nested
@@ -97,6 +98,37 @@ class ImageTileTest {
             val tile4 = ImageTile(4, listOf(".#..", ".###", "##..", "..#."))
             val flipped = tile4.rotateClockwise(90)
             assertThat(flipped).isEqualTo(ImageTile(4, listOf(".#..", ".###", "#.#.", "..#.")))
+        }
+    }
+
+    @Nested
+    inner class GetEdge {
+        @Test
+        fun right() {
+            val tile = ImageTile(1, listOf("##.#", ".#.#", "#..#", ".##."))
+            val edge = tile.getEdge(Edge.RIGHT)
+            assertThat(edge).containsOnly(ImageData('#'), ImageData('#'), ImageData('#'), ImageData('.'))
+        }
+
+        @Test
+        fun bottom() {
+            val tile = ImageTile(1, listOf("##.#", ".#.#", "#..#", ".##."))
+            val edge = tile.getEdge(Edge.BOTTOM)
+            assertThat(edge).containsOnly(ImageData('.'), ImageData('#'), ImageData('#'), ImageData('.'))
+        }
+
+        @Test
+        fun left() {
+            val tile = ImageTile(1, listOf("##.#", ".#.#", "#..#", ".##."))
+            val edge = tile.getEdge(Edge.LEFT)
+            assertThat(edge).containsOnly(ImageData('#'), ImageData('.'), ImageData('#'), ImageData('.'))
+        }
+
+        @Test
+        fun top() {
+            val tile = ImageTile(1, listOf("##.#", ".#.#", "#..#", ".##."))
+            val edge = tile.getEdge(Edge.TOP)
+            assertThat(edge).containsOnly(ImageData('#'), ImageData('#'), ImageData('.'), ImageData('#'))
         }
     }
 
