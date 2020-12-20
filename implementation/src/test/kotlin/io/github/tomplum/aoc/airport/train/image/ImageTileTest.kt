@@ -107,28 +107,42 @@ class ImageTileTest {
         fun right() {
             val tile = ImageTile(1, listOf("##.#", ".#.#", "#..#", ".##."))
             val edge = tile.getEdge(Edge.RIGHT)
-            assertThat(edge).containsOnly(ImageData('#'), ImageData('#'), ImageData('#'), ImageData('.'))
+            assertThat(edge).isEqualTo(14)
         }
 
         @Test
         fun bottom() {
             val tile = ImageTile(1, listOf("##.#", ".#.#", "#..#", ".##."))
             val edge = tile.getEdge(Edge.BOTTOM)
-            assertThat(edge).containsOnly(ImageData('.'), ImageData('#'), ImageData('#'), ImageData('.'))
+            assertThat(edge).isEqualTo(6)
         }
 
         @Test
         fun left() {
             val tile = ImageTile(1, listOf("##.#", ".#.#", "#..#", ".##."))
             val edge = tile.getEdge(Edge.LEFT)
-            assertThat(edge).containsOnly(ImageData('#'), ImageData('.'), ImageData('#'), ImageData('.'))
+            assertThat(edge).isEqualTo(10)
         }
 
         @Test
         fun top() {
             val tile = ImageTile(1, listOf("##.#", ".#.#", "#..#", ".##."))
             val edge = tile.getEdge(Edge.TOP)
-            assertThat(edge).containsOnly(ImageData('#'), ImageData('#'), ImageData('.'), ImageData('#'))
+            assertThat(edge).isEqualTo(13)
+        }
+
+        @Test
+        fun topFlippedX() {
+            val tile = ImageTile(1, listOf("##.#", ".#.#", "#..#", ".##."))
+            val edge = tile.xFlip().getEdge(Edge.TOP)
+            assertThat(edge).isEqualTo(11)
+        }
+
+        @Test
+        fun leftFlippedY() {
+            val tile = ImageTile(1, listOf("##.#", ".#.#", "#..#", ".##."))
+            val edge = tile.yFlip().getEdge(Edge.LEFT)
+            assertThat(edge).isEqualTo(5)
         }
     }
 

@@ -8,10 +8,10 @@ import kotlin.math.abs
 
 class ImageTile(val id: Int, initialData: List<String>) : AdventMap2D<ImageData>() {
 
-    private val xMax: Int
-    private val yMax: Int
-    private val xMin: Int
-    private val yMin: Int
+    private var xMax = 0
+    private var yMax = 0
+    private var xMin = 0
+    private var yMin = 0
 
     init {
         var x = 0
@@ -33,13 +33,13 @@ class ImageTile(val id: Int, initialData: List<String>) : AdventMap2D<ImageData>
     fun xFlip(): ImageTile = snapshot().entries.fold(ImageTile(id, emptyList())) { flipped, (pos, tile) ->
         val posFlipped = Point2D(xMax - pos.x, pos.y)
         flipped.apply { addTile(posFlipped, tile) }
-    }
+    }.updateMaxOrdinates()
 
 
     fun yFlip(): ImageTile = snapshot().entries.fold(ImageTile(id, emptyList())) { flipped, (pos, tile) ->
         val posFlipped = Point2D(pos.x, yMax - pos.y)
         flipped.apply { addTile(posFlipped, tile) }
-    }
+    }.updateMaxOrdinates()
 
     fun rotateClockwise(degrees: Int): ImageTile = snapshot()
         .entries.fold(ImageTile(id, emptyList())) { rotated, (pos, tile) ->
@@ -48,14 +48,26 @@ class ImageTile(val id: Int, initialData: List<String>) : AdventMap2D<ImageData>
             val posShifted = posRotated.shift(Direction.RIGHT, xMax) //Shift back into our quadrant
             val yCorrected = Point2D(posShifted.x, abs(posShifted.y)) //Flip y back to our quadrant
             rotated.apply { addTile(yCorrected, tile) }
-        }
+        }.updateMaxOrdinates()
 
-    fun getEdge(edge: Edge) = when(edge) {
+    fun getEdge(edge: Edge): Long = when(edge) {
         TOP -> (xMin..xMax).map { x -> Point2D(x, yMin) }
         RIGHT -> (yMin..yMax).map { y -> Point2D(xMax, y) }
         BOTTOM -> (xMin..xMax).map { x -> Point2D(x, yMax) }
         LEFT -> (yMin..yMax).map { y -> Point2D(xMin, y) }
-    }.let { edgePoints -> filterPoints(edgePoints).values.toList() }
+    }.let { edgePoints ->
+        val edgeTiles = filterPoints(edgePoints)
+        val sorted = edgeTiles.toSortedMap(compareBy<Point2D> { it.x }.thenBy { it.y })
+        sorted.values.map { it.toBinary() }.joinToString("").toLong(2)
+    }
+
+    private fun updateMaxOrdinates(): ImageTile {
+        xMax = xMax() ?: 0
+        yMax = yMax() ?: 0
+        xMin = xMin() ?: 0
+        yMin = yMin() ?: 0
+        return this
+    }
 
     override fun equals(other: Any?): Boolean {
         if (other !is ImageTile) return false
