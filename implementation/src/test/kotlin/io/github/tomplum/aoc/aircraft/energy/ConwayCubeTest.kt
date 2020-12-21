@@ -1,6 +1,7 @@
 package io.github.tomplum.aoc.aircraft.energy
 
 import assertk.assertThat
+import assertk.assertions.isEqualTo
 import assertk.assertions.isFalse
 import assertk.assertions.isTrue
 import org.junit.jupiter.api.Nested
@@ -20,6 +21,19 @@ class ConwayCubeTest {
         @ValueSource(chars = ['.', 'A', '4', '-'])
         fun inactive(state: Char) {
             assertThat(ConwayCube(state).isActive()).isFalse()
+        }
+    }
+
+    @Nested
+    inner class Companion {
+        @Test
+        fun active() {
+            assertThat(ConwayCube.active()).isEqualTo(ConwayCube('#'))
+        }
+
+        @Test
+        fun inactive() {
+            assertThat(ConwayCube.inactive()).isEqualTo(ConwayCube('.'))
         }
     }
 }

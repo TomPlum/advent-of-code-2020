@@ -57,7 +57,7 @@ class PocketDimension4D(initialState: List<String>) : AdventMap4D<ConwayCube>(),
      * @param positions A list of in-active positions.
      */
     override fun activate(positions: List<Point>) {
-        positions.forEach { addTile(it as Point4D, ConwayCube('#')) }
+        positions.forEach { addTile(it as Point4D, ConwayCube.active()) }
     }
 
     /**
@@ -65,7 +65,7 @@ class PocketDimension4D(initialState: List<String>) : AdventMap4D<ConwayCube>(),
      * @param positions A list of active positions.
      */
     override fun deactivate(positions: List<Point>) {
-        positions.forEach { addTile(it as Point4D, ConwayCube('.')) }
+        positions.forEach { addTile(it as Point4D, ConwayCube.inactive()) }
     }
 
     /**
@@ -103,8 +103,8 @@ class PocketDimension4D(initialState: List<String>) : AdventMap4D<ConwayCube>(),
             (zMin..zMax).forEach { z ->
                 (wMin..wMax).forEach { w ->
                     //Add left and right column for all existing z-planes
-                    addTile(Point4D(xMin - 1, y, z, w), ConwayCube('.'))
-                    addTile(Point4D(xMax + 1, y, z, w), ConwayCube('.'))
+                    addTile(Point4D(xMin - 1, y, z, w), ConwayCube.inactive())
+                    addTile(Point4D(xMax + 1, y, z, w), ConwayCube.inactive())
                 }
 
             }
@@ -112,16 +112,16 @@ class PocketDimension4D(initialState: List<String>) : AdventMap4D<ConwayCube>(),
             //Add entire new z-layer that is 1 cell wider in each direction above and below the top and bottom layers
             (xMin - 1..xMax + 1).forEach { x ->
                 (wMin - 1..wMax + 1).forEach { w ->
-                    addTile(Point4D(x, y, zMin - 1, w), ConwayCube('.'))
-                    addTile(Point4D(x, y, zMax + 1, w), ConwayCube('.'))
+                    addTile(Point4D(x, y, zMin - 1, w), ConwayCube.inactive())
+                    addTile(Point4D(x, y, zMax + 1, w), ConwayCube.inactive())
                 }
             }
 
             //Add new w-layers
             (xMin - 1..xMax + 1).forEach { x ->
                 (zMin - 1..zMax + 1).forEach { z ->
-                    addTile(Point4D(x, y, z, wMin - 1), ConwayCube('.'))
-                    addTile(Point4D(x, y, z, wMax + 1), ConwayCube('.'))
+                    addTile(Point4D(x, y, z, wMin - 1), ConwayCube.inactive())
+                    addTile(Point4D(x, y, z, wMax + 1), ConwayCube.inactive())
                 }
             }
 
@@ -131,8 +131,8 @@ class PocketDimension4D(initialState: List<String>) : AdventMap4D<ConwayCube>(),
         (xMin..xMax).forEach { x ->
             (zMin..zMax).forEach { z ->
                 (wMin..wMax).forEach { w ->
-                    addTile(Point4D(x, yMin - 1, z, w), ConwayCube('.'))
-                    addTile(Point4D(x, yMax + 1, z, w), ConwayCube('.'))
+                    addTile(Point4D(x, yMin - 1, z, w), ConwayCube.inactive())
+                    addTile(Point4D(x, yMax + 1, z, w), ConwayCube.inactive())
                 }
             }
         }

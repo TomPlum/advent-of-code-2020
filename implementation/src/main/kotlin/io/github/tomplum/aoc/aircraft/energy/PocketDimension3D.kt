@@ -56,7 +56,7 @@ class PocketDimension3D(initialState: List<String>) : AdventMap3D<ConwayCube>(),
      * @param positions A list of in-active positions.
      */
     override fun activate(positions: List<Point>) {
-        positions.forEach { addTile(it as Point3D, ConwayCube('#')) }
+        positions.forEach { addTile(it as Point3D, ConwayCube.active()) }
     }
 
     /**
@@ -64,7 +64,7 @@ class PocketDimension3D(initialState: List<String>) : AdventMap3D<ConwayCube>(),
      * @param positions A list of active positions.
      */
     override fun deactivate(positions: List<Point>) {
-        positions.forEach { addTile(it as Point3D, ConwayCube('.')) }
+        positions.forEach { addTile(it as Point3D, ConwayCube.inactive()) }
     }
 
     /**
@@ -99,22 +99,22 @@ class PocketDimension3D(initialState: List<String>) : AdventMap3D<ConwayCube>(),
         (yMin - 1..yMax + 1).forEach { y ->
             (zMin..zMax).forEach { z ->
                 //Add left and right column for all existing z-planes
-                addTile(Point3D(xMin - 1, y, z), ConwayCube('.'))
-                addTile(Point3D(xMax + 1, y, z), ConwayCube('.'))
+                addTile(Point3D(xMin - 1, y, z), ConwayCube.inactive())
+                addTile(Point3D(xMax + 1, y, z), ConwayCube.inactive())
             }
 
             //Add entire new z-layer that is 1 cell wider in each direction above and below the top and bottom layers
             (xMin - 1..xMax + 1).forEach { x ->
-                addTile(Point3D(x, y, zMin - 1), ConwayCube('.'))
-                addTile(Point3D(x, y, zMax + 1), ConwayCube('.'))
+                addTile(Point3D(x, y, zMin - 1), ConwayCube.inactive())
+                addTile(Point3D(x, y, zMax + 1), ConwayCube.inactive())
             }
 
         }
 
         (xMin..xMax).forEach { x ->
             (zMin..zMax).forEach { z ->
-                addTile(Point3D(x, yMin - 1, z), ConwayCube('.'))
-                addTile(Point3D(x, yMax + 1, z), ConwayCube('.'))
+                addTile(Point3D(x, yMin - 1, z), ConwayCube.inactive())
+                addTile(Point3D(x, yMax + 1, z), ConwayCube.inactive())
             }
         }
     }

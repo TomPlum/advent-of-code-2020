@@ -18,4 +18,9 @@ class ConwayCube(private val state: Char): MapTile<Char>(state) {
      * @return true if in-active, else false.
      */
     fun isInActive(): Boolean = state == '.'
+
+    companion object {
+        fun active() = ConwayCube('#')
+        fun inactive() = ConwayCube('.')
+    }
 }
