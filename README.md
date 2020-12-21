@@ -76,7 +76,7 @@ behaviour that is commonly used across multiple days and `test-support` for unit
 | 14   	| 9967721333886  | 4355897790573     | Docking Data                              | [Link](docs/DAY14.MD)  |
 | 15   	| 1259           | 689               | Rambunctious Recitation                   | [Link](docs/DAY15.MD)  |
 | 16   	| 28882          | 1429779530273     | Ticket Translation                        | [Link](docs/DAY16.MD)  |
-| 17   	| -              | -                 |                                           |                        |
+| 17   	| 269            | 848               | Conway Cubes                              | [Link](docs/DAY17.MD)  |
 | 18   	| 11297104473091 | 185348874183674   | Operation Order                           | [Link](docs/DAY18.MD)  |
 | 19   	| 171            | 369               | Monster Messages                          | [Link](docs/DAY19.MD)  |
 | 20   	| -              | -                 |                                           |                        |
