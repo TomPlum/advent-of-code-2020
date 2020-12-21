@@ -5,6 +5,9 @@ import io.github.tomplum.libs.math.map.AdventMap3D
 import io.github.tomplum.libs.math.point.Point
 import io.github.tomplum.libs.math.point.Point3D
 
+/**
+ * A 3-Dimensional implementation of a [PocketDimension].
+ */
 class PocketDimension3D(initialState: List<String>) : AdventMap3D<ConwayCube>(), PocketDimension {
     init {
         var x = 0
@@ -21,9 +24,12 @@ class PocketDimension3D(initialState: List<String>) : AdventMap3D<ConwayCube>(),
         if (initialState.isNotEmpty()) {
             AdventLogger.info("Initial State:\n$this")
         }
-
     }
 
+    /**
+     * Determines which cubes will become active in the next time-cycle.
+     * @return A list of all the positions of the to-be-active cubes.
+     */
     override fun getNextActiveCubes(): List<Point3D> {
         val currentlyInactive = filterTiles { it.isInActive() }
         return currentlyInactive.keys.filter { pos ->
@@ -32,6 +38,10 @@ class PocketDimension3D(initialState: List<String>) : AdventMap3D<ConwayCube>(),
         }
     }
 
+    /**
+     * Determines which cubes will become in-active in the next time-cycle.
+     * @return A list of all the positions of the to-be-active cubes.
+     */
     override fun getNextInActiveCubes(): List<Point3D> {
         val currentlyActive = filterTiles { it.isActive() }
         return currentlyActive.keys.filter { pos ->
@@ -41,14 +51,26 @@ class PocketDimension3D(initialState: List<String>) : AdventMap3D<ConwayCube>(),
         }
     }
 
+    /**
+     * Activates all the cubes at the given [positions].
+     * @param positions A list of in-active positions.
+     */
     override fun activate(positions: List<Point>) {
         positions.forEach { addTile(it as Point3D, ConwayCube('#')) }
     }
 
+    /**
+     * De-activates all the cubes at the given [positions].
+     * @param positions A list of active positions.
+     */
     override fun deactivate(positions: List<Point>) {
         positions.forEach { addTile(it as Point3D, ConwayCube('.')) }
     }
 
+    /**
+     * Creates a snapshot of the current state of the dimension.
+     * @return A copy of the current dimensional state.
+     */
     override fun getSnapshot(): PocketDimension3D {
         val snapshot = PocketDimension3D(emptyList())
         filterTiles { true }.forEach { (pos, cube) -> snapshot.addTile(pos, cube) }
@@ -56,8 +78,16 @@ class PocketDimension3D(initialState: List<String>) : AdventMap3D<ConwayCube>(),
         return snapshot
     }
 
+    /**
+     * Finds all the cubes that are currently in an active state.
+     * @return The sum of all active cubes.
+     */
     override fun getActiveCubeQuantity(): Int = filterTiles { it.isActive() }.count()
 
+    /**
+     * Adds a new layer of in-active cells around the current perimeter.
+     * This causes the dimension to expand every time cycle.
+     */
     private fun addNewSurroundingCells() {
         val xMax = xMax()!!
         val xMin = xMin()!!
@@ -88,5 +118,4 @@ class PocketDimension3D(initialState: List<String>) : AdventMap3D<ConwayCube>(),
             }
         }
     }
-
 }
