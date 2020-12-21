@@ -1,3 +1,5 @@
+# Part 1
+
 mxmxvkd kfcds sqjhc nhms (contains dairy, fish)
 trh fvjkl sbzzf mxmxvkd (contains dairy)
 sqjhc fvjkl (contains soy)
@@ -16,3 +18,11 @@ Now we can simply remove all the allergenic foods from the original food list to
 
 All Foods: mxmxvkd, kfcds, sqjhc, nhms, trh, fvjkl, sbzzf
 Non-Allergenic Foods: kfcds, nhms, sbzzf, trh
+
+# Part 2
+
+Allergenic Foods: mxmxvkd, sqjhc, fvjkl
+
+mxmxvkd: dairy, fish
+sqjhc: soy, fish, diary
+fvjkl: soy, dairy

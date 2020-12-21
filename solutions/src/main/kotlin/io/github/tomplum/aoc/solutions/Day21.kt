@@ -6,12 +6,15 @@ import io.github.tomplum.aoc.ferry.raft.IngredientListReader
 import io.github.tomplum.libs.input.Day
 import io.github.tomplum.libs.input.InputReader
 
-class Day21 : Solution<Int, Int> {
+class Day21 : Solution<Int, String> {
     private val input = InputReader.read<String>(Day(21))
+    private val ingredients = IngredientListReader.read(input.value)
 
     override fun part1(): Int {
-        val ingredients = IngredientListReader.read(input.value)
-        val assessment = AllergenAssessment(ingredients)
-        return assessment.getNonAllergenicFoods()
+        return AllergenAssessment(ingredients).getNonAllergenicFoods()
+    }
+
+    override fun part2(): String {
+        return AllergenAssessment(ingredients).getCanonicalDangerousIngredientList()
     }
 }

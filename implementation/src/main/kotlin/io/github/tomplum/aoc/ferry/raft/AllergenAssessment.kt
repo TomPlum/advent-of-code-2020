@@ -1,18 +1,25 @@
 package io.github.tomplum.aoc.ferry.raft
 
-class AllergenAssessment(val ingredientList: IngredientList) {
+class AllergenAssessment(private val ingredients: IngredientList) {
     fun getNonAllergenicFoods(): Int {
-        val foods = ingredientList.getDistinctFoods()
-        val allergens = ingredientList.getDistinctAllergens()
+        val allergenicFoods = ingredients.getAllergenicFoods().flatMap { it.value }.distinct()
+        val nonAllergenicFoods = ingredients.getDistinctFoods() - allergenicFoods
+        return nonAllergenicFoods.sumBy { food -> ingredients.getReferenceCount(food) }
+    }
 
-        val allergenicFoods = allergens.flatMap { allergen ->
-            val relevantFoods = ingredientList.ingredients.filter { entry -> entry.allergens.contains(allergen) }.map { it.foods }
-            foods.mapNotNull { food ->
-                if (relevantFoods.all { foodList -> foodList.contains(food) }) food else null
-            }
-        }.distinct()
+    fun getCanonicalDangerousIngredientList(): String {
+        val allergenicFoodCandidates = ingredients.getAllergenicFoods().toMutableMap()
+        val isolated = mutableMapOf<String, String>()
+        var allergenicFoods = allergenicFoodCandidates.flatMap { it.value }
 
-        val nonAllergenicFoods = foods - allergenicFoods
-        return nonAllergenicFoods.sumBy { food -> ingredientList.getReferenceCount(food) }
+        while(allergenicFoodCandidates.isNotEmpty()) {
+            val food = allergenicFoods.find { food -> allergenicFoods.count { it == food } == 1 }!!
+            val allergen = allergenicFoodCandidates.entries.find { (_, foods) -> foods.contains(food) }!!.key
+            isolated[allergen] = food
+            allergenicFoodCandidates.remove(allergen)
+            allergenicFoods = allergenicFoodCandidates.flatMap { it.value }.toMutableList()
+        }
+
+        return isolated.toSortedMap().values.joinToString(",")
     }
 }

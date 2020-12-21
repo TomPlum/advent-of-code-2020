@@ -5,32 +5,16 @@ data class IngredientList(val ingredients: List<FoodEntry>) {
 
     fun getDistinctAllergens(): Set<String> = ingredients.flatMap { it.allergens }.distinct().toSet()
 
-    fun getAllergenCandidates(): Map<String, List<String>> {
-        val map = mutableMapOf<String, List<String>>()
-        ingredients.forEach { (foods, allergens) ->
-            foods.forEach { food ->
-                if (!map.containsKey(food)) {
-                    map[food] = allergens
-                } else {
-                    map[food] = map[food]!!.toMutableList() + allergens
-                }
-            }
-        }
-        return map
+    fun getEntriesWithAllergen(allergen: String): List<FoodEntry> = ingredients.filter {
+            entry -> entry.allergens.contains(allergen)
     }
 
-    fun getFoodCandidates(): Map<String, List<String>> {
-        val map = mutableMapOf<String, List<String>>()
-        ingredients.forEach { (foods, allergens) ->
-            allergens.forEach { allergen ->
-                if (!map.containsKey(allergen)) {
-                    map[allergen] = foods.toList()
-                } else {
-                    map[allergen] = map[allergen]!!.toMutableList() + foods
-                }
-            }
-        }
-        return map
+    fun getAllergenicFoods(): Map<String, List<String>> {
+        return getDistinctAllergens().map { allergen ->
+            val relevantFoods = getEntriesWithAllergen(allergen).map { it.foods }
+            val foods = getDistinctFoods().filter { food -> relevantFoods.all { foodList -> foodList.contains(food) } }
+            allergen to foods
+        }.toMap()
     }
 
     fun getReferenceCount(food: String) = ingredients.flatMap { entry -> entry.foods }.count { it == food }
