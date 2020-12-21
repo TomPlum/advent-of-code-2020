@@ -1,5 +1,8 @@
 package io.github.tomplum.aoc.ferry.raft
 
+/**
+ * Reads a list of ingredients and their possible allergens and produces an [IngredientList].
+ */
 class IngredientListReader private constructor() {
     companion object {
         fun read(data: List<String>): IngredientList = data.map { line ->
