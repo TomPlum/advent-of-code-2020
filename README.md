@@ -80,7 +80,7 @@ behaviour that is commonly used across multiple days and `test-support` for unit
 | 18   	| 11297104473091 | 185348874183674   | Operation Order                           | [Link](docs/DAY18.MD)  |
 | 19   	| 171            | 369               | Monster Messages                          | [Link](docs/DAY19.MD)  |
 | 20   	| -              | -                 |                                           |                        |
-| 21   	| -              | -                 |                                           |                        |
+| 21   	| 2315           | cf,h,t,b,l,cb,cm,d| Allergen Assessment                       | [Link](docs/DAY21.MD)  |
 | 22   	| -              | -                 |                                           |                        |
 | 23   	| -              | -                 |                                           |                        |
 | 24   	| -              | -                 |                                           |                        |
