@@ -9,17 +9,17 @@ class AllergenAssessment(private val ingredients: IngredientList) {
 
     fun getCanonicalDangerousIngredientList(): String {
         val allergenicFoodCandidates = ingredients.getAllergenicFoods().toMutableMap()
-        val isolated = mutableMapOf<String, String>()
+        val isolatedAllergies = FoodAllergies()
         var allergenicFoods = allergenicFoodCandidates.flatMap { it.value }
 
         while(allergenicFoodCandidates.isNotEmpty()) {
             val food = allergenicFoods.find { food -> allergenicFoods.count { it == food } == 1 }!!
             val allergen = allergenicFoodCandidates.entries.find { (_, foods) -> foods.contains(food) }!!.key
-            isolated[allergen] = food
+            isolatedAllergies.add(food, allergen)
             allergenicFoodCandidates.remove(allergen)
             allergenicFoods = allergenicFoodCandidates.flatMap { it.value }.toMutableList()
         }
 
-        return isolated.toSortedMap().values.joinToString(",")
+        return isolatedAllergies.getIngredientList()
     }
 }
