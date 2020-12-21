@@ -1,0 +1,18 @@
+mxmxvkd kfcds sqjhc nhms (contains dairy, fish)
+trh fvjkl sbzzf mxmxvkd (contains dairy)
+sqjhc fvjkl (contains soy)
+sqjhc mxmxvkd sbzzf (contains fish)
+
+For each allergen, find which foods appear in ever list that has that allergen
+
+dairy: mxmxvkd
+fish: mxmxvkd, sqjhc
+soy: sqjhc, fvjkl
+
+List all of the foods above and remove any duplicates. These are the allergenic foods;
+Allergenic Foods: mxmxvkd, sqjhc, fvjkl
+
+Now we can simply remove all the allergenic foods from the original food list to find the ones without allergens;
+
+All Foods: mxmxvkd, kfcds, sqjhc, nhms, trh, fvjkl, sbzzf
+Non-Allergenic Foods: kfcds, nhms, sbzzf, trh
