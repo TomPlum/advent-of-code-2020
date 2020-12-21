@@ -1,13 +1,7 @@
 package io.github.tomplum.aoc.ferry.raft
 
-data class IngredientList(val ingredients: List<FoodEntry>) {
-    fun getDistinctFoods(): List<String> = ingredients.flatMap { it.foods }.distinct()
-
-    fun getDistinctAllergens(): Set<String> = ingredients.flatMap { it.allergens }.distinct().toSet()
-
-    fun getEntriesWithAllergen(allergen: String): List<FoodEntry> = ingredients.filter {
-            entry -> entry.allergens.contains(allergen)
-    }
+data class IngredientList(private val ingredients: List<FoodEntry>) {
+    fun getDistinctFoods(): List<String> = getFoods().distinct()
 
     fun getAllergenicFoods(): Map<String, List<String>> {
         return getDistinctAllergens().map { allergen ->
@@ -17,5 +11,13 @@ data class IngredientList(val ingredients: List<FoodEntry>) {
         }.toMap()
     }
 
-    fun getReferenceCount(food: String) = ingredients.flatMap { entry -> entry.foods }.count { it == food }
+    fun getReferenceCount(food: String) = getFoods().count { it == food }
+
+    private fun getFoods(): List<String> = ingredients.flatMap { entry -> entry.foods }
+
+    private fun getDistinctAllergens(): Set<String> = ingredients.flatMap { it.allergens }.distinct().toSet()
+
+    private fun getEntriesWithAllergen(allergen: String): List<FoodEntry> = ingredients.filter { entry ->
+        entry.allergens.contains(allergen)
+    }
 }
