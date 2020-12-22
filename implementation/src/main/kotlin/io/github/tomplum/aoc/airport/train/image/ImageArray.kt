@@ -1,6 +1,7 @@
 package io.github.tomplum.aoc.airport.train.image
 
 import io.github.tomplum.aoc.extensions.product
+import io.github.tomplum.libs.math.Point2D
 import kotlin.math.sqrt
 
 data class ImageArray(val tiles: List<ImageTile>) {
@@ -20,24 +21,10 @@ data class ImageArray(val tiles: List<ImageTile>) {
             tops.count { it == top } == 1 && lefts.count { it == left } == 1
         }
 
-        var topLeftCorner: ImageTile
-        var topRightCorner: ImageTile
-        var bottomLeftCorner: ImageTile
-        var bottomRightCorner: ImageTile
+        val image = Image(width)
 
-        corners.distinctBy { it.id }.forEach { corner ->
-            val isTop = tops.count { it == corner.getEdge(Edge.TOP) } == 1
-            val isLeft = lefts.count { it == corner.getEdge(Edge.LEFT) } == 1
-            val isBottom = bottoms.count { it == corner.getEdge(Edge.BOTTOM) } == 1
-            val isRight = rights.count { it == corner.getEdge(Edge.RIGHT) } == 1
-
-            when {
-                isTop && isLeft -> topLeftCorner = corner
-                isTop && isRight -> topRightCorner = corner
-                isBottom && isLeft -> bottomLeftCorner = corner
-                isBottom && isRight -> bottomRightCorner = corner
-            }
-        }
+        val cornerIndices = listOf(Point2D.origin(), Point2D(0, width), Point2D(width, 0), Point2D(width, width))
+        corners.distinctBy { it.id }.forEachIndexed { i, tile -> image.addImageTile(cornerIndices[i], tile) }
 
         return corners.distinctBy { it.id }.map { it.id.toLong() }.product()
     }
