@@ -17,7 +17,7 @@ class Day22 : Solution<Int, Int> {
 
     override fun part2(): Int {
         val decks = SpaceDeckReader.parse(input)
-        val result = RecursiveCombatGame().simulate(1, decks.first, decks.second)
+        val result = RecursiveCombatGame().simulate(decks.first, decks.second)
         return result.getWinningScore()
     }
 }

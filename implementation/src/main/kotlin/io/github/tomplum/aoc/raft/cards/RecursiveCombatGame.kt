@@ -1,11 +1,14 @@
 package io.github.tomplum.aoc.raft.cards
 
-import io.github.tomplum.aoc.raft.cards.GameStatus.*
+import io.github.tomplum.aoc.raft.cards.Player.*
 import io.github.tomplum.libs.logging.AdventLogger
 
 class RecursiveCombatGame {
 
-    fun simulate(gameNumber: Int, p1: SpaceCardDeck, p2: SpaceCardDeck): GameResult {
+    private var gameNumber = 1
+
+    fun simulate(p1: SpaceCardDeck, p2: SpaceCardDeck): GameResult {
+        AdventLogger.info("== Game $gameNumber ==\n")
         var round = 1
 
         val playerOneDeckStates = mutableListOf<Int>()
@@ -18,7 +21,7 @@ class RecursiveCombatGame {
 
             if (playerOneDeckStates.contains(p1.hashCode()) && playerTwoDeckStates.contains(p2.hashCode())) {
                 AdventLogger.trace("Player 1 wins as their deck state has been seen before")
-                return GameResult(PLAYER_1_WIN, p1, p2)
+                return GameResult(PLAYER_1, p1, p2)
             }
 
             logRound(round, gameNumber, p1draw, p2draw, p1, p2)
@@ -27,19 +30,20 @@ class RecursiveCombatGame {
             if (p1draw <= p1.size() && p2draw <= p2.size()) {
                 AdventLogger.info("Playing a sub-game to determine the winner..\n")
 
-                subGameResult = simulate(gameNumber + 1, p1.getCards(p1draw), p2.getCards(p2draw))
+                gameNumber++
+                subGameResult = simulate(p1.getCards(p1draw), p2.getCards(p2draw))
 
-                val subGameWinner = if (subGameResult.getWinner() == 1) 1 else 2
-                AdventLogger.info("The winner of game $gameNumber is player $subGameWinner\n")
+                AdventLogger.info("The winner of game $gameNumber is player ${subGameResult.winner}\n")
                 AdventLogger.info("...anyway, back to game ${gameNumber - 1}")
+                gameNumber--
             }
 
             playerOneDeckStates.add(p1.hashCode())
             playerTwoDeckStates.add(p2.hashCode())
 
             when {
-                subGameResult?.status == PLAYER_1_WIN -> p1.add(Pair(p1draw, p2draw))
-                subGameResult?.status == PLAYER_2_WIN ->  p2.add(Pair(p2draw, p1draw))
+                subGameResult?.winner == PLAYER_1 -> p1.add(Pair(p1draw, p2draw))
+                subGameResult?.winner == PLAYER_2 ->  p2.add(Pair(p2draw, p1draw))
                 p1draw > p2draw -> p1.add(Pair(p1draw, p2draw))
                 p2draw > p1draw -> p2.add(Pair(p2draw, p1draw))
             }
@@ -47,11 +51,11 @@ class RecursiveCombatGame {
             round++
         }
 
-        logPostGameResults(p1, p2)
+        if (gameNumber == 1) logPostGameResults(p1, p2)
 
         return when {
-            p1.isEmpty() -> GameResult(PLAYER_2_WIN, p1, p2)
-            p2.isEmpty() -> GameResult(PLAYER_1_WIN, p1, p2)
+            p1.isEmpty() -> GameResult(PLAYER_2, p1, p2)
+            p2.isEmpty() -> GameResult(PLAYER_1, p1, p2)
             else -> throw IllegalStateException("Neither deck is empty but the game has finished!")
         }
     }

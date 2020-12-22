@@ -20,8 +20,6 @@ class SpaceCardDeck(startingOrder: List<Int>) {
 
     fun size(): Int = cards.size
 
-    fun isIdenticalTo(other: SpaceCardDeck): Boolean = getDeckScore() == other.getDeckScore()
-
     fun getCards(n: Int) = SpaceCardDeck(cards.take(n))
 
     fun getCards(): List<Int> = cards.toList()

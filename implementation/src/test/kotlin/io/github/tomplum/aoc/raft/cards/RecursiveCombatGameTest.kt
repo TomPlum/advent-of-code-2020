@@ -13,7 +13,7 @@ class RecursiveCombatGameTest {
         fun example() {
             val input = TestInputReader.read<String>("raft/game/example.txt").asSingleString()
             val decks = SpaceDeckReader.parse(input)
-            assertThat(RecursiveCombatGame().simulate(1, decks.first, decks.second).getWinningScore()).isEqualTo(291)
+            assertThat(RecursiveCombatGame().simulate(decks.first, decks.second).getWinningScore()).isEqualTo(291)
         }
     }
 }
