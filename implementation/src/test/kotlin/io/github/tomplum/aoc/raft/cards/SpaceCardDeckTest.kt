@@ -11,12 +11,12 @@ class SpaceCardDeckTest {
     inner class Initialise {
         @Test
         fun startingOrder() {
-            assertThat(SpaceCardDeck(listOf(3,4,1,7)).cards).containsExactly(3,4,1,7)
+            assertThat(SpaceCardDeck(listOf(3,4,1,7)).getCards()).containsExactly(3,4,1,7)
         }
 
         @Test
         fun emptyStartingCards() {
-            assertThat(SpaceCardDeck(emptyList()).cards).isEmpty()
+            assertThat(SpaceCardDeck(emptyList()).getCards()).isEmpty()
         }
     }
 
@@ -26,7 +26,7 @@ class SpaceCardDeckTest {
         fun addPairShouldGoToBottom() {
             val deck = SpaceCardDeck(listOf(1,2,3,4,5))
             deck.add(Pair(8,9))
-            assertThat(deck.cards).containsExactly(1,2,3,4,5,8,9)
+            assertThat(deck.getCards()).containsExactly(1,2,3,4,5,8,9)
         }
     }
 
@@ -51,7 +51,7 @@ class SpaceCardDeckTest {
         fun shouldRemoveTopCard() {
             val deck = SpaceCardDeck(listOf(3,4,6))
             deck.draw()
-            assertThat(deck.cards).containsExactly(4,6)
+            assertThat(deck.getCards()).containsExactly(4,6)
         }
     }
 

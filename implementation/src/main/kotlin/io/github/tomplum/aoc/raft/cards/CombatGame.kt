@@ -2,7 +2,7 @@ package io.github.tomplum.aoc.raft.cards
 
 import io.github.tomplum.libs.logging.AdventLogger
 
-data class CombatGame(val p1: SpaceCardDeck, val p2: SpaceCardDeck) {
+class CombatGame(private val p1: SpaceCardDeck, private val p2: SpaceCardDeck) {
     fun simulate(): Int {
         var round = 1
         while(!p1.isEmpty() && !p2.isEmpty()) {

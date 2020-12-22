@@ -3,7 +3,7 @@ package io.github.tomplum.aoc.raft.cards
 import java.util.*
 
 class SpaceCardDeck(startingOrder: List<Int>) {
-    val cards = LinkedList<Int>()
+    private val cards = LinkedList<Int>()
 
     init {
         startingOrder.forEach { card -> cards.addLast(card) }
@@ -17,6 +17,14 @@ class SpaceCardDeck(startingOrder: List<Int>) {
     fun draw(): Int = cards.pollFirst()
 
     fun isEmpty(): Boolean = cards.isEmpty()
+
+    fun size(): Int = cards.size
+
+    fun isIdenticalTo(other: SpaceCardDeck): Boolean = getDeckScore() == other.getDeckScore()
+
+    fun getCards(n: Int) = SpaceCardDeck(cards.take(n))
+
+    fun getCards(): List<Int> = cards.toList()
 
     fun getDeckScore(): Int = cards.reversed().mapIndexed { i, card -> card * (i + 1) }.sum()
 
