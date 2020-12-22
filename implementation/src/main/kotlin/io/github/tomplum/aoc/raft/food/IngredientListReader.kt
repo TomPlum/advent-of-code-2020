@@ -1,4 +1,4 @@
-package io.github.tomplum.aoc.ferry.raft
+package io.github.tomplum.aoc.raft.food
 
 /**
  * Reads a list of ingredients and their possible allergens and produces an [IngredientList].

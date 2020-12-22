@@ -1,4 +1,4 @@
-package io.github.tomplum.aoc.ferry.raft
+package io.github.tomplum.aoc.raft.food
 
 /**
  * Maintains information about food-stuffs and their respective allergens.

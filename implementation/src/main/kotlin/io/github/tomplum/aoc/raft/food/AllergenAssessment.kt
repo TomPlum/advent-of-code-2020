@@ -1,4 +1,4 @@
-package io.github.tomplum.aoc.ferry.raft
+package io.github.tomplum.aoc.raft.food
 
 /**
  * An assessment of food-stuffs to be taken on the raft to the vacation island.

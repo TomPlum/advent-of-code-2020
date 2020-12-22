@@ -1,4 +1,4 @@
-package io.github.tomplum.aoc.ferry.raft
+package io.github.tomplum.aoc.raft.food
 
 /**
  * A list of ingredients written an unknown language.

@@ -1,8 +1,10 @@
-package io.github.tomplum.aoc.ferry.raft
+package io.github.tomplum.aoc.raft.food
 
 import assertk.assertThat
 import assertk.assertions.isEqualTo
 import io.github.tomplum.aoc.input.TestInputReader
+import io.github.tomplum.aoc.raft.food.AllergenAssessment
+import io.github.tomplum.aoc.raft.food.IngredientListReader
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 
