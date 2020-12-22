@@ -1,5 +1,9 @@
 package io.github.tomplum.aoc.raft.cards
 
+/**
+ * Reads the starting decks of [CombatGame] or [RecursiveCombatGame]
+ * and produces a pair of [SpaceCardDeck] for each player.
+ */
 class SpaceDeckReader private constructor() {
     companion object {
         fun parse(data: String): Pair<SpaceCardDeck, SpaceCardDeck> {

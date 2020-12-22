@@ -2,7 +2,23 @@ package io.github.tomplum.aoc.raft.cards
 
 import io.github.tomplum.libs.logging.AdventLogger
 
+/**
+ * Then, the game consists of a series of rounds: both players draw their top card, and the player with the
+ * higher-valued card wins the round.
+ *
+ * The winner keeps both cards, placing them on the bottom of their own deck so that the winner's card is above
+ * the other card.
+ *
+ * If this causes a player to have all of the cards, they win, and the game ends.
+ *
+ * @param p1 Player 1's deck of cards.
+ * @param p2 Player 2's deck of cards.
+ */
 class CombatGame(private val p1: SpaceCardDeck, private val p2: SpaceCardDeck) {
+    /**
+     * Simulates a complete game using the given [p1] and [p2] decks.
+     * @return The deck score of the winning player.
+     */
     fun simulate(): Int {
         var round = 1
         while(!p1.isEmpty() && !p2.isEmpty()) {
