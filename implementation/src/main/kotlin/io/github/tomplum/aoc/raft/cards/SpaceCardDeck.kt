@@ -14,6 +14,12 @@ class SpaceCardDeck(startingOrder: List<Int>) {
         cards.addLast(pair.second)
     }
 
+    fun draw(): Int = cards.pollFirst()
+
+    fun isEmpty(): Boolean = cards.isEmpty()
+
+    fun getDeckScore(): Int = cards.reversed().mapIndexed { i, card -> card * (i + 1) }.sum()
+
     override fun equals(other: Any?): Boolean {
         if (other !is SpaceCardDeck) return false
         return cards == other.cards
@@ -23,5 +29,5 @@ class SpaceCardDeck(startingOrder: List<Int>) {
         return cards.hashCode()
     }
 
-    override fun toString(): String = cards.toString()
+    override fun toString(): String = cards.toString().removeSurrounding("[", "]")
 }
