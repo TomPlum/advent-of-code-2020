@@ -10,10 +10,24 @@ class RecursiveCombatGameTest {
     @Nested
     inner class Simulate {
         @Test
-        fun example() {
+        fun examplePlayerOneWins() {
             val input = TestInputReader.read<String>("raft/game/example.txt").asSingleString()
             val decks = SpaceDeckReader.parse(input)
             assertThat(RecursiveCombatGame().simulate(decks.first, decks.second).getWinningScore()).isEqualTo(291)
+        }
+
+        @Test
+        fun examplePlayerTwoWins() {
+            val input = TestInputReader.read<String>("raft/game/example-2.txt").asSingleString()
+            val decks = SpaceDeckReader.parse(input)
+            assertThat(RecursiveCombatGame().simulate(decks.first, decks.second).getWinningScore()).isEqualTo(291)
+        }
+
+        @Test
+        fun recursiveExample() {
+            val input = TestInputReader.read<String>("raft/game/recursive-example.txt").asSingleString()
+            val decks = SpaceDeckReader.parse(input)
+            assertThat(RecursiveCombatGame().simulate(decks.first, decks.second).getWinningScore()).isEqualTo(19)
         }
     }
 }

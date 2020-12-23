@@ -12,4 +12,11 @@ class CombatGameTest {
         val decks = SpaceDeckReader.parse(input)
         assertThat(CombatGame(decks.first, decks.second).simulate()).isEqualTo(306)
     }
+
+    @Test
+    fun exampleTwo() {
+        val input = TestInputReader.read<String>("raft/game/example-2.txt").asSingleString()
+        val decks = SpaceDeckReader.parse(input)
+        assertThat(CombatGame(decks.first, decks.second).simulate()).isEqualTo(306)
+    }
 }

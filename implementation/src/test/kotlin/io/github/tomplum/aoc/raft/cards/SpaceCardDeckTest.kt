@@ -75,4 +75,22 @@ class SpaceCardDeckTest {
             assertThat(SpaceCardDeck(listOf(3, 2, 10, 6, 8, 5, 9, 4, 7, 1)).getDeckScore()).isEqualTo(306)
         }
     }
+
+    @Nested
+    inner class Equality {
+        @Test
+        fun sameCards() {
+            assertThat(SpaceCardDeck(listOf(1,2,3))).isEqualTo(SpaceCardDeck(listOf(1,2,3)))
+        }
+
+        @Test
+        fun differentCards() {
+            assertThat(SpaceCardDeck(listOf(1,2,3))).isNotEqualTo(SpaceCardDeck(listOf(2,3,4)))
+        }
+
+        @Test
+        fun differenType() {
+            assertThat(SpaceCardDeck(listOf(1,2,3))).isNotEqualTo(Player.PLAYER_1)
+        }
+    }
 }
