@@ -38,34 +38,44 @@ class CupCircleTest {
     inner class GetClockwiseCups {
         @Test
         fun firstCupIsCurrent() {
-            assertThat(CupCircle(listOf(3,8,9,1,2,5,4,6,7)).clockwiseCups(3)).containsExactly(8,9,1)
+            assertThat(CupCircle(listOf(3,8,9,1,2,5,4,6,7)).pickClockwiseCups(3, 3)).containsExactly(8,9,1)
         }
 
         @Test
         fun currentCupFourthFromEnd() {
-            assertThat(CupCircle(listOf(3,8,9,1,2,5,4,6,7)).clockwiseCups(5)).containsExactly(4,6,7)
+            assertThat(CupCircle(listOf(3,8,9,1,2,5,4,6,7)).pickClockwiseCups(5, 3)).containsExactly(4,6,7)
         }
 
         @Test
         fun currentCupThirdFromEnd() {
-            assertThat(CupCircle(listOf(3,8,9,1,2,5,4,6,7)).clockwiseCups(4)).containsExactly(6,7,3)
+            assertThat(CupCircle(listOf(3,8,9,1,2,5,4,6,7)).pickClockwiseCups(4, 3)).containsExactly(6,7,3)
         }
 
         @Test
         fun currentCupSecondFromEnd() {
-            assertThat(CupCircle(listOf(3,8,9,1,2,5,4,6,7)).clockwiseCups(6)).containsExactly(7,3,8)
+            assertThat(CupCircle(listOf(3,8,9,1,2,5,4,6,7)).pickClockwiseCups(6, 3)).containsExactly(7,3,8)
         }
 
         @Test
         fun endCupIsCurrent() {
-            assertThat(CupCircle(listOf(3,8,9,1,2,5,4,6,7)).clockwiseCups(7)).containsExactly(3,8,9)
+            assertThat(CupCircle(listOf(3,8,9,1,2,5,4,6,7)).pickClockwiseCups(7, 3)).containsExactly(3,8,9)
         }
 
         @Test
         fun cupsShouldBeRemoved() {
             val circle = CupCircle(listOf(3,8,9,1,2,5,4,6,7))
-            circle.clockwiseCups(3)
-            assertThat(circle.clockwiseCups(3)).containsExactly(2,5,4)
+            circle.pickClockwiseCups(3, 3)
+            assertThat(circle.pickClockwiseCups(3, 3)).containsExactly(2,5,4)
+        }
+    }
+
+    @Nested
+    inner class GetDestinationCup {
+        @Test
+        fun destinationInPickedAndGoesBelowLowestCupValue() {
+            val cupCircle = CupCircle(listOf(3, 2, 8, 9, 1, 5, 4, 6, 7))
+            val destinationCup = cupCircle.getDestinationCup(listOf(8, 9, 1), 2)
+            assertThat(destinationCup).isEqualTo(7)
         }
     }
 
