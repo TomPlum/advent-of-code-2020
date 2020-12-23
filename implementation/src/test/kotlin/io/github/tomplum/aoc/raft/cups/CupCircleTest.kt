@@ -3,7 +3,6 @@ package io.github.tomplum.aoc.raft.cups
 import assertk.assertThat
 import assertk.assertions.containsExactly
 import assertk.assertions.isEqualTo
-import assertk.assertions.isNotEqualTo
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 
@@ -43,37 +42,6 @@ class CupCircleTest {
             val cupCircle = CupCircle(listOf(3, 2, 8, 9, 1, 5, 4, 6, 7))
             val destinationCup = cupCircle.getDestinationCup(listOf(8, 9, 1), 2)
             assertThat(destinationCup).isEqualTo(7)
-        }
-    }
-
-    @Nested
-    inner class Equality {
-        @Test
-        fun sameCupsSameOrder() {
-            assertThat(CupCircle(listOf(1,2,3))).isEqualTo(CupCircle(listOf(1,2,3)))
-        }
-
-        @Test
-        fun differentCups() {
-            assertThat(CupCircle(listOf(1,2,3))).isNotEqualTo(CupCircle(listOf(3,4,5)))
-        }
-
-        @Test
-        fun sameCupsDifferentOrder() {
-            assertThat(CupCircle(listOf(1,2,3))).isNotEqualTo(listOf(2,1,3))
-        }
-
-        @Test
-        fun differentType() {
-            assertThat(CupCircle(listOf(1,2,3))).isNotEqualTo(listOf(1,2,3))
-        }
-    }
-
-    @Nested
-    inner class ToStringCurrent {
-        @Test
-        fun example() {
-            assertThat(CupCircle(listOf(5,1,3,2,4)).toString(3)).isEqualTo("5  1  (3)  2  4")
         }
     }
 }

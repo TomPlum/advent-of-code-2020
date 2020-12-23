@@ -1,14 +1,13 @@
 package io.github.tomplum.aoc.raft.cups
 
-class CupCircle(startingPositions: List<Int>) {
+class CupCircle(cups: List<Int>) {
 
-    private val values: IntArray = IntArray(startingPositions.size + 1) { -1 }
+    val startingCup = cups.first().toString().toInt()
+    private val values: IntArray = IntArray(cups.size + 1) { -1 }
 
     init {
-        startingPositions.zipWithNext { a, b ->
-            values[a] = b
-        }
-        values[startingPositions.last()] = startingPositions.first()
+        cups.zipWithNext { a, b -> values[a] = b }
+        values[cups.last()] = cups.first()
     }
 
     fun pickClockwiseCups(current: Int): List<Int> {
@@ -50,16 +49,5 @@ class CupCircle(startingPositions: List<Int>) {
             next
         }
         return order.toString()
-    }
-
-    fun toString(currentCup: Int): String = values.drop(1).joinToString("  ") { cup -> if (cup == currentCup) "($cup)" else "$cup" }
-
-    override fun equals(other: Any?): Boolean {
-        if (other !is CupCircle) return false
-        return values.contentEquals(other.values)
-    }
-
-    override fun hashCode(): Int {
-        return values.hashCode()
     }
 }
