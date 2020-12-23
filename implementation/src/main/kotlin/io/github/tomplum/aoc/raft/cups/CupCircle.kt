@@ -1,7 +1,17 @@
 package io.github.tomplum.aoc.raft.cups
 
+import io.github.tomplum.aoc.airport.game.MemoryGame
+
 /**
  * A circle of cups maintained by the crab running the [CrabCupGame].
+ *
+ * The backing collection for this pseudo-circular data structure is an [IntArray].
+ * It works similar to the [MemoryGame] with regards to the use of both the index and the value of the array.
+ *
+ * In this case, [values] stores the label of the cup as the index, and the label of its clockwise cup as its value.
+ * Because cups labels start from 1, we simply initialise the array with an extra element and pre-allocate -1.
+ * This eliminates the need to 'shift' around values whenever a cups position changes.
+ *
  * @param cups The ordered values of the cups.
  */
 class CupCircle(cups: List<Int>) {
