@@ -75,7 +75,7 @@ class CupCircle(cups: List<Int>) {
         val order = StringBuilder()
         (2 until values.size).fold(1) { acc, _ ->
             val next = values[acc]
-            order.append(next);
+            order.append(next)
             next
         }
         return order.toString()
