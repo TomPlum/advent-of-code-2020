@@ -13,7 +13,7 @@ class AllergenAssessmentTest {
     inner class GetNonAllergenicIngredients {
         @Test
         fun example() {
-            val input = TestInputReader.read<String>("ferry/raft/example.txt")
+            val input = TestInputReader.read<String>("raft/food/example.txt")
             val ingredients = IngredientListReader.read(input.value)
             assertThat(AllergenAssessment(ingredients).getNonAllergenicFoods()).isEqualTo(5)
         }
@@ -23,7 +23,7 @@ class AllergenAssessmentTest {
     inner class GetCanonicalDangerousIngredientList {
         @Test
         fun example() {
-            val input = TestInputReader.read<String>("ferry/raft/example.txt")
+            val input = TestInputReader.read<String>("raft/food/example.txt")
             val ingredients = IngredientListReader.read(input.value)
             val list = AllergenAssessment(ingredients).getCanonicalDangerousIngredientList()
             assertThat(list).isEqualTo("mxmxvkd,sqjhc,fvjkl")

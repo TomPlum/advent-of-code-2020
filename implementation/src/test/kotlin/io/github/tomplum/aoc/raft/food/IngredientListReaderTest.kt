@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test
 class IngredientListReaderTest {
     @Test
     fun example() {
-        val input = TestInputReader.read<String>("ferry/raft/example.txt")
+        val input = TestInputReader.read<String>("raft/food/example.txt")
         val list = IngredientListReader.read(input.value)
         assertThat(list).isEqualTo(getExpectedIngredientList())
     }

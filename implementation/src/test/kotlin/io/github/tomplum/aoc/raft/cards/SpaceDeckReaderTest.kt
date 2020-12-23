@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test
 class SpaceDeckReaderTest {
     @Test
     fun example() {
-        val input = TestInputReader.read<String>("raft/game/example.txt").asSingleString()
+        val input = TestInputReader.read<String>("raft/cards/example.txt").asSingleString()
         val game = SpaceDeckReader.parse(input)
         assertThat(game).isEqualTo(getExpectedDecks())
     }
