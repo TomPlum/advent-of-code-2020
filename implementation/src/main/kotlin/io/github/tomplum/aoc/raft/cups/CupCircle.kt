@@ -1,5 +1,9 @@
 package io.github.tomplum.aoc.raft.cups
 
+/**
+ * A circle of cups maintained by the crab running the [CrabCupGame].
+ * @param cups The ordered values of the cups.
+ */
 class CupCircle(cups: List<Int>) {
 
     val startingCup = cups.first().toString().toInt()
@@ -10,6 +14,11 @@ class CupCircle(cups: List<Int>) {
         values[cups.last()] = cups.first()
     }
 
+    /**
+     * Gets the values of the three cups immediately clockwise of the [current] cup.
+     * @param current The value of the cup of which to pick clockwise from.
+     * @return The values of the three clockwise cups, in order.
+     */
     fun pickClockwiseCups(current: Int): List<Int> {
         val first = values[current]
         val second = values[first]
@@ -17,10 +26,21 @@ class CupCircle(cups: List<Int>) {
         return listOf(first, second, third)
     }
 
+    /**
+     * Gets the value of the cup immediately clockwise of the [current] cup.
+     * @param current The value of the cup of which to pick clockwise from.
+     * @return The value of the picked cup.
+     */
     fun getClockwiseCup(current: Int): Int {
         return values[current]
     }
 
+    /**
+     * Places the given [cups] immediately clockwise of the [destination] cup, while preserving their order.
+     * @param currentCup The current cup picked by the crab.
+     * @param cups The three cups recently picked by the crab.
+     * @param destination The destination cup where the [cups] will be placed relative to.
+     */
     fun place(currentCup: Int, cups: List<Int>, destination: Int) {
         val clockwiseDestination = values[destination]
         values[currentCup] = values[cups.last()]
@@ -28,6 +48,12 @@ class CupCircle(cups: List<Int>) {
         values[cups.last()] = clockwiseDestination
     }
 
+    /**
+     * Gets the destination cup based on the rules defined in the [CrabCupGame].
+     * @param picked The three cups recently picked by the crab.
+     * @param currentCup The current cup picked by the crab.
+     * @return The value of the destination cup.
+     */
     fun getDestinationCup(picked: List<Int>, currentCup: Int): Int {
         var candidate = currentCup - 1
         val smallestCupValue = 1
@@ -41,6 +67,10 @@ class CupCircle(cups: List<Int>) {
         return candidate
     }
 
+    /**
+     * Gets the order of the cups in their current state, excluding the cup with value 1.
+     * @return A string of the cup values in order.
+     */
     fun getCupOrder(): String {
         val order = StringBuilder()
         (2 until values.size).fold(1) { acc, _ ->
