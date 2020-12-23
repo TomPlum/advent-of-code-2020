@@ -1,85 +1,62 @@
 package io.github.tomplum.aoc.raft.cups
 
-import java.util.*
-
 class CupCircle(startingPositions: List<Int>) {
 
-    private val values = LinkedList(startingPositions)
+    private val values: IntArray = IntArray(startingPositions.size + 1) { -1 }
 
-    fun first(): Int = values.peekFirst()
-
-    fun pickClockwiseCups(current: Int, n: Int): List<Int> {
-        val currentIndex = values.indexOf(current)
-        val nextCupIndex = currentIndex + 1
-        val lastCupIndex = values.lastIndex
-
-        if (currentIndex <= (lastCupIndex - n)) {
-            return getCups(nextCupIndex, nextCupIndex + n)
+    init {
+        startingPositions.zipWithNext { a, b ->
+            values[a] = b
         }
+        values[startingPositions.last()] = startingPositions.first()
+    }
 
-        if (nextCupIndex > lastCupIndex) {
-            return getCups(0, n)
-        }
-
-        val remaining = getCups(nextCupIndex, values.size)
-        val wrapped = getCups(0, n - remaining.size)
-
-        return remaining + wrapped
+    fun pickClockwiseCups(current: Int): List<Int> {
+        val first = values[current]
+        val second = values[first]
+        val third = values[second]
+        return listOf(first, second, third)
     }
 
     fun getClockwiseCup(current: Int): Int {
-        val currentIndex = values.indexOf(current)
-        if (currentIndex == values.lastIndex) {
-            return values.first()
-        }
-        return values[currentIndex + 1]
+        return values[current]
     }
 
-    fun get(value: Int): Int {
-        val valueIndex = values.indexOf(value)
-        values.removeAt(valueIndex)
-        return valueIndex
-    }
-
-    fun place(cups: List<Int>, destination: Int) {
-        val destinationIndex = values.indexOf(destination)
-        val cupsRightDestination = getCups(destinationIndex + 1, values.size)
-        cups.forEach { cup -> values.addLast(cup) }
-        cupsRightDestination.forEach { cup -> values.addLast(cup) }
+    fun place(currentCup: Int, cups: List<Int>, destination: Int) {
+        val clockwiseDestination = values[destination]
+        values[currentCup] = values[cups.last()]
+        values[destination] = cups.first()
+        values[cups.last()] = clockwiseDestination
     }
 
     fun getDestinationCup(picked: List<Int>, currentCup: Int): Int {
         var candidate = currentCup - 1
-        val smallestCupValue = values.minOrNull()!!
+        val smallestCupValue = 1
         while (picked.contains(candidate) || candidate < smallestCupValue) {
             if (candidate < smallestCupValue) {
-                candidate = values.maxOrNull()!!
+                candidate = values.size - 1
             } else {
                 candidate--
             }
         }
         return candidate
-        //val offset = picked.fold(1) { acc, cup -> if (currentCup - acc == cup) acc + 1 else acc }
     }
 
     fun getCupOrder(): String {
-        return pickClockwiseCups(1, values.lastIndex).joinToString("")
-    }
-
-    fun toString(currentCup: Int): String =
-        values.joinToString("  ") { cup -> if (cup == currentCup) "($cup)" else "$cup" }
-
-    private fun getCups(start: Int, end: Int): List<Int> {
-        val cups = mutableListOf<Int>()
-        for (i in (end) - 1 downTo start) {
-            cups.add(values.removeAt(i))
+        val order = StringBuilder()
+        (2 until values.size).fold(1) { acc, _ ->
+            val next = values[acc]
+            order.append(next);
+            next
         }
-        return cups.reversed()
+        return order.toString()
     }
+
+    fun toString(currentCup: Int): String = values.drop(1).joinToString("  ") { cup -> if (cup == currentCup) "($cup)" else "$cup" }
 
     override fun equals(other: Any?): Boolean {
         if (other !is CupCircle) return false
-        return values == other.values
+        return values.contentEquals(other.values)
     }
 
     override fun hashCode(): Int {

@@ -2,11 +2,14 @@ package io.github.tomplum.aoc.raft.cups
 
 import io.github.tomplum.libs.logging.AdventLogger
 
-class CupGame(private val label: String) {
+class TranslatedCupGame(private val label: String) {
+    private val startingCups = label.map { cup -> cup.toString().toInt() }
+    private val highestCupValue = startingCups.maxOrNull()
+    private val extraCups = (1..1_000_000).map { cup -> highestCupValue!! + cup}
 
-    private val cups = CupCircle(label.map { cup -> cup.toString().toInt() })
+    private val cups = CupCircle(startingCups + extraCups)
 
-    fun simulate(moves: Int): String {
+    fun simulate(moves: Int): Long {
         var currentCup = label.first().toString().toInt()
 
         repeat(moves) { move ->
@@ -28,6 +31,8 @@ class CupGame(private val label: String) {
             currentCup = cups.getClockwiseCup(currentCup)
         }
 
-        return cups.getCupOrder()
+        val firstStarCup = cups.getClockwiseCup(1)
+        val secondStarCup = cups.getClockwiseCup(firstStarCup)
+        return firstStarCup.toLong() * secondStarCup.toLong()
     }
 }
