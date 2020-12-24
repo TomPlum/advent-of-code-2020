@@ -83,5 +83,5 @@ behaviour that is commonly used across multiple days and `test-support` for unit
 | 21   	| 2315           | cf,h,t,b,l,cb,cm,d| Allergen Assessment                       | [Link](docs/DAY21.MD)  |
 | 22   	| 306            | 291               | Crab Combat                               | [Link](docs/DAY22.MD)  |
 | 23   	| 58427369       | 111057672960      | Crab Cups                                 | [Link](docs/DAY23.MD)  |
-| 24   	| -              | -                 |                                           |                        |
+| 24   	| 326            | 3979              | Lobby Layout                              | [Link](docs/DAY24.MD)  |
 | 25   	| -              | -                 |                                           |                        |
