@@ -5,11 +5,11 @@ import assertk.assertions.isEqualTo
 import io.github.tomplum.aoc.input.TestInputReader
 import org.junit.jupiter.api.Test
 
-class HexGridTest {
+class LobbyFloorTest {
     @Test
     fun example() {
         val input = TestInputReader.read<String>("island/lobby/example.txt")
         val layout = TileLayoutParser.parse(input.value)
-        assertThat(HexGrid(layout).getBlackTileCount()).isEqualTo(10)
+        assertThat(LobbyFloor(layout).getBlackTileCount()).isEqualTo(10)
     }
 }

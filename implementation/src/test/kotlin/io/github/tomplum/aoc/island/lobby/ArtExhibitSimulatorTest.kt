@@ -10,6 +10,6 @@ class ArtExhibitSimulatorTest {
     fun example() {
         val input = TestInputReader.read<String>("island/lobby/example.txt")
         val layout = TileLayoutParser.parse(input.value)
-        assertThat(ArtExhibitSimulator(HexGrid(layout)).simulate(100)).isEqualTo(2208)
+        assertThat(ArtExhibitSimulator(LobbyFloor(layout)).simulate(100)).isEqualTo(2208)
     }
 }

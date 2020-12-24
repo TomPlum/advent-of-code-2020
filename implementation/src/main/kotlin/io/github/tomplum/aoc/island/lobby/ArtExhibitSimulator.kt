@@ -2,7 +2,7 @@ package io.github.tomplum.aoc.island.lobby
 
 import io.github.tomplum.libs.logging.AdventLogger
 
-class ArtExhibitSimulator(private val initialFloorLayout: HexGrid) {
+class ArtExhibitSimulator(private val initialFloorLayout: LobbyFloor) {
     fun simulate(days: Int): Int {
         var state = initialFloorLayout.getFloorSnapshot()
 
