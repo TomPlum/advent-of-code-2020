@@ -33,7 +33,7 @@ abstract class CrabCupGame(label: String, logicalCupQuantity: Int) {
 
     private val startingCups = label.map { cup -> cup.toString().toInt() }
     private val highestCupValue = startingCups.maxOrNull()
-    private val extraCups = (1..(logicalCupQuantity - startingCups.size)).map { cup -> highestCupValue!! + cup }
+    private val extraCups = (1 + highestCupValue!!..logicalCupQuantity)
     private val cups = CupCircle(startingCups + extraCups)
 
     /**
