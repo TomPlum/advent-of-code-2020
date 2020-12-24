@@ -20,28 +20,28 @@ class HexGrid(layout: List<List<Direction>>) : AdventMap3D<HexTile>() {
         val currentlyWhite = filterTiles { it.isWhite() }
         return currentlyWhite.keys.filter { pos ->
             val adjacent = filterPoints(pos.getHexagonalAdjacent().toSet())
-            val blackNeighbors = adjacent.count { (_, cube) -> cube.isBlack() }
+            val blackNeighbors = adjacent.count { (_, tile) -> tile.isBlack() }
             blackNeighbors == 2
         }
     }
 
     fun getNextWhiteTiles(): List<Point3D> {
-        val currentlyWhite = filterTiles { it.isBlack() }
-        return currentlyWhite.keys.filter { pos ->
+        val currentlyBlack = filterTiles { it.isBlack() }
+        return currentlyBlack.keys.filter { pos ->
             val adjacent = filterPoints(pos.getHexagonalAdjacent().toSet())
-            val blackNeighbors = adjacent.count { (_, cube) -> cube.isBlack() }
+            val blackNeighbors = adjacent.count { (_, tile) -> tile.isBlack() }
             blackNeighbors == 0 || blackNeighbors > 2
         }
     }
 
-    fun flipWhite(positions: List<Point3D>) = positions.forEach { pos -> addTile(pos, HexTile.black()) }
-
-    fun flipBlack(positions: List<Point3D>) = positions.forEach { pos -> addTile(pos, HexTile.white()) }
+    fun flip(positions: List<Point3D>) = positions.forEach { pos -> addTile(pos, getTile(pos).flip()) }
 
     //TODO: Add snapshot() to AdventMap3D and update in Pocked Dimension too.
     fun getFloorSnapshot(): HexGrid {
         val snapshot = HexGrid(emptyList())
-        filterTiles { true }.forEach { (pos, tile) -> snapshot.addTile(pos, tile) }
+        val tiles = filterTiles { true }
+        tiles.forEach { (pos, tile) -> snapshot.addTile(pos, tile) }
+        snapshot.addSurroundingLayer(tiles.keys)
         return snapshot
     }
 
@@ -49,15 +49,16 @@ class HexGrid(layout: List<List<Direction>>) : AdventMap3D<HexTile>() {
 
     //TODO Move to Point3D in libs
     private fun Point3D.getHexagonalAdjacent(): List<Point3D> = listOf(
-        Point3D(x + 1, y - 1, z), Point3D(x + 1, y, z - 1), Point3D(x, y + 1, z - 1),
-        Point3D(x - 1, y + 1, z), Point3D(x - 1, y, z + 1), Point3D(x, y - 1, z + 1)
+            Point3D(x + 1, y - 1, z), Point3D(x + 1, y, z - 1), Point3D(x, y + 1, z - 1),
+            Point3D(x - 1, y + 1, z), Point3D(x - 1, y, z + 1), Point3D(x, y - 1, z + 1)
     )
 
-    private fun addSurroundingLayer() {
-        val xMax = xMax()
-        val yMax = yMax()
-        val zMax = zMax()
+    private fun addSurroundingLayer(positions: Set<Point3D>) {
+        val surroundingPoints = filterPoints(positions).keys.flatMap { pos ->
+            pos.getHexagonalAdjacent().filter { !hasRecorded(it) }
+        }
 
+        surroundingPoints.forEach { pos -> addTile(pos, HexTile.white()) }
     }
 
     private fun List<Direction>.toPoint3D() = fold(Point3D(0, 0, 0)) { p, direction ->

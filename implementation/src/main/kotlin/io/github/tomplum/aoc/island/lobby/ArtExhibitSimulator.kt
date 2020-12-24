@@ -4,14 +4,13 @@ import io.github.tomplum.libs.logging.AdventLogger
 
 class ArtExhibitSimulator(private val initialFloorLayout: HexGrid) {
     fun simulate(days: Int): Int {
-        var state = initialFloorLayout
+        var state = initialFloorLayout.getFloorSnapshot()
 
         repeat(days) { day ->
             val nextBlack = state.getNextBlackTiles()
             val nextWhite = state.getNextWhiteTiles()
 
-            state.flipBlack(nextWhite)
-            state.flipWhite(nextBlack)
+            state.flip(nextWhite + nextBlack)
 
             AdventLogger.info("Day ${day + 1}: ${state.getBlackTileCount()}")
 
