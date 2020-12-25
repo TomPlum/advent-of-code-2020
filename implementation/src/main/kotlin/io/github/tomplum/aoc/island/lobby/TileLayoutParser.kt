@@ -14,7 +14,7 @@ class TileLayoutParser private constructor() {
                             when (val northDiagonal = "$char${line[i + 1]}") {
                                 "ne" -> Direction.TOP_RIGHT
                                 "nw" -> Direction.TOP_LEFT
-                                else -> throw IllegalStateException("$northDiagonal is not a valid direction.")
+                                else -> throw IllegalArgumentException("$northDiagonal is not a valid direction.")
                             }
                         }
                         's' -> {
@@ -22,12 +22,12 @@ class TileLayoutParser private constructor() {
                             when (val southDiagonal = "$char${line[i + 1]}") {
                                 "se" -> Direction.BOTTOM_RIGHT
                                 "sw" -> Direction.BOTTOM_LEFT
-                                else -> throw IllegalStateException("$southDiagonal is not a valid direction.")
+                                else -> throw IllegalArgumentException("$southDiagonal is not a valid direction.")
                             }
                         }
                         'e' -> Direction.RIGHT
                         'w' -> Direction.LEFT
-                        else -> throw IllegalArgumentException("$char is not a valid direction")
+                        else -> throw IllegalArgumentException("$char is not a valid direction.")
                     }
                 } else {
                     isDiagonal = false
