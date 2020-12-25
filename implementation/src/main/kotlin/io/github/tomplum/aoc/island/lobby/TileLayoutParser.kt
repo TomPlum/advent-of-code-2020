@@ -2,6 +2,10 @@ package io.github.tomplum.aoc.island.lobby
 
 import io.github.tomplum.libs.math.Direction
 
+/**
+ * A member of the renovation crew gives you a list of the tiles that need to be flipped over.
+ * This class parses these instructions and produces a list of sub-lists of the directions from the reference tile.
+ */
 class TileLayoutParser private constructor() {
     companion object {
         fun parse(data: List<String>): List<List<Direction>> = data.map { line ->
