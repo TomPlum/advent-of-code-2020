@@ -1,7 +1,7 @@
 package io.github.tomplum.aoc.ferry.navigation
 
 import io.github.tomplum.libs.math.Direction
-import io.github.tomplum.libs.math.Point2D
+import io.github.tomplum.libs.math.point.Point2D
 
 /**
  * A logical entity belonging to a [Ferry] that is utilised its [NavigationSystem].

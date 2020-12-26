@@ -2,8 +2,8 @@ package io.github.tomplum.aoc.forest.toboggan
 
 import io.github.tomplum.aoc.extensions.product
 import io.github.tomplum.libs.logging.AdventLogger
-import io.github.tomplum.libs.math.Point2D
 import io.github.tomplum.libs.math.map.AdventMap2D
+import io.github.tomplum.libs.math.point.Point2D
 
 /**
  * Due to the local geology, trees in this area only grow on exact integer coordinates in a grid.
