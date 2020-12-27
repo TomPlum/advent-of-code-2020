@@ -7,12 +7,13 @@ import io.github.tomplum.libs.input.InputReader
 
 class Day20 : Solution<Long, Int> {
     private val input = InputReader.read<String>(Day(20)).asSingleString()
+    private val imageBuilder = ImageReader.read(input)
 
     override fun part1(): Long {
-        return ImageReader.read(input).assemble()
+        return imageBuilder.getCornerTileIDProduct()
     }
 
-    override fun part2(): Int? {
-        return ImageReader.read(input).assemble().toInt()
+    override fun part2(): Int {
+        return imageBuilder.assemble().getHabitatWaterRoughness()
     }
 }
