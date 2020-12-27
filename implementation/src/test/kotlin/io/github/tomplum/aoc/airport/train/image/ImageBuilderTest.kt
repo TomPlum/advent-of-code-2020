@@ -5,7 +5,7 @@ import assertk.assertions.isEqualTo
 import io.github.tomplum.aoc.input.TestInputReader
 import org.junit.jupiter.api.Test
 
-class ImageArrayTest {
+class ImageBuilderTest {
     @Test
     fun example() {
         val input = TestInputReader.read<String>("train/images/example.txt")

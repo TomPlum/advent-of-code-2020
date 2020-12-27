@@ -6,7 +6,7 @@ import io.github.tomplum.libs.math.map.AdventMap2D
 import io.github.tomplum.libs.math.point.Point2D
 import kotlin.math.abs
 
-class ImageTile(val id: Int, initialData: List<String>) : AdventMap2D<ImageData>() {
+class ImageTile(val id: Int, initialData: List<String>) : AdventMap2D<ImageTileData>() {
 
     private var xMax = 0
     private var yMax = 0
@@ -18,7 +18,7 @@ class ImageTile(val id: Int, initialData: List<String>) : AdventMap2D<ImageData>
         var y = 0
         initialData.forEach { row ->
             row.forEach { chroming ->
-                addTile(Point2D(x, y), ImageData(chroming))
+                addTile(Point2D(x, y), ImageTileData(chroming))
                 x++
             }
             x = 0
@@ -29,6 +29,8 @@ class ImageTile(val id: Int, initialData: List<String>) : AdventMap2D<ImageData>
         xMin = xMin() ?: 0
         yMin = yMin() ?: 0
     }
+
+    fun getData(x: Int, y: Int): ImageTileData = getTile(Point2D(x, y))
 
     fun xFlip(): ImageTile = data.entries.fold(ImageTile(id, emptyList())) { flipped, (pos, tile) ->
         val posFlipped = Point2D(xMax - pos.x, pos.y)
@@ -64,6 +66,8 @@ class ImageTile(val id: Int, initialData: List<String>) : AdventMap2D<ImageData>
         updateMaxOrdinates()
         return this
     }
+
+    fun width(): Int = xMax
 
     private fun getEdgePoints(edge: Edge): List<Point2D> = when(edge) {
         TOP -> (xMin..xMax).map { x -> Point2D(x, yMin) }

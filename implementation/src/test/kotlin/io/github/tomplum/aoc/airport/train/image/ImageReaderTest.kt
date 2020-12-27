@@ -13,11 +13,11 @@ class ImageReaderTest {
         assertThat(imageArray).isEqualTo(getExpectedImageArray())
     }
 
-    private fun getExpectedImageArray(): ImageArray {
+    private fun getExpectedImageArray(): ImageBuilder {
         val tile1 = ImageTile(1, listOf("##.#", ".#.#", "#..#", ".##."))
         val tile2 = ImageTile(2, listOf("#.##", "#..#", "#.##", ".#.."))
         val tile3 = ImageTile(3, listOf(".##.", ".##.", "..##", "###."))
         val tile4 = ImageTile(4, listOf(".#..", ".###", "##..", "..#."))
-        return ImageArray(listOf(tile1, tile2, tile3, tile4))
+        return ImageBuilder(listOf(tile1, tile2, tile3, tile4))
     }
 }

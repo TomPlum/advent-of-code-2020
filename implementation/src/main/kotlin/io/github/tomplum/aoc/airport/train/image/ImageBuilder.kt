@@ -5,7 +5,7 @@ import io.github.tomplum.aoc.extensions.product
 import io.github.tomplum.libs.math.point.Point2D
 import kotlin.math.sqrt
 
-data class ImageArray(val tiles: List<ImageTile>) {
+data class ImageBuilder(val tiles: List<ImageTile>) {
     fun assemble(): Long {
         val width = sqrt(tiles.size.toDouble()).toInt()
 
@@ -38,9 +38,9 @@ data class ImageArray(val tiles: List<ImageTile>) {
             hasSingleBottomEdgeMatch && hasSingleRightEdgeMatch && hasNoMatchingTopEdges && hasNoMatchingLeftEdges
         }
 
-        val image = Image(width)
+        val imageTileMapping = ImageTileMapping()
         val chosenTopLeft = topLeftCornerCandidates.first()
-        image.addSection(Point2D.origin(), chosenTopLeft)
+        imageTileMapping.addSection(Point2D.origin(), chosenTopLeft)
 
         var lastTileAdded = chosenTopLeft
         var leftMostInCurrentRow = chosenTopLeft
@@ -52,7 +52,7 @@ data class ImageArray(val tiles: List<ImageTile>) {
                 val matches = allTileOrientations.filter { it.id != leftMostInCurrentRow.id }.filter { it.getEdge(TOP) == bottomEdge }
                 if (matches.size != 1) throw IllegalStateException("There are ${matches.size} for a bottom edge match for ${leftMostInCurrentRow.id}")
                 val matchedTile = matches.first()
-                image.addSection(Point2D(0, y), matchedTile)
+                imageTileMapping.addSection(Point2D(0, y), matchedTile)
                 leftMostInCurrentRow = matchedTile
                 lastTileAdded = leftMostInCurrentRow
             }
@@ -64,13 +64,14 @@ data class ImageArray(val tiles: List<ImageTile>) {
                 if (matches.size != 1) throw IllegalStateException("There are ${matches.size} for a right edge match for ${lastTileAdded.id}")
 
                 val matchedTile = matches.first()
-                image.addSection(pos, matchedTile)
+                imageTileMapping.addSection(pos, matchedTile)
                 lastTileAdded = matchedTile
             }
         }
 
-        val cornerIndices = listOf(Point2D.origin(), Point2D(0, width), Point2D(width, 0), Point2D(width, width))
-        //corners.distinctBy { it.id }.forEachIndexed { i, tile -> image.addImageTile(cornerIndices[i], tile) }
+        val trimmedImage = imageTileMapping.trimSectionsForAssembly()
+        val image = Image(trimmedImage)
+
 
         return corners.distinctBy { it.id }.map { it.id.toLong() }.product()
     }
