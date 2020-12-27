@@ -79,7 +79,7 @@ behaviour that is commonly used across multiple days and `test-support` for unit
 | 17   	| 269            | 848               | Conway Cubes                              | [Link](docs/DAY17.MD)  |
 | 18   	| 11297104473091 | 185348874183674   | Operation Order                           | [Link](docs/DAY18.MD)  |
 | 19   	| 171            | 369               | Monster Messages                          | [Link](docs/DAY19.MD)  |
-| 20   	| -              | -                 |                                           |                        |
+| 20   	| 20899048083289 | 2476              | Jurassic Jigsaw                           | [Link](docs/DAY20.MD)  |
 | 21   	| 2315           | cf,h,t,b,l,cb,cm,d| Allergen Assessment                       | [Link](docs/DAY21.MD)  |
 | 22   	| 306            | 291               | Crab Combat                               | [Link](docs/DAY22.MD)  |
 | 23   	| 58427369       | 111057672960      | Crab Cups                                 | [Link](docs/DAY23.MD)  |
