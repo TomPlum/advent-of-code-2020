@@ -1,7 +1,6 @@
 package io.github.tomplum.aoc.airport.train.image
 
 import io.github.tomplum.aoc.airport.train.image.Edge.*
-import io.github.tomplum.aoc.extensions.product
 import io.github.tomplum.libs.math.point.Point2D
 import kotlin.math.sqrt
 
@@ -69,11 +68,13 @@ data class ImageBuilder(val tiles: List<ImageTile>) {
             }
         }
 
-        val trimmedImage = imageTileMapping.trimSectionsForAssembly()
-        val image = Image(trimmedImage)
+        val trimmedImageMapping = imageTileMapping.trimSectionsForAssembly()
+        val image = Image.assembleFromMapping(trimmedImageMapping)
+        val imageOrientations = image.getOrientations()
+        imageOrientations.forEach { it.locateSeaMonsters() }
+        val correctRotation = imageOrientations.find { it.containsSeaMonsters() }
 
-
-        return corners.distinctBy { it.id }.map { it.id.toLong() }.product()
+        return correctRotation!!.getHabitatWaterRoughness().toLong()
     }
 
     private fun ImageTile.getOrientations(): List<ImageTile> {

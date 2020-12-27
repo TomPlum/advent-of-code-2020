@@ -15,7 +15,7 @@ class ImageTileMapping: AdventMap2D<ImageSection>() {
         return this
     }
 
-    fun getRows(): List<Collection<ImageSection>> = (0..yMax()!!).map { y ->
+    fun getRows(): List<Collection<ImageSection>> = (0..(yMax() ?: 0)).map { y ->
         data.filter { (pos, _) -> pos.y == y }.toSortedMap(compareBy { it.x }).values
     }
 

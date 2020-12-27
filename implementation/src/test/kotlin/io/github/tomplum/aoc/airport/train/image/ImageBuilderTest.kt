@@ -7,9 +7,10 @@ import org.junit.jupiter.api.Test
 
 class ImageBuilderTest {
     @Test
-    fun example() {
+    fun examplePartOne() {
         val input = TestInputReader.read<String>("train/images/example.txt")
         val imageArray = ImageReader.read(input.asSingleString())
         assertThat(imageArray.assemble()).isEqualTo(20899048083289)
     }
+
 }
