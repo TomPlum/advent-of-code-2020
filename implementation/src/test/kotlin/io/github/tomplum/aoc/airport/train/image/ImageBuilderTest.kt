@@ -12,8 +12,8 @@ class ImageBuilderTest {
         @Test
         fun example() {
             val input = TestInputReader.read<String>("train/images/example.txt")
-            val imageArray = ImageReader.read(input.asSingleString())
-            assertThat(imageArray.getCornerTileIDProduct()).isEqualTo(20899048083289)
+            val tiles = ImageTileReader.read(input.asSingleString())
+            assertThat(ImageBuilder(tiles).getCornerTileIDProduct()).isEqualTo(20899048083289)
         }
     }
 
@@ -22,8 +22,33 @@ class ImageBuilderTest {
         @Test
         fun examplePartOne() {
             val input = TestInputReader.read<String>("train/images/example.txt")
-            val imageArray = ImageReader.read(input.asSingleString())
-            assertThat(imageArray.assemble()).isEqualTo(20899048083289)
+            val tiles = ImageTileReader.read(input.asSingleString())
+            assertThat(ImageBuilder(tiles).assemble().toString()).isEqualTo(
+                ". # # # # . . . # # # # # . . # . . . # # # . .\n" +
+                "# # # # # . . # . . # . # . # # # # . . # . # .\n" +
+                ". # . # . . . # . # # # . . . # . # # . O # . .\n" +
+                "# . O . # # . O O # . # . O O . # # . O O O # #\n" +
+                ". . # O . # O # . O # # O . . O . # O # # . # #\n" +
+                ". . . # . # . . # # . # # . . . # . . # . . # #\n" +
+                "# . # # . # . . # . # . . # . . # # . # . # . .\n" +
+                ". # # # . # # . . . . . # . . . # # # . # . . .\n" +
+                "# . # # # # . # . # . . . . # # . # . . # . # .\n" +
+                "# # . . . # . . # . . . . # . . # . . . # # # #\n" +
+                ". . # . # # . . . # # # . . # . # # # # # . . #\n" +
+                ". . . . # . # # . # . # # # # # . . . . # . . .\n" +
+                ". . # # . # # . # # # . . . . . # . # # . . # .\n" +
+                "# . . . # . . . # # # . . # # # # . . . . # # .\n" +
+                ". # . # # . . . # . # # . # . # . # # # . . . #\n" +
+                "# . # # # . # . . # # # # . . . # # . . # . . .\n" +
+                "# . # # # . . . # . # # . . . # . # # O # # # .\n" +
+                ". O # # . # O O . # # # O O # # . . O O O # # .\n" +
+                ". . O # . O . . O . . O . # O # # O # # . # # #\n" +
+                "# . # . . # # . # # # # # # # # . . # . . # # .\n" +
+                "# . # # # # # . . # . # . . . # # . . # . . . .\n" +
+                "# . . . . # # . . # . # # # # # # # # # . . # #\n" +
+                "# . . . # . . . . . # . . # # . . . # # # . # #\n" +
+                "# . . # # # . . . . # # . # . . . # # . # # . #\n"
+            )
         }
     }
 
