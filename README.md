@@ -84,4 +84,4 @@ behaviour that is commonly used across multiple days and `test-support` for unit
 | 22   	| 306            | 291               | Crab Combat                               | [Link](docs/DAY22.MD)  |
 | 23   	| 58427369       | 111057672960      | Crab Cups                                 | [Link](docs/DAY23.MD)  |
 | 24   	| 326            | 3979              | Lobby Layout                              | [Link](docs/DAY24.MD)  |
-| 25   	| -              | -                 |                                           |                        |
+| 25   	| 19774660       | 49 Stars          | Combo Breaker                             | [Link](docs/DAY25.MD)  |
