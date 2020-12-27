@@ -5,10 +5,14 @@ import io.github.tomplum.aoc.airport.train.image.ImageReader
 import io.github.tomplum.libs.input.Day
 import io.github.tomplum.libs.input.InputReader
 
-class Day20 : Solution<Long, Long> {
+class Day20 : Solution<Long, Int> {
     private val input = InputReader.read<String>(Day(20)).asSingleString()
 
     override fun part1(): Long {
         return ImageReader.read(input).assemble()
+    }
+
+    override fun part2(): Int? {
+        return ImageReader.read(input).assemble().toInt()
     }
 }
