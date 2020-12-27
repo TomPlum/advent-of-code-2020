@@ -28,9 +28,7 @@ class Image: AdventMap2D<ImageTileData>() {
                 }
             }
 
-            image.locateSeaMonsters()
-
-            return image
+            return image.locateSeaMonsters()
         }
     }
 
@@ -44,12 +42,12 @@ class Image: AdventMap2D<ImageTileData>() {
             )
         }
 
-        return (flipped + rotated).distinct()
+        return (flipped + rotated).distinct().map { image -> image.locateSeaMonsters() }
     }
 
     fun getHabitatWaterRoughness(): Int = filterTiles { tile -> tile.isWave() }.count()
 
-    fun locateSeaMonsters() {
+    fun locateSeaMonsters(): Image {
         (1 until yMax()!!).forEach { y ->
             (0..xMax()!! - 19).forEach { x ->
                 val position = Point2D(x, y)
@@ -62,6 +60,7 @@ class Image: AdventMap2D<ImageTileData>() {
                 }
             }
         }
+        return this
     }
 
     fun containsSeaMonsters(): Boolean = filterTiles { it.isSeaMonster() }.count() > 0

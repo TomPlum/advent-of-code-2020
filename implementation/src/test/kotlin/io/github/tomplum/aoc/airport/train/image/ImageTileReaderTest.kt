@@ -15,10 +15,10 @@ class ImageTileReaderTest {
     }
 
     private fun getExpectedImageTiles(): List<ImageTile> {
-        val tile1 = ImageTile(1, listOf("##.#", ".#.#", "#..#", ".##."))
-        val tile2 = ImageTile(2, listOf("#.##", "#..#", "#.##", ".#.."))
-        val tile3 = ImageTile(3, listOf(".##.", ".##.", "..##", "###."))
-        val tile4 = ImageTile(4, listOf(".#..", ".###", "##..", "..#."))
+        val tile1 = ImageTile.fromData(1, listOf("##.#", ".#.#", "#..#", ".##."))
+        val tile2 = ImageTile.fromData(2, listOf("#.##", "#..#", "#.##", ".#.."))
+        val tile3 = ImageTile.fromData(3, listOf(".##.", ".##.", "..##", "###."))
+        val tile4 = ImageTile.fromData(4, listOf(".#..", ".###", "##..", "..#."))
         return listOf(tile1, tile2, tile3, tile4)
     }
 }

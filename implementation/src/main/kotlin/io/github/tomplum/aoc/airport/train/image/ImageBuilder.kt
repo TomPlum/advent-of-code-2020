@@ -1,6 +1,5 @@
 package io.github.tomplum.aoc.airport.train.image
 
-import io.github.tomplum.aoc.airport.train.image.Edge.*
 import io.github.tomplum.aoc.extensions.product
 import io.github.tomplum.libs.math.point.Point2D
 import kotlin.math.sqrt
@@ -28,10 +27,9 @@ class ImageBuilder(private val tiles: List<ImageTile>) {
         (0 until width).forEach { y ->
             //Find the left-most tile on the next row.
             if (y != 0) {
-                val bottomEdge = leftMostInCurrentRow.getEdge(BOTTOM)
                 val matches = tileOrientations
                     .filter { tile -> tile.id != leftMostInCurrentRow.id }
-                    .filter { tile -> tile.getEdge(TOP) == bottomEdge }
+                    .filter { tile -> tile.topEdge == leftMostInCurrentRow.bottomEdge }
                 val matchedTile = matches.first()
                 imageTileMapping.addSection(Point2D(0, y), matchedTile)
                 leftMostInCurrentRow = matchedTile
@@ -40,10 +38,10 @@ class ImageBuilder(private val tiles: List<ImageTile>) {
 
             //Find and match all the tiles to the right of the left-most tile to form the row.
             (1 until width).forEach { x ->
-                val lastTilesRight = lastTileAdded.getEdge(RIGHT)
+                val lastTilesRight = lastTileAdded.rightEdge
                 val matches = tileOrientations
                     .filter { tile -> tile.id != lastTileAdded.id }
-                    .filter { tile -> tile.getEdge(LEFT) == lastTilesRight }
+                    .filter { tile -> tile.leftEdge == lastTilesRight }
 
                 val matchedTile = matches.first()
                 imageTileMapping.addSection(Point2D(x, y), matchedTile)
@@ -55,13 +53,13 @@ class ImageBuilder(private val tiles: List<ImageTile>) {
 
         val image = Image.assembleFromMapping(trimmedImageMapping)
         val imageOrientations = image.getOrientations()
-        return imageOrientations.find { it.containsSeaMonsters() }!!
+        return imageOrientations.find { candidate -> candidate.containsSeaMonsters() }!!
     }
 
     private fun getCornerCandidates(orientations: List<ImageTile>): List<ImageTile> = orientations.filter { tile ->
-        val otherTiles = orientations.filter { it.id != tile.id }
-        val hasNoMatchingTopEdges = otherTiles.count { it.getEdge(TOP) == tile.getEdge(TOP) } == 0
-        val hasNoMatchingLeftEdges = otherTiles.count { it.getEdge(LEFT) == tile.getEdge(LEFT) } == 0
+        val otherTiles = orientations.filter { orientation -> orientation.id != tile.id }
+        val hasNoMatchingTopEdges = otherTiles.count { other -> other.topEdge == tile.topEdge } == 0
+        val hasNoMatchingLeftEdges = otherTiles.count { other -> other.leftEdge == tile.leftEdge } == 0
         hasNoMatchingTopEdges && hasNoMatchingLeftEdges
     }
 
