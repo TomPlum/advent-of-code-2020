@@ -26,46 +26,43 @@ class ImageBuilder(private val tiles: List<ImageTile>) {
 
         val width = sqrt(tiles.size.toDouble()).toInt()
         (0 until width).forEach { y ->
+            //Find the left-most tile on the next row.
             if (y != 0) {
                 val bottomEdge = leftMostInCurrentRow.getEdge(BOTTOM)
-                val matches = tileOrientations.filter { it.id != leftMostInCurrentRow.id }.filter { it.getEdge(TOP) == bottomEdge }
+                val matches = tileOrientations
+                    .filter { tile -> tile.id != leftMostInCurrentRow.id }
+                    .filter { tile -> tile.getEdge(TOP) == bottomEdge }
                 val matchedTile = matches.first()
                 imageTileMapping.addSection(Point2D(0, y), matchedTile)
                 leftMostInCurrentRow = matchedTile
                 lastTileAdded = leftMostInCurrentRow
             }
 
+            //Find and match all the tiles to the right of the left-most tile to form the row.
             (1 until width).forEach { x ->
-                val pos = Point2D(x, y)
                 val lastTilesRight = lastTileAdded.getEdge(RIGHT)
-                val matches = tileOrientations.filter { it.id != lastTileAdded.id }.filter { it.getEdge(LEFT) == lastTilesRight }
+                val matches = tileOrientations
+                    .filter { tile -> tile.id != lastTileAdded.id }
+                    .filter { tile -> tile.getEdge(LEFT) == lastTilesRight }
 
                 val matchedTile = matches.first()
-                imageTileMapping.addSection(pos, matchedTile)
+                imageTileMapping.addSection(Point2D(x, y), matchedTile)
                 lastTileAdded = matchedTile
             }
         }
 
         val trimmedImageMapping = imageTileMapping.trimSectionsForAssembly()
+
         val image = Image.assembleFromMapping(trimmedImageMapping)
         val imageOrientations = image.getOrientations()
-        imageOrientations.forEach { it.locateSeaMonsters() }
-        val correctRotation = imageOrientations.find { it.containsSeaMonsters() }
-
-        return correctRotation!!
+        return imageOrientations.find { it.containsSeaMonsters() }!!
     }
 
     private fun getCornerCandidates(orientations: List<ImageTile>): List<ImageTile> = orientations.filter { tile ->
-        val rightEdge = tile.getEdge(RIGHT)
-        val bottomEdge = tile.getEdge(BOTTOM)
-        val topEdge = tile.getEdge(TOP)
-        val leftEdge = tile.getEdge(LEFT)
         val otherTiles = orientations.filter { it.id != tile.id }
-        val hasSingleRightEdgeMatch = otherTiles.count { it.getEdge(LEFT) == rightEdge } == 1
-        val hasSingleBottomEdgeMatch = otherTiles.count { it.getEdge(TOP) == bottomEdge } == 1
-        val hasNoMatchingTopEdges = otherTiles.count { it.getEdge(TOP) == topEdge } == 0
-        val hasNoMatchingLeftEdges = otherTiles.count { it.getEdge(LEFT) == leftEdge } == 0
-        hasSingleBottomEdgeMatch && hasSingleRightEdgeMatch && hasNoMatchingTopEdges && hasNoMatchingLeftEdges
+        val hasNoMatchingTopEdges = otherTiles.count { it.getEdge(TOP) == tile.getEdge(TOP) } == 0
+        val hasNoMatchingLeftEdges = otherTiles.count { it.getEdge(LEFT) == tile.getEdge(LEFT) } == 0
+        hasNoMatchingTopEdges && hasNoMatchingLeftEdges
     }
 
 }

@@ -28,6 +28,8 @@ class Image: AdventMap2D<ImageTileData>() {
                 }
             }
 
+            image.locateSeaMonsters()
+
             return image
         }
     }
