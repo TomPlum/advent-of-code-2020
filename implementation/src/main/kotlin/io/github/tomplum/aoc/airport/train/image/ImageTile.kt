@@ -2,8 +2,8 @@ package io.github.tomplum.aoc.airport.train.image
 
 import io.github.tomplum.aoc.airport.train.image.Edge.*
 import io.github.tomplum.libs.math.Direction
-import io.github.tomplum.libs.math.Point2D
 import io.github.tomplum.libs.math.map.AdventMap2D
+import io.github.tomplum.libs.math.point.Point2D
 import kotlin.math.abs
 
 class ImageTile(val id: Int, initialData: List<String>) : AdventMap2D<ImageData>() {
@@ -30,18 +30,18 @@ class ImageTile(val id: Int, initialData: List<String>) : AdventMap2D<ImageData>
         yMin = yMin() ?: 0
     }
 
-    fun xFlip(): ImageTile = snapshot().entries.fold(ImageTile(id, emptyList())) { flipped, (pos, tile) ->
+    fun xFlip(): ImageTile = data.entries.fold(ImageTile(id, emptyList())) { flipped, (pos, tile) ->
         val posFlipped = Point2D(xMax - pos.x, pos.y)
         flipped.apply { addTile(posFlipped, tile) }
     }.updateMaxOrdinates()
 
 
-    fun yFlip(): ImageTile = snapshot().entries.fold(ImageTile(id, emptyList())) { flipped, (pos, tile) ->
+    fun yFlip(): ImageTile = data.entries.fold(ImageTile(id, emptyList())) { flipped, (pos, tile) ->
         val posFlipped = Point2D(pos.x, yMax - pos.y)
         flipped.apply { addTile(posFlipped, tile) }
     }.updateMaxOrdinates()
 
-    fun rotateClockwise(degrees: Int): ImageTile = snapshot()
+    fun rotateClockwise(degrees: Int): ImageTile = data
         .entries.fold(ImageTile(id, emptyList())) { rotated, (pos, tile) ->
             val yInverted = Point2D(pos.x, -pos.y) //Convert regular cartesian -> single quadrant (y is down)
             val posRotated = yInverted.rotateAbout(Point2D.origin(), degrees) //Rotate about origin
@@ -50,15 +50,26 @@ class ImageTile(val id: Int, initialData: List<String>) : AdventMap2D<ImageData>
             rotated.apply { addTile(yCorrected, tile) }
         }.updateMaxOrdinates()
 
-    fun getEdge(edge: Edge): Long = when(edge) {
+    fun getEdge(edge: Edge): Long = getEdgePoints(edge).let { edgePoints ->
+        val edgeTiles = filterPoints(edgePoints.toSet())
+        val sorted = edgeTiles.toSortedMap(compareBy<Point2D> { it.x }.thenBy { it.y })
+        sorted.values.map { it.toBinary() }.joinToString("").toLong(2)
+    }
+
+    fun removeEdges(): ImageTile {
+        Edge.values().flatMap { edge -> getEdgePoints(edge) }.forEach { pos -> removeTile(pos) }
+        val pixels = data.toMap()
+        reset()
+        pixels.forEach { (pos, tile) -> addTile(pos.shift(Direction.LEFT).shift(Direction.DOWN), tile) }
+        updateMaxOrdinates()
+        return this
+    }
+
+    private fun getEdgePoints(edge: Edge): List<Point2D> = when(edge) {
         TOP -> (xMin..xMax).map { x -> Point2D(x, yMin) }
         RIGHT -> (yMin..yMax).map { y -> Point2D(xMax, y) }
         BOTTOM -> (xMin..xMax).map { x -> Point2D(x, yMax) }
         LEFT -> (yMin..yMax).map { y -> Point2D(xMin, y) }
-    }.let { edgePoints ->
-        val edgeTiles = filterPoints(edgePoints)
-        val sorted = edgeTiles.toSortedMap(compareBy<Point2D> { it.x }.thenBy { it.y })
-        sorted.values.map { it.toBinary() }.joinToString("").toLong(2)
     }
 
     private fun updateMaxOrdinates(): ImageTile {

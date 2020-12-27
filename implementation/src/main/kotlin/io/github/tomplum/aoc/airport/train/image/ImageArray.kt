@@ -1,7 +1,7 @@
 package io.github.tomplum.aoc.airport.train.image
 
 import io.github.tomplum.aoc.extensions.product
-import io.github.tomplum.libs.math.Point2D
+import io.github.tomplum.libs.math.point.Point2D
 import kotlin.math.sqrt
 
 data class ImageArray(val tiles: List<ImageTile>) {
@@ -24,7 +24,7 @@ data class ImageArray(val tiles: List<ImageTile>) {
         val image = Image(width)
 
         val cornerIndices = listOf(Point2D.origin(), Point2D(0, width), Point2D(width, 0), Point2D(width, width))
-        corners.distinctBy { it.id }.forEachIndexed { i, tile -> image.addImageTile(cornerIndices[i], tile) }
+        //corners.distinctBy { it.id }.forEachIndexed { i, tile -> image.addImageTile(cornerIndices[i], tile) }
 
         return corners.distinctBy { it.id }.map { it.id.toLong() }.product()
     }

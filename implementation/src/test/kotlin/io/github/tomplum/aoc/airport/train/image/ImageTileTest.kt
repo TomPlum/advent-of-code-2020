@@ -1,7 +1,6 @@
 package io.github.tomplum.aoc.airport.train.image
 
 import assertk.assertThat
-import assertk.assertions.containsOnly
 import assertk.assertions.isEqualTo
 import assertk.assertions.isNotEqualTo
 import org.junit.jupiter.api.Nested
@@ -174,6 +173,37 @@ class ImageTileTest {
             val tile1 = ImageTile(1, listOf("##.#", ".#.#", "#..#", ".##."))
             val tile2 = ImageTile(2, listOf(".#.#", ".#..", "#...", ".#.."))
             assertThat(tile1).isNotEqualTo(tile2)
+        }
+    }
+
+    @Nested
+    inner class RemoveEdges {
+        @Test
+        fun exampleTile1() {
+            val tile1 = ImageTile(1, listOf("##.#", ".#.#", "#..#", ".##."))
+            val trimmed = tile1.removeEdges()
+            assertThat(trimmed).isEqualTo(ImageTile(1, listOf("#.", "..")))
+        }
+
+        @Test
+        fun exampleTile2() {
+            val tile2 = ImageTile(2, listOf("#.##", "#..#", "#.##", ".#.."))
+            val trimmed = tile2.removeEdges()
+            assertThat(trimmed).isEqualTo(ImageTile(2, listOf("..", ".#")))
+        }
+
+        @Test
+        fun exampleTile3() {
+            val tile3 = ImageTile(3, listOf(".##.", ".##.", "..##", "###."))
+            val trimmed = tile3.removeEdges()
+            assertThat(trimmed).isEqualTo(ImageTile(3, listOf("##", ".#")))
+        }
+
+        @Test
+        fun exampleTile4() {
+            val tile4 = ImageTile(4, listOf(".#..", ".###", "##..", "..#."))
+            val trimmed = tile4.removeEdges()
+            assertThat(trimmed).isEqualTo(ImageTile(4, listOf("##", "#.")))
         }
     }
 
