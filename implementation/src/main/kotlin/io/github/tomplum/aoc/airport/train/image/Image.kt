@@ -18,7 +18,7 @@ class Image(var width: Int = 0) : AdventMap2D<ImageTileData>() {
                 (0..sectionWidth).forEach { sectionY ->
                     row.forEach { section ->
                         (0..sectionWidth).forEach { sectionX ->
-                            val tileData = section.tile.getData(sectionX, sectionY)
+                            val tileData = section.getData(Point2D(sectionX, sectionY))
                             image.addTile(Point2D(x, y), tileData)
                             x++
                         }
@@ -34,13 +34,13 @@ class Image(var width: Int = 0) : AdventMap2D<ImageTileData>() {
     }
 
     fun getOrientations(): List<Image> {
-        val flipped = listOf(xFlip(), yFlip(), xFlip().yFlip())
+        val xFlipped = xFlip()
+        val flipped = listOf(xFlipped, yFlip(), xFlipped.yFlip())
         val rotated = flipped.flatMap { image ->
-            listOf(
-                image.rotateClockwise(90), //90
-                image.rotateClockwise(90).rotateClockwise(90), //180
-                image.rotateClockwise(90).rotateClockwise(90).rotateClockwise(90), //270
-            )
+            val ninety = image.rotateClockwise(90)
+            val oneHundredEighty = ninety.rotateClockwise(90)
+            val twoHundredSeventy = oneHundredEighty.rotateClockwise(90)
+            listOf(ninety, oneHundredEighty, twoHundredSeventy)
         }
 
         return (flipped + rotated).distinct().map { image -> image.locateSeaMonsters() }
@@ -48,7 +48,9 @@ class Image(var width: Int = 0) : AdventMap2D<ImageTileData>() {
 
     fun getWaterRoughness(): Int = filterTiles { tile -> tile.isWave() }.count()
 
-    fun locateSeaMonsters(): Image {
+    fun containsSeaMonsters(): Boolean = data.values.any { tile -> tile.isSeaMonster() }
+
+    private fun locateSeaMonsters(): Image {
         (1 until width).forEach { y ->
             (0..width - 19).forEach { x ->
                 val position = Point2D(x, y)
@@ -61,8 +63,6 @@ class Image(var width: Int = 0) : AdventMap2D<ImageTileData>() {
         }
         return this
     }
-
-    fun containsSeaMonsters(): Boolean = filterTiles { it.isSeaMonster() }.count() > 0
 
     private fun xFlip(): Image = data.entries.fold(Image(width)) { flipped, (pos, tile) ->
         val posFlipped = Point2D(width - pos.x, pos.y)

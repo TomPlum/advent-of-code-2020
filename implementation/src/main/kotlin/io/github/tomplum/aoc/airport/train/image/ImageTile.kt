@@ -32,16 +32,16 @@ class ImageTile(val id: Int, var width: Int = 0): AdventMap2D<ImageTileData>() {
         }
     }
 
-    fun getData(x: Int, y: Int): ImageTileData = getTile(Point2D(x, y))
+    fun getData(position: Point2D): ImageTileData = getTile(position)
 
     fun getOrientations(): List<ImageTile> {
-        val flipped = listOf(xFlip(), yFlip(), xFlip().yFlip())
+        val xFlipped = xFlip()
+        val flipped = listOf(xFlipped, yFlip(), xFlipped.yFlip())
         val rotated = flipped.flatMap { tile ->
-            listOf(
-                tile.rotateClockwise(90), //90
-                tile.rotateClockwise(90).rotateClockwise(90), //180
-                tile.rotateClockwise(90).rotateClockwise(90).rotateClockwise(90), //270
-            )
+            val ninety = tile.rotateClockwise(90)
+            val oneHundredEighty = ninety.rotateClockwise(90)
+            val twoHundredSeventy = oneHundredEighty.rotateClockwise(90)
+            listOf(ninety, oneHundredEighty, twoHundredSeventy)
         }
 
         return (flipped + rotated).distinct()

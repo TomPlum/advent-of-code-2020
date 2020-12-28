@@ -20,7 +20,7 @@ class ImageBuilderTest {
     @Nested
     inner class Assemble {
         @Test
-        fun examplePartOne() {
+        fun example() {
             val input = TestInputReader.read<String>("train/images/example.txt")
             val tiles = ImageTileReader.read(input.asSingleString())
             assertThat(ImageBuilder(tiles).assemble().toString()).isEqualTo(
