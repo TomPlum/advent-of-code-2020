@@ -74,28 +74,28 @@ class ImageTileTest {
         @Test
         fun exampleTile1() {
             val tile1 = ImageTile.fromData(1, listOf("##.#", ".#.#", "#..#", ".##."))
-            val flipped = tile1.rotateClockwise(90)
+            val flipped = tile1.rotateClockwise90()
             assertThat(flipped).isEqualTo(ImageTile.fromData(1, listOf(".#.#", "#.##", "#...", ".###")))
         }
 
         @Test
         fun exampleTile2() {
             val tile2 = ImageTile.fromData(2, listOf("#.##", "#..#", "#.##", ".#.."))
-            val flipped = tile2.rotateClockwise(90)
+            val flipped = tile2.rotateClockwise90()
             assertThat(flipped).isEqualTo(ImageTile.fromData(2, listOf(".###", "#...", ".#.#", ".###")))
         }
 
         @Test
         fun exampleTile3() {
             val tile3 = ImageTile.fromData(3, listOf(".##.", ".##.", "..##", "###."))
-            val flipped = tile3.rotateClockwise(90)
+            val flipped = tile3.rotateClockwise90()
             assertThat(flipped).isEqualTo(ImageTile.fromData(3, listOf("#...", "#.##", "####", ".#..")))
         }
 
         @Test
         fun exampleTile4() {
             val tile4 = ImageTile.fromData(4, listOf(".#..", ".###", "##..", "..#."))
-            val flipped = tile4.rotateClockwise(90)
+            val flipped = tile4.rotateClockwise90()
             assertThat(flipped).isEqualTo(ImageTile.fromData(4, listOf(".#..", ".###", "#.#.", "..#.")))
         }
     }
