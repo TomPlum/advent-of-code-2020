@@ -5,6 +5,7 @@
 ![GitHub](https://img.shields.io/github/license/TomPlum/advent-of-code-2020?color=informational)
 ![GitHub](https://img.shields.io/badge/instructions-99%25-success)
 ![GitHub](https://img.shields.io/badge/branches-93%25-orange)
+![GitHub](https://img.shields.io/badge/stars-50%2F50-yellow)
 
 ## What is Advent of Code?
 
