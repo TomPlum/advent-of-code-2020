@@ -2,7 +2,7 @@ package io.github.tomplum.aoc.airport.train.image
 
 import io.github.tomplum.libs.math.map.MapTile
 
-data class ImageTileData(val chroming: Char): MapTile<Char>(chroming) {
+data class ImageTileData(private val chroming: Char): MapTile<Char>(chroming) {
 
     fun isWave(): Boolean = chroming == '#'
 

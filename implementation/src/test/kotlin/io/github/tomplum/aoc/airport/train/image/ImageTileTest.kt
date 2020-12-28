@@ -174,6 +174,13 @@ class ImageTileTest {
             val tile2 = ImageTile.fromData(2, listOf(".#.#", ".#..", "#...", ".#.."))
             assertThat(tile1).isNotEqualTo(tile2)
         }
+
+        @Test
+        fun differentType() {
+            val tile = ImageTile.fromData(1, listOf("##.#", ".#.#", "#..#", ".##."))
+            val section = ImageSection(tile)
+            assertThat(tile).isNotEqualTo(section)
+        }
     }
 
     @Nested

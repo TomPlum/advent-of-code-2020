@@ -6,12 +6,13 @@ import io.github.tomplum.libs.math.map.AdventMap2D
 import io.github.tomplum.libs.math.point.Point2D
 import kotlin.math.abs
 
-class ImageTile(val id: Int, var width: Int = 0): AdventMap2D<ImageTileData>() {
+class ImageTile(val id: Int, _width: Int): AdventMap2D<ImageTileData>() {
 
-    var topEdge: Int = 0
-    var leftEdge: Int = 0
-    var rightEdge: Int = 0
-    var bottomEdge: Int = 0
+    var width: Int = _width; private set
+    var topEdge: Int = 0; private set
+    var leftEdge: Int = 0; private set
+    var rightEdge: Int = 0; private set
+    var bottomEdge: Int = 0; private set
 
     companion object {
         fun fromData(id: Int, data: List<String>): ImageTile {

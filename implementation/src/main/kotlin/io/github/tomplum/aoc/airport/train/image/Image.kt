@@ -5,7 +5,7 @@ import io.github.tomplum.libs.math.map.AdventMap2D
 import io.github.tomplum.libs.math.point.Point2D
 import kotlin.math.abs
 
-class Image(var width: Int = 0) : AdventMap2D<ImageTileData>() {
+class Image(private var width: Int = 0) : AdventMap2D<ImageTileData>() {
 
     companion object {
         fun assembleFromMapping(mapping: ImageTileMapping): Image {
