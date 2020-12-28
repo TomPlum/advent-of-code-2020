@@ -53,11 +53,9 @@ class Image(var width: Int = 0) : AdventMap2D<ImageTileData>() {
             (0..width - 19).forEach { x ->
                 val position = Point2D(x, y)
                 val positions = position.getSeaMonsterPositionCandidates()
-                val isMatch = filterPoints(positions).values.all { tile -> tile.isWave() }
+                val isMatch = positions.map { pos -> data[pos] }.all { tile -> tile?.isWave() ?: false }
                 if (isMatch) {
-                    positions.forEach { pos ->
-                        addTile(pos, ImageTileData('O'))
-                    }
+                    positions.forEach { pos -> addTile(pos, ImageTileData('O')) }
                 }
             }
         }
@@ -85,7 +83,7 @@ class Image(var width: Int = 0) : AdventMap2D<ImageTileData>() {
         rotated.apply { addTile(yCorrected, tile) }
     }
 
-    private fun Point2D.getSeaMonsterPositionCandidates(): Set<Point2D> {
+    private fun Point2D.getSeaMonsterPositionCandidates(): List<Point2D> {
         val first = this
         val second = first.shift(UP, 1).shift(RIGHT, 1)
         val third = second.shift(RIGHT, 3)
@@ -101,7 +99,7 @@ class Image(var width: Int = 0) : AdventMap2D<ImageTileData>() {
         val thirteenth = twelfth.shift(DOWN, 1).shift(RIGHT, 1)
         val fourteenth = thirteenth.shift(UP, 1)
         val fifteenth = fourteenth.shift(RIGHT, 1)
-        return setOf(
+        return listOf(
             first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, tenth,
             eleventh, twelfth, thirteenth, fourteenth, fifteenth
         )
