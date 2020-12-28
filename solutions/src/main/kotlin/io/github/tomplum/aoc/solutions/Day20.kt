@@ -16,6 +16,6 @@ class Day20 : Solution<Long, Int> {
     }
 
     override fun part2(): Int {
-        return builder.assemble().getHabitatWaterRoughness()
+        return builder.assemble().getWaterRoughness()
     }
 }

@@ -6,21 +6,16 @@ import io.github.tomplum.libs.math.map.AdventMap2D
 import io.github.tomplum.libs.math.point.Point2D
 import kotlin.math.abs
 
-class ImageTile(val id: Int) : AdventMap2D<ImageTileData>() {
+class ImageTile(val id: Int, var width: Int = 0): AdventMap2D<ImageTileData>() {
 
     var topEdge: Int = 0
     var leftEdge: Int = 0
     var rightEdge: Int = 0
     var bottomEdge: Int = 0
 
-    private var xMax = 0
-    private var yMax = 0
-    private var xMin = 0
-    private var yMin = 0
-
     companion object {
         fun fromData(id: Int, data: List<String>): ImageTile {
-            val tile = ImageTile(id)
+            val tile = ImageTile(id, data.size - 1)
 
             var x = 0
             var y = 0
@@ -33,8 +28,7 @@ class ImageTile(val id: Int) : AdventMap2D<ImageTileData>() {
                 y++
             }
 
-            tile.updateMaxOrdinates()
-            return tile
+            return tile.updateEdges()
         }
     }
 
@@ -42,41 +36,41 @@ class ImageTile(val id: Int) : AdventMap2D<ImageTileData>() {
 
     fun getOrientations(): List<ImageTile> {
         val flipped = listOf(xFlip(), yFlip(), xFlip().yFlip())
-        val rotated = flipped.flatMap {
+        val rotated = flipped.flatMap { tile ->
             listOf(
-                it.rotateClockwise(90), //90
-                it.rotateClockwise(90).rotateClockwise(90), //180
-                it.rotateClockwise(90).rotateClockwise(90).rotateClockwise(90), //270
+                tile.rotateClockwise(90), //90
+                tile.rotateClockwise(90).rotateClockwise(90), //180
+                tile.rotateClockwise(90).rotateClockwise(90).rotateClockwise(90), //270
             )
         }
 
         return (flipped + rotated).distinct()
     }
 
-    fun xFlip(): ImageTile = data.entries.fold(ImageTile(id)) { flipped, (pos, tile) ->
-        val posFlipped = Point2D(xMax - pos.x, pos.y)
+    fun xFlip(): ImageTile = data.entries.fold(ImageTile(id, width)) { flipped, (pos, tile) ->
+        val posFlipped = Point2D(width - pos.x, pos.y)
         flipped.apply { addTile(posFlipped, tile) }
-    }.updateMaxOrdinates()
+    }.updateEdges()
 
 
-    fun yFlip(): ImageTile = data.entries.fold(ImageTile(id)) { flipped, (pos, tile) ->
-        val posFlipped = Point2D(pos.x, yMax - pos.y)
+    fun yFlip(): ImageTile = data.entries.fold(ImageTile(id, width)) { flipped, (pos, tile) ->
+        val posFlipped = Point2D(pos.x, width - pos.y)
         flipped.apply { addTile(posFlipped, tile) }
-    }.updateMaxOrdinates()
+    }.updateEdges()
 
     fun rotateClockwise(degrees: Int): ImageTile = data
-        .entries.fold(ImageTile(id)) { rotated, (pos, tile) ->
+        .entries.fold(ImageTile(id, width)) { rotated, (pos, tile) ->
             val yInverted = Point2D(pos.x, -pos.y) //Convert regular cartesian -> single quadrant (y is down)
             val posRotated = yInverted.rotateAbout(Point2D.origin(), degrees) //Rotate about origin
-            val posShifted = posRotated.shift(Direction.RIGHT, xMax) //Shift back into our quadrant
+            val posShifted = posRotated.shift(Direction.RIGHT, width) //Shift back into our quadrant
             val yCorrected = Point2D(posShifted.x, abs(posShifted.y)) //Flip y back to our quadrant
             rotated.apply { addTile(yCorrected, tile) }
-        }.updateMaxOrdinates()
+        }.updateEdges()
 
     private fun getEdge(edge: Edge): Int = getEdgePoints(edge).let { edgePoints ->
         val edgeTiles = filterPoints(edgePoints.toSet())
-        val sorted = edgeTiles.toSortedMap(compareBy<Point2D> { it.x }.thenBy { it.y })
-        sorted.values.map { it.toBinary() }.joinToString("").toInt(2)
+        val sorted = edgeTiles.toSortedMap(compareBy<Point2D> { pos -> pos.x }.thenBy { pos -> pos.y })
+        sorted.values.map { tile -> tile.toBinary() }.joinToString("").toInt(2)
     }
 
     fun removeEdges(): ImageTile {
@@ -84,25 +78,19 @@ class ImageTile(val id: Int) : AdventMap2D<ImageTileData>() {
         val pixels = data.toMap()
         reset()
         pixels.forEach { (pos, tile) -> addTile(pos.shift(Direction.LEFT).shift(Direction.DOWN), tile) }
-        updateMaxOrdinates()
+        width -= 2
+        updateEdges()
         return this
     }
 
-    fun width(): Int = xMax
-
     private fun getEdgePoints(edge: Edge): List<Point2D> = when(edge) {
-        TOP -> (xMin..xMax).map { x -> Point2D(x, yMin) }
-        RIGHT -> (yMin..yMax).map { y -> Point2D(xMax, y) }
-        BOTTOM -> (xMin..xMax).map { x -> Point2D(x, yMax) }
-        LEFT -> (yMin..yMax).map { y -> Point2D(xMin, y) }
+        TOP -> (0..width).map { x -> Point2D(x, 0) }
+        RIGHT -> (0..width).map { y -> Point2D(width, y) }
+        BOTTOM -> (0..width).map { x -> Point2D(x, width) }
+        LEFT -> (0..width).map { y -> Point2D(0, y) }
     }
 
-    private fun updateMaxOrdinates(): ImageTile {
-        xMax = xMax() ?: 0
-        yMax = yMax() ?: 0
-        xMin = xMin() ?: 0
-        yMin = yMin() ?: 0
-
+    private fun updateEdges(): ImageTile {
         topEdge = getEdge(TOP)
         leftEdge = getEdge(LEFT)
         rightEdge = getEdge(RIGHT)

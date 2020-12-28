@@ -16,9 +16,9 @@ class ImageTileMapping: AdventMap2D<ImageSection>() {
     }
 
     fun getRows(): List<Collection<ImageSection>> = (0..(yMax() ?: 0)).map { y ->
-        data.filter { (pos, _) -> pos.y == y }.toSortedMap(compareBy { it.x }).values
+        data.filter { (pos, _) -> pos.y == y }.toSortedMap(compareBy { pos -> pos.x }).values
     }
 
-    fun getSectionWidth(): Int = getTile(Point2D.origin()).tile.width()
+    fun getSectionWidth(): Int = getTile(Point2D.origin()).tile.width
 
 }

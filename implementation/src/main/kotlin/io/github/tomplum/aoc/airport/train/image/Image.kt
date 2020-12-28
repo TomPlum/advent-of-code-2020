@@ -46,7 +46,7 @@ class Image(var width: Int = 0) : AdventMap2D<ImageTileData>() {
         return (flipped + rotated).distinct().map { image -> image.locateSeaMonsters() }
     }
 
-    fun getHabitatWaterRoughness(): Int = filterTiles { tile -> tile.isWave() }.count()
+    fun getWaterRoughness(): Int = filterTiles { tile -> tile.isWave() }.count()
 
     fun locateSeaMonsters(): Image {
         (1 until width).forEach { y ->

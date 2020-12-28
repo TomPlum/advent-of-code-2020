@@ -36,10 +36,10 @@ class ImageBuilder(private val tiles: List<ImageTile>) {
         (0 until width).forEach { y ->
             //Find the left-most tile on the next row (except for the first row as we add the first corner above)
             if (y != 0) {
-                val matches = tileOrientations
+                val matchedTile = tileOrientations
                     .filter { tile -> tile.id != leftMostInCurrentRow.id }
-                    .filter { tile -> tile.topEdge == leftMostInCurrentRow.bottomEdge }
-                val matchedTile = matches.first()
+                    .find { tile -> tile.topEdge == leftMostInCurrentRow.bottomEdge }!!
+
                 imageTileMapping.addSection(Point2D(0, y), matchedTile)
                 leftMostInCurrentRow = matchedTile
                 lastTileAdded = leftMostInCurrentRow
@@ -48,11 +48,10 @@ class ImageBuilder(private val tiles: List<ImageTile>) {
             //Find and match all the tiles to the right of the left-most tile to form the row.
             (1 until width).forEach { x ->
                 val lastTilesRight = lastTileAdded.rightEdge
-                val matches = tileOrientations
+                val matchedTile = tileOrientations
                     .filter { tile -> tile.id != lastTileAdded.id }
-                    .filter { tile -> tile.leftEdge == lastTilesRight }
+                    .find { tile -> tile.leftEdge == lastTilesRight }!!
 
-                val matchedTile = matches.first()
                 imageTileMapping.addSection(Point2D(x, y), matchedTile)
                 lastTileAdded = matchedTile
             }
