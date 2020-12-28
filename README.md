@@ -25,6 +25,9 @@ enterprise-style test-driven approach in Kotlin as I really enjoyed it.
 * [Getting Started](#getting-started)
 * [The Codebase](#the-codebase)
   * [Package Structure](#package-structure)
+  * [Static Code Analysis & Linting](#static-code-analysis--linting)
+  * [JUnit5 & AssertK](#junit5--assertk)
+  * [Test-Driven Development](#test-driven-development)
 * [Answer Table](#answer-table)
 
 ## Getting Started
@@ -36,6 +39,7 @@ answers and runtimes in the console.
 | Task               | Description                                                                                       |
 |--------------------|---------------------------------------------------------------------------------------------------|
 | `test`             | Runs the unit tests with coverage for the `implementation`, `solutions` and `common` sub-projects.|
+| `detekt` 	         | Runs DeteKT with the custom configuration rules defined in detekt-config.yml.                     |
 
 ### IntelliJ Run Configurations
 The `.run` directory contains XML configuration files from IntelliJ. Included are configurations for running the unit
@@ -56,6 +60,26 @@ behaviour that is commonly used across multiple days and `test-support` for unit
         -common
         -test-support
     -solutions
+
+### Static Code Analysis & Linting
+I used the [DeteKT](https://detekt.github.io/detekt/index.html) Gradle plugin to perform static code analysis on the
+codebase. It produces a report containing all the code-smells that it found based on the set configuration.
+The custom configuration is defined in `detekt-config.yml` and can be found in the `implementation` resources.
+
+#### JUnit5 & AssertK
+The JUnit5 Jupiter API exposes some really nice functionality in the form of annotations and offers callback
+interfaces for each of the life-cycle events. Utilising the `@ParameterizedTest` can significantly reduce the
+quantity of test-methods in your unit tests suites while `@Nested` allows you to organise your tests in nested
+classes.
+
+[AssertK](https://git.io/JJd1g) is an assertion library inspired by [AssertJ](https://git.io/JJd1a) but for Kotlin.
+I'm familiar with AssertJ and prefer the naming conventions and variety of assertions over the default JUnit offering.
+
+#### Test-Driven Development
+I'm a huge advocate of testing in general, but particularly test-driven development. Some days were easy to test-drive
+as they provided lots of examples that generally covered all branches of the algorithm and sometimes even edge cases.
+Given I was taking a proper object-orientated approach, and not just hacking it into a single function, I still had to
+write more tests than just the example inputs, but they were a nice baseline to run against while writing a solution.
 
 ## Answer Table
 
