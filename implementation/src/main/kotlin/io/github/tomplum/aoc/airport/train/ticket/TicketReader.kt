@@ -1,7 +1,5 @@
 package io.github.tomplum.aoc.airport.train.ticket
 
-import io.github.tomplum.aoc.airport.train.TrainServiceDocument
-
 /**
  * Reads the notes taken in the the airport via the security cameras and compiles a [TrainServiceDocument].
  */

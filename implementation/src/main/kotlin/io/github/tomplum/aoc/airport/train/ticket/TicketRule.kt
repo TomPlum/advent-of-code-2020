@@ -1,7 +1,5 @@
 package io.github.tomplum.aoc.airport.train.ticket
 
-import io.github.tomplum.aoc.airport.train.TrainServiceDocument
-
 /**
  * A rule governing the validating of a single field in a [Ticket].
  * @see TrainServiceDocument
