@@ -4,15 +4,32 @@ import io.github.tomplum.aoc.extensions.product
 import io.github.tomplum.libs.math.point.Point2D
 import kotlin.math.sqrt
 
+/**
+ * Builds an [Image] from a list of [ImageTile].
+ * @param tiles A list of image tiles in their starting orientations.
+ */
 class ImageBuilder(private val tiles: List<ImageTile>) {
 
     private val tileOrientations = tiles.flatMap { tile -> tile.getOrientations() }
 
+    /**
+     * Finds the IDs of the four corner [ImageTile] of the [Image].
+     * @return The product of all four IDs.
+     */
     fun getCornerTileIDProduct(): Long = getCornerCandidates(tileOrientations)
         .map { tile -> tile.id.toLong() }
         .distinct()
         .product()
 
+    /**
+     * Assembles the [tiles] into a complete [Image]. The process is as follows;
+     *  1. Chooses a random [ImageTile] from the list of [tileOrientations].
+     *  2. Locates and arranges the tiles by matching edges and stores them in an [ImageTileMapping].
+     *  3. Trims the edges of each of the tiles in the mapping and creates a complete [Image].
+     *  4. Takes the built [Image] and produces a list of all eight possible orientations.
+     *  5. Finds the correct orientation, locates sea monsters and calculates the water roughness.
+     * @return The complete image in its correct orientation.
+     */
     fun assemble(): Image {
         val mapping: ImageTileMapping = mapTilesTogether()
         val image = Image.assembleFromMapping(mapping)
@@ -20,6 +37,10 @@ class ImageBuilder(private val tiles: List<ImageTile>) {
         return imageOrientations.find { candidate -> candidate.containsSeaMonsters() }!!
     }
 
+    /**
+     * Maps together each of the unique tiles by matching their edges and trims them for assembly.
+     * @return A mapping of all the tiles in one orientation (which may not be correct once assembled).
+     */
     private fun mapTilesTogether(): ImageTileMapping {
         val imageTileMapping = ImageTileMapping()
 
@@ -60,6 +81,10 @@ class ImageBuilder(private val tiles: List<ImageTile>) {
         return imageTileMapping.trimSectionsForAssembly()
     }
 
+    /**
+     * Filters all possible [tileOrientations] and finds tiles that could be corners.
+     * @return A list of corner tile candidates.
+     */
     private fun getCornerCandidates(orientations: List<ImageTile>): List<ImageTile> = orientations.filter { tile ->
         val otherTiles = orientations.filter { orientation -> orientation.id != tile.id }
         val hasNoMatchingTopEdges = otherTiles.count { other -> other.topEdge == tile.topEdge } == 0

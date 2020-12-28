@@ -72,7 +72,7 @@ class ImageTile(val id: Int, _width: Int) : AdventMap2D<ImageTileData>() {
 
     /**
      * Flips the [ImageTile] about the X-Axis.
-     * @return A copy of the image in its new orientation.
+     * @return A copy of the image tile in its new orientation.
      */
     fun xFlip(): ImageTile = data.entries.fold(ImageTile(id, width)) { flipped, (pos, tile) ->
         val posFlipped = Point2D(width - pos.x, pos.y)
@@ -81,7 +81,7 @@ class ImageTile(val id: Int, _width: Int) : AdventMap2D<ImageTileData>() {
 
     /**
      * Flips the [ImageTile] about the Y-Axis.
-     * @return A copy of the image in its new orientation.
+     * @return A copy of the image tile in its new orientation.
      */
     fun yFlip(): ImageTile = data.entries.fold(ImageTile(id, width)) { flipped, (pos, tile) ->
         val posFlipped = Point2D(pos.x, width - pos.y)
@@ -91,7 +91,7 @@ class ImageTile(val id: Int, _width: Int) : AdventMap2D<ImageTileData>() {
     /**
      * Rotates the [ImageTile] 90 degrees about the logical centre of itself.
      * This is achieved by rotating the points about the origin and shifting them back to their original quadrant.
-     * @return A copy of the image in its new orientation.
+     * @return A copy of the image tile in its new orientation.
      */
     fun rotateClockwise90(): ImageTile = data.entries.fold(ImageTile(id, width)) { rotated, (pos, tile) ->
         val yInverted = Point2D(pos.x, -pos.y) //Convert regular cartesian -> single quadrant (y is down)
