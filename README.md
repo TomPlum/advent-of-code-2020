@@ -25,6 +25,7 @@ enterprise-style test-driven approach in Kotlin as I really enjoyed it.
 * [Getting Started](#getting-started)
 * [The Codebase](#the-codebase)
   * [Package Structure](#package-structure)
+  * [Benchmarking](#benchmarking)
   * [Static Code Analysis & Linting](#static-code-analysis--linting)
   * [JUnit5 & AssertK](#junit5--assertk)
   * [Test-Driven Development](#test-driven-development)
@@ -60,6 +61,25 @@ behaviour that is commonly used across multiple days and `test-support` for unit
         -common
         -test-support
     -solutions
+
+### Solution Benchmarking
+This year I decided to take a different approach and write my own custom solution and benchmarking infrastructure.
+
+I started by writing a simple `Solution` interface that accepts two formal generic-type parameters for the return
+types of `part1()` and `part2()` respectively. I originally set the default implementation to throw an exception, but
+later changed this to return null once I implemented the benchmarker.
+
+I then wrote a `SolutionRunner` that accepts a `vararg` array of Solutions and runs both parts for all the provided
+solutions. Finally, to make it runnable, I created `Solutions.kt` which simply contains a `main()` function and invokes
+`SolutionRunner.run()`.
+
+When I reached the days whose problems were orientated around runtime-complexity, I integrated Kotlin's 
+[`measureNanoTime`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.system/measure-nano-time.html) into my
+`SolutionRunner` and wrapped the `part1()` and `part2()` invocations in it. To store and display my results, I
+integrated [Jackson Data Format XML](https://git.io/JLSlw) to easily serialise and de-serialise the results and then
+created some reporting classes to format them and push them through my `AdventLogger`. I also exposed a JVM argument
+that can be injected to change the verbosity of the report. The flag is `report` and can have the values `verbose` or
+`compact`. E.g. `-Dreport=verbose`.
 
 ### Static Code Analysis & Linting
 I used the [DeteKT](https://detekt.github.io/detekt/index.html) Gradle plugin to perform static code analysis on the
