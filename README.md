@@ -25,7 +25,7 @@ enterprise-style test-driven approach in Kotlin as I really enjoyed it.
 * [Getting Started](#getting-started)
 * [The Codebase](#the-codebase)
   * [Package Structure](#package-structure)
-  * [Benchmarking](#benchmarking)
+  * [Benchmarking](#solution-benchmarking)
   * [Static Code Analysis & Linting](#static-code-analysis--linting)
   * [JUnit5 & AssertK](#junit5--assertk)
   * [Test-Driven Development](#test-driven-development)
