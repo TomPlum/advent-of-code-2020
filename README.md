@@ -30,6 +30,7 @@ enterprise-style test-driven approach in Kotlin as I really enjoyed it.
   * [JUnit5 & AssertK](#junit5--assertk)
   * [Test-Driven Development](#test-driven-development)
 * [Answer Table](#answer-table)
+* [Benchmarking Results](#benchmark-results)
 
 ## Getting Started
 Simply clone or download the repository into your local environment and import it as a Gradle project in your IDE.
@@ -130,3 +131,34 @@ write more tests than just the example inputs, but they were a nice baseline to 
 | 23   	| 58427369       | 111057672960      | Crab Cups                                 | [Link](docs/DAY23.MD)  |
 | 24   	| 326            | 3979              | Lobby Layout                              | [Link](docs/DAY24.MD)  |
 | 25   	| 19774660       | 49 Stars          | Combo Breaker                             | [Link](docs/DAY25.MD)  |
+
+## Benchmark Results
+| Day 	| Part 1 	     | Part 2 	         |
+|-------|----------------|-------------------|
+| 01    | 12ms           | 58ms              |
+| 02    | 21ms           | 7ms               |
+| 03    | 684ms          | 32ms              |
+| 04    | 25ms           | 8ms               |
+| 05    | 8ms            | 4ms               |
+| 06    | 9ms            | 24ms              |
+| 07    | 107ms          | 68ms              |
+| 08    | 9ms            | 24ms              |
+| 09    | 149ms          | 60ms              |
+| 10    | 1ms            | 1ms               |
+| 11    | 2s 869ms       | 2s 504ms          |
+| 12    | 2ms            | 605μs             |
+| 13    | 654μs          | 71μs              |
+| 14    | 6ms            | 239ms             |
+| 15    | 1ms            | 771ms             |
+| 16    | 3ms            | 11ms              |
+| 17    | 213ms          | 3s 65ms           |
+| 18    | 19ms           | 15ms              |
+| 19    | 78ms           | 201ms             |
+| 20    | 101ms          | 1s 177ms          |
+| 21    | 26ms           | 2ms               |
+| 22    | 6ms            | 4s 368ms          |
+| 23    | 1ms            | 1s 22ms           |
+| 24    | 878μs          | 3s 264ms          |
+| 25    | 734ms          | 643μs             |
+Average Execution Time: 881ms \
+Total Execution Time: 22s 35ms
