@@ -76,7 +76,7 @@ class Image(private var width: Int = 0) : AdventMap2D<ImageTileData>() {
      * Checks to see if the image in its current orientations contains sea monsters.
      * @return true if sea monsters are present, else false.
      */
-    fun containsSeaMonsters(): Boolean = data.values.any { tile -> tile.isSeaMonster() }
+    fun containsSeaMonsters(): Boolean = getDataMap().values.any { tile -> tile.isSeaMonster() }
 
     /**
      * Searches the [Image] for sea monsters.
@@ -97,7 +97,7 @@ class Image(private var width: Int = 0) : AdventMap2D<ImageTileData>() {
             (0..width - 19).forEach { x ->
                 val position = Point2D(x, y)
                 val positions = position.getSeaMonsterPositionCandidates()
-                val isMatch = positions.map { pos -> data[pos] }.all { tile -> tile?.isWave() ?: false }
+                val isMatch = positions.map { pos -> getDataMap()[pos] }.all { tile -> tile?.isWave() ?: false }
                 if (isMatch) {
                     positions.forEach { pos -> addTile(pos, ImageTileData('O')) }
                 }
@@ -110,7 +110,7 @@ class Image(private var width: Int = 0) : AdventMap2D<ImageTileData>() {
      * Flips the [Image] about the X-Axis.
      * @return A copy of the image in its new orientation.
      */
-    private fun xFlip(): Image = data.entries.fold(Image(width)) { flipped, (pos, tile) ->
+    private fun xFlip(): Image = getDataMap().entries.fold(Image(width)) { flipped, (pos, tile) ->
         val posFlipped = Point2D(width - pos.x, pos.y)
         flipped.apply { addTile(posFlipped, tile) }
     }
@@ -119,7 +119,7 @@ class Image(private var width: Int = 0) : AdventMap2D<ImageTileData>() {
      * Flips the [Image] about the Y-Axis.
      * @return A copy of the image in its new orientation.
      */
-    private fun yFlip(): Image = data.entries.fold(Image(width)) { flipped, (pos, tile) ->
+    private fun yFlip(): Image = getDataMap().entries.fold(Image(width)) { flipped, (pos, tile) ->
         val posFlipped = Point2D(pos.x, width - pos.y)
         flipped.apply { addTile(posFlipped, tile) }
     }
@@ -129,7 +129,7 @@ class Image(private var width: Int = 0) : AdventMap2D<ImageTileData>() {
      * This is achieved by rotating the points about the origin and shifting them back to their original quadrant.
      * @return A copy of the image in its new orientation.
      */
-    private fun rotateClockwise90(): Image = data.entries.fold(Image(width)) { rotated, (pos, tile) ->
+    private fun rotateClockwise90(): Image = getDataMap().entries.fold(Image(width)) { rotated, (pos, tile) ->
         val yInverted = Point2D(pos.x, -pos.y) //Convert regular cartesian -> single quadrant (y is down)
         val posRotated = yInverted.rotateAbout(Point2D.origin(), 90) //Rotate about origin
         val posShifted = posRotated.shift(RIGHT, width) //Shift back into our quadrant

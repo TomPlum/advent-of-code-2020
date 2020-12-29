@@ -22,7 +22,7 @@ class ImageTileMapping: AdventMap2D<ImageSection>() {
      * @return The trimmed mapping.
      */
     fun trimSectionsForAssembly(): ImageTileMapping {
-        data.keys.forEach { position ->
+        getDataMap().keys.forEach { position ->
             val tile = getTile(position)
             val trimmed = tile.trim()
             addTile(position, trimmed)
@@ -35,7 +35,7 @@ class ImageTileMapping: AdventMap2D<ImageSection>() {
      * @return A list of row sub-lists of tiles.
      */
     fun getRows(): List<Collection<ImageSection>> = (0..yMax()!!).map { y ->
-        data.filter { (pos, _) -> pos.y == y }.toSortedMap(compareBy { pos -> pos.x }).values
+        getDataMap().filter { (pos, _) -> pos.y == y }.toSortedMap(compareBy { pos -> pos.x }).values
     }
 
     /**

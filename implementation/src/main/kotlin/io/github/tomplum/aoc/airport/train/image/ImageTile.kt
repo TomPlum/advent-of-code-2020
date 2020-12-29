@@ -74,7 +74,7 @@ class ImageTile(val id: Int, _width: Int) : AdventMap2D<ImageTileData>() {
      * Flips the [ImageTile] about the X-Axis.
      * @return A copy of the image tile in its new orientation.
      */
-    fun xFlip(): ImageTile = data.entries.fold(ImageTile(id, width)) { flipped, (pos, tile) ->
+    fun xFlip(): ImageTile = getDataMap().entries.fold(ImageTile(id, width)) { flipped, (pos, tile) ->
         val posFlipped = Point2D(width - pos.x, pos.y)
         flipped.apply { addTile(posFlipped, tile) }
     }.updateEdges()
@@ -83,7 +83,7 @@ class ImageTile(val id: Int, _width: Int) : AdventMap2D<ImageTileData>() {
      * Flips the [ImageTile] about the Y-Axis.
      * @return A copy of the image tile in its new orientation.
      */
-    fun yFlip(): ImageTile = data.entries.fold(ImageTile(id, width)) { flipped, (pos, tile) ->
+    fun yFlip(): ImageTile = getDataMap().entries.fold(ImageTile(id, width)) { flipped, (pos, tile) ->
         val posFlipped = Point2D(pos.x, width - pos.y)
         flipped.apply { addTile(posFlipped, tile) }
     }.updateEdges()
@@ -93,7 +93,7 @@ class ImageTile(val id: Int, _width: Int) : AdventMap2D<ImageTileData>() {
      * This is achieved by rotating the points about the origin and shifting them back to their original quadrant.
      * @return A copy of the image tile in its new orientation.
      */
-    fun rotateClockwise90(): ImageTile = data.entries.fold(ImageTile(id, width)) { rotated, (pos, tile) ->
+    fun rotateClockwise90(): ImageTile = getDataMap().entries.fold(ImageTile(id, width)) { rotated, (pos, tile) ->
         val yInverted = Point2D(pos.x, -pos.y) //Convert regular cartesian -> single quadrant (y is down)
         val posRotated = yInverted.rotateAbout(Point2D.origin(), 90) //Rotate about origin
         val posShifted = posRotated.shift(Direction.RIGHT, width) //Shift back into our quadrant
@@ -120,7 +120,7 @@ class ImageTile(val id: Int, _width: Int) : AdventMap2D<ImageTileData>() {
      */
     fun removeEdges(): ImageTile {
         Edge.values().flatMap { edge -> getEdgePoints(edge) }.forEach { pos -> removeTile(pos) }
-        val pixels = data.toMap()
+        val pixels = getDataMap().toMap()
         reset()
         pixels.forEach { (pos, tile) -> addTile(pos.shift(Direction.LEFT).shift(Direction.DOWN), tile) }
         width -= 2
