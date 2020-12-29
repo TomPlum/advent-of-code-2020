@@ -23,35 +23,36 @@ class SeatingLayout(data: List<String>): AdventMap2D<SeatingPosition>() {
         }
     }
 
-    fun getSeats(isType: (SeatingPosition) -> Boolean): Map<Point2D, SeatingPosition> = filterTiles { isType(it) }
+    fun getSeats(predicate: (SeatingPosition) -> Boolean): List<Point2D> = filterTiles { seat -> predicate(seat) }.keys.toList()
 
-    fun getAdjacentSeating(position: Point2D) = adjacentTiles(setOf(position), null).filterValues { seat -> seat != null }
+    fun getAdjacentSeating(position: Point2D): List<SeatingPosition> = position.adjacent()
+        .map { pos -> getTile(pos, SeatingPosition.floor()) }
 
-    fun occupy(positions: Set<Point2D>) = positions.forEach { pos -> addTile(pos, SeatingPosition.occupied()) }
+    fun occupy(positions: List<Point2D>) = positions.forEach { pos -> addTile(pos, SeatingPosition.occupied()) }
 
-    fun evict(positions: Set<Point2D>) = positions.forEach { pos -> addTile(pos, SeatingPosition.empty()) }
+    fun evict(positions: List<Point2D>) = positions.forEach { pos -> addTile(pos, SeatingPosition.empty()) }
 
     fun snapshotCurrentState(): SeatingLayout {
         val snapshot = SeatingLayout(emptyList())
-        snapshot.overwriteData(getDataMap())
+        snapshot.overwriteData(getDataMap().toMutableMap())
         return snapshot
     }
 
     fun getOccupiedSeatCount(): Int = filterTiles { seat -> seat.isOccupied() }.count()
 
-    fun getFirstAdjacent(pos: Point2D): Map<Point2D, SeatingPosition> {
-        return Direction.values().mapNotNull { direction -> pos.getFirst(direction) }.toMap()
+    fun getFirstAdjacent(pos: Point2D): List<SeatingPosition> {
+        return Direction.values().map { direction -> pos.getFirstSeat(direction) }
     }
 
-    private fun Point2D.getFirst(direction: Direction): Pair<Point2D, SeatingPosition>? {
+    private fun Point2D.getFirstSeat(direction: Direction): SeatingPosition {
         var pos = this.shift(direction)
         var candidate = getTile(pos, SeatingPosition.floor())
         while (candidate.isFloor()) {
-            if (!hasRecorded(pos)) return null
+            if (!hasRecorded(pos)) return SeatingPosition.floor()
             pos = pos.shift(direction)
             candidate = getTile(pos, SeatingPosition.floor())
         }
-        return Pair(pos, candidate)
+        return candidate
     }
 
 }

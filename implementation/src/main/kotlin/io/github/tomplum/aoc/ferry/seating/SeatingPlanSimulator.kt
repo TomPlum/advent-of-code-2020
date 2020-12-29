@@ -1,8 +1,7 @@
 package io.github.tomplum.aoc.ferry.seating
 
-import io.github.tomplum.aoc.ferry.seating.strategy.SeatingStrategy
-import io.github.tomplum.libs.logging.AdventLogger
 import io.github.tomplum.aoc.ferry.navigation.Ferry
+import io.github.tomplum.aoc.ferry.seating.strategy.SeatingStrategy
 
 /**
  * Simulates the process of people choosing (or abandoning) their seat in the [Ferry] waiting room.
@@ -10,11 +9,6 @@ import io.github.tomplum.aoc.ferry.navigation.Ferry
  */
 class SeatingPlanSimulator(layout: SeatingLayout) {
     private val history = mutableListOf(layout)
-
-    init {
-        AdventLogger.info("Initial State:")
-        AdventLogger.info(layout)
-    }
 
     /**
      * Simulates [SeatingLayout] state changes according to the given [strategy] until all the passengers are
@@ -25,7 +19,6 @@ class SeatingPlanSimulator(layout: SeatingLayout) {
     fun simulateUntilConsolidated(strategy: SeatingStrategy): Int {
         var next = simulate(strategy)
         while (history.last() != next) {
-            AdventLogger.info(next)
             history.add(next)
             next = simulate(strategy)
         }

@@ -2,6 +2,7 @@ package io.github.tomplum.aoc.solutions
 
 import assertk.assertThat
 import assertk.assertions.isEqualTo
+import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
 
 class Day11Test {

@@ -12,11 +12,11 @@ interface SeatingStrategy {
      * Finds the seats that would become occupied after employing the strategy once.
      * @return The positions of the seats.
      */
-    fun getOccupiedSeatPositions(layout: SeatingLayout): Set<Point2D>
+    fun getOccupiedSeatPositions(layout: SeatingLayout): List<Point2D>
 
     /**
      * Finds the seats that would become empty after employing the strategy once.
      * @return The positions of the seats.
      */
-    fun getEmptySeatPositions(layout: SeatingLayout): Set<Point2D>
+    fun getEmptySeatPositions(layout: SeatingLayout): List<Point2D>
 }

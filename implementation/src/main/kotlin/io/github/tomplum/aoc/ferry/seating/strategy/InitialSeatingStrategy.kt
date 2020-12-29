@@ -15,15 +15,15 @@ import java.util.stream.Collectors
  * Otherwise, the seat's state does not change.
  */
 class InitialSeatingStrategy : SeatingStrategy {
-    override fun getOccupiedSeatPositions(layout: SeatingLayout): Set<Point2D> {
-        return layout.getSeats { seat -> seat.isEmpty() }.keys.parallelStream().filter { pos ->
-            layout.getAdjacentSeating(pos).values.none { seat -> seat!!.isOccupied() }
-        }.collect(Collectors.toSet())
+    override fun getOccupiedSeatPositions(layout: SeatingLayout): List<Point2D> {
+        return layout.getSeats { seat -> seat.isEmpty() }.parallelStream().filter { position ->
+            layout.getAdjacentSeating(position).none { seat -> seat.isOccupied() }
+        }.collect(Collectors.toList())
     }
 
-    override fun getEmptySeatPositions(layout: SeatingLayout): Set<Point2D> {
-        return layout.getSeats { seat -> seat.isOccupied() }.keys.parallelStream().filter { pos ->
-            layout.getAdjacentSeating(pos).values.count { seat -> seat!!.isOccupied() } >= 4
-        }.collect(Collectors.toSet())
+    override fun getEmptySeatPositions(layout: SeatingLayout): List<Point2D> {
+        return layout.getSeats { seat -> seat.isOccupied() }.parallelStream().filter { position ->
+            layout.getAdjacentSeating(position).count { seat -> seat.isOccupied() } >= 4
+        }.collect(Collectors.toList())
     }
 }
