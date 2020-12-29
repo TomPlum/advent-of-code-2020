@@ -25,4 +25,13 @@ class SeatingPosition(private val status: Char): MapTile<Char>(status) {
      * @return true if the seat is occupied, else false.
      */
     fun isOccupied(): Boolean = status == '#'
+
+    /**
+     * Static factory constructors for creating seating positions types.
+     */
+    companion object {
+        fun floor() = SeatingPosition('.')
+        fun occupied() = SeatingPosition('#')
+        fun empty() = SeatingPosition('L')
+    }
 }

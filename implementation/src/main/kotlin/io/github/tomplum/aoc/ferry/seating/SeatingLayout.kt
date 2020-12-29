@@ -27,9 +27,9 @@ class SeatingLayout(data: List<String>): AdventMap2D<SeatingPosition>() {
 
     fun getAdjacentSeating(position: Point2D) = adjacentTiles(setOf(position), null).filterValues { seat -> seat != null }
 
-    fun occupy(positions: Set<Point2D>) = positions.forEach { pos -> addTile(pos, SeatingPosition('#')) }
+    fun occupy(positions: Set<Point2D>) = positions.forEach { pos -> addTile(pos, SeatingPosition.occupied()) }
 
-    fun evict(positions: Set<Point2D>) = positions.forEach { pos -> addTile(pos, SeatingPosition('L')) }
+    fun evict(positions: Set<Point2D>) = positions.forEach { pos -> addTile(pos, SeatingPosition.empty()) }
 
     fun snapshotCurrentState(): SeatingLayout {
         val snapshot = SeatingLayout(emptyList())
@@ -45,11 +45,11 @@ class SeatingLayout(data: List<String>): AdventMap2D<SeatingPosition>() {
 
     private fun Point2D.getFirst(direction: Direction): Pair<Point2D, SeatingPosition>? {
         var pos = this.shift(direction)
-        var candidate = getTile(pos, SeatingPosition('.'))
+        var candidate = getTile(pos, SeatingPosition.floor())
         while (candidate.isFloor()) {
             if (!hasRecorded(pos)) return null
             pos = pos.shift(direction)
-            candidate = getTile(pos, SeatingPosition('.'))
+            candidate = getTile(pos, SeatingPosition.floor())
         }
         return Pair(pos, candidate)
     }

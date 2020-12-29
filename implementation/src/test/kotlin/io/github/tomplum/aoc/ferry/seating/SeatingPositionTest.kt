@@ -1,6 +1,7 @@
 package io.github.tomplum.aoc.ferry.seating
 
 import assertk.assertThat
+import assertk.assertions.isEqualTo
 import assertk.assertions.isFalse
 import assertk.assertions.isTrue
 import org.junit.jupiter.api.Nested
@@ -48,6 +49,24 @@ class SeatingPositionTest {
         @ValueSource(chars = ['#', 'L', '@'])
         fun wrongCharacter(value: Char) {
             assertThat(SeatingPosition(value).isFloor()).isFalse()
+        }
+    }
+
+    @Nested
+    inner class Companion {
+        @Test
+        fun floor() {
+            assertThat(SeatingPosition.floor()).isEqualTo(SeatingPosition('.'))
+        }
+
+        @Test
+        fun occupied() {
+            assertThat(SeatingPosition.occupied()).isEqualTo(SeatingPosition('#'))
+        }
+
+        @Test
+        fun empty() {
+            assertThat(SeatingPosition.empty()).isEqualTo(SeatingPosition('L'))
         }
     }
 }
