@@ -12,8 +12,8 @@ class ExpenseReport(private val data: List<Int>) {
      * @see isTargetSum
      */
     fun validateContainsTwoEntries(): Int = data.flatMap { i ->
-        data.map { j -> if ((i + j).isTargetSum()) i * j else null }
-    }.filterNotNull().first()
+        data.mapNotNull { j -> if ((i + j).isTargetSum()) i * j else null }
+    }.first()
 
     /**
      * Finds the product of the three [data] values whose sum is equal to the target value.
@@ -23,5 +23,10 @@ class ExpenseReport(private val data: List<Int>) {
         data.map { k -> if ((i + j + k).isTargetSum()) i * j * k else null
     }}}.filterNotNull().first()
 
+    /**
+     * Checks to see if the given [Int] is equal to the target number
+     * as defined by the Elves in accounting.
+     * @return true if the number is the target sum, else false.
+     */
     private fun Int.isTargetSum(): Boolean = equals(2020)
 }
