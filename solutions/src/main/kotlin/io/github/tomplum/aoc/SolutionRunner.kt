@@ -4,8 +4,7 @@ import io.github.tomplum.aoc.benchmark.data.Benchmark
 import io.github.tomplum.aoc.benchmark.data.BenchmarkResult
 import io.github.tomplum.aoc.benchmark.utility.BenchmarkUtility
 import io.github.tomplum.libs.logging.AdventLogger
-import kotlin.reflect.KClass
-import kotlin.system.measureTimeMillis
+import kotlin.system.measureNanoTime
 
 /**
  * A companion utility class designs to run multiple [Solution] implementations.
@@ -28,7 +27,7 @@ class SolutionRunner private constructor() {
 
         private fun runPart(solution: Solution<*, *>, part: Part): Answer {
             var answer: Any?
-            val runtime = measureTimeMillis {
+            val runtime = measureNanoTime {
                 answer = when(part) {
                     Part.ONE -> solution.part1()
                     Part.TWO -> solution.part2()

@@ -66,4 +66,41 @@ class CollectionExtensionsTest {
             assertThat(listOf(3, 10, 2, -1).product()).isEqualTo(-60)
         }
     }
+
+    @Nested
+    inner class BinaryIntArrayToDecimal {
+        @Test
+        fun example() {
+            val binary = "000000000000000000000000000000001011".toBinary()
+            val decimal = binary.toDecimal()
+            assertThat(decimal).isEqualTo(11)
+        }
+
+        @Test
+        fun exampleTwo() {
+            val binary = "000000000000000000000000000001001001".toBinary()
+            val decimal = binary.toDecimal()
+            assertThat(decimal).isEqualTo(73)
+        }
+
+        @Test
+        fun exampleThree() {
+            val binary = "000000000000000000000000000001100101".toBinary()
+            val decimal = binary.toDecimal()
+            assertThat(decimal).isEqualTo(101)
+        }
+
+        @Test
+        fun exampleFour() {
+            val binary = "000000000000000000000000000000000000".toBinary()
+            val decimal = binary.toDecimal()
+            assertThat(decimal).isEqualTo(0)
+        }
+
+        private fun String.toBinary(): IntArray {
+            val binary = IntArray(36)
+            this.forEachIndexed { i, value -> binary[i] = value.toString().toInt() }
+            return binary
+        }
+    }
 }

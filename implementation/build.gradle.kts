@@ -10,6 +10,8 @@ dependencies {
     //Gradle Sub-Project Dependencies
     implementation(project(":implementation:common"))
     testImplementation(project(":implementation:test-support"))
+
+    testImplementation("io.mockk:mockk:1.10.3")
 }
 
 subprojects {

@@ -1,7 +1,7 @@
 package io.github.tomplum.aoc.ferry.seating
 
 import io.github.tomplum.libs.math.Direction
-import io.github.tomplum.libs.math.Point2D
+import io.github.tomplum.libs.math.point.Point2D
 import io.github.tomplum.libs.math.map.AdventMap2D
 import io.github.tomplum.aoc.ferry.navigation.Ferry
 
@@ -33,7 +33,7 @@ class SeatingLayout(data: List<String>): AdventMap2D<SeatingPosition>() {
 
     fun snapshotCurrentState(): SeatingLayout {
         val snapshot = SeatingLayout(emptyList())
-        snapshot().forEach { (pos, tile) -> snapshot.addTile(pos, tile) }
+        data.toMap().forEach { (pos, tile) -> snapshot.addTile(pos, tile) }
         return snapshot
     }
 

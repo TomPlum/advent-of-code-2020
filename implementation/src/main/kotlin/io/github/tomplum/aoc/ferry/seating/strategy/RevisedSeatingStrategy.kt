@@ -1,7 +1,7 @@
 package io.github.tomplum.aoc.ferry.seating.strategy
 
 import io.github.tomplum.aoc.ferry.seating.SeatingLayout
-import io.github.tomplum.libs.math.Point2D
+import io.github.tomplum.libs.math.point.Point2D
 import java.util.stream.Collectors
 
 /**
