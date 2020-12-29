@@ -29,7 +29,7 @@ package io.github.tomplum.aoc.raft.cups
  * @param label A string of integers representing the order and values of the starting cup values.
  * @param logicalCupQuantity The number of extra cups to add to the game when there are lots more than the label.
  */
-abstract class CrabCupGame(label: String, logicalCupQuantity: Int) {
+open class CrabCupGame(label: String, logicalCupQuantity: Int) {
 
     private val startingCups = label.map { cup -> cup.toString().toInt() }
     private val highestCupValue = startingCups.maxOrNull()

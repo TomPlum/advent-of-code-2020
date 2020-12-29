@@ -6,7 +6,7 @@ import io.github.tomplum.libs.logging.AdventLogger
  * A single participant in a cryptographic network handshake.
  * @param publicKey The public key used to negotiate a network handshake.
  */
-abstract class HandshakeParticipant(private val publicKey: Long) {
+open class HandshakeParticipant(private val publicKey: Long) {
     /**
      * Calculates the devices' loop size based on its [publicKey].
      * @return The secret loop size value of the device.
