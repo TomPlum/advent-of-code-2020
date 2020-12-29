@@ -30,7 +30,6 @@ enterprise-style test-driven approach in Kotlin as I really enjoyed it.
   * [JUnit5 & AssertK](#junit5--assertk)
   * [Test-Driven Development](#test-driven-development)
 * [Answer Table](#answer-table)
-* [Benchmarking Results](#benchmark-results)
 
 ## Getting Started
 Simply clone or download the repository into your local environment and import it as a Gradle project in your IDE.
@@ -104,61 +103,33 @@ write more tests than just the example inputs, but they were a nice baseline to 
 
 ## Answer Table
 
-| Day 	| Part 1 	     | Part 2 	         | Name                                      | Documentation          |
-|-------|----------------|-------------------|-------------------------------------------|------------------------|
-| 01   	| 802011         | 248607374         | Report Repair                             | [Link](docs/DAY1.MD)   |
-| 02   	| 660            | 530               | Password Philosophy                       | [Link](docs/DAY2.MD)   |
-| 03   	| 169            | 7560370818        | Toboggan Trajectory                       | [Link](docs/DAY3.MD)   |
-| 04   	| 192            | 101               | Passport Processing                       | [Link](docs/DAY4.MD)   |
-| 05   	| 904            | 669               | Binary Boarding                           | [Link](docs/DAY5.MD)   |
-| 06   	| 6911           | 3473              | Custom Customs                            | [Link](docs/DAY6.MD)   |
-| 07   	| 300            | 8030              | Handy Haversacks                          | [Link](docs/DAY7.MD)   |
-| 08   	| 1832           | 662               | Handheld Halting                          | [Link](docs/DAY8.MD)   |
-| 09   	| 20874512       | 3012420           | Encoding Error                            | [Link](docs/DAY9.MD)   |
-| 10   	| 2176           | 18512297918464    | Adapter Array                             | [Link](docs/DAY10.MD)  |
-| 11   	| 2427           | 2199              | Seating System                            | [Link](docs/DAY11.MD)  |
-| 12   	| 319            | 50157             | Rain Risk                                 | [Link](docs/DAY12.MD)  |
-| 13   	| 102            | 327300950120029   | Shuttle Search                            | [Link](docs/DAY13.MD)  |
-| 14   	| 9967721333886  | 4355897790573     | Docking Data                              | [Link](docs/DAY14.MD)  |
-| 15   	| 1259           | 689               | Rambunctious Recitation                   | [Link](docs/DAY15.MD)  |
-| 16   	| 28882          | 1429779530273     | Ticket Translation                        | [Link](docs/DAY16.MD)  |
-| 17   	| 269            | 848               | Conway Cubes                              | [Link](docs/DAY17.MD)  |
-| 18   	| 11297104473091 | 185348874183674   | Operation Order                           | [Link](docs/DAY18.MD)  |
-| 19   	| 171            | 369               | Monster Messages                          | [Link](docs/DAY19.MD)  |
-| 20   	| 20899048083289 | 2476              | Jurassic Jigsaw                           | [Link](docs/DAY20.MD)  |
-| 21   	| 2315           | cf,h,t,b,l,cb,cm,d| Allergen Assessment                       | [Link](docs/DAY21.MD)  |
-| 22   	| 306            | 291               | Crab Combat                               | [Link](docs/DAY22.MD)  |
-| 23   	| 58427369       | 111057672960      | Crab Cups                                 | [Link](docs/DAY23.MD)  |
-| 24   	| 326            | 3979              | Lobby Layout                              | [Link](docs/DAY24.MD)  |
-| 25   	| 19774660       | 49 Stars          | Combo Breaker                             | [Link](docs/DAY25.MD)  |
+| Day | Part 1 	       | Avg (t)  | Part 2 	          | Avg (t)  | Documentation                            |
+|-----|----------------|----------|-------------------|----------|------------------------------------------|
+| 01  | 802011         | 12ms     | 248607374         | 58ms     | [Report Repair](docs/DAY1.MD)            |
+| 02  | 660            | 21ms     | 530               | 7ms      | [Password Philosophy](docs/DAY2.MD)      |
+| 03  | 169            | 684ms    | 7560370818        | 32ms     | [Toboggan Trajectory](docs/DAY3.MD)      |
+| 04  | 192            | 25ms     | 101               | 8ms      | [Passport Processing](docs/DAY4.MD)      |
+| 05  | 904            | 8ms      | 669               | 4ms      | [Binary Boarding](docs/DAY5.MD)          |
+| 06  | 6911           | 9ms      | 3473              | 24ms     | [Custom Customs](docs/DAY6.MD)           |
+| 07  | 300            | 107ms    | 8030              | 68ms     | [Handy Haversacks](docs/DAY7.MD)         |
+| 08  | 1832           | 9ms      | 662               | 24ms     | [Handheld Halting](docs/DAY8.MD)         |
+| 09  | 20874512       | 149ms    | 3012420           | 60ms     | [Encoding Error](docs/DAY9.MD)           |
+| 10  | 2176           | 1ms      | 18512297918464    | 1ms      | [Adapter Array](docs/DAY10.MD)           |
+| 11  | 2427           | 2s 869ms | 2199              | 2s 504ms | [Seating System](docs/DAY11.MD)          |
+| 12  | 319            | 2ms      | 50157             | 605μs    | [Rain Risk](docs/DAY12.MD)               |
+| 13  | 102            | 654μs    | 327300950120029   | 71μs     | [Shuttle Search](docs/DAY13.MD)          |
+| 14  | 9967721333886  | 6ms      | 4355897790573     | 239ms    | [Docking Data](docs/DAY14.MD)            |
+| 15  | 1259           | 1ms      | 689               | 771ms    | [Rambunctious Recitation](docs/DAY15.MD) |
+| 16  | 28882          | 3ms      | 1429779530273     | 11ms     | [Ticket Translation](docs/DAY16.MD)      |
+| 17  | 269            | 213ms    | 848               | 3s 65ms  | [Conway Cubes](docs/DAY17.MD)            |
+| 18  | 11297104473091 | 19ms     | 185348874183674   | 15ms     | [Operation Order](docs/DAY18.MD)         |
+| 19  | 171            | 78ms     | 369               | 201ms    | [Monster Messages](docs/DAY19.MD)        |
+| 20  | 20899048083289 | 101ms    | 2476              | 1s 177ms | [Jurassic Jigsaw](docs/DAY20.MD)         |
+| 21  | 2315           | 26ms     | cf,h,t,b,l,cb,cm,d| 2ms      | [Allergen Assessment](docs/DAY21.MD)     |
+| 22  | 306            | 6ms      | 291               | 4s 368ms | [Crab Combat](docs/DAY22.MD)             |
+| 23  | 58427369       | 1ms      | 111057672960      | 1s 22ms  | [Crab Cups](docs/DAY23.MD)               |
+| 24  | 326            | 878μs    | 3979              | 3s 264ms | [Lobby Layout](docs/DAY24.MD)            |
+| 25  | 19774660       | 734ms    | 49 Stars          | 643μs    | [Combo Breaker](docs/DAY25.MD)           |
 
-## Benchmark Results
-| Day 	| Part 1 	     | Part 2 	         |
-|-------|----------------|-------------------|
-| 01    | 12ms           | 58ms              |
-| 02    | 21ms           | 7ms               |
-| 03    | 684ms          | 32ms              |
-| 04    | 25ms           | 8ms               |
-| 05    | 8ms            | 4ms               |
-| 06    | 9ms            | 24ms              |
-| 07    | 107ms          | 68ms              |
-| 08    | 9ms            | 24ms              |
-| 09    | 149ms          | 60ms              |
-| 10    | 1ms            | 1ms               |
-| 11    | 2s 869ms       | 2s 504ms          |
-| 12    | 2ms            | 605μs             |
-| 13    | 654μs          | 71μs              |
-| 14    | 6ms            | 239ms             |
-| 15    | 1ms            | 771ms             |
-| 16    | 3ms            | 11ms              |
-| 17    | 213ms          | 3s 65ms           |
-| 18    | 19ms           | 15ms              |
-| 19    | 78ms           | 201ms             |
-| 20    | 101ms          | 1s 177ms          |
-| 21    | 26ms           | 2ms               |
-| 22    | 6ms            | 4s 368ms          |
-| 23    | 1ms            | 1s 22ms           |
-| 24    | 878μs          | 3s 264ms          |
-| 25    | 734ms          | 643μs             |
 Average Execution Time: 881ms \
 Total Execution Time: 22s 35ms
