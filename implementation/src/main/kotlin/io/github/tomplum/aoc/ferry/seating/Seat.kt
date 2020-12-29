@@ -6,7 +6,7 @@ import io.github.tomplum.libs.math.map.MapTile
  * A single seating position in a [SeatingLayout].
  * @param status The status of the position.
  */
-class SeatingPosition(private val status: Char): MapTile<Char>(status) {
+class Seat(private val status: Char): MapTile<Char>(status) {
     /**
      * Checks if the position has no seat and subsequently is just floor space.
      * Seats cannot move. Therefore, a floor position will always remain so.
@@ -30,8 +30,8 @@ class SeatingPosition(private val status: Char): MapTile<Char>(status) {
      * Static factory constructors for creating seating positions types.
      */
     companion object {
-        fun floor() = SeatingPosition('.')
-        fun occupied() = SeatingPosition('#')
-        fun empty() = SeatingPosition('L')
+        fun floor() = Seat('.')
+        fun occupied() = Seat('#')
+        fun empty() = Seat('L')
     }
 }

@@ -9,18 +9,18 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
-class SeatingPositionTest {
+class SeatTest {
     @Nested
     inner class IsEmpty {
         @Test
         fun dotCharacter() {
-            assertThat(SeatingPosition('L').isEmpty()).isTrue()
+            assertThat(Seat('L').isEmpty()).isTrue()
         }
 
         @ParameterizedTest
         @ValueSource(chars = ['.', '#', '@'])
         fun wrongCharacter(value: Char) {
-            assertThat(SeatingPosition(value).isEmpty()).isFalse()
+            assertThat(Seat(value).isEmpty()).isFalse()
         }
     }
 
@@ -28,13 +28,13 @@ class SeatingPositionTest {
     inner class IsOccupied {
         @Test
         fun dotCharacter() {
-            assertThat(SeatingPosition('#').isOccupied()).isTrue()
+            assertThat(Seat('#').isOccupied()).isTrue()
         }
 
         @ParameterizedTest
         @ValueSource(chars = ['.', 'L', '@'])
         fun wrongCharacter(value: Char) {
-            assertThat(SeatingPosition(value).isOccupied()).isFalse()
+            assertThat(Seat(value).isOccupied()).isFalse()
         }
     }
 
@@ -42,13 +42,13 @@ class SeatingPositionTest {
     inner class IsFloor {
         @Test
         fun dotCharacter() {
-            assertThat(SeatingPosition('.').isFloor()).isTrue()
+            assertThat(Seat('.').isFloor()).isTrue()
         }
 
         @ParameterizedTest
         @ValueSource(chars = ['#', 'L', '@'])
         fun wrongCharacter(value: Char) {
-            assertThat(SeatingPosition(value).isFloor()).isFalse()
+            assertThat(Seat(value).isFloor()).isFalse()
         }
     }
 
@@ -56,17 +56,17 @@ class SeatingPositionTest {
     inner class Companion {
         @Test
         fun floor() {
-            assertThat(SeatingPosition.floor()).isEqualTo(SeatingPosition('.'))
+            assertThat(Seat.floor()).isEqualTo(Seat('.'))
         }
 
         @Test
         fun occupied() {
-            assertThat(SeatingPosition.occupied()).isEqualTo(SeatingPosition('#'))
+            assertThat(Seat.occupied()).isEqualTo(Seat('#'))
         }
 
         @Test
         fun empty() {
-            assertThat(SeatingPosition.empty()).isEqualTo(SeatingPosition('L'))
+            assertThat(Seat.empty()).isEqualTo(Seat('L'))
         }
     }
 }
