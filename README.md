@@ -31,6 +31,10 @@ cleaning up somewhat, improving the performance, testing and documenting.
   * [Static Code Analysis & Linting](#static-code-analysis--linting)
   * [JUnit5 & AssertK](#junit5--assertk)
   * [Test-Driven Development](#test-driven-development)
+* [The Days](#the-days)
+  * [The Most Fun](#the-most-fun)
+  * [The Most Interesting](#the-most-interesting)
+  * [The Most Challenging](#the-most-challenging)
 * [Answer Table](#answer-table)
 * [Advent Calendar](#advent-calendar)
 
@@ -105,10 +109,10 @@ Given I was taking a proper object-orientated approach, and not just hacking it 
 write more tests than just the example inputs, but they were a nice baseline to run against while writing a solution.
 
 ## The Days
-### The Hardest
+### The Most Fun
 
 ### The Most Interesting
-Day 15 - [Rambunctious Recitation](docs/DAY15.MD) was an interesting day about an Elven memory game which was a facade
+[Day 15 - Rambunctious Recitation](docs/DAY15.MD) was an interesting day about an Elven memory game which was a facade
 for a mathematical sequence called the ['Van Eck'](https://oeis.org/A181391) sequence. The sequence starts with `0` and
 then each term considers the last. If it was the first occurrence of that terms value, then the next term is `0`. If
 not, then the next term is equal to the number of terms-ago that last term occurred. For example, the first 30 terms are;
@@ -121,12 +125,16 @@ no fancy math solution. Our algorithm must be exhaustive. This day was a test of
 find the `2020th` number spoken in the game, no big deal. Part 2, however, was to find the `30,000,000th` number.
 
 My initial implementation was slow. I got the solution in about `30s`. This involved several maps tracking the turns
-each number last spoken on, the number of times it had been asked and a `LinkedList` of all the numbers. I then refactored
-one of the maps' value to an `IntArray` as opposed to a `List` which improved the solution runtime to about `20s`.
+each number last spoken on, the number of times it had been asked and a `LinkedList` of all the numbers. 
+
+I then refactored one of the maps' value to an `IntArray` as opposed to a `List` which improved the solution runtime 
+to about `20s`.
+
 On the next pass, I realised we didn't need to store as much data as we were currently doing. I refactored to use only
-a single map of the term value against the turn it was last spoken on, improving runtime to about `5s`. Finally, I
-refactored the lone map into a primitive `IntArray` where the index was the term value, and the value was the last turn
-it was spoken on. Less overhead and contiguous memory allocation improved the performance to `~600ms`.
+a single map of the term value against the turn it was last spoken on, improving runtime to about `5s`.
+
+Finally, I refactored the lone map into a primitive `IntArray` where the index was the term value, and the value was
+the last turn it was spoken on. Less overhead and contiguous memory allocation improved the performance to `~600ms`.
 
 And that was about as far as I could go. Due to the exhaustive nature of the algorithm, we _have_ to perform 30 million
 iterations of our algorithm one way or another. I think at this point its limited by the language its written in and
