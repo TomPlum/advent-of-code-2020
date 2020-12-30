@@ -19,7 +19,9 @@ _Excerpt from the Advent of Code [website](https://adventofcode.com/2020/about);
 ## About
 After much deliberation I (anti-climatically) decided to take the same approach as 
 [last year](https://github.com/TomPlum/advent-of-code-2019) and take my time with each puzzle by taking a more
-enterprise-style test-driven approach in Kotlin as I really enjoyed it.
+enterprise-style test-driven approach in Kotlin as I really enjoyed it. I did, however, manage to complete both parts
+every day (except Day 22 Part 2 - I was ill!) on the day of their release. This included writing a passing solution,
+cleaning up somewhat, improving the performance, testing and documenting.
     
 ## Contents
 * [Getting Started](#getting-started)
@@ -30,6 +32,7 @@ enterprise-style test-driven approach in Kotlin as I really enjoyed it.
   * [JUnit5 & AssertK](#junit5--assertk)
   * [Test-Driven Development](#test-driven-development)
 * [Answer Table](#answer-table)
+* [Advent Calendar](#advent-calendar)
 
 ## Getting Started
 Simply clone or download the repository into your local environment and import it as a Gradle project in your IDE.
@@ -101,6 +104,36 @@ as they provided lots of examples that generally covered all branches of the alg
 Given I was taking a proper object-orientated approach, and not just hacking it into a single function, I still had to
 write more tests than just the example inputs, but they were a nice baseline to run against while writing a solution.
 
+## The Days
+### The Hardest
+
+### The Most Interesting
+Day 15 - [Rambunctious Recitation](docs/DAY15.MD) was an interesting day about an Elven memory game which was a facade
+for a mathematical sequence called the ['Van Eck'](https://oeis.org/A181391) sequence. The sequence starts with `0` and
+then each term considers the last. If it was the first occurrence of that terms value, then the next term is `0`. If
+not, then the next term is equal to the number of terms-ago that last term occurred. For example, the first 30 terms are;
+
+  `0, 0, 1, 0, 2, 0, 2, 2, 1, 6, 0, 5, 0, 2, 6, 5, 4, 0, 5, 3, 0, 3, 2, 9, 0, 4, 9, 3, 6, 14`
+
+There's a [great video](https://www.youtube.com/watch?v=etMJxB-igrc) by Numberphile that explains the sequence. The most
+interesting (and contextually relevant) attribute of the sequence is that it is not cyclical. This means that there is
+no fancy math solution. Our algorithm must be exhaustive. This day was a test of data-structures. Part 1 was to simply
+find the `2020th` number spoken in the game, no big deal. Part 2, however, was to find the `30,000,000th` number.
+
+My initial implementation was slow. I got the solution in about `30s`. This involved several maps tracking the turns
+each number last spoken on, the number of times it had been asked and a `LinkedList` of all the numbers. I then refactored
+one of the maps' value to an `IntArray` as opposed to a `List` which improved the solution runtime to about `20s`.
+On the next pass, I realised we didn't need to store as much data as we were currently doing. I refactored to use only
+a single map of the term value against the turn it was last spoken on, improving runtime to about `5s`. Finally, I
+refactored the lone map into a primitive `IntArray` where the index was the term value, and the value was the last turn
+it was spoken on. Less overhead and contiguous memory allocation improved the performance to `~600ms`.
+
+And that was about as far as I could go. Due to the exhaustive nature of the algorithm, we _have_ to perform 30 million
+iterations of our algorithm one way or another. I think at this point its limited by the language its written in and
+maybe even the hardware.
+
+### The Most Challenging
+
 ## Answer Table
 
 | Day | Part 1 Answer  | Avg Time | Part 2 Answer     | Avg Time | Documentation                            |
@@ -133,3 +166,6 @@ write more tests than just the example inputs, but they were a nice baseline to 
 
 Average Execution Time: 662ms \
 Total Execution Time: 16s 563ms
+
+## Advent Calendar
+[![Calendar](https://i.gyazo.com/35e15bbee4d35f25457e6ac969b17937.gif)](https://gyazo.com/35e15bbee4d35f25457e6ac969b17937)
