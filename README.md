@@ -103,7 +103,7 @@ write more tests than just the example inputs, but they were a nice baseline to 
 
 ## Answer Table
 
-| Day | Part 1 	       | Avg (t)  | Part 2 	          | Avg (t)  | Documentation                            |
+| Day | Part 1 Answer  | Avg Time | Part 2 Answer     | Avg Time | Documentation                            |
 |-----|----------------|----------|-------------------|----------|------------------------------------------|
 | 01  | 802011         | 12ms     | 248607374         | 58ms     | [Report Repair](docs/DAY1.MD)            |
 | 02  | 660            | 21ms     | 530               | 7ms      | [Password Philosophy](docs/DAY2.MD)      |
@@ -119,7 +119,7 @@ write more tests than just the example inputs, but they were a nice baseline to 
 | 12  | 319            | 2ms      | 50157             | 605μs    | [Rain Risk](docs/DAY12.MD)               |
 | 13  | 102            | 654μs    | 327300950120029   | 71μs     | [Shuttle Search](docs/DAY13.MD)          |
 | 14  | 9967721333886  | 6ms      | 4355897790573     | 239ms    | [Docking Data](docs/DAY14.MD)            |
-| 15  | 1259           | 1ms      | 689               | 771ms    | [Rambunctious Recitation](docs/DAY15.MD) |
+| 15  | 1259           | 1ms      | 689               | 687ms    | [Rambunctious Recitation](docs/DAY15.MD) |
 | 16  | 28882          | 3ms      | 1429779530273     | 11ms     | [Ticket Translation](docs/DAY16.MD)      |
 | 17  | 269            | 213ms    | 848               | 3s 65ms  | [Conway Cubes](docs/DAY17.MD)            |
 | 18  | 11297104473091 | 19ms     | 185348874183674   | 15ms     | [Operation Order](docs/DAY18.MD)         |
@@ -131,5 +131,5 @@ write more tests than just the example inputs, but they were a nice baseline to 
 | 24  | 326            | 878μs    | 3979              | 3s 264ms | [Lobby Layout](docs/DAY24.MD)            |
 | 25  | 19774660       | 734ms    | 49 Stars          | 643μs    | [Combo Breaker](docs/DAY25.MD)           |
 
-Average Execution Time: 722ms \
-Total Execution Time: 18s 52ms
+Average Execution Time: 717ms \
+Total Execution Time: 17s 931ms

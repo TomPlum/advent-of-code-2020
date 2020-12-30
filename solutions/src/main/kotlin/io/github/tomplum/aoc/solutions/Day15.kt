@@ -9,10 +9,10 @@ class Day15 : Solution<Int, Int> {
     private val input = InputReader.read<String>(Day(15)).asSingleString()
 
     override fun part1(): Int {
-        return MemoryGame(input).simulate(2020)
+        return MemoryGame(input, 2020).simulate()
     }
 
     override fun part2(): Int {
-        return MemoryGame(input).simulate(30_000_000)
+        return MemoryGame(input, 30_000_000).simulate()
     }
 }

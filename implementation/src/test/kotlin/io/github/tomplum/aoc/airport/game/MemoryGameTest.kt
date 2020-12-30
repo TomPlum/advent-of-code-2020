@@ -10,37 +10,37 @@ class MemoryGameTest {
    inner class TwentyTwenty {
        @Test
        fun exampleOne() {
-           assertThat(MemoryGame("0,3,6").simulate(2020)).isEqualTo(436)
+           assertThat(MemoryGame("0,3,6", 2020).simulate()).isEqualTo(436)
        }
 
        @Test
        fun exampleTwo() {
-           assertThat(MemoryGame("1,3,2").simulate(2020)).isEqualTo(1)
+           assertThat(MemoryGame("1,3,2", 2020).simulate()).isEqualTo(1)
        }
 
        @Test
        fun exampleThree() {
-           assertThat(MemoryGame("2,1,3").simulate(2020)).isEqualTo(10)
+           assertThat(MemoryGame("2,1,3", 2020).simulate()).isEqualTo(10)
        }
 
        @Test
        fun exampleFour() {
-           assertThat(MemoryGame("1,2,3").simulate(2020)).isEqualTo(27)
+           assertThat(MemoryGame("1,2,3", 2020).simulate()).isEqualTo(27)
        }
 
        @Test
        fun exampleFive() {
-           assertThat(MemoryGame("2,3,1").simulate(2020)).isEqualTo(78)
+           assertThat(MemoryGame("2,3,1", 2020).simulate()).isEqualTo(78)
        }
 
        @Test
        fun exampleSix() {
-           assertThat(MemoryGame("3,2,1").simulate(2020)).isEqualTo(438)
+           assertThat(MemoryGame("3,2,1", 2020).simulate()).isEqualTo(438)
        }
 
        @Test
        fun exampleSeven() {
-           assertThat(MemoryGame("3,1,2").simulate(2020)).isEqualTo(1836)
+           assertThat(MemoryGame("3,1,2", 2020).simulate()).isEqualTo(1836)
        }
    }
 
@@ -48,37 +48,37 @@ class MemoryGameTest {
     inner class ThirtyMillionth {
         @Test
         fun exampleOne() {
-            assertThat(MemoryGame("0,3,6").simulate(30000000)).isEqualTo(175594)
+            assertThat(MemoryGame("0,3,6", 30000000).simulate()).isEqualTo(175594)
         }
 
         @Test
         fun exampleTwo() {
-            assertThat(MemoryGame("1,3,2").simulate(30000000)).isEqualTo(2578)
+            assertThat(MemoryGame("1,3,2", 30000000).simulate()).isEqualTo(2578)
         }
 
         @Test
         fun exampleThree() {
-            assertThat(MemoryGame("2,1,3").simulate(30000000)).isEqualTo(3544142)
+            assertThat(MemoryGame("2,1,3", 30000000).simulate()).isEqualTo(3544142)
         }
 
         @Test
         fun exampleFour() {
-            assertThat(MemoryGame("1,2,3").simulate(30000000)).isEqualTo(261214)
+            assertThat(MemoryGame("1,2,3", 30000000).simulate()).isEqualTo(261214)
         }
 
         @Test
         fun exampleFive() {
-            assertThat(MemoryGame("2,3,1").simulate(30000000)).isEqualTo(6895259)
+            assertThat(MemoryGame("2,3,1", 30000000).simulate()).isEqualTo(6895259)
         }
 
         @Test
         fun exampleSix() {
-            assertThat(MemoryGame("3,2,1").simulate(30000000)).isEqualTo(18)
+            assertThat(MemoryGame("3,2,1", 30000000).simulate()).isEqualTo(18)
         }
 
         @Test
         fun exampleSeven() {
-            assertThat(MemoryGame("3,1,2").simulate(30000000)).isEqualTo(362)
+            assertThat(MemoryGame("3,1,2", 30000000).simulate()).isEqualTo(362)
         }
     }
 }

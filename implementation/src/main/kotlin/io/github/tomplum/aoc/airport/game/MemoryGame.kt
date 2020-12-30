@@ -16,20 +16,22 @@ package io.github.tomplum.aoc.airport.game
  *
  * @param data The starting numbers.
  */
-class MemoryGame(data: String) {
-    private val numbers = data.split(",").map { it.toInt() }
-    private lateinit var spoken: IntArray
+class MemoryGame(data: String, private val turns: Int) {
+    private val numbers = data.split(",").map { number -> number.toInt() }
+    private val spoken = IntArray(turns) { -1 }
     private var currentNumber = numbers.last()
     private var turn = numbers.size
 
+    init {
+        numbers.forEachIndexed { i, number -> spoken[number] = i + 1 }
+    }
+
     /**
-     * Simulates the memory game up until the given [lastTurn].
+     * Simulates the memory game up until the given [turns].
      * @return The [currentNumber] spoken when the simulation ends.
      */
-    fun simulate(lastTurn: Int): Int {
-        spoken = IntArray(lastTurn) { -1 }
-        numbers.forEachIndexed { i, number -> spoken[number] = i + 1 }
-        while (turn < lastTurn) {
+    fun simulate(): Int {
+        while (turn < turns) {
             when {
                 spoken[currentNumber] == -1 -> speak(0)
                 else -> speak(turn - spoken[currentNumber])
@@ -38,6 +40,9 @@ class MemoryGame(data: String) {
         return currentNumber
     }
 
+    /**
+     * Speaks the next [number] and increments the turn.
+     */
     private fun speak(number: Int) {
         spoken[currentNumber] = turn++
         currentNumber = number
