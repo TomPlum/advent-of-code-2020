@@ -38,7 +38,6 @@ class ForestMap(data: List<String>) : AdventMap2D<ForestTile>() {
         var currentPosition = Point2D(0, 0)
         var treesEncountered = 0L
         while (currentPosition.y <= yMax!!) {
-            AdventLogger.debug("Toboggan Position: $currentPosition")
             val tile = getForestTile(currentPosition)
             if (tile.isTree()) treesEncountered++
             currentPosition = slopeTrajectory.apply(currentPosition)
