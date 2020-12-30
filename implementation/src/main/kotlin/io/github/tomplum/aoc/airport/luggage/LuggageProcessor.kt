@@ -14,19 +14,22 @@ class LuggageProcessor(private val luggage: Set<LuggageBag>) {
 
     /**
      * Finds the luggage bag colours that can eventually contains at least one bag of the given [colour].
+     * @param colour The target colour to search for.
      * @return The quantity of bag colours found.
      */
-    fun getBagColoursContaining(colour: String): Int = findNode(colour).getAncestors().size
+    fun getBagColoursContaining(colour: String): Int = findNode(colour).getEnclosingBags().size
 
     /**
      * Finds how many individual luggage bags are required inside a single bad of the given [colour].
+     * @param colour The target colour to search for.
      * @return The total quantity of all the required bags.
      */
     fun getBagRequirement(colour: String): Int = findNode(colour).getBagRequirement() - 1
 
     /**
      * Finds the node in the sub-trees of the given [luggage] root nodes that matches the given [colour].
+     * @param colour The target colour to search for.
      * @throws NoSuchElementException if a luggage bag with the given [colour] cannot be found.
      */
-    private fun findNode(colour: String): LuggageBag = luggage.mapNotNull { it.getNode(colour) }.first()
+    private fun findNode(colour: String): LuggageBag = luggage.mapNotNull { bag -> bag.getNestedBag(colour) }.first()
 }

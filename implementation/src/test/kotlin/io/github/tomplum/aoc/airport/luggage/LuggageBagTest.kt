@@ -20,7 +20,7 @@ class LuggageBagTest {
     inner class GetAncestors {
         @Test
         fun root() {
-            assertThat(LuggageBag("shiny gold").getAncestors()).isEmpty()
+            assertThat(LuggageBag("shiny gold").getEnclosingBags()).isEmpty()
         }
 
         @Test
@@ -28,7 +28,7 @@ class LuggageBagTest {
             val root = LuggageBag("shiny gold")
             val child = LuggageBag("dull yellow")
             root.addChild(child, 3)
-            assertThat(child.getAncestors()).containsOnly(root)
+            assertThat(child.getEnclosingBags()).containsOnly(root)
         }
 
         @Test
@@ -40,7 +40,7 @@ class LuggageBagTest {
             root.addChild(child, 3)
             root.addChild(secondChild, 5)
             secondChild.addChild(thirdDeeperChild, 3)
-            assertThat(thirdDeeperChild.getAncestors()).containsOnly(secondChild, root)
+            assertThat(thirdDeeperChild.getEnclosingBags()).containsOnly(secondChild, root)
         }
     }
 

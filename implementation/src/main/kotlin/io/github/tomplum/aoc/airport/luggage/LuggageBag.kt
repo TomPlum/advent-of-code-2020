@@ -3,9 +3,7 @@ package io.github.tomplum.aoc.airport.luggage
 /**
  * A single luggage bag in a tree of other recursively nested bags.
  *
- * @see LuggageProcessor
- * @see LuggageRuleParser
- *
+ * @param colour The colour of the bag.
  * @property parents The bags in which this bag can be contained in.
  * @property children The bags which can be contained in this bag and their respective quantity requirements.
  */
@@ -15,6 +13,8 @@ data class LuggageBag(private val colour: String) {
 
     /**
      * Adds a single child [bag] with the given [quantity] requirement.
+     * @param bag The bag to nest inside the current.
+     * @param quantity The number of individual bags required inside this one.
      */
     fun addChild(bag: LuggageBag, quantity: Int) {
         children[bag] = quantity
@@ -23,16 +23,20 @@ data class LuggageBag(private val colour: String) {
 
     /**
      * Gets a single node from the tree with the given [colour].
+     * @param colour The colour of bag to search for.
      * @return The found node or null if no such node exists.
      */
-    fun getNode(colour: String): LuggageBag? {
+    fun getNestedBag(colour: String): LuggageBag? {
         if (this.colour == colour) return this
-        return children.keys.map { it.getNode(colour) }.firstOrNull()
+        return children.keys.map { bag -> bag.getNestedBag(colour) }.firstOrNull()
     }
 
-    //fun getAncestorCount(): Int = parents.size + parents.sumBy { it.getAncestorCount() }
-
-    fun getAncestors(): Set<LuggageBag> = parents.toSet() + parents.flatMap { it.getAncestors() }
+    /**
+     * Gets all the bags that the current bag is inside of.
+     * A.K.A The ancestors in the tree.
+     * @return A collection of all enclosing bags.
+     */
+    fun getEnclosingBags(): Set<LuggageBag> = parents.toSet() + parents.flatMap { bag -> bag.getEnclosingBags() }
 
     /**
      * Calculates the total number of bags required for one of this bag.
@@ -44,6 +48,7 @@ data class LuggageBag(private val colour: String) {
 
     /**
      * Checks if this luggage bag is a root node in the tree.
+     * @return true if root, else false.
      */
     fun isRoot(): Boolean = parents.size == 0
 }

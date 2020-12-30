@@ -111,7 +111,7 @@ write more tests than just the example inputs, but they were a nice baseline to 
 | 04  | 192            | 25ms     | 101               | 8ms      | [Passport Processing](docs/DAY4.MD)      |
 | 05  | 904            | 8ms      | 669               | 4ms      | [Binary Boarding](docs/DAY5.MD)          |
 | 06  | 6911           | 9ms      | 3473              | 24ms     | [Custom Customs](docs/DAY6.MD)           |
-| 07  | 300            | 107ms    | 8030              | 68ms     | [Handy Haversacks](docs/DAY7.MD)         |
+| 07  | 300            | 41ms     | 8030              | 14ms     | [Handy Haversacks](docs/DAY7.MD)         |
 | 08  | 1832           | 9ms      | 662               | 24ms     | [Handheld Halting](docs/DAY8.MD)         |
 | 09  | 20874512       | 149ms    | 3012420           | 60ms     | [Encoding Error](docs/DAY9.MD)           |
 | 10  | 2176           | 1ms      | 18512297918464    | 1ms      | [Adapter Array](docs/DAY10.MD)           |
