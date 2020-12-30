@@ -107,7 +107,7 @@ write more tests than just the example inputs, but they were a nice baseline to 
 |-----|----------------|----------|-------------------|----------|------------------------------------------|
 | 01  | 802011         | 12ms     | 248607374         | 58ms     | [Report Repair](docs/DAY1.MD)            |
 | 02  | 660            | 21ms     | 530               | 7ms      | [Password Philosophy](docs/DAY2.MD)      |
-| 03  | 169            | 3ms      | 7560370818        | 3ms      | [Toboggan Trajectory](docs/DAY3.MD)      |
+| 03  | 169            | 3ms      | 7560370818        | 2ms      | [Toboggan Trajectory](docs/DAY3.MD)      |
 | 04  | 192            | 25ms     | 101               | 8ms      | [Passport Processing](docs/DAY4.MD)      |
 | 05  | 904            | 8ms      | 669               | 4ms      | [Binary Boarding](docs/DAY5.MD)          |
 | 06  | 6911           | 9ms      | 3473              | 24ms     | [Custom Customs](docs/DAY6.MD)           |
