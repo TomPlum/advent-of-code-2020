@@ -43,7 +43,7 @@ class RecursiveCombatGame(private val enabledLogging: Boolean = false) {
      * @return The result after a winner is determined.
      */
     fun simulate(p1: SpaceCardDeck, p2: SpaceCardDeck): GameResult {
-        AdventLogger.info("== Game $gameNumber ==\n")
+        AdventLogger.info("== Game {} ==\n", gameNumber)
         var round = 1
 
         val playerOneDeckStates = mutableListOf<Int>()
