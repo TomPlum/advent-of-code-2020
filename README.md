@@ -126,10 +126,10 @@ write more tests than just the example inputs, but they were a nice baseline to 
 | 19  | 171            | 78ms     | 369               | 201ms    | [Monster Messages](docs/DAY19.MD)        |
 | 20  | 20899048083289 | 101ms    | 2476              | 1s 177ms | [Jurassic Jigsaw](docs/DAY20.MD)         |
 | 21  | 2315           | 26ms     | cf,h,t,b,l,cb,cm,d| 2ms      | [Allergen Assessment](docs/DAY21.MD)     |
-| 22  | 306            | 6ms      | 291               | 4s 368ms | [Crab Combat](docs/DAY22.MD)             |
+| 22  | 306            | 6ms      | 291               | 1s 299ms | [Crab Combat](docs/DAY22.MD)             |
 | 23  | 58427369       | 1ms      | 111057672960      | 1s 22ms  | [Crab Cups](docs/DAY23.MD)               |
 | 24  | 326            | 878μs    | 3979              | 3s 264ms | [Lobby Layout](docs/DAY24.MD)            |
 | 25  | 19774660       | 734ms    | 49 Stars          | 643μs    | [Combo Breaker](docs/DAY25.MD)           |
 
-Average Execution Time: 881ms \
-Total Execution Time: 22s 35ms
+Average Execution Time: 722ms \
+Total Execution Time: 18s 52ms
