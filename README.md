@@ -107,7 +107,7 @@ write more tests than just the example inputs, but they were a nice baseline to 
 |-----|----------------|----------|-------------------|----------|------------------------------------------|
 | 01  | 802011         | 12ms     | 248607374         | 58ms     | [Report Repair](docs/DAY1.MD)            |
 | 02  | 660            | 21ms     | 530               | 7ms      | [Password Philosophy](docs/DAY2.MD)      |
-| 03  | 169            | 684ms    | 7560370818        | 32ms     | [Toboggan Trajectory](docs/DAY3.MD)      |
+| 03  | 169            | 3ms      | 7560370818        | 3ms      | [Toboggan Trajectory](docs/DAY3.MD)      |
 | 04  | 192            | 25ms     | 101               | 8ms      | [Passport Processing](docs/DAY4.MD)      |
 | 05  | 904            | 8ms      | 669               | 4ms      | [Binary Boarding](docs/DAY5.MD)          |
 | 06  | 6911           | 9ms      | 3473              | 24ms     | [Custom Customs](docs/DAY6.MD)           |
@@ -129,7 +129,7 @@ write more tests than just the example inputs, but they were a nice baseline to 
 | 22  | 306            | 6ms      | 291               | 1s 299ms | [Crab Combat](docs/DAY22.MD)             |
 | 23  | 58427369       | 1ms      | 111057672960      | 1s 22ms  | [Crab Cups](docs/DAY23.MD)               |
 | 24  | 326            | 878μs    | 3979              | 3s 264ms | [Lobby Layout](docs/DAY24.MD)            |
-| 25  | 19774660       | 734ms    | 49 Stars          | 643μs    | [Combo Breaker](docs/DAY25.MD)           |
+| 25  | 19774660       | 104ms    | 49 Stars          | 15μs     | [Combo Breaker](docs/DAY25.MD)           |
 
-Average Execution Time: 717ms \
-Total Execution Time: 17s 931ms
+Average Execution Time: 662ms \
+Total Execution Time: 16s 563ms

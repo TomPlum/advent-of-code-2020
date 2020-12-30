@@ -1,7 +1,5 @@
 package io.github.tomplum.aoc.island.room
 
-import io.github.tomplum.libs.logging.AdventLogger
-
 /**
  * A single participant in a cryptographic network handshake.
  * @param publicKey The public key used to negotiate a network handshake.
@@ -18,7 +16,6 @@ open class HandshakeParticipant(private val publicKey: Long) {
 
         while (value != publicKey) {
             value = value.transform(subjectNumber)
-            AdventLogger.info("Value: $value")
             loopSize++
         }
         return loopSize
