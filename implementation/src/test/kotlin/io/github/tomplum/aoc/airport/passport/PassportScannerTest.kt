@@ -2,9 +2,9 @@ package io.github.tomplum.aoc.airport.passport
 
 import assertk.assertThat
 import assertk.assertions.isEqualTo
-import io.github.tomplum.aoc.input.TestInputReader
 import io.github.tomplum.aoc.airport.passport.strategy.RelaxedValidation
 import io.github.tomplum.aoc.airport.passport.strategy.StrictValidation
+import io.github.tomplum.aoc.input.TestInputReader
 import org.junit.jupiter.api.Test
 
 class PassportScannerTest {

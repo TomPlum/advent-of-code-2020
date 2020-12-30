@@ -3,9 +3,10 @@ package io.github.tomplum.aoc.aircraft.homework
 import assertk.assertThat
 import assertk.assertions.containsOnly
 import assertk.assertions.isEqualTo
-import io.github.tomplum.aoc.aircraft.homework.types.Operator.*
 import io.github.tomplum.aoc.aircraft.homework.types.Expression
 import io.github.tomplum.aoc.aircraft.homework.types.Number
+import io.github.tomplum.aoc.aircraft.homework.types.Operator.ADD
+import io.github.tomplum.aoc.aircraft.homework.types.Operator.MULTIPLY
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 

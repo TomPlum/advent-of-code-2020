@@ -3,10 +3,6 @@ package io.github.tomplum.aoc.airport.train.ticket
 import assertk.assertThat
 import assertk.assertions.isEqualTo
 import io.github.tomplum.aoc.input.TestInputReader
-import io.github.tomplum.aoc.airport.train.ticket.EncodedTicket
-import io.github.tomplum.aoc.airport.train.ticket.TicketReader
-import io.github.tomplum.aoc.airport.train.ticket.TicketRule
-import io.github.tomplum.aoc.airport.train.ticket.TrainServiceDocument
 import org.junit.jupiter.api.Test
 
 class TicketReaderTest {

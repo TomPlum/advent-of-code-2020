@@ -1,6 +1,7 @@
 package io.github.tomplum.aoc.raft.cards
 
-import io.github.tomplum.aoc.raft.cards.Player.*
+import io.github.tomplum.aoc.raft.cards.Player.PLAYER_1
+import io.github.tomplum.aoc.raft.cards.Player.PLAYER_2
 import io.github.tomplum.libs.logging.AdventLogger
 
 /**

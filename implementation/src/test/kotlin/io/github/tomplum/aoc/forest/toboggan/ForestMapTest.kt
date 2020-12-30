@@ -2,8 +2,6 @@ package io.github.tomplum.aoc.forest.toboggan
 
 import assertk.assertThat
 import assertk.assertions.isEqualTo
-import io.github.tomplum.aoc.forest.toboggan.ForestMap
-import io.github.tomplum.aoc.forest.toboggan.SlopeTrajectory
 import io.github.tomplum.aoc.input.TestInputReader
 import org.junit.jupiter.api.Test
 

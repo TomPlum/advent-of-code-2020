@@ -2,9 +2,9 @@ package io.github.tomplum.aoc.airport.train.ticket.meta
 
 import assertk.assertThat
 import assertk.assertions.isEqualTo
-import io.github.tomplum.aoc.input.TestInputReader
 import io.github.tomplum.aoc.airport.train.ticket.TicketReader
 import io.github.tomplum.aoc.airport.train.ticket.TicketRule
+import io.github.tomplum.aoc.input.TestInputReader
 import org.junit.jupiter.api.Test
 
 class TicketMetaAnalyserTest {

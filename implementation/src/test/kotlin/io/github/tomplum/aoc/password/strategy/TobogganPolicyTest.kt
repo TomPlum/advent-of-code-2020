@@ -5,7 +5,6 @@ import assertk.assertions.isEqualTo
 import assertk.assertions.isFalse
 import assertk.assertions.isNotEqualTo
 import assertk.assertions.isTrue
-import io.github.tomplum.aoc.password.strategy.TobogganPolicy
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 

@@ -1,9 +1,9 @@
 package io.github.tomplum.aoc.ferry.seating
 
-import io.github.tomplum.libs.math.Direction
-import io.github.tomplum.libs.math.point.Point2D
-import io.github.tomplum.libs.math.map.AdventMap2D
 import io.github.tomplum.aoc.ferry.navigation.Ferry
+import io.github.tomplum.libs.math.Direction
+import io.github.tomplum.libs.math.map.AdventMap2D
+import io.github.tomplum.libs.math.point.Point2D
 
 /**
  * A map of the seating layout in the waiting area of the [Ferry].

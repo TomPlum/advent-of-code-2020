@@ -1,7 +1,7 @@
 package io.github.tomplum.aoc.airport.train.ticket.meta
 
-import io.github.tomplum.aoc.airport.train.ticket.TicketRule
 import io.github.tomplum.aoc.airport.train.ticket.EncodedTicket
+import io.github.tomplum.aoc.airport.train.ticket.TicketRule
 
 /**
  * A map of column indices and ticket rules used to decode an [EncodedTicket].

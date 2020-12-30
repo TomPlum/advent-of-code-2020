@@ -2,7 +2,6 @@ package io.github.tomplum.aoc.solutions
 
 import io.github.tomplum.aoc.Solution
 import io.github.tomplum.aoc.island.lobby.ArtExhibitSimulator
-import io.github.tomplum.aoc.island.lobby.HexGrid
 import io.github.tomplum.aoc.island.lobby.LobbyFloor
 import io.github.tomplum.aoc.island.lobby.TileLayoutParser
 import io.github.tomplum.libs.input.Day

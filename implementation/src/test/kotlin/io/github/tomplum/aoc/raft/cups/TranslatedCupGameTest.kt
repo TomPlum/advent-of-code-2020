@@ -2,7 +2,6 @@ package io.github.tomplum.aoc.raft.cups
 
 import assertk.assertThat
 import assertk.assertions.isEqualTo
-import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 
 class TranslatedCupGameTest {

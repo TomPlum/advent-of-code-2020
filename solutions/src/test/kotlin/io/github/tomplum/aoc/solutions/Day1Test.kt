@@ -2,7 +2,6 @@ package io.github.tomplum.aoc.solutions
 
 import assertk.assertThat
 import assertk.assertions.isEqualTo
-import io.github.tomplum.aoc.solutions.Day1
 import org.junit.jupiter.api.Test
 
 class Day1Test {

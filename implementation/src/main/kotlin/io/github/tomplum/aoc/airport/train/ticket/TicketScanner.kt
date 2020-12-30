@@ -1,8 +1,8 @@
 package io.github.tomplum.aoc.airport.train.ticket
 
-import io.github.tomplum.aoc.extensions.product
-import io.github.tomplum.aoc.airport.train.ticket.meta.TicketMetaAnalyser
 import io.github.tomplum.aoc.airport.train.ticket.meta.TicketMeta
+import io.github.tomplum.aoc.airport.train.ticket.meta.TicketMetaAnalyser
+import io.github.tomplum.aoc.extensions.product
 
 /**
  * Scans the tickets in the given [document].

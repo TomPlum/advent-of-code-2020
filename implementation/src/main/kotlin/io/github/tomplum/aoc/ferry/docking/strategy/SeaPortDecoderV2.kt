@@ -1,7 +1,7 @@
 package io.github.tomplum.aoc.ferry.docking.strategy
 
-import io.github.tomplum.aoc.ferry.docking.program.InitProgram
 import io.github.tomplum.aoc.ferry.docking.program.BitMask
+import io.github.tomplum.aoc.ferry.docking.program.InitProgram
 
 /**
  * Version 2 of the sea port decoder doesn't modify the values being written at all.

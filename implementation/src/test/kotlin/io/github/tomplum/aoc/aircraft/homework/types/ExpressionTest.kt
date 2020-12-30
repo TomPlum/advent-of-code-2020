@@ -3,7 +3,8 @@ package io.github.tomplum.aoc.aircraft.homework.types
 import assertk.assertThat
 import assertk.assertions.isEqualTo
 import io.github.tomplum.aoc.aircraft.homework.strategy.OperationOrderStrategy
-import io.github.tomplum.aoc.aircraft.homework.types.Operator.*
+import io.github.tomplum.aoc.aircraft.homework.types.Operator.ADD
+import io.github.tomplum.aoc.aircraft.homework.types.Operator.MULTIPLY
 import io.mockk.impl.annotations.MockK
 import io.mockk.junit5.MockKExtension
 import io.mockk.verify

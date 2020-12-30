@@ -1,7 +1,7 @@
 package io.github.tomplum.aoc.ferry.docking.strategy
 
-import io.github.tomplum.aoc.ferry.docking.program.InitProgram
 import io.github.tomplum.aoc.ferry.docking.emulator.Memory
+import io.github.tomplum.aoc.ferry.docking.program.InitProgram
 
 /**
  * A strategy for emulating a decoder-chip.

@@ -6,7 +6,6 @@ import io.github.tomplum.aoc.input.TestInputReader
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
-import java.lang.NullPointerException
 
 class AdapterArrayTest {
     @Nested

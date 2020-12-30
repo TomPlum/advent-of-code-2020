@@ -1,7 +1,6 @@
 package io.github.tomplum.aoc.airport.train.image
 
 import assertk.assertThat
-import assertk.assertions.containsOnly
 import assertk.assertions.isEqualTo
 import io.github.tomplum.aoc.input.TestInputReader
 import org.junit.jupiter.api.Test

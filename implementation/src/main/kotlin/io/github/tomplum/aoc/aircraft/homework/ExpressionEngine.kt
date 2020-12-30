@@ -1,7 +1,7 @@
 package io.github.tomplum.aoc.aircraft.homework
 
-import io.github.tomplum.aoc.aircraft.homework.types.Expression
 import io.github.tomplum.aoc.aircraft.homework.strategy.OperationOrderStrategy
+import io.github.tomplum.aoc.aircraft.homework.types.Expression
 
 /**
  * Resolves expressions according to the given [strategy].

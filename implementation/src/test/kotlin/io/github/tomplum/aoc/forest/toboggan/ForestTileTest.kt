@@ -3,7 +3,6 @@ package io.github.tomplum.aoc.forest.toboggan
 import assertk.assertThat
 import assertk.assertions.isFalse
 import assertk.assertions.isTrue
-import io.github.tomplum.aoc.forest.toboggan.ForestTile
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
