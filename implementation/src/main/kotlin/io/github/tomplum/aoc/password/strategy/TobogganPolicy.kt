@@ -27,10 +27,10 @@ data class TobogganPolicy(private val data: String) : CorporatePolicy {
     }
 
     override fun apply(password: String): Boolean {
-        return listOf(
+        return arrayOf(
             password.hasMandatoryCharAt(positionOne),
             password.hasMandatoryCharAt(positionTwo)
-        ).filter { it }.count() == 1
+        ).count { isTrue -> isTrue } == 1
     }
 
     override fun toString(): String = data

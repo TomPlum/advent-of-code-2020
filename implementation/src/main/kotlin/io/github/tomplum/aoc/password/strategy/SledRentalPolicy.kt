@@ -24,7 +24,7 @@ data class SledRentalPolicy(private val data: String) : CorporatePolicy {
     }
 
     override fun apply(password: String): Boolean {
-        val occurrences = password.filter { it == mandatoryCharacter }.length
+        val occurrences = password.filter { character -> character == mandatoryCharacter }.length
         return occurrences in minimumOccurrences..maximumOccurrences
     }
 

@@ -18,21 +18,22 @@ class PasswordDatabase<T : CorporatePolicy>(private val policyType: Class<T>) {
      * Validates all the [passwords] against the given [policyType].
      * @return The number of passwords that are valid.
      */
-    fun validate(): Int = passwords.filter { (password, policy) ->
-        policy.apply(password)
-    }.count()
+    fun validate(): Int = passwords.filter { (password, policy) -> policy.apply(password) }.count()
 
     /**
      * Imports a list of [rawData] exported from another [PasswordDatabase].
      * @throws IllegalArgumentException if the [policyType] is unknown.
-     * @see CorporatePolicy
+     * @param rawData A list of rule-password data entries. E.g. 2-5 l: fllxf
      */
-    fun import(rawData: List<String>) = rawData.map { it.split(":") }.map { pair ->
-        val policy = when(policyType) {
-            SledRentalPolicy::class.java -> SledRentalPolicy(pair[0])
-            TobogganPolicy::class.java -> TobogganPolicy(pair[0])
-            else -> throw IllegalArgumentException("Unknown Policy Type: ${policyType.simpleName}")
-        }
-        Pair(pair[1].trim(), policy)
-    }.also { passwords.addAll(it) }
+    fun import(rawData: List<String>) = rawData
+        .map { entry -> entry.split(":") }
+        .map { part -> Pair(part[0], part[1].trim()) }
+        .map { (rule, password) ->
+            val policy = when (policyType) {
+                SledRentalPolicy::class.java -> SledRentalPolicy(rule)
+                TobogganPolicy::class.java -> TobogganPolicy(rule)
+                else -> throw IllegalArgumentException("Unknown Policy Type: ${policyType.simpleName}")
+            }
+            return@map Pair(password, policy)
+        }.let { pair -> passwords.addAll(pair) }
 }
