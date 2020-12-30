@@ -29,8 +29,10 @@ import io.github.tomplum.libs.logging.AdventLogger
  * Note that the winner's card might be the lower-valued of the two cards if they won the round due to winning a
  * sub-game. If collecting cards by winning the round causes a player to have all of the cards, they win,
  * and the game ends.
+ *
+ * @param enabledLogging Whether to log the game state. Incurs a large performance cost.
  */
-class RecursiveCombatGame {
+class RecursiveCombatGame(private val enabledLogging: Boolean = false) {
 
     private var gameNumber = 1
 
@@ -53,7 +55,6 @@ class RecursiveCombatGame {
             val p2draw = p2.draw()
 
             if (playerOneDeckStates.contains(p1.hashCode()) && playerTwoDeckStates.contains(p2.hashCode())) {
-                AdventLogger.trace("Player 1 wins as their deck state has been seen before")
                 return GameResult(PLAYER_1, p1, p2)
             }
 
@@ -66,8 +67,7 @@ class RecursiveCombatGame {
                 gameNumber++
                 subGameResult = simulate(p1.getCards(p1draw), p2.getCards(p2draw))
 
-                AdventLogger.info("The winner of game $gameNumber is player ${subGameResult.winner}\n")
-                AdventLogger.info("...anyway, back to game ${gameNumber - 1}")
+                logSubGameResult(subGameResult)
                 gameNumber--
             }
 
@@ -94,18 +94,29 @@ class RecursiveCombatGame {
     }
 
     private fun logRound(round: Int, gameNumber: Int, p1draw: Int, p2draw: Int, p1: SpaceCardDeck, p2: SpaceCardDeck) {
-        AdventLogger.info("-- Round $round (Game $gameNumber) --")
-        AdventLogger.info("Player 1's deck: $p1draw, $p1")
-        AdventLogger.info("Player 2's deck: $p2draw, $p2")
-        AdventLogger.info("Player 1 plays: $p1draw")
-        AdventLogger.info("Player 2 plays: $p2draw")
-        val winner: Int = if (p1draw > p2draw) 1 else 2
-        AdventLogger.info("Player $winner wins round $round of game $gameNumber!\n")
+        if (enabledLogging) {
+            AdventLogger.info("-- Round $round (Game $gameNumber) --")
+            AdventLogger.info("Player 1's deck: $p1draw, $p1")
+            AdventLogger.info("Player 2's deck: $p2draw, $p2")
+            AdventLogger.info("Player 1 plays: $p1draw")
+            AdventLogger.info("Player 2 plays: $p2draw")
+            val winner: Int = if (p1draw > p2draw) 1 else 2
+            AdventLogger.info("Player $winner wins round $round of game $gameNumber!\n")
+        }
     }
 
     private fun logPostGameResults(p1: SpaceCardDeck, p2: SpaceCardDeck) {
-        AdventLogger.info("== Post-game results ==")
-        AdventLogger.info("Player 1's deck: $p1")
-        AdventLogger.info("Player 2's deck: $p2")
+        if (enabledLogging) {
+            AdventLogger.info("== Post-game results ==")
+            AdventLogger.info("Player 1's deck: $p1")
+            AdventLogger.info("Player 2's deck: $p2")
+        }
+    }
+
+    private fun logSubGameResult(subGameResult: GameResult) {
+        if (enabledLogging) {
+            AdventLogger.info("The winner of game $gameNumber is player ${subGameResult.winner}\n")
+            AdventLogger.info("...anyway, back to game ${gameNumber - 1}")
+        }
     }
 }
