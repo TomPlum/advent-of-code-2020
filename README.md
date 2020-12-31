@@ -93,7 +93,7 @@ I used the [DeteKT](https://detekt.github.io/detekt/index.html) Gradle plugin to
 codebase. It produces a report containing all the code-smells that it found based on the set configuration.
 The custom configuration is defined in `detekt-config.yml` and can be found in the `implementation` resources.
 
-#### JUnit5 & AssertK
+### JUnit5 & AssertK
 The JUnit5 Jupiter API exposes some really nice functionality in the form of annotations and offers callback
 interfaces for each of the life-cycle events. Utilising the `@ParameterizedTest` can significantly reduce the
 quantity of test-methods in your unit tests suites while `@Nested` allows you to organise your tests in nested
@@ -102,7 +102,7 @@ classes.
 [AssertK](https://git.io/JJd1g) is an assertion library inspired by [AssertJ](https://git.io/JJd1a) but for Kotlin.
 I'm familiar with AssertJ and prefer the naming conventions and variety of assertions over the default JUnit offering.
 
-#### Test-Driven Development
+### Test-Driven Development
 I'm a huge advocate of testing in general, but particularly test-driven development. Some days were easy to test-drive
 as they provided lots of examples that generally covered all branches of the algorithm and sometimes even edge cases.
 Given I was taking a proper object-orientated approach, and not just hacking it into a single function, I still had to
@@ -162,7 +162,7 @@ maybe even the hardware.
 | 14  | 9967721333886  | 6ms      | 4355897790573     | 239ms    | [Docking Data](docs/DAY14.MD)            |
 | 15  | 1259           | 1ms      | 689               | 687ms    | [Rambunctious Recitation](docs/DAY15.MD) |
 | 16  | 28882          | 3ms      | 1429779530273     | 11ms     | [Ticket Translation](docs/DAY16.MD)      |
-| 17  | 269            | 213ms    | 848               | 3s 65ms  | [Conway Cubes](docs/DAY17.MD)            |
+| 17  | 269            | 146ms    | 848               | 2s 958ms | [Conway Cubes](docs/DAY17.MD)            |
 | 18  | 11297104473091 | 19ms     | 185348874183674   | 15ms     | [Operation Order](docs/DAY18.MD)         |
 | 19  | 171            | 78ms     | 369               | 201ms    | [Monster Messages](docs/DAY19.MD)        |
 | 20  | 20899048083289 | 101ms    | 2476              | 1s 177ms | [Jurassic Jigsaw](docs/DAY20.MD)         |
@@ -172,8 +172,8 @@ maybe even the hardware.
 | 24  | 326            | 878μs    | 3979              | 3s 264ms | [Lobby Layout](docs/DAY24.MD)            |
 | 25  | 19774660       | 104ms    | 49 Stars          | 15μs     | [Combo Breaker](docs/DAY25.MD)           |
 
-Average Execution Time: 662ms \
-Total Execution Time: 16s 563ms
+Average Execution Time: 646ms \
+Total Execution Time: 16s 168ms
 
 ## Advent Calendar
 [![Calendar](https://i.gyazo.com/35e15bbee4d35f25457e6ac969b17937.gif)](https://gyazo.com/35e15bbee4d35f25457e6ac969b17937)

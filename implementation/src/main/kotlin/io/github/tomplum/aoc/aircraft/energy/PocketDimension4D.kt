@@ -23,7 +23,7 @@ class PocketDimension4D(initialState: List<String>) : AdventMap4D<ConwayCube>(),
         }
 
         if (initialState.isNotEmpty()) {
-            AdventLogger.info("Initial State:\n$this")
+            AdventLogger.info("Initial State:\n{}", this)
         }
     }
 
@@ -32,7 +32,7 @@ class PocketDimension4D(initialState: List<String>) : AdventMap4D<ConwayCube>(),
      * @return A list of all the positions of the to-be-active cubes.
      */
     override fun getNextActiveCubes(): List<Point4D> {
-        val currentlyInactive = filterTiles { it.isInActive() }
+        val currentlyInactive = filterTiles { cube -> cube.isInActive() }
         return currentlyInactive.keys.filter { pos ->
             val adjacent = filterPoints(pos.adjacent().toSet())
             adjacent.count { (_, cube) -> cube.isActive() } == 3
@@ -44,7 +44,7 @@ class PocketDimension4D(initialState: List<String>) : AdventMap4D<ConwayCube>(),
      * @return A list of all the positions of the to-be-active cubes.
      */
     override fun getNextInActiveCubes(): List<Point4D> {
-        val currentlyActive = filterTiles { it.isActive() }
+        val currentlyActive = filterTiles { cube -> cube.isActive() }
         return currentlyActive.keys.filter { pos ->
             val adjacent = filterPoints(pos.adjacent().toSet())
             val activeNeighbors = adjacent.count { (_, cube) -> cube.isActive() }
@@ -57,7 +57,7 @@ class PocketDimension4D(initialState: List<String>) : AdventMap4D<ConwayCube>(),
      * @param positions A list of in-active positions.
      */
     override fun activate(positions: List<Point>) {
-        positions.forEach { addTile(it as Point4D, ConwayCube.active()) }
+        positions.forEach { pos -> addTile(pos as Point4D, ConwayCube.active()) }
     }
 
     /**
@@ -65,7 +65,7 @@ class PocketDimension4D(initialState: List<String>) : AdventMap4D<ConwayCube>(),
      * @param positions A list of active positions.
      */
     override fun deactivate(positions: List<Point>) {
-        positions.forEach { addTile(it as Point4D, ConwayCube.inactive()) }
+        positions.forEach { pos -> addTile(pos as Point4D, ConwayCube.inactive()) }
     }
 
     /**
@@ -74,7 +74,7 @@ class PocketDimension4D(initialState: List<String>) : AdventMap4D<ConwayCube>(),
      */
     override fun getSnapshot(): PocketDimension4D {
         val snapshot = PocketDimension4D(emptyList())
-        filterTiles { true }.forEach { (pos, cube) -> snapshot.addTile(pos, cube) }
+        snapshot.overwriteData(getDataMap().toMutableMap())
         snapshot.addNewSurroundingCells()
         return snapshot
     }
@@ -83,7 +83,7 @@ class PocketDimension4D(initialState: List<String>) : AdventMap4D<ConwayCube>(),
      * Finds all the cubes that are currently in an active state.
      * @return The sum of all active cubes.
      */
-    override fun getActiveCubeQuantity(): Int = filterTiles { it.isActive() }.count()
+    override fun getActiveCubeQuantity(): Int = filterTiles { cube -> cube.isActive() }.count()
 
     /**
      * Adds a new layer of in-active cells around the current perimeter.
@@ -99,12 +99,14 @@ class PocketDimension4D(initialState: List<String>) : AdventMap4D<ConwayCube>(),
         val wMin = wMin()!!
         val wMax = wMax()!!
 
+        val inactiveCube = ConwayCube.inactive()
+
         (yMin - 1..yMax + 1).forEach { y ->
             (zMin..zMax).forEach { z ->
                 (wMin..wMax).forEach { w ->
                     //Add left and right column for all existing z-planes
-                    addTile(Point4D(xMin - 1, y, z, w), ConwayCube.inactive())
-                    addTile(Point4D(xMax + 1, y, z, w), ConwayCube.inactive())
+                    addTile(Point4D(xMin - 1, y, z, w), inactiveCube)
+                    addTile(Point4D(xMax + 1, y, z, w), inactiveCube)
                 }
 
             }
@@ -112,16 +114,16 @@ class PocketDimension4D(initialState: List<String>) : AdventMap4D<ConwayCube>(),
             //Add entire new z-layer that is 1 cell wider in each direction above and below the top and bottom layers
             (xMin - 1..xMax + 1).forEach { x ->
                 (wMin - 1..wMax + 1).forEach { w ->
-                    addTile(Point4D(x, y, zMin - 1, w), ConwayCube.inactive())
-                    addTile(Point4D(x, y, zMax + 1, w), ConwayCube.inactive())
+                    addTile(Point4D(x, y, zMin - 1, w), inactiveCube)
+                    addTile(Point4D(x, y, zMax + 1, w), inactiveCube)
                 }
             }
 
             //Add new w-layers
             (xMin - 1..xMax + 1).forEach { x ->
                 (zMin - 1..zMax + 1).forEach { z ->
-                    addTile(Point4D(x, y, z, wMin - 1), ConwayCube.inactive())
-                    addTile(Point4D(x, y, z, wMax + 1), ConwayCube.inactive())
+                    addTile(Point4D(x, y, z, wMin - 1), inactiveCube)
+                    addTile(Point4D(x, y, z, wMax + 1), inactiveCube)
                 }
             }
 
@@ -131,8 +133,8 @@ class PocketDimension4D(initialState: List<String>) : AdventMap4D<ConwayCube>(),
         (xMin..xMax).forEach { x ->
             (zMin..zMax).forEach { z ->
                 (wMin..wMax).forEach { w ->
-                    addTile(Point4D(x, yMin - 1, z, w), ConwayCube.inactive())
-                    addTile(Point4D(x, yMax + 1, z, w), ConwayCube.inactive())
+                    addTile(Point4D(x, yMin - 1, z, w), inactiveCube)
+                    addTile(Point4D(x, yMax + 1, z, w), inactiveCube)
                 }
             }
         }

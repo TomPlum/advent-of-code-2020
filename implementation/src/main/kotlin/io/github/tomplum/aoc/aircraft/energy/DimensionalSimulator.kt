@@ -26,7 +26,8 @@ class DimensionalSimulator(private val initialState: PocketDimension) {
             state.activate(activating)
             state.deactivate(deactivating)
 
-            AdventLogger.info("Generation ${cycle + 1} \n$state")
+            AdventLogger.info("Generation {}\n", cycle + 1)
+            AdventLogger.info(state)
 
             state = state.getSnapshot()
         }
