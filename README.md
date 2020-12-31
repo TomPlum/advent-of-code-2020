@@ -141,6 +141,39 @@ iterations of our algorithm one way or another. I think at this point its limite
 maybe even the hardware.
 
 ### The Most Challenging
+[Day 20 - Jurassic Jigsaw](docs/DAY20.MD) gave us a bunch of tiles which were part of a greater image that could be
+pieced together like a jigsaw. The problem was that the pieces were in a random orientation. This included both rotation
+and flipping in both axes. So although the solution is a simple one, it was finicky to implement. Once the image was
+assembled, we then had to search it for sea monsters and work out the roughness of the water. Each tile had a unique
+ID associated with it and consisted of `.` and `# characters. For example;
+
+    Tile 2311:
+    ..##.#..#.
+    ##..#.....
+    #...##..#.
+    ####.#...#
+    ##.##.###.
+    ##...#.###
+    .#.#.#..##
+    ..#....#..
+    ###...#.#.
+    ..###..###
+
+One of the rules is that the edges of the tiles that join together must match, meaning that there will only be one
+orientation of one tile that matches any given edge. Due to the chromatic nature of the tiles, I converted each edge
+to binary where `#` is a `1` and `.` is a `0`. I then generated all 8 possible orientations of all the tiles, chose a
+random corner candidate and starting joining them together in a cartesian grid. Once I had one possible orientation of
+the built image, I the generated the 8 orientations of it. Now I could start searching for sea monsters. Sea monsters
+look like the image below.
+
+                      # 
+    #    ##    ##    ###
+     #  #  #  #  #  #   
+
+Now that I had the 8 orientations of the assembled image, I search all of them for sea monsters and updated the backing
+cartesian grids to mark the points the were part of the monsters. The final step was to count the number of waves (`#`)
+to determine the waters' roughness. Although this day wasn't the most mathematically challenging, I chose it as the
+hardest day because of the complexity of the parsing and algorithms required.
 
 ## Answer Table
 
