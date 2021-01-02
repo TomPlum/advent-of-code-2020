@@ -33,9 +33,13 @@ allprojects {
     }
 
     dependencies {
+        //Standard Libraries
         implementation(kotlin("stdlib-jdk8"))
         implementation(kotlin("reflect"))
-        implementation("io.github.tomplum:advent-of-code-libs:1.6.7")
+
+        //Advent of Code Libraries
+        implementation("io.github.tomplum:advent-of-code-libs:2.0.0")
+        testImplementation("io.github.tomplum:advent-of-code-test-support:2.0.0")
     }
 
     tasks.withType<KotlinCompile> {
