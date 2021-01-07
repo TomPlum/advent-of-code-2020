@@ -1,6 +1,6 @@
 package io.github.tomplum.aoc.solutions
 
-import io.github.tomplum.aoc.Solution
+import io.github.tomplum.libs.solutions.Solution
 import io.github.tomplum.aoc.bus.BusScheduler
 import io.github.tomplum.aoc.bus.BusTimetable
 import io.github.tomplum.libs.input.Day

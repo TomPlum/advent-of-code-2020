@@ -1,6 +1,6 @@
 package io.github.tomplum.aoc.solutions
 
-import io.github.tomplum.aoc.Solution
+import io.github.tomplum.libs.solutions.Solution
 import io.github.tomplum.aoc.ferry.navigation.InstructionParser
 import io.github.tomplum.aoc.ferry.navigation.NavigationSystem
 import io.github.tomplum.libs.input.Day

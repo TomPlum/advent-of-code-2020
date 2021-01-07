@@ -1,6 +1,6 @@
 package io.github.tomplum.aoc.solutions
 
-import io.github.tomplum.aoc.Solution
+import io.github.tomplum.libs.solutions.Solution
 import io.github.tomplum.aoc.raft.cards.CombatGame
 import io.github.tomplum.aoc.raft.cards.RecursiveCombatGame
 import io.github.tomplum.aoc.raft.cards.SpaceDeckReader
