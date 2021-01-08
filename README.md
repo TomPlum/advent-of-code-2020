@@ -110,6 +110,30 @@ write more tests than just the example inputs, but they were a nice baseline to 
 
 ## The Days
 ### The Most Fun
+[Day 12 - Rain Risk](docs/DAY12.MD) had us navigating a ferry across the ocean based on instructions that translated
+and rotated the position of the ship and its waypoint. The ship could move in any of the cardinal directions for a 
+given number of steps, rotate clockwise or anti-clockwise by the given number of degrees, or move forward in the
+direction it is currently facing for the given number of steps.
+
+Part 1 was easy. Simply translating a coordinate while maintaining the current direction the ship is facing.
+
+Part 2 introduced the ships' waypoint, which moves relative to the ship, and whenever it moves, the ship follows.
+Now the directional translation and rotational commands affect the waypoint relative to the ship. This logic introduced
+some interesting math functionality that I implemented into my libs JAR for the `Point2D` class. I created a function
+that rotated the current point around another. Meaning I could invoke `ship.rotateAbout(waypoint)`.
+
+This was the kind of puzzle that reduced me to a piece of paper, drawing graphs and rotating points about the origin
+to figure out how their ordinates translated.
+
+Here, `xs` the starting point, rotates 90deg clockwise and becomes `xt` the translated point.
+
+              |
+              |       xs (180, 42)
+              |
+    ----------|--------- |
+              |          V
+              |     xt (174, 28)
+              |
 
 ### The Most Interesting
 [Day 15 - Rambunctious Recitation](docs/DAY15.MD) was an interesting day about an Elven memory game which was a facade
