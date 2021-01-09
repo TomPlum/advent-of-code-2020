@@ -230,7 +230,8 @@ hardest day because of the complexity of the parsing and algorithms required.
 | 25  | 19774660       | 104ms    | 49 Stars          | 15μs     | [Combo Breaker](docs/DAY25.MD)           |
 
 Average Execution Time: 646ms \
-Total Execution Time: 15s 441ms
+Total Execution Time: 15s 441ms \
+i7 5820K - OpenJDK 14.0.2 - Ubuntu 20.04
 
 ## Advent Calendar
 [![Calendar](https://i.gyazo.com/35e15bbee4d35f25457e6ac969b17937.gif)](https://gyazo.com/35e15bbee4d35f25457e6ac969b17937)
