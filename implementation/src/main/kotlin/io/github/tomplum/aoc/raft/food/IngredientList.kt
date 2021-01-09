@@ -18,18 +18,18 @@ data class IngredientList(private val entries: List<FoodEntry>) {
      */
     fun getAllergenicFoods(): Map<String, List<String>> {
         return getDistinctAllergens().map { allergen ->
-            val relevantFoods = getEntriesWithAllergen(allergen).map { it.foods }
+            val relevantFoods = getEntriesWithAllergen(allergen).map { entry -> entry.foods }
             val foods = getDistinctFoods().filter { food -> relevantFoods.all { foodList -> foodList.contains(food) } }
             allergen to foods
         }.toMap()
     }
 
     /**
-     * Counts all the times the given [food] name appears in any of the [entries].
-     * @param food The name of the food to find references for.
-     * @return The sum of all the references to [food].
+     * Counts all the times the given food [name] name appears in any of the [entries].
+     * @param name The name of the food to find references for.
+     * @return The sum of all the references to [name].
      */
-    fun getReferenceCount(food: String) = getFoods().count { it == food }
+    fun getReferenceCount(name: String) = getFoods().count { food -> food == name }
 
     /**
      * Compiles a list of all the food name references in all the [entries].
@@ -41,7 +41,7 @@ data class IngredientList(private val entries: List<FoodEntry>) {
      * Compiles a list of all the allergen name references in all the [entries].
      * @return A list of all the distinct allergen names.
      */
-    private fun getDistinctAllergens(): Set<String> = entries.flatMap { it.allergens }.distinct().toSet()
+    private fun getDistinctAllergens(): Set<String> = entries.flatMap { entry -> entry.allergens }.distinct().toSet()
 
     /**
      * Finds all the [entries] that contain the given [allergen].
