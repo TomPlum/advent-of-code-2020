@@ -16,5 +16,7 @@ data class Bus(private val id: String) {
      * @throws IllegalStateException if the bus is out-of-service.
      * @return The ID
      */
-    fun getID(): Int = if (!isOutOfService()) id.toInt() else throw IllegalStateException("This bus is out of service!")
+    fun getID(): Int = if (!isOutOfService()) {
+        id.toInt()
+    } else throw IllegalStateException("This bus is out of service!")
 }
