@@ -1,6 +1,6 @@
 package io.github.tomplum.aoc.solutions
 
-import io.github.tomplum.aoc.Solution
+import io.github.tomplum.libs.solutions.Solution
 import io.github.tomplum.aoc.ferry.docking.emulator.DecoderEmulator
 import io.github.tomplum.aoc.ferry.docking.program.ProgramParser
 import io.github.tomplum.aoc.ferry.docking.strategy.SeaPortDecoderV1

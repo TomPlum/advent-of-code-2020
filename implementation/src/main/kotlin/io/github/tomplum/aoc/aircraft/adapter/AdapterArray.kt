@@ -7,13 +7,13 @@ package io.github.tomplum.aoc.aircraft.adapter
  * Any given adapter can take an input 1, 2, or 3 jolts lower than its rating and still produce its rated output joltage.
  *
  * In addition, your device has a built-in joltage adapter rated for 3 jolts higher than the highest-rated adapter.
- *
  * The charging outlet near the seat has an effective joltage rating of 0.
  *
  * @param ratings A list of the ratings of each of the adapters in your bag.
+ * @property adapters A list of all adapter joltage ratings, including the outlet and the device.
  */
 class AdapterArray(ratings: List<Int>) {
-    private val adapters = ratings
+    private val adapters: List<Int> = ratings
         .plus(0) //Outlet
         .plus(ratings.maxOrNull()!! + 3) //Device Rating
         .sorted()
@@ -24,7 +24,7 @@ class AdapterArray(ratings: List<Int>) {
      */
     fun getJoltageDelta(): Int = adapters
         .zipWithNext { a, b -> b - a }
-        .let { delta -> delta.count { it == 1 } * delta.count { it == 3 } }
+        .let { delta -> delta.count { d -> d == 1 } * delta.count { d -> d == 3 } }
 
     /**
      * Calculates the total number combinations of adapters that can provide the necessary output joltage to charge.

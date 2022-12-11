@@ -110,6 +110,30 @@ write more tests than just the example inputs, but they were a nice baseline to 
 
 ## The Days
 ### The Most Fun
+[Day 12 - Rain Risk](docs/DAY12.MD) had us navigating a ferry across the ocean based on instructions that translated
+and rotated the position of the ship and its waypoint. The ship could move in any of the cardinal directions for a 
+given number of steps, rotate clockwise or anti-clockwise by the given number of degrees, or move forward in the
+direction it is currently facing for the given number of steps.
+
+Part 1 was easy. Simply translating a coordinate while maintaining the current direction the ship is facing.
+
+Part 2 introduced the ships' waypoint, which moves relative to the ship, and whenever it moves, the ship follows.
+Now the directional translation and rotational commands affect the waypoint relative to the ship. This logic introduced
+some interesting math functionality that I implemented into my libs JAR for the `Point2D` class. I created a function
+that rotated the current point around another. Meaning I could invoke `ship.rotateAbout(waypoint)`.
+
+This was the kind of puzzle that reduced me to a piece of paper, drawing graphs and rotating points about the origin
+to figure out how their ordinates translated.
+
+Here, `xs` the starting point, rotates 90deg clockwise and becomes `xt` the translated point.
+
+              |
+              |       xs (180, 42)
+              |
+    ----------|--------- |
+              |          V
+              |     xt (174, 28)
+              |
 
 ### The Most Interesting
 [Day 15 - Rambunctious Recitation](docs/DAY15.MD) was an interesting day about an Elven memory game which was a facade
@@ -195,18 +219,19 @@ hardest day because of the complexity of the parsing and algorithms required.
 | 14  | 9967721333886  | 6ms      | 4355897790573     | 239ms    | [Docking Data](docs/DAY14.MD)            |
 | 15  | 1259           | 1ms      | 689               | 687ms    | [Rambunctious Recitation](docs/DAY15.MD) |
 | 16  | 28882          | 3ms      | 1429779530273     | 11ms     | [Ticket Translation](docs/DAY16.MD)      |
-| 17  | 269            | 146ms    | 848               | 2s 958ms | [Conway Cubes](docs/DAY17.MD)            |
+| 17  | 269            | 146ms    | 848               | 2s 238ms | [Conway Cubes](docs/DAY17.MD)            |
 | 18  | 11297104473091 | 19ms     | 185348874183674   | 15ms     | [Operation Order](docs/DAY18.MD)         |
-| 19  | 171            | 78ms     | 369               | 201ms    | [Monster Messages](docs/DAY19.MD)        |
-| 20  | 20899048083289 | 101ms    | 2476              | 1s 177ms | [Jurassic Jigsaw](docs/DAY20.MD)         |
+| 19  | 171            | 47ms     | 369               | 133ms    | [Monster Messages](docs/DAY19.MD)        |
+| 20  | 20899048083289 | 79ms     | 2476              | 930ms    | [Jurassic Jigsaw](docs/DAY20.MD)         |
 | 21  | 2315           | 26ms     | cf,h,t,b,l,cb,cm,d| 2ms      | [Allergen Assessment](docs/DAY21.MD)     |
 | 22  | 306            | 6ms      | 291               | 1s 299ms | [Crab Combat](docs/DAY22.MD)             |
-| 23  | 58427369       | 1ms      | 111057672960      | 1s 22ms  | [Crab Cups](docs/DAY23.MD)               |
-| 24  | 326            | 878μs    | 3979              | 3s 264ms | [Lobby Layout](docs/DAY24.MD)            |
+| 23  | 58427369       | 955μs    | 111057672960      | 815ms    | [Crab Cups](docs/DAY23.MD)               |
+| 24  | 326            | 431μs    | 3979              | 2s 714ms | [Lobby Layout](docs/DAY24.MD)            |
 | 25  | 19774660       | 104ms    | 49 Stars          | 15μs     | [Combo Breaker](docs/DAY25.MD)           |
 
 Average Execution Time: 646ms \
-Total Execution Time: 16s 168ms
+Total Execution Time: 15s 441ms \
+i7 5820K - OpenJDK 14.0.2 - Ubuntu 20.04
 
 ## Advent Calendar
 [![Calendar](https://i.gyazo.com/35e15bbee4d35f25457e6ac969b17937.gif)](https://gyazo.com/35e15bbee4d35f25457e6ac969b17937)

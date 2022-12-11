@@ -1,6 +1,6 @@
 package io.github.tomplum.aoc.solutions
 
-import io.github.tomplum.aoc.Solution
+import io.github.tomplum.libs.solutions.Solution
 import io.github.tomplum.aoc.aircraft.energy.DimensionalSimulator
 import io.github.tomplum.aoc.aircraft.energy.PocketDimension3D
 import io.github.tomplum.aoc.aircraft.energy.PocketDimension4D

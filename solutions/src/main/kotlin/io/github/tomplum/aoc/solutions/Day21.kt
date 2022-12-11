@@ -1,6 +1,6 @@
 package io.github.tomplum.aoc.solutions
 
-import io.github.tomplum.aoc.Solution
+import io.github.tomplum.libs.solutions.Solution
 import io.github.tomplum.aoc.raft.food.AllergenAssessment
 import io.github.tomplum.aoc.raft.food.IngredientListReader
 import io.github.tomplum.libs.input.Day

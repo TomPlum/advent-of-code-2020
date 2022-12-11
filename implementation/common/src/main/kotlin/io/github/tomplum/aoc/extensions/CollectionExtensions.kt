@@ -13,7 +13,10 @@ fun List<Long>.product(): Long = if (isNotEmpty()) reduce { product, next -> pro
  * This assumes the array contains only 1s and 0s.
  * @return The decimal representation.
  */
-fun IntArray.toDecimal(): Long = reversed().mapIndexed { i, bit -> if (bit == 1) 2.0.pow(i) else 0 }.map { it.toLong() }.sum()
+fun IntArray.toDecimal(): Long = reversed()
+    .mapIndexed { i, bit -> if (bit == 1) 2.0.pow(i) else 0 }
+    .map { integer -> integer.toLong() }
+    .sum()
 
 /**
  * For two sets A and B, the Cartesian product of A and B is denoted by A×B and defined as:
@@ -24,8 +27,8 @@ fun IntArray.toDecimal(): Long = reversed().mapIndexed { i, bit -> if (bit == 1)
  *
  * @see cartesianProductQuadratic for a variant that returns the product of itself.
  */
-fun <S, T> List<S>.cartesianProduct(other: List<T>): List<Pair<S, T>> = this.flatMap {
-    List(other.size){ i -> Pair(it, other[i]) }
+fun <S, T> List<S>.cartesianProduct(other: List<T>): List<Pair<S, T>> = this.flatMap { value ->
+    List(other.size){ i -> Pair(value, other[i]) }
 }
 
 /**
@@ -37,8 +40,8 @@ fun <S, T> List<S>.cartesianProduct(other: List<T>): List<Pair<S, T>> = this.fla
  *
  * @see cartesianProductCubic for a variant that accepts another set.
  */
-fun <T> List<T>.cartesianProductQuadratic(): List<Pair<T, T>> = this.flatMap {
-    List(this.size){ i -> Pair(it, this[i]) }
+fun <T> List<T>.cartesianProductQuadratic(): List<Pair<T, T>> = this.flatMap { value ->
+    List(this.size){ i -> Pair(value, this[i]) }
 }
 
 /**
@@ -50,8 +53,8 @@ fun <T> List<T>.cartesianProductQuadratic(): List<Pair<T, T>> = this.flatMap {
  *
  * @see cartesianProductQuadratic for a variation that simply finds the product of itself.
  */
-fun <T> List<T>.cartesianProductCubic(): List<Triple<T, T, T>> = cartesianProduct(this, this, this).map {
-    Triple(it[0], it[1], it[2])
+fun <T> List<T>.cartesianProductCubic(): List<Triple<T, T, T>> = cartesianProduct(this, this, this).map { set ->
+    Triple(set[0], set[1], set[2])
 }
 
 /**
@@ -63,7 +66,7 @@ fun <T> List<T>.cartesianProductCubic(): List<Triple<T, T, T>> = cartesianProduc
  * [second] and [third] respectively.
  */
 fun <T> List<T>.cartesianProductCubic(second: List<T>, third: List<T>): List<Triple<T, T, T>> =
-        cartesianProduct(this, second, third).map { Triple(it[0], it[1], it[2]) }
+        cartesianProduct(this, second, third).map { set -> Triple(set[0], set[1], set[2]) }
 
 /**
  * Finds the Cartesian Product of any number of given [sets].

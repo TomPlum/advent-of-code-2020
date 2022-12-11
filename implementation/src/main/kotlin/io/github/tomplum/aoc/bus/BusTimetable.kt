@@ -11,7 +11,7 @@ data class BusTimetable(val arrivalTime: Int, val buses: List<Bus>) {
      * Gets a list of all the buses that are running and in-service.
      * @return A list of the running buses.
      */
-    fun getWorkingBuses(): List<Bus> = buses.filterNot { it.isOutOfService() }
+    fun getWorkingBuses(): List<Bus> = buses.filterNot { bus -> bus.isOutOfService() }
 
     /**
      * Creates a list of running buses with their respective offset.
@@ -30,7 +30,7 @@ data class BusTimetable(val arrivalTime: Int, val buses: List<Bus>) {
          */
         fun fromNotes(data: List<String>): BusTimetable {
             val earliestTimestamp = data[0].trim().toInt()
-            val ids = data[1].split(",").map { Bus(it) }
+            val ids = data[1].split(",").map { id -> Bus(id) }
             return BusTimetable(earliestTimestamp, ids)
         }
     }

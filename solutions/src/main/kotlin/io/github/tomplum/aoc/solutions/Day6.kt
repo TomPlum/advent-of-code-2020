@@ -1,6 +1,6 @@
 package io.github.tomplum.aoc.solutions
 
-import io.github.tomplum.aoc.Solution
+import io.github.tomplum.libs.solutions.Solution
 import io.github.tomplum.aoc.airport.customs.Questionnaire
 import io.github.tomplum.libs.input.Day
 import io.github.tomplum.libs.input.InputReader
@@ -12,7 +12,7 @@ class Day6 : Solution<Int, Int> {
         return Questionnaire(input).getYesQuestionCount()
     }
 
-    override fun part2(): Int? {
+    override fun part2(): Int {
         return Questionnaire(input).getCommonYesQuestionCount()
     }
 }
