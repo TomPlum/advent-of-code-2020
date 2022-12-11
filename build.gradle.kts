@@ -6,13 +6,13 @@ buildscript {
     }
 
     dependencies {
-        classpath(kotlin("gradle-plugin", version = "1.4.21"))
+        classpath(kotlin("gradle-plugin", version = "1.7.21"))
     }
 }
 
 plugins {
     idea
-    kotlin("jvm") version "1.4.21"
+    kotlin("jvm") version "1.7.21"
 }
 
 allprojects {
@@ -23,7 +23,6 @@ allprojects {
 
     repositories {
         mavenCentral()
-        jcenter()
         maven("https://maven.pkg.github.com/tomplum/advent-of-code-libs") {
             credentials {
                 username = "TomPlum"
@@ -35,10 +34,10 @@ allprojects {
     dependencies {
         implementation(kotlin("stdlib-jdk8"))
         implementation(kotlin("reflect"))
-        implementation("io.github.tomplum:advent-of-code-libs:1.6.6")
+        implementation("io.github.tomplum:advent-of-code-libs:2.3.0")
     }
 
     tasks.withType<KotlinCompile> {
-        kotlinOptions.jvmTarget = "11"
+        kotlinOptions.jvmTarget = "17"
     }
 }

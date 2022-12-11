@@ -16,7 +16,7 @@ class BusScheduler(private val timetable: BusTimetable) {
      */
     fun getEarliestBus(): Int {
         val buses = timetable.getWorkingBuses()
-        val firstAvailableTimes = buses.map { bus -> bus to bus.getID().getLastArrivalTime() + bus.getID() }.toMap()
+        val firstAvailableTimes = buses.associateWith { bus -> bus.getID().getLastArrivalTime() + bus.getID() }
         val waitingTimes = firstAvailableTimes.map { (id, time) -> id to time - timetable.arrivalTime }.toMap()
         val best = waitingTimes.minByOrNull { (_, waitingTime) -> waitingTime }!!
         return best.key.getID() * best.value
